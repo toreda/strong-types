@@ -1,0 +1,38 @@
+{
+  "name": "@armorjs/kvp",
+  "version": "0.0.0",
+  "description": "Managed and typed key value pairs for typescript and javascript.",
+  "main": "index.js",
+  "scripts": {
+    "lint": "yarn tslint --project .",
+    "build:nolint": "yarn tsc",
+    "build": "yarn gulp",
+    "test": "yarn jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/armorjs/kvp.git"
+  },
+  "keywords": [
+    "key-value",
+    "typescript",
+    "managed"
+  ],
+  "author": "ArmorJS",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/armorjs/kvp/issues"
+  },
+  "homepage": "https://github.com/armorjs/kvp#readme",
+  "devDependencies": {
+    "@types/jest": "^26.0.13",
+    "@types/node": "^14.6.4",
+    "@types/typescript": "^2.0.0",
+    "jest": "^26.4.2",
+    "jest-sonar-reporter": "^2.0.0",
+    "ts-jest": "^26.3.0"
+  },
+  "dependencies": {
+    "@armorjs/build": "^0.0.2"
+  }
+}
