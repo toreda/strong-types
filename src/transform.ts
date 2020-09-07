@@ -14,11 +14,6 @@ export class ArmorKVPTransform<T> {
 	}
 
 	public run(value: T): T {
-		if (!this.fn) {
-			console.error(`[${this.label}] Run failed - filter fn missing.`);
-			return null;
-		}
-
 		let result = value;
 
 		try {

@@ -1,9 +1,9 @@
-import {ArmorKVPFilterAny} from './filter-function';
+import { ArmorKVPValidatorAny } from './validator-function';
 
 export class ArmorKVPValidator<T> {
 	public readonly validator: any;
 
-	constructor(validator: ArmorKVPFilterAny) {
+	constructor(validator: ArmorKVPValidatorAny) {
 		if (typeof validator !== 'function') {
 			throw new Error('ArmorKVPValidator init failed - validator argument is not callable.');
 		}
