@@ -13,11 +13,19 @@ export class ArmorKVPTransforms<T> {
 	}
 
 	public addNullable(transform: ArmorKVPTransformNullable<T>): boolean {
+		if (!transform) {
+			return false;
+		}
+
 		this.transformsNullable.push(transform);
 		return true;
 	}
 
 	public add(transform: ArmorKVPTransform<T>): boolean {
+		if (!transform) {
+			return false;
+		}
+
 		// todo: add sorted insert here based on filter.sortOrder
 		this.transforms.push(transform);
 		return true;
