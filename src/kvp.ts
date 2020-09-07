@@ -3,29 +3,29 @@ import {ArmorInt, ArmorUInt} from './types';
 import {ArmorKVPData} from './data';
 import {ArmorKVPOptions} from './options';
 
-export type ArmorKVP<T> = (type: T, val?: any | null, fallback?: T) => T;
-export type ArmorKVPNullable<T> = (type: T, val?: any | null, fallback?: T) => T | null;
+export type ArmorKVP<T> = (val?: T, fallback?: T) => T;
+export type ArmorKVPNullable<T> = (val?: T | null, fallback?: T) => T | null;
 
 export function createKVP<T>(initial: T | null, fallback: T, options?: ArmorKVPOptions<T>): ArmorKVP<T> {
 	const instance = new ArmorKVPData<T>(initial, fallback, options);
 
 	const helper: ArmorKVP<T> = (val?: T | null, fallback?: T): T => {
+		const fallbackVal = typeof fallback !== 'undefined' ? fallback : instance.fallbackDefault;
+
 		if (typeof val !== 'undefined') {
 			instance.set(val);
 
 			if (val === null) {
-				if (typeof fallback === 'undefined')
+				if (typeof fallback !== 'undefined' && fallback !== null) {
+					return fallback;
+				} else {
+					return instance.fallbackDefault;
+				}
 			}
 			return val;
 		}
 
-		// todo: fix this
-		if (typeof fallback === 'undefined') {
-			return instance.fallbackDefault;
-		}
-
-		const result = instance.get(fallback);
-		return result;
+		return instance.get(fallbackVal);
 	};
 
 	return helper;

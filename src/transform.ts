@@ -13,7 +13,7 @@ export class ArmorKVPTransform<T> {
 		this.sortOrder = typeof sortOrder === 'number' ? sortOrder : 0;
 	}
 
-	public run(value: T | null): T | null {
+	public run(value: T): T {
 		if (!this.fn) {
 			console.error(`[${this.label}] Run failed - filter fn missing.`);
 			return null;

@@ -8,5 +8,6 @@ export interface ArmorKVPOptions<T> {
 			min?: number;
 			max?: number;
 		};
-	}
+	},
+	nullable?: boolean
 }

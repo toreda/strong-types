@@ -8,6 +8,7 @@ export class ArmorKVPTransforms<T> {
 
 	constructor(fallbackDefault: T) {
 		this.transforms = [];
+		this.transformsNullable = [];
 		this.fallbackDefault = fallbackDefault;
 	}
 
@@ -22,7 +23,7 @@ export class ArmorKVPTransforms<T> {
 		return true;
 	}
 
-	public run(value: T | null): T {
+	public run(value: T): T {
 		if (typeof value === 'undefined' || value === null) {
 			return this.fallbackDefault;
 		}

@@ -8,10 +8,8 @@ describe('ArmorKVPValidators', () => {
 	});
 
 	describe('Constructor', () => {
-		it('should throw when keyType argument is not a string', () => {
-			expect(() => {
-				const customInstance = new ArmorKVPValidators<string>();
-			}).toThrow('ArmorKeyValidators init failed - keyType argument is not a valid string.');
+		it('shall pass', () => {
+
 		});
 	});
 
