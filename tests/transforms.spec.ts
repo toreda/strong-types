@@ -1,4 +1,5 @@
-import { ArmorKVPTransforms } from '../src/transforms';
+import {ArmorKVPTransform} from '../src/transform';
+import {ArmorKVPTransforms} from '../src/transforms';
 
 const MOCK_STRING = 'oneoneone';
 
@@ -10,9 +11,7 @@ describe('ArmorKVPTransforms', () => {
 	});
 
 	describe('Constructor', () => {
-		it('shall pass', () => {
-
-		});
+		it('shall pass', () => {});
 	});
 
 	describe('Implementation', () => {
@@ -69,6 +68,40 @@ describe('ArmorKVPTransforms', () => {
 				const inputValue = 'one_one_two';
 				expect(custom.transforms).toHaveLength(0);
 				expect(custom.run(inputValue)).toBe(inputValue);
+			});
+
+			it('should execute all transforms', () => {
+				const tf1 = jest.fn();
+				tf1.mockImplementation((val: string) => {
+					return val;
+				});
+				const transform1 = new ArmorKVPTransform(tf1);
+
+				const tf2 = jest.fn();
+				tf1.mockImplementation((val: string) => {
+					return val;
+				});
+				const transform2 = new ArmorKVPTransform(tf2);
+				const tf3 = jest.fn();
+				tf3.mockImplementation((val: string) => {
+					return val;
+				});
+				const transform3 = new ArmorKVPTransform(tf3);
+
+				custom.add(transform1);
+				custom.add(transform2);
+				custom.add(transform3);
+
+				expect(tf1).not.toHaveBeenCalled();
+				expect(tf2).not.toHaveBeenCalled();
+				expect(tf3).not.toHaveBeenCalled();
+
+				const val = 'aaaaaaaaaa4414';
+				const result = custom.run(val);
+
+				expect(tf1).toHaveBeenCalledTimes(1);
+				expect(tf2).toHaveBeenCalledTimes(1);
+				expect(tf3).toHaveBeenCalledTimes(1);
 			});
 		});
 

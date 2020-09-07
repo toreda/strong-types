@@ -1,16 +1,23 @@
 import {ArmorKVPTransformFn, ArmorKVPTransformFnNullable} from './transform-fn';
 
+import ArmorKVPTransformOptions from './transform-options';
+
 export class ArmorKVPTransform<T> {
 	public readonly id: string;
 	public readonly label: string;
 	public readonly sortOrder: number;
 	public readonly fn: ArmorKVPTransformFn<T>;
 
-	constructor(id: string, fn: ArmorKVPTransformFn<T>, sortOrder?: number) {
+	constructor(fn: ArmorKVPTransformFn<T>, options?: ArmorKVPTransformOptions) {
+		if (!fn) {
+			throw new Error('ArmorKVPTransform init failed - fn argument missing.');
+		}
+
 		this.fn = fn;
-		this.id = id;
+		this.id = options && typeof options.id === 'string' ? options.id : 'kvp_tf';
 		this.label = `kvp_filter_${this.id}`;
-		this.sortOrder = typeof sortOrder === 'number' ? sortOrder : 0;
+
+		this.sortOrder = options && typeof options.sortPriority === 'number' ? options.sortPriority : 0;
 	}
 
 	public run(value: T): T {

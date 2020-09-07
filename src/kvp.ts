@@ -1,5 +1,3 @@
-import {ArmorInt, ArmorUInt} from './types';
-
 import {ArmorKVPData} from './data';
 import {ArmorKVPOptions} from './options';
 
