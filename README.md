@@ -30,10 +30,10 @@ ArmorJS standards:
 ## Install
 
 **_With yarn (preferred):_**
-`yarn add @armorjs/key-store`
+`yarn add @armorjs/kvp`
 
 With NPM:
-`npm install @armorjs/key-store`
+`npm install @armorjs/kvp`
 
 ## License
 
