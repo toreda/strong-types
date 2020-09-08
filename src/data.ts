@@ -24,6 +24,10 @@ export default class ArmorKVPData<T> {
 
 	public get(fallback: T): T {
 		if (this.value === null) {
+			if (typeof fallback === 'undefined' || fallback === null) {
+				return this.fallbackDefault;
+			}
+
 			return fallback;
 		}
 
