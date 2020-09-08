@@ -1,5 +1,5 @@
-import {ArmorKVPOptions} from '../src/options';
-import {ArmorKVPState} from '../src/state';
+import ArmorKVPOptions from '../src/options';
+import ArmorKVPState from '../src/state';
 
 describe('ArmorKVPState', () => {
 	let instance: ArmorKVPState<string>;

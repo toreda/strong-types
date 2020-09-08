@@ -1,6 +1,6 @@
-import {ArmorKVPValidator} from './validator';
+import ArmorKVPValidator from './validator';
 
-export class ArmorKVPValidators<T> {
+export default class ArmorKVPValidators<T> {
 	public readonly validators: ArmorKVPValidator<T>[];
 
 	constructor() {

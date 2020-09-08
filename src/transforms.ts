@@ -1,7 +1,7 @@
-import {ArmorKVPTransform} from './transform';
-import {ArmorKVPTransformNullable} from './transform-nullable';
+import ArmorKVPTransform from './transform';
+import ArmorKVPTransformNullable from './transform-nullable';
 
-export class ArmorKVPTransforms<T> {
+export default class ArmorKVPTransforms<T> {
 	public readonly transforms: ArmorKVPTransform<T>[];
 	public readonly transformsNullable: ArmorKVPTransformNullable<T>[];
 	public readonly fallbackDefault: T;

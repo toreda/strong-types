@@ -1,6 +1,6 @@
 import { ArmorKVPTransformFn, ArmorKVPTransformFnNullable } from './transform-fn';
 
-export class ArmorKVPTransformNullable<T> {
+export default class ArmorKVPTransformNullable<T> {
 	public readonly id: string;
 	public readonly label: string;
 	public readonly sortOrder: number;

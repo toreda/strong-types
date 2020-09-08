@@ -1,9 +1,8 @@
-import { ArmorKVP, ArmorKVPNullable, createKVP, createKVPNullable } from './kvp';
+import ArmorKVP, {ArmorKVPNullable, createKVP, createKVPNullable} from './kvp';
 
 type ArmorInt = ArmorKVP<number>;
 export default ArmorInt;
 export type ArmorIntNullable = ArmorKVPNullable<number>;
-
 
 export function createKVPInt(initial: number, fallback: number, options: any): ArmorInt {
 	return createKVP<number>(initial, fallback, options);

@@ -1,4 +1,4 @@
-import { ArmorKVP, ArmorKVPNullable, createKVP, createKVPNullable } from './kvp';
+import ArmorKVP, {ArmorKVPNullable, createKVP, createKVPNullable} from './kvp';
 
 type ArmorString = ArmorKVP<string>;
 export default ArmorString;

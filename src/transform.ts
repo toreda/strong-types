@@ -2,7 +2,7 @@ import {ArmorKVPTransformFn, ArmorKVPTransformFnNullable} from './transform-fn';
 
 import ArmorKVPTransformOptions from './transform-options';
 
-export class ArmorKVPTransform<T> {
+export default class ArmorKVPTransform<T> {
 	public readonly id: string;
 	public readonly label: string;
 	public readonly sortOrder: number;

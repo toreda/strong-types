@@ -1,7 +1,9 @@
-import {ArmorKVPData} from './data';
-import {ArmorKVPOptions} from './options';
+import ArmorKVPData from './data';
+import ArmorKVPOptions from './options';
 
-export type ArmorKVP<T> = (val?: T, fallback?: T) => T;
+type ArmorKVP<T> = (val?: T, fallback?: T) => T;
+export default ArmorKVP;
+
 export type ArmorKVPNullable<T> = (val?: T | null, fallback?: T) => T | null;
 
 export function createKVP<T>(initial: T | null, fallback: T, options?: ArmorKVPOptions<T>): ArmorKVP<T> {
@@ -38,7 +40,7 @@ export function createKVPNullable<T>(initial: T | null, fallback: T, options: Ar
 			return initial;
 		}
 
-		return instance.getUnsafe();
+		return instance.getNullable();
 	};
 
 	return helper;

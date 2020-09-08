@@ -1,5 +1,5 @@
-import { ArmorKVP } from '../src/kvp';
-import {ArmorKVPTransform} from '../src/transform';
+import ArmorKVP from '../src/kvp';
+import ArmorKVPTransform from '../src/transform';
 
 describe('ArmorKVPTransform', () => {
 	describe('Constructor', () => {

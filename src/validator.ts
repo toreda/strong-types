@@ -1,6 +1,6 @@
 import { ArmorKVPValidatorAny } from './validator-function';
 
-export class ArmorKVPValidator<T> {
+export default class ArmorKVPValidator<T> {
 	public readonly validator: any;
 
 	constructor(validator: ArmorKVPValidatorAny) {

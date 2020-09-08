@@ -1,4 +1,4 @@
-import { ArmorKVP, ArmorKVPNullable, createKVP, createKVPNullable } from '../src/kvp';
+import ArmorKVP, { ArmorKVPNullable, createKVP, createKVPNullable } from '../src/kvp';
 
 const types = [];
 const MOCK_STRING = '113333';

@@ -1,6 +1,6 @@
-import { ArmorKVPOptions } from './options';
+import ArmorKVPOptions from './options';
 
-export class ArmorKVPState<T> {
+export default class ArmorKVPState<T> {
 	public enforce: {
 		enabled: boolean;
 		length: {

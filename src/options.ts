@@ -1,4 +1,4 @@
-export interface ArmorKVPOptions<T> {
+export default interface ArmorKVPOptions<T> {
 	enforce?: {
 		length?: {
 			min?: number;

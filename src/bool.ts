@@ -1,4 +1,4 @@
-import { ArmorKVP, ArmorKVPNullable, createKVP, createKVPNullable } from './kvp';
+import ArmorKVP, {ArmorKVPNullable, createKVP, createKVPNullable} from './kvp';
 
 export type ArmorBool = ArmorKVP<boolean>;
 export type ArmorBoolNullable = ArmorKVPNullable<boolean>;

@@ -1,4 +1,4 @@
-import {ArmorKVPValidators} from '../src/validators';
+import ArmorKVPValidators from '../src/validators';
 
 describe('ArmorKVPValidators', () => {
 	let instance: ArmorKVPValidators<string>;

@@ -1,5 +1,5 @@
-import {ArmorKVPTransform} from '../src/transform';
-import {ArmorKVPTransforms} from '../src/transforms';
+import ArmorKVPTransform from '../src/transform';
+import ArmorKVPTransforms from '../src/transforms';
 
 const MOCK_STRING = 'oneoneone';
 

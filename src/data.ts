@@ -1,9 +1,9 @@
-import {ArmorKVPOptions} from './options';
-import {ArmorKVPState} from './state';
-import {ArmorKVPTransforms} from './transforms';
-import {ArmorKVPValidators} from './validators';
+import ArmorKVPOptions from './options';
+import ArmorKVPState from './state';
+import ArmorKVPTransforms from './transforms';
+import ArmorKVPValidators from './validators';
 
-export class ArmorKVPData<T> {
+export default class ArmorKVPData<T> {
 	public value: T | null;
 	public readonly fallbackDefault: T;
 	public readonly state: ArmorKVPState<T>;
@@ -55,7 +55,7 @@ export class ArmorKVPData<T> {
 		return true;
 	}
 
-	public getUnsafe(): T | null {
+	public getNullable(): T | null {
 		return this.value;
 	}
 
