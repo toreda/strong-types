@@ -63,6 +63,19 @@ myValue('trendy');
 myValue(null);
 ```
 
+### Reset value
+Reset will set value to null without using set functionality.
+```typescript
+// set kvp to hello
+myValue('hello');
+
+// Outputs hello
+myValue();
+
+// value will become null.
+myValue.reset();
+```
+
 ## Build
 First run `yarn` to install repo packages. Then, run the build command.
 ```bash
