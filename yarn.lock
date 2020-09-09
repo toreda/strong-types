@@ -739,7 +739,7 @@
   version "15.0.0"
   resolved "https://registry.yarnpkg.com/@types/yargs-parser/-/yargs-parser-15.0.0.tgz#cb3f9f741869e20cce330ffbeb9271590483882d"
 
-"@types/yargs@^15.0.0", "@types/yargs@^15.0.4":
+"@types/yargs@^15.0.0", "@types/yargs@^15.0.4", "@types/yargs@^15.0.5":
   version "15.0.5"
   resolved "https://registry.yarnpkg.com/@types/yargs/-/yargs-15.0.5.tgz#947e9a6561483bdee9adffc983e91a6902af8b79"
   dependencies:
