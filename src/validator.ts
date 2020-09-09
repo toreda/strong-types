@@ -1,29 +1,21 @@
-import { ArmorKVPValidatorAny } from './validator-function';
+import ArmorKVPValidatorFn from './validator-fn';
 
 export default class ArmorKVPValidator<T> {
-	public readonly validator: any;
+	public readonly validator: ArmorKVPValidatorFn<T>;
 
-	constructor(validator: ArmorKVPValidatorAny) {
+	constructor(validator: ArmorKVPValidatorFn<T>) {
+		if (!validator) {
+			throw new Error('ArmorKVPValidator init failed - validator argument is missing.');
+		}
+
 		if (typeof validator !== 'function') {
-			throw new Error('ArmorKVPValidator init failed - validator argument is not callable.');
+			throw new Error('ArmorKVPValidator init failed - validator argument is not a callable validator fn.');
 		}
 
 		this.validator = validator;
 	}
 
-	public validate(value: any): boolean {
-		if (!this.validator) {
-			console.error('ArmorKVPValidator defaulting to false - validator callback argument is missing.');
-			return false;
-		}
-
-		if (typeof this.validator !== 'function') {
-			console.error(
-				'ArmorKVPValidator defaulting to false - validator callback argument is not a valid function.'
-			);
-			return false;
-		}
-
+	public run(value: T | null): boolean {
 		let result: boolean = false;
 
 		try {
