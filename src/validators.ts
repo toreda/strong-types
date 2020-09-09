@@ -16,7 +16,7 @@ export default class ArmorKVPValidators<T> {
 		for (let i = 0; i < this.validators.length; i++) {
 			const validator: ArmorKVPValidator<T> = this.validators[i];
 
-			if (!validator.validate(value)) {
+			if (!validator.run(value)) {
 				return false;
 			}
 		}
