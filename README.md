@@ -37,13 +37,13 @@ const fallback = 'goodbye';
 const myValue = new ArmorKVP<string>(initialValue, fallback);
 ```
 
-### Get Value
+### Get value
 ```typescript
 // Returns current value, or fallback when value is null.
 const value = myValue();
 ```
 
-### Get Value with Custom Fallback
+### Get value with custom fallback
 ```typescript
 // value set to 'hello' as shown above.
 const fallback = 'goodbye again';
@@ -51,10 +51,16 @@ const fallback = 'goodbye again';
 const value = myValue.get(fallback);
 ```
 
-### Set Value
+### Set value
 ```typescript
-// Set kvp to have value 'trendy'
+// Set kvp to string 'trendy'
 myValue('trendy');
+```
+
+### Set value to null
+```typescript
+// Set kvp to be null.
+myValue(null);
 ```
 
 ## Build
