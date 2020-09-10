@@ -12,7 +12,7 @@ export default class ArmorKVPValidators<T> {
 		return true;
 	}
 
-	public run(value: any): boolean {
+	public run(value: T | null): boolean {
 		for (let i = 0; i < this.validators.length; i++) {
 			const validator: ArmorKVPValidator<T> = this.validators[i];
 
