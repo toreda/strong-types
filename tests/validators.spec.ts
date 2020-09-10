@@ -108,6 +108,46 @@ describe('ArmorKVPValidators', () => {
 
 		});
 
-		describe('reset', () => {});
+		describe('reset', () => {
+			it('should not throw when called repeatedly on an empty validator list', () => {
+				const custom = new ArmorKVPValidators<string>();
+				expect(custom.validators).toEqual([]);
+
+				expect(() => {
+					for (let i = 0; i < 5; i++) {
+						custom.reset();
+					}
+
+				}).not.toThrow();
+			});
+
+			it('should clear validators when there is 1 validator', () => {
+				const v1 = {
+					run: jest.fn().mockReturnValue(true)
+				} as any;
+				const custom = new ArmorKVPValidators<string>();
+				custom.add(v1);
+				expect(custom.validators).toHaveLength(1);
+				custom.reset();
+				expect(custom.validators).toHaveLength(0);
+			});
+
+			it('should clear validators when there are multiple validators', () => {
+				const v1 = {
+					run: jest.fn().mockReturnValue(true)
+				} as any;
+				const v2 = {
+					run: jest.fn().mockReturnValue(true)
+				} as any;
+				const v3 = {
+					run: jest.fn().mockReturnValue(true)
+				} as any;
+				const custom = new ArmorKVPValidators<string>();
+				custom.addGroup([v1, v2, v3]);
+				expect(custom.validators).toHaveLength(3);
+				custom.reset();
+				expect(custom.validators).toHaveLength(0);
+			});
+		});
 	});
 });
