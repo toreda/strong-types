@@ -16,12 +16,13 @@ export interface ArmorKVPNullable<T> {
 	reset: () => void;
 }
 
-export function createKVP<T>(initial: T | null, fallback: T, options?: ArmorKVPOptions<T>): ArmorKVP<T> {
-	const instance = new ArmorKVPData<T>(initial, fallback, options);
+
+export function createKVP<T>(initialArg: T | null, fallbackArg: T, options?: ArmorKVPOptions<T>): ArmorKVP<T> {
+	const instance = new ArmorKVPData<T>(initialArg, fallbackArg, options);
 
 	const helper: ArmorKVP<T> = Object.assign(
 		(val?: T): T => {
-			const fallbackVal = typeof fallback !== 'undefined' ? fallback : instance.fallbackDefault;
+			const fallback = typeof fallbackArg !== 'undefined' ? fallbackArg : instance.fallbackDefault;
 
 			if (typeof val !== 'undefined') {
 				instance.set(val);
@@ -32,7 +33,7 @@ export function createKVP<T>(initial: T | null, fallback: T, options?: ArmorKVPO
 				return val;
 			}
 
-			return instance.get(fallbackVal);
+			return instance.get(fallbackArg);
 		},
 		{
 			get: (fallback: T): T => {

@@ -16,25 +16,28 @@
 
 ## About ArmorJS
 
-ArmorJS creates small, performant, and natively typescript NPM packages. 
+Small footprint, reliable, thoroughly tested packages for Typescript and Javascript.
 https://github.com/armorjs/_project-home
 
 ## Install
 
 **_With yarn (preferred):_**
-`yarn add @armorjs/kvp`
+```bash
+yarn add @armorjs/kvp
+```
 
 With NPM:
-`npm install @armorjs/kvp`
-
-## Usage
+```bash
+npm install @armorjs/kvp
+```
+## Examples
 
 ### Create a key-value pair
 ```typescript
-import {ArmorKVP} from '@armorjs/kvp';
-const initialValue = 'hello';
-const fallback = 'goodbye';
-const myValue = new ArmorKVP<string>(initialValue, fallback);
+import ArmorKVP, {createKVP} from '@armorjs/kvp';
+const initial = 'hello';
+const fallbackDefault = 'goodbye';
+const myValue = createKVP<string>(initial, fallbackDefault);
 ```
 
 ### Get value

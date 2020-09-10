@@ -21,16 +21,14 @@ export default class ArmorKVPState<T> {
 	}
 
 	public create(options?: ArmorKVPOptions<T>): any {
-		let object = {
+		return {
 			length: this.createLength(options),
 			range: this.createRange(options)
 		};
-
-		return object;
 	}
 
 	public createLength(options?: ArmorKVPOptions<T>): any {
-		let config = {
+		const config = {
 			enabled: false,
 			min: 0,
 			max: 0
@@ -58,7 +56,7 @@ export default class ArmorKVPState<T> {
 	}
 
 	public createRange(options?: ArmorKVPOptions<T>): any {
-		let config = {
+		const config = {
 			enabled: false,
 			min: 0,
 			max: 0

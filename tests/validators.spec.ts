@@ -7,6 +7,10 @@ describe('ArmorKVPValidators', () => {
 		instance = new ArmorKVPValidators<string>();
 	});
 
+	beforeEach(() => {
+		instance.reset();
+	});
+
 	describe('Constructor', () => {
 		it('shall pass', () => {
 
@@ -14,6 +18,9 @@ describe('ArmorKVPValidators', () => {
 	});
 
 	describe('Implementation', () => {
-		describe('validate', () => {});
+
+		describe('run', () => {
+
+		});
 	});
 });

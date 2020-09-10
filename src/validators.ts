@@ -23,4 +23,11 @@ export default class ArmorKVPValidators<T> {
 
 		return true;
 	}
+
+	public reset(): void {
+		// Remove all validators
+		for (let i = this.validators.length - 1; i >= 0; i--) {
+			this.validators.pop();
+		}
+	}
 }
