@@ -109,7 +109,7 @@ describe('ArmorKVPValidators', () => {
 		});
 
 		describe('reset', () => {
-			it('should not throw when called repeatedly on an empty validator list', () => {
+			it('should not throw when called repeatedly on empty list', () => {
 				const custom = new ArmorKVPValidators<string>();
 				expect(custom.validators).toEqual([]);
 
@@ -118,6 +118,25 @@ describe('ArmorKVPValidators', () => {
 						custom.reset();
 					}
 
+				}).not.toThrow();
+			});
+
+			it('should not throw when called more multiple times after clearing validators', () => {
+				const v1 = {
+					run: jest.fn().mockReturnValue(true)
+				} as any;
+				const v2 = {
+					run: jest.fn().mockReturnValue(true)
+				} as any;
+				const v3 = {
+					run: jest.fn().mockReturnValue(true)
+				} as any;
+				const custom = new ArmorKVPValidators<string>();
+
+				expect(() => {
+					for (let i = 0; i < 4; i++) {
+						custom.reset();
+					}
 				}).not.toThrow();
 			});
 
