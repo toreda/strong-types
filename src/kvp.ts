@@ -33,7 +33,7 @@ export function createKVP<T>(initialArg: T | null, fallbackArg: T, options?: Arm
 				return val;
 			}
 
-			return instance.get(fallbackArg);
+			return instance.get(fallback);
 		},
 		{
 			get: (fallback: T): T => {
