@@ -1,5 +1,4 @@
-import {ArmorKVPTransformFn, ArmorKVPTransformFnNullable} from './transform-fn';
-
+import {ArmorKVPTransformFn} from './transform-fn';
 import ArmorKVPTransformOptions from './transform-options';
 
 export default class ArmorKVPTransform<T> {
@@ -26,7 +25,7 @@ export default class ArmorKVPTransform<T> {
 		try {
 			result = this.fn(value);
 		} catch (e) {
-			console.error(`[${this.label}]`)
+			console.error(`[${this.label}]`);
 		}
 
 		return result;
