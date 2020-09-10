@@ -12,6 +12,18 @@ export default class ArmorKVPValidators<T> {
 		return true;
 	}
 
+	public addGroup(validators: ArmorKVPValidator<T>[]): boolean {
+		if (!Array.isArray(validators)) {
+			return false;
+		}
+
+		validators.forEach((validator: ArmorKVPValidator<T>) => {
+			this.validators.push(validator);
+		});
+
+		return true;
+	}
+
 	public run(value: T | null): boolean {
 		for (let i = 0; i < this.validators.length; i++) {
 			const validator: ArmorKVPValidator<T> = this.validators[i];
