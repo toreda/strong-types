@@ -1,13 +1,17 @@
-import ArmorKVP, {ArmorKVPNullable, createKVP, createKVPNullable} from './kvp';
+import KVP, {KVPNullable, createKVP, createKVPNullable} from './kvp';
 
-type ArmorString = ArmorKVP<string>;
-export default ArmorString;
-export type ArmorStringNullable = ArmorKVPNullable<string>;
+import KVPRules from './rules';
 
-export function createKVPString(initial: string, fallback: string, options: any): ArmorString {
-	return createKVP<string>(initial, fallback, options);
+type KVPString = KVP<string>;
+export default KVPString;
+export type KVPStringNullable = KVPNullable<string>;
+
+export function createKVPString(initial: string, fallback: string): KVPString {
+	const rules = new KVPRules();
+	return createKVP<string>(initial, fallback, rules);
 }
 
-export function createKVPStringNullable(initial: string | null, fallback: string, options: any): ArmorStringNullable {
-	return createKVPNullable<string>(initial, fallback, options);
+export function createKVPStringNullable(initial: string | null, fallback: string): KVPStringNullable {
+	const rules = new KVPRules();
+	return createKVPNullable<string>(initial, fallback, rules);
 }

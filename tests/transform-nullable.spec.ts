@@ -1,12 +1,12 @@
-import ArmorKVP from '../src/kvp';
-import ArmorKVPTransformNullable from '../src/transform-nullable';
+import KVP from '../src/kvp';
+import KVPTransformNullable from '../src/transform-nullable';
 
-describe('ArmorKVPTransformNullable', () => {
+describe('KVPTransformNullable', () => {
 	describe('Constructor', () => {
 		it('should throw when fn argument is not provided', () => {
 			expect(() => {
-				const custom = new ArmorKVPTransformNullable<string>(undefined as any);
-			}).toThrow('ArmorKVPTransformNullable init failed - fn argument missing.');
+				const custom = new KVPTransformNullable<string>(undefined as any);
+			}).toThrow('KVPTransformNullable init failed - fn argument missing.');
 		});
 
 		it('should set id when provided in options argument', () => {
@@ -14,7 +14,7 @@ describe('ArmorKVPTransformNullable', () => {
 				return value;
 			};
 			const sampleId = 'AAA_@@@@@33321__334';
-			const custom = new ArmorKVPTransformNullable<string>(fn, {
+			const custom = new KVPTransformNullable<string>(fn, {
 				id: sampleId
 			});
 
@@ -32,7 +32,7 @@ describe('ArmorKVPTransformNullable', () => {
 
 				expect(() => {
 					const sampleVal = 'hello225425';
-					const custom = new ArmorKVPTransformNullable<string>(fn, {});
+					const custom = new KVPTransformNullable<string>(fn, {});
 					custom.run(sampleVal);
 				}).not.toThrow();
 			});
@@ -43,7 +43,7 @@ describe('ArmorKVPTransformNullable', () => {
 					throw new Error('woop woop');
 				});
 				const sampleVal = 'hi_30091';
-				const custom = new ArmorKVPTransformNullable<string>(fn, {});
+				const custom = new KVPTransformNullable<string>(fn, {});
 
 				expect(custom.run(sampleVal)).toBe(sampleVal);
 			});
@@ -54,7 +54,7 @@ describe('ArmorKVPTransformNullable', () => {
 					return null;
 				});
 				const sampleVal = 'hi_223134';
-				const custom = new ArmorKVPTransformNullable<string>(fn, {});
+				const custom = new KVPTransformNullable<string>(fn, {});
 
 				expect(custom.run(sampleVal)).toBeNull();
 			});
@@ -65,7 +65,7 @@ describe('ArmorKVPTransformNullable', () => {
 					return null;
 				});
 				const sampleVal = 'hi_223134';
-				const custom = new ArmorKVPTransformNullable<string>(fn, {});
+				const custom = new KVPTransformNullable<string>(fn, {});
 				expect(() => {
 					custom.run(null);
 				}).not.toThrow();
@@ -76,7 +76,7 @@ describe('ArmorKVPTransformNullable', () => {
 				fn.mockImplementation(() => {
 					return null;
 				});
-				const custom = new ArmorKVPTransformNullable<string>(fn, {});
+				const custom = new KVPTransformNullable<string>(fn, {});
 				custom.run(null);
 				expect(fn).toHaveBeenCalledTimes(1);
 				expect(fn).toHaveBeenCalledWith(null);

@@ -1,13 +1,13 @@
-import ArmorKVPTransform from '../src/transform';
-import ArmorKVPTransforms from '../src/transforms';
+import KVPTransform from '../src/transform';
+import KVPTransforms from '../src/transforms';
 
 const MOCK_STRING = 'oneoneone';
 
-describe('ArmorKVPTransforms', () => {
-	let instance: ArmorKVPTransforms<string>;
+describe('KVPTransforms', () => {
+	let instance: KVPTransforms<string>;
 
 	beforeAll(() => {
-		instance = new ArmorKVPTransforms<string>(MOCK_STRING);
+		instance = new KVPTransforms<string>(MOCK_STRING);
 	});
 
 	describe('Constructor', () => {
@@ -16,11 +16,11 @@ describe('ArmorKVPTransforms', () => {
 
 	describe('Implementation', () => {
 		describe('add', () => {
-			let custom: ArmorKVPTransforms<string>;
+			let custom: KVPTransforms<string>;
 			const MOCK_FALLBACK1 = '22222233333___11';
 
 			beforeEach(() => {
-				custom = new ArmorKVPTransforms<string>(MOCK_FALLBACK1);
+				custom = new KVPTransforms<string>(MOCK_FALLBACK1);
 			});
 
 			it('should return false when transform argument is null', () => {
@@ -33,11 +33,11 @@ describe('ArmorKVPTransforms', () => {
 		});
 
 		describe('addNullable', () => {
-			let custom: ArmorKVPTransforms<string>;
+			let custom: KVPTransforms<string>;
 			const MOCK_FALLBACK1 = '22222233333___11';
 
 			beforeEach(() => {
-				custom = new ArmorKVPTransforms<string>(MOCK_FALLBACK1);
+				custom = new KVPTransforms<string>(MOCK_FALLBACK1);
 			});
 
 			it('should return false when transform argument is null', () => {
@@ -50,10 +50,10 @@ describe('ArmorKVPTransforms', () => {
 		});
 
 		describe('run', () => {
-			let custom: ArmorKVPTransforms<string>;
+			let custom: KVPTransforms<string>;
 			const MOCK_FALLBACK1 = '22222233333___11';
 			beforeEach(() => {
-				custom = new ArmorKVPTransforms<string>(MOCK_FALLBACK1);
+				custom = new KVPTransforms<string>(MOCK_FALLBACK1);
 			});
 
 			it('should return fallback default when value argument is null', () => {
@@ -75,18 +75,18 @@ describe('ArmorKVPTransforms', () => {
 				tf1.mockImplementation((val: string) => {
 					return val;
 				});
-				const transform1 = new ArmorKVPTransform(tf1);
+				const transform1 = new KVPTransform(tf1);
 
 				const tf2 = jest.fn();
 				tf1.mockImplementation((val: string) => {
 					return val;
 				});
-				const transform2 = new ArmorKVPTransform(tf2);
+				const transform2 = new KVPTransform(tf2);
 				const tf3 = jest.fn();
 				tf3.mockImplementation((val: string) => {
 					return val;
 				});
-				const transform3 = new ArmorKVPTransform(tf3);
+				const transform3 = new KVPTransform(tf3);
 
 				custom.add(transform1);
 				custom.add(transform2);
@@ -106,10 +106,10 @@ describe('ArmorKVPTransforms', () => {
 		});
 
 		describe('runNullable', () => {
-			let custom: ArmorKVPTransforms<string>;
+			let custom: KVPTransforms<string>;
 			const MOCK_FALLBACK1 = '22222233333___11';
 			beforeEach(() => {
-				custom = new ArmorKVPTransforms<string>(MOCK_FALLBACK1);
+				custom = new KVPTransforms<string>(MOCK_FALLBACK1);
 			});
 
 			it('should return null when value argument is null', () => {

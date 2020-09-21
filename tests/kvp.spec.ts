@@ -1,4 +1,4 @@
-import ArmorKVP, {ArmorKVPNullable, createKVP, createKVPNullable} from '../src/kvp';
+import KVP, {KVPNullable, createKVP, createKVPNullable} from '../src/kvp';
 
 const types = [];
 const MOCK_INITIAL = '11110209';
@@ -36,10 +36,10 @@ interface TestSet<T> {
 
 const TEST_SETS_NULLABLE: TestSet<any>[] = []; */
 
-describe('ArmorKVP', () => {
+describe('KVP', () => {
 	describe('createKVP', () => {
 		describe('types', () => {
-			let kvp: ArmorKVP<string>;
+			let kvp: KVP<string>;
 
 			beforeAll(() => {
 				kvp = createKVP<string>(MOCK_INITIAL, MOCK_FALLBACK);

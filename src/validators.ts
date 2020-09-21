@@ -1,23 +1,23 @@
-import ArmorKVPValidator from './validator';
+import KVPValidator from './validator';
 
-export default class ArmorKVPValidators<T> {
-	public readonly validators: ArmorKVPValidator<T>[];
+export default class KVPValidators<T> {
+	public readonly validators: KVPValidator<T>[];
 
 	constructor() {
 		this.validators = [];
 	}
 
-	public add(validator: ArmorKVPValidator<T>): boolean {
+	public add(validator: KVPValidator<T>): boolean {
 		this.validators.push(validator);
 		return true;
 	}
 
-	public addGroup(validators: ArmorKVPValidator<T>[]): boolean {
+	public addGroup(validators: KVPValidator<T>[]): boolean {
 		if (!Array.isArray(validators)) {
 			return false;
 		}
 
-		validators.forEach((validator: ArmorKVPValidator<T>) => {
+		validators.forEach((validator: KVPValidator<T>) => {
 			this.validators.push(validator);
 		});
 
@@ -26,11 +26,11 @@ export default class ArmorKVPValidators<T> {
 
 	public run(value: T | null): boolean {
 		for (let i = 0; i < this.validators.length; i++) {
-			const validator: ArmorKVPValidator<T> = this.validators[i];
+			const validator: KVPValidator<T> = this.validators[i];
 
-			if (!validator.run(value)) {
+/* 			if (!validator.run(value)) {
 				return false;
-			}
+			} */
 		}
 
 		return true;

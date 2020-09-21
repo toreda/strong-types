@@ -1,17 +1,17 @@
-import ArmorKVP, {ArmorKVPNullable, createKVP, createKVPNullable} from './kvp';
+import KVP, {KVPNullable, createKVP, createKVPNullable} from './kvp';
 
-type ArmorFloat = ArmorKVP<number>;
-export default ArmorFloat;
-export type ArmorFloatNullable = ArmorKVPNullable<number>;
+import KVPRules from './rules';
 
-export function createKVPFloat(initial: number, fallback: number, options: any): ArmorFloat {
-	return createKVP<number>(initial, fallback, options);
+type KVPFloat = KVP<number>;
+export default KVPFloat;
+export type KVPFloatNullable = KVPNullable<number>;
+
+export function createKVPFloat(initial: number, fallback: number): KVPFloat {
+	const rules = new KVPRules();
+	return createKVP<number>(initial, fallback, rules);
 }
 
-export function createKVPFloatNullable(
-	initial: number | null,
-	fallback: number,
-	options: any
-): ArmorFloatNullable | null {
-	return createKVPNullable<number>(initial, fallback, options);
+export function createKVPFloatNullable(initial: number | null, fallback: number): KVPFloatNullable | null {
+	const rules = new KVPRules();
+	return createKVPNullable<number>(initial, fallback, rules);
 }

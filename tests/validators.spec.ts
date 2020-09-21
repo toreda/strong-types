@@ -1,11 +1,11 @@
-import ArmorKVPValidator from '../src/validator';
-import ArmorKVPValidators from '../src/validators';
+import KVPValidator from '../src/validator';
+import KVPValidators from '../src/validators';
 
-describe('ArmorKVPValidators', () => {
-	let instance: ArmorKVPValidators<string>;
+describe('KVPValidators', () => {
+	let instance: KVPValidators<string>;
 
 	beforeAll(() => {
-		instance = new ArmorKVPValidators<string>();
+		instance = new KVPValidators<string>();
 	});
 
 	beforeEach(() => {
@@ -15,12 +15,12 @@ describe('ArmorKVPValidators', () => {
 	describe('Constructor', () => {
 		it('should not throw when no arguments provided', () => {
 			expect(() => {
-				const custom = new ArmorKVPValidators<string>();
+				const custom = new KVPValidators<string>();
 			}).not.toThrow();
 		});
 
 		it('should initialize validators property to an empty array', () => {
-			const custom = new ArmorKVPValidators<string>();
+			const custom = new KVPValidators<string>();
 			expect(custom.validators).toEqual([]);
 		});
 	});
@@ -28,13 +28,13 @@ describe('ArmorKVPValidators', () => {
 	describe('Implementation', () => {
 		describe('add', () => {
 			it('should return true after adding a validator', () => {
-				const v = new ArmorKVPValidator<string>((val: string | null) => {return true });
+				const v = new KVPValidator<string>((val: string | null) => {return true });
 				expect(instance.add(v)).toBe(true);
 			});
 
 			it('should insert exactly one validator', () => {
 				expect(instance.validators).toHaveLength(0);
-				const v = new ArmorKVPValidator<string>((val: string | null) => {
+				const v = new KVPValidator<string>((val: string | null) => {
 					return true;
 				});
 				expect(instance.add(v)).toBe(true);
@@ -68,10 +68,10 @@ describe('ArmorKVPValidators', () => {
 
 			it('should return true when all validators pass', () => {
 				const sampleStr = 'wonder_10984208';
-				const v1 = new ArmorKVPValidator<string>((val: string | null) => {
+				const v1 = new KVPValidator<string>((val: string | null) => {
 					return true;
 				});
-				const v2 = new ArmorKVPValidator<string>((val: string | null) => {
+				const v2 = new KVPValidator<string>((val: string | null) => {
 					return true;
 				});
 				instance.addGroup([v1, v2]);
@@ -81,10 +81,10 @@ describe('ArmorKVPValidators', () => {
 
 			it('should return false when at least one validators fails', () => {
 				const sampleStr = 'wonder_10984208';
-				const v1 = new ArmorKVPValidator<string>((val: string | null) => {
+				const v1 = new KVPValidator<string>((val: string | null) => {
 					return true;
 				});
-				const v2 = new ArmorKVPValidator<string>((val: string | null) => {
+				const v2 = new KVPValidator<string>((val: string | null) => {
 					return false;
 				});
 				instance.addGroup([v1, v2]);
@@ -110,7 +110,7 @@ describe('ArmorKVPValidators', () => {
 
 		describe('reset', () => {
 			it('should not throw when called repeatedly on empty list', () => {
-				const custom = new ArmorKVPValidators<string>();
+				const custom = new KVPValidators<string>();
 				expect(custom.validators).toEqual([]);
 
 				expect(() => {
@@ -131,7 +131,7 @@ describe('ArmorKVPValidators', () => {
 				const v3 = {
 					run: jest.fn().mockReturnValue(true)
 				} as any;
-				const custom = new ArmorKVPValidators<string>();
+				const custom = new KVPValidators<string>();
 
 				expect(() => {
 					for (let i = 0; i < 4; i++) {
@@ -144,7 +144,7 @@ describe('ArmorKVPValidators', () => {
 				const v1 = {
 					run: jest.fn().mockReturnValue(true)
 				} as any;
-				const custom = new ArmorKVPValidators<string>();
+				const custom = new KVPValidators<string>();
 				custom.add(v1);
 				expect(custom.validators).toHaveLength(1);
 				custom.reset();
@@ -161,7 +161,7 @@ describe('ArmorKVPValidators', () => {
 				const v3 = {
 					run: jest.fn().mockReturnValue(true)
 				} as any;
-				const custom = new ArmorKVPValidators<string>();
+				const custom = new KVPValidators<string>();
 				custom.addGroup([v1, v2, v3]);
 				expect(custom.validators).toHaveLength(3);
 				custom.reset();

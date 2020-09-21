@@ -1,14 +1,14 @@
-import {ArmorKVPTransformFnNullable} from './transform-fn';
-import ArmorKVPTransformOptions from './transform-options';
+import KVPTransformFnNullable from './transform-fn';
+import KVPTransformOptions from './transform-options';
 
-export default class ArmorKVPTransformNullable<T> {
+export default class KVPTransformNullable<T> {
 	public readonly id: string;
 	public readonly label: string;
-	public readonly fn: ArmorKVPTransformFnNullable<T>;
+	public readonly fn: KVPTransformFnNullable<T>;
 
-	constructor(fn: ArmorKVPTransformFnNullable<T>, options?: ArmorKVPTransformOptions) {
+	constructor(fn: KVPTransformFnNullable<T>, options?: KVPTransformOptions) {
 		if (!fn) {
-			throw new Error('ArmorKVPTransformNullable init failed - fn argument missing.');
+			throw new Error('KVPTransformNullable init failed - fn argument missing.');
 		}
 
 		this.fn = fn;

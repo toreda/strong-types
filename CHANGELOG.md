@@ -11,4 +11,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial early release. Project API is not stable until v1.0.0. Types
 
-[unreleased]: https://github.com/armorjs/kvp/compare/v0.0.0...HEAD
+[unreleased]: https://github.com/toreda/kvp/compare/v0.0.0...HEAD

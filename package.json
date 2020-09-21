@@ -1,8 +1,9 @@
 {
-  "name": "@armorjs/kvp",
+  "name": "@toreda/kvp",
   "version": "0.0.0",
   "description": "Managed and typed key value pairs for typescript and javascript.",
   "main": "index.js",
+  "public": true,
   "scripts": {
     "lint": "yarn tslint --project .",
     "build:nolint": "yarn tsc",
@@ -11,19 +12,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/armorjs/kvp.git"
+    "url": "git+https://github.com/toreda/kvp.git"
   },
   "keywords": [
     "key-value",
     "typescript",
     "managed"
   ],
-  "author": "ArmorJS",
+  "author": "Toreda, Inc.",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/armorjs/kvp/issues"
+    "url": "https://github.com/toreda/kvp/issues"
   },
-  "homepage": "https://github.com/armorjs/kvp#readme",
+  "homepage": "https://github.com/toreda/kvp#readme",
   "devDependencies": {
     "@armorjs/build": "^0.0.2",
     "@microsoft/tsdoc": "^0.12.21",

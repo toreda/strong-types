@@ -1,14 +1,14 @@
-import {ArmorKVPTransformFn} from './transform-fn';
-import ArmorKVPTransformOptions from './transform-options';
+import KVPTransformFn from './transform-fn';
+import KVPTransformOptions from './transform-options';
 
-export default class ArmorKVPTransform<T> {
+export default class KVPTransform<T> {
 	public readonly id: string;
 	public readonly label: string;
-	public readonly fn: ArmorKVPTransformFn<T>;
+	public readonly fn: KVPTransformFn<T>;
 
-	constructor(fn: ArmorKVPTransformFn<T>, options?: ArmorKVPTransformOptions) {
+	constructor(fn: KVPTransformFn<T>, options?: KVPTransformOptions) {
 		if (!fn) {
-			throw new Error('ArmorKVPTransform init failed - fn argument missing.');
+			throw new Error('KVPTransform init failed - fn argument missing.');
 		}
 
 		this.fn = fn;

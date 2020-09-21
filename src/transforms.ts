@@ -1,9 +1,9 @@
-import ArmorKVPTransform from './transform';
-import ArmorKVPTransformNullable from './transform-nullable';
+import KVPTransform from './transform';
+import KVPTransformNullable from './transform-nullable';
 
-export default class ArmorKVPTransforms<T> {
-	public readonly transforms: ArmorKVPTransform<T>[];
-	public readonly transformsNullable: ArmorKVPTransformNullable<T>[];
+export default class KVPTransforms<T> {
+	public readonly transforms: KVPTransform<T>[];
+	public readonly transformsNullable: KVPTransformNullable<T>[];
 	public readonly fallbackDefault: T;
 
 	constructor(fallbackDefault: T) {
@@ -12,7 +12,7 @@ export default class ArmorKVPTransforms<T> {
 		this.fallbackDefault = fallbackDefault;
 	}
 
-	public addNullable(transform: ArmorKVPTransformNullable<T>): boolean {
+	public addNullable(transform: KVPTransformNullable<T>): boolean {
 		if (!transform) {
 			return false;
 		}
@@ -21,7 +21,7 @@ export default class ArmorKVPTransforms<T> {
 		return true;
 	}
 
-	public add(transform: ArmorKVPTransform<T>): boolean {
+	public add(transform: KVPTransform<T>): boolean {
 		if (!transform) {
 			return false;
 		}

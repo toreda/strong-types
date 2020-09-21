@@ -1,11 +1,11 @@
-import ArmorKVPOptions from '../src/options';
-import ArmorKVPState from '../src/state';
+import KVPOptions from '../src/options';
+import KVPState from '../src/state';
 
-describe('ArmorKVPState', () => {
-	let instance: ArmorKVPState<string>;
+describe('KVPState', () => {
+	let instance: KVPState<string>;
 
 	beforeAll(() => {
-		instance = new ArmorKVPState<string>();
+		instance = new KVPState<string>();
 	});
 
 	describe('Constructor', () => {});
@@ -176,6 +176,10 @@ describe('ArmorKVPState', () => {
 					expect(result.enabled).toBe(true);
 				});
 			});
+		});
+
+		describe('creatorTransforms', () => {
+
 		});
 
 		describe('createRange', () => {

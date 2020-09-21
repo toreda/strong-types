@@ -1,24 +1,23 @@
-import ArmorKVPOptions from './options';
-import ArmorKVPState from './state';
-import ArmorKVPTransforms from './transforms';
-import ArmorKVPValidators from './validators';
+import KVPRules from './rules';
+import KVPState from './state';
+import KVPTransforms from './transforms';
+import KVPValidators from './validators';
 
-export default class ArmorKVPData<T> {
+export default class KVPData<T> {
 	public value: T | null;
 	public readonly fallbackDefault: T;
-	public readonly state: ArmorKVPState<T>;
-	public readonly transforms: ArmorKVPTransforms<T>;
-	public readonly validators: ArmorKVPValidators<T>;
-	public readonly nullable: boolean;
+	public readonly state: KVPState<T>;
+	public readonly transforms: KVPTransforms<T>;
+	public readonly validators: KVPValidators<T>;
+	public readonly rules: KVPRules;
 
-	constructor(initial: T | null, fallbackDefault: T, options?: ArmorKVPOptions<T>) {
+	constructor(initial: T | null, fallbackDefault: T, rules?: KVPRules) {
 		this.value = null;
 		this.fallbackDefault = fallbackDefault;
-		this.state = new ArmorKVPState<T>();
-		this.transforms = new ArmorKVPTransforms<T>(fallbackDefault);
-		this.validators = new ArmorKVPValidators<T>();
-		this.nullable = options && options.nullable === true ? true : false;
-
+		this.state = new KVPState<T>();
+		this.transforms = new KVPTransforms<T>(fallbackDefault);
+		this.validators = new KVPValidators<T>();
+		this.rules = rules ? rules : new KVPRules();
 		this.set(initial);
 	}
 
@@ -41,18 +40,6 @@ export default class ArmorKVPData<T> {
 		}
 
 		let transformed = value;
-
-/* 		if (this.nullable) {
-			transformed = this.transforms.runNullable(value);
-		} else {
-			transformed = this.transforms.run(value);
-		}
-
-		const valid = this.validators.run(transformed); */
-
-/* 		if (!valid) {
-			return false;
-		} */
 
 		this.value = value;
 

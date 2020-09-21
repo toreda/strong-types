@@ -1,2 +1,2 @@
-type ArmorValidatorFn<T> = (value: T | null) => boolean;
-export default ArmorValidatorFn;
+type KVPValidatorFn<T> = (value: T | null) => boolean;
+export default KVPValidatorFn;

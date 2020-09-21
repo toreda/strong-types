@@ -1,15 +1,15 @@
-import ArmorKVPData from '../src/data';
-import ArmorKVPTransformOptions from '../src/transform-options';
+import KVPData from '../src/data';
+import KVPTransformOptions from '../src/transform-options';
 
 const MOCK_INITIAL = 1;
 const MOCK_FALLBACK_DEFAULT = 2;
 const MOCK_FALLBACK = 33;
 
-describe('ArmorKVPData', () => {
-	let instance: ArmorKVPData<number>;
+describe('KVPData', () => {
+	let instance: KVPData<number>;
 
 	beforeAll(() => {
-		instance = new ArmorKVPData<number>(MOCK_INITIAL, MOCK_FALLBACK_DEFAULT);
+		instance = new KVPData<number>(MOCK_INITIAL, MOCK_FALLBACK_DEFAULT);
 	});
 
 	beforeEach(() => {
@@ -20,48 +20,20 @@ describe('ArmorKVPData', () => {
 		it('should initialize value property to "initial" argument', () => {
 			const sampleVal = 43141;
 
-			const custom = new ArmorKVPData<number>(sampleVal, MOCK_FALLBACK_DEFAULT);
+			const custom = new KVPData<number>(sampleVal, MOCK_FALLBACK_DEFAULT);
 			expect(custom.value).toBe(sampleVal);
 		});
 
 		it('should initialize fallbackDefault property to "fallbackDefault" argument', () => {
 			const sampleVal = 45101;
 
-			const custom = new ArmorKVPData<number>(MOCK_INITIAL, sampleVal);
+			const custom = new KVPData<number>(MOCK_INITIAL, sampleVal);
 			expect(custom.fallbackDefault).toBe(sampleVal);
 		});
 
 		it('should initialize state property', () => {
-			const custom = new ArmorKVPData<number>(MOCK_INITIAL, MOCK_FALLBACK);
+			const custom = new KVPData<number>(MOCK_INITIAL, MOCK_FALLBACK);
 			expect(custom).toHaveProperty('state');
-		});
-
-		it('should set nullable property true when options.nullable is true', () => {
-			const options: ArmorKVPTransformOptions = {
-				nullable: true
-			};
-			const custom = new ArmorKVPData<number>(MOCK_INITIAL, MOCK_FALLBACK, options);
-			expect(custom.nullable).toBe(true);
-		});
-
-		it('should set nullable property false when options.nullable is false', () => {
-			const options: ArmorKVPTransformOptions = {
-				nullable: false
-			};
-			const custom = new ArmorKVPData<number>(MOCK_INITIAL, MOCK_FALLBACK, options);
-			expect(custom.nullable).toBe(false);
-		});
-
-		it('should set nullable property false when options.nullable is not defined', () => {
-			const options: ArmorKVPTransformOptions = {
-			};
-			const custom = new ArmorKVPData<number>(MOCK_INITIAL, MOCK_FALLBACK, options);
-			expect(custom.nullable).toBe(false);
-		});
-
-		it('should set nullable property false when options is not defined', () => {
-			const custom = new ArmorKVPData<number>(MOCK_INITIAL, MOCK_FALLBACK);
-			expect(custom.nullable).toBe(false);
 		});
 	});
 
@@ -82,7 +54,7 @@ describe('ArmorKVPData', () => {
 
 		describe('getNullable', () => {
 			it('should return value when value is not null', () => {
-				const sampleVal =   23210;
+				const sampleVal = 23210;
 				instance.set(sampleVal);
 				expect(instance.getNullable()).toBe(sampleVal);
 			});
@@ -93,7 +65,6 @@ describe('ArmorKVPData', () => {
 			});
 		});
 
-
 		describe('set', () => {
 			it('should return false when value argument is undefined', () => {
 				expect(instance.set(undefined as any)).toBe(false);
@@ -103,8 +74,6 @@ describe('ArmorKVPData', () => {
 				const sample = 1131;
 				expect(instance.set(sample)).toBe(true);
 			});
-
-
 		});
 
 		describe('reset', () => {
