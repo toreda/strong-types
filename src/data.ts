@@ -9,15 +9,16 @@ export default class KVPData<T> {
 	public readonly state: KVPState<T>;
 	public readonly transforms: KVPTransforms<T>;
 	public readonly validators: KVPValidators<T>;
-	public readonly rules: KVPRules;
+	public readonly rules: KVPRules<T>;
 
-	constructor(initial: T | null, fallbackDefault: T, rules?: KVPRules) {
+	constructor(initial: T | null, fallbackDefault: T, rules?: KVPRules<T>) {
 		this.value = null;
 		this.fallbackDefault = fallbackDefault;
 		this.state = new KVPState<T>();
 		this.transforms = new KVPTransforms<T>(fallbackDefault);
 		this.validators = new KVPValidators<T>();
 		this.rules = rules ? rules : new KVPRules();
+		this.rules.build();
 		this.set(initial);
 	}
 

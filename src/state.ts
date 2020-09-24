@@ -12,23 +12,18 @@ export default class KVPState<T> {
 		validators: KVPValidator<T>[];
 	};
 
-	constructor(rules?: KVPRules) {
+	constructor(rules?: KVPRules<T>) {
 		this.enforce = this.create<T>(rules);
 		this.rules = [];
 	}
 
-	public create(rules?: KVPRules): any {
+	public create(rules?: KVPRules<T>): any {
 		return {
-			transforms: this.createTransforms<T>(rules),
-			validators: this.createValidators<T>(rules)
+			transforms: this.createTransforms<T>(rules)
 		};
 	}
 
-	public createValidators(rules?: KVPRules): KVPValidator<T>[] {
-		return [];
-	}
-
-	public createTransforms(rules?: KVPRules): any {
+	public createTransforms(rules?: KVPRules<T>): any {
 		const transforms = {
 			number: {
 				operation: 'none'

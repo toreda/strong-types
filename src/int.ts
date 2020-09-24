@@ -15,7 +15,7 @@ export function createKVPInt(initial: number, fallback: number): KVPInt {
 	rules.must.be.greaterThan(20);
 	rules.must.be.equalTo(24);
 	rules.must.not.be.undefined();
-
+	rules.must.match.type('string');
 	return createKVP<number>(initial, fallback, rules);
 }
 

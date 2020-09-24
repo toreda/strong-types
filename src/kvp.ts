@@ -16,19 +16,13 @@ export interface KVPNullable<T> {
 	reset: () => void;
 }
 
-export function createKVP<T>(
-	initialArg: T | null,
-	fallbackArg: T,
-	rules?: KVPRules
-): KVP<T> {
+export function createKVP<T>(initialArg: T | null, fallbackArg: T, rules?: KVPRules<T>): KVP<T> {
 	const instance = new KVPData<T>(initialArg, fallbackArg, rules);
 
 	const helper: KVP<T> = Object.assign(
 		(val?: T): T => {
 			const localFallback =
-				typeof fallbackArg !== 'undefined'
-					? fallbackArg
-					: instance.fallbackDefault;
+				typeof fallbackArg !== 'undefined' ? fallbackArg : instance.fallbackDefault;
 
 			if (typeof val !== 'undefined') {
 				instance.set(val);

@@ -19,4 +19,18 @@ export default class KVPRuleNode {
 	public addChild(node: KVPRuleNode): void {
 		this.children.push(node);
 	}
+
+	public execute(value: any | null): boolean {
+		if (!this.fn) {
+			return false;
+		}
+
+		const result = this.fn(value);
+
+		if (!this.invertResult) {
+			return result;
+		} else {
+			return !result;
+		}
+	}
 }
