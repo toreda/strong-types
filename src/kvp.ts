@@ -54,7 +54,7 @@ export function createKVP<T>(initialArg: T | null, fallbackArg: T, rules?: KVPRu
 export function createKVPNullable<T>(
 	initial: T | null,
 	fallbackArg: T,
-	rules?: KVPRules
+	rules?: KVPRules<T>
 ): KVPNullable<T> {
 	const instance = new KVPData<T>(initial, fallbackArg, rules);
 

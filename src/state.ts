@@ -1,37 +1,14 @@
 import KVPOptions from './options';
 import KVPRule from './rule/rule';
-import KVPRules from './rules';
 import KVPStateTransform from './state/transform';
-import KVPValidator from './validator';
+import KVPTransform from './transform';
 
 export default class KVPState<T> {
 	public readonly rules: KVPRule[];
-	public enforce: {
-		enabled: boolean;
-		transform: KVPStateTransform<T>;
-		validators: KVPValidator<T>[];
-	};
+	public readonly transforms: KVPTransform<T>[];
 
-	constructor(rules?: KVPRules<T>) {
-		this.enforce = this.create<T>(rules);
+	constructor(options?: KVPOptions) {
+		this.transforms = [];
 		this.rules = [];
-	}
-
-	public create(rules?: KVPRules<T>): any {
-		return {
-			transforms: this.createTransforms<T>(rules)
-		};
-	}
-
-	public createTransforms(rules?: KVPRules<T>): any {
-		const transforms = {
-			number: {
-				operation: 'none'
-			}
-		};
-
-		if (!rules) {
-			return transforms;
-		}
 	}
 }

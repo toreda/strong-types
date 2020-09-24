@@ -1,12 +1,11 @@
-import {KVPOpEqualTo} from './operator/equal-to';
-import {KVPOpHaveLength} from './operator/have-length';
+import KVPOpEqualTo, {createEqualTo} from './operator/equal-to';
+import KVPOpHaveLength, {createHaveLength} from './operator/have-length';
+
 import KVPRule from './rule';
 import KVPRuleBe from './be';
 import KVPRuleHave from './have';
 import KVPRuleMatch from './match';
 import KVPRuleNot from './not';
-import createEqualTo from './operator/equal-to';
-import createHaveLength from './operator/have-length';
 
 export default class KVPRuleMust {
 	public readonly be: KVPRuleBe;
@@ -22,11 +21,11 @@ export default class KVPRuleMust {
 			rules.push(rule);
 		}
 
-		this.be = new KVPRuleBe(rules);
-		this.have = new KVPRuleHave(rules);
-		this.not = new KVPRuleNot(rules);
-		this.equal = createEqualTo<KVPRuleMust>(this, rules);
-		this.match = new KVPRuleMatch(rules);
-		this.haveLength = createHaveLength<KVPRuleMust>(this, rules);
+		this.be = new KVPRuleBe(rule);
+		this.have = new KVPRuleHave();
+		this.not = new KVPRuleNot(rule);
+		this.equal = createEqualTo<KVPRuleMust>(this, rule);
+		this.match = new KVPRuleMatch(rule);
+		this.haveLength = createHaveLength<KVPRuleMust>(this, rule);
 	}
 }

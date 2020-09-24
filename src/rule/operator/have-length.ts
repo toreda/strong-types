@@ -1,7 +1,11 @@
-import KVPRuleChain from '../chain';
-import KVPRuleChainFn from '../chain-fn';
+import KVPRule from '../rule';
+import KVPRuleFn from '../fn';
+import KVPRuleNode from '../node';
+import KVPRuleNodeType from '../node-type';
 
-// FIXME: Fix this before release. It does nothing.
+type KVPOpHaveLength<CallerType> = (a: any) => CallerType;
+export default KVPOpHaveLength;
+
 const haveLengthFn = (curr: any[] | number, expectedLength: number) => {
 	if (!Array.isArray(curr) && typeof curr !== 'number') {
 		return false;
@@ -14,17 +18,17 @@ const haveLengthFn = (curr: any[] | number, expectedLength: number) => {
 	return curr.length === expectedLength;
 };
 
-export type KVPOpHaveLength<CallerType> = (a: any) => CallerType;
-
-export default function createHaveLength<CallerType>(
+export function createHaveLength<CallerType>(
 	caller: CallerType,
-	chain: KVPRuleChain
+	rule: KVPRule
 ): KVPOpHaveLength<CallerType> {
 	function haveLength(expectedLength: number): CallerType {
-		const chainFn: KVPRuleChainFn = (curr: any[] | number): boolean => {
+		const ruleFn: KVPRuleFn = (curr: any[] | number): boolean => {
 			return haveLengthFn(curr, expectedLength);
 		};
-		chain.add(chainFn);
+
+		const node = new KVPRuleNode('HAS_LENGTH', KVPRuleNodeType.CMP, ruleFn);
+		rule.add(node);
 
 		return caller;
 	}

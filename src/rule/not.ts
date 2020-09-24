@@ -1,7 +1,7 @@
-import {KVPOpEqualTo} from './operator/equal-to';
+import KVPOpEqualTo, {createEqualTo} from './operator/equal-to';
+
 import KVPRule from './rule';
 import KVPRuleBe from './be';
-import createEqualTo from './operator/equal-to';
 
 export default class KVPRuleNot {
 	public readonly be: KVPRuleBe;

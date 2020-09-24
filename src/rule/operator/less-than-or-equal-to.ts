@@ -1,6 +1,7 @@
-import KVPOpLessThanOrEqualTo from './less-than-or-equal-to';
-import KVPRuleChain from '../chain';
-import KVPRuleChainFn from '../chain-fn';
+import KVPRule from '../rule';
+import KVPRuleFn from '../fn';
+import KVPRuleNode from '../node';
+import KVPRuleNodeType from '../node-type';
 
 export type KVPOpLessThanOrEqualTo<CallerType> = (a: number) => CallerType;
 
@@ -10,13 +11,15 @@ const lessThanOrEqualToFn = (curr: number, target: number) => {
 
 export default function createLessThan<CallerType>(
 	caller: CallerType,
-	chain: KVPRuleChain
+	rule: KVPRule
 ): KVPOpLessThanOrEqualTo<CallerType> {
 	function lessThanOrEqualTo(target: number): CallerType {
-		const chainFn: KVPRuleChainFn = (curr: number) => {
+		const ruleFn: KVPRuleFn = (curr: number) => {
 			return lessThanOrEqualToFn(curr, target);
 		};
-		chain.add(chainFn);
+
+		const node = new KVPRuleNode('LESS_THAN_OR_EQUAL_TO', KVPRuleNodeType.CMP, ruleFn);
+		rule.add(node);
 
 		return caller;
 	}
