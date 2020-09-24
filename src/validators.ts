@@ -27,10 +27,6 @@ export default class KVPValidators<T> {
 	public run(value: T | null): boolean {
 		for (let i = 0; i < this.validators.length; i++) {
 			const validator: KVPValidator<T> = this.validators[i];
-
-/* 			if (!validator.run(value)) {
-				return false;
-			} */
 		}
 
 		return true;

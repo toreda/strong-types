@@ -1,13 +1,23 @@
-import KVPRuleChain from '../rule-chain';
-import KVPRuleOperator from './operator';
-import KVPRuleStatement from '../statement';
+import KVPRuleChain from '../chain';
+import KVPRuleChainFn from '../chain-fn';
 
-export type KVPOpGreaterThan<CallerType> = (a: any) => CallerType;
+export type KVPOpGreaterThan<CallerType> = (a: number) => CallerType;
 
-export default function createGreaterThan<CallerType>(caller: CallerType, chain: KVPRuleChain): KVPOpGreaterThan<CallerType> {
-	function greaterThan(a: number): CallerType {
-		 return caller;
+const greaterThanFn = (curr: number, target: number): boolean => {
+	return curr > target;
+};
 
+export default function createGreaterThan<CallerType>(
+	caller: CallerType,
+	chain: KVPRuleChain
+): KVPOpGreaterThan<CallerType> {
+	function greaterThan(target: number): CallerType {
+		const chainFn: KVPRuleChainFn = (curr: number) => {
+			return greaterThanFn(curr, target);
+		};
+		chain.add(chainFn);
+
+		return caller;
 	}
 
 	return greaterThan;

@@ -21,8 +21,6 @@ export default class KVPValidatorNode<T> {
 		this.validator = validator;
 	}
 
-
-
 	public run(value: T | null): boolean {
 		let result: boolean = false;
 

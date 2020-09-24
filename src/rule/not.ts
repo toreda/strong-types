@@ -1,8 +1,7 @@
 import {KVPOpEqualTo} from './operator/equal-to';
 import KVPRuleBe from './be';
-import KVPRuleChain from './rule-chain';
+import KVPRuleChain from './chain';
 import KVPRuleHave from './have';
-import KVPRuleOperator from './operator/operator';
 import createEqualTo from './operator/equal-to';
 
 export default class KVPRuleNot {

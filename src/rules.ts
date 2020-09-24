@@ -1,4 +1,4 @@
-import KVPRuleChain from './rule/rule-chain';
+import KVPRuleChain from './rule/chain';
 import KVPRuleMust from './rule/must';
 
 export default class KVPRules {
@@ -10,6 +10,5 @@ export default class KVPRules {
 		const chain: KVPRuleChain = new KVPRuleChain();
 		this.rules.push(chain);
 		this.must = new KVPRuleMust(chain);
-
 	}
 }

@@ -5,7 +5,9 @@
   "main": "index.js",
   "public": true,
   "scripts": {
-    "lint": "yarn tslint --project .",
+    "lint": "eslint ./src/** --quiet",
+    "lint:nofix": "yarn lint",
+    "lint:fix": "eslint src/**/*.{js,ts,tsx} --quiet --fix",
     "build:nolint": "yarn tsc",
     "build": "yarn gulp",
     "test": "yarn jest --coverage"
@@ -29,17 +31,24 @@
     "@armorjs/build": "^0.0.2",
     "@microsoft/tsdoc": "^0.12.21",
     "@microsoft/tsdoc-config": "^0.13.6",
-    "@types/jest": "^26.0.13",
-    "@types/node": "^14.6.4",
+    "@types/jest": "^26.0.14",
+    "@types/node": "^14.11.2",
     "@types/typescript": "^2.0.0",
     "@types/yargs-parser": "^15.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.2.0",
+    "@typescript-eslint/parser": "^4.2.0",
+    "@typescript-eslint/typescript-estree": "^4.2.0",
+    "eslint": "^7.9.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.1",
     "jest": "^26.4.2",
     "jest-sonar-reporter": "^2.0.0",
-    "ts-jest": "^26.3.0",
-    "ts-loader": "^8.0.3",
+    "ts-jest": "^26.4.0",
+    "ts-loader": "^8.0.4",
     "ts-node": "^9.0.0",
-    "typescript": "^4.0.2",
-    "yargs-parser": "^20.0.0"
+    "typescript": "^4.0.3",
+    "yargs-parser": "^20.2.0"
   },
   "dependencies": {}
 }

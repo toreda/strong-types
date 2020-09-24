@@ -1,11 +1,22 @@
-import KVPRuleChain from '../rule-chain';
-import KVPRuleOperator from './operator';
-import KVPRuleStatement from '../statement';
+import KVPRuleChain from '../chain';
+import KVPRuleChainFn from '../chain-fn';
 
-export type KVPOpIsUndefined<CallerType> = () => CallerType;
+export type KVPOpIsUndefined<CallerType> = (curr: any) => CallerType;
 
-export default function createUndefinedTest<CallerType>(caller: CallerType, chain: KVPRuleChain): KVPOpIsUndefined<CallerType> {
-	function undefinedTest(): CallerType {
+function valueIsUndefined(currValue: any): boolean {
+	return typeof currValue === 'undefined';
+}
+
+export default function createUndefinedTest<CallerType>(
+	caller: CallerType,
+	chain: KVPRuleChain
+): KVPOpIsUndefined<CallerType> {
+	function undefinedTest(currValue: any): CallerType {
+		const chainFn: KVPRuleChainFn = (a: any) => {
+			return valueIsUndefined(currValue);
+		};
+		chain.add(chainFn);
+
 		return caller;
 	}
 

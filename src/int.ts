@@ -4,6 +4,7 @@ import KVPRules from './rules';
 
 type KVPInt = KVP<number>;
 export default KVPInt;
+
 export type KVPIntNullable = KVPNullable<number>;
 
 export function createKVPInt(initial: number, fallback: number): KVPInt {

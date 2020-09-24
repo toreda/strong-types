@@ -34,7 +34,7 @@ describe('KVPValidators', () => {
 
 			it('should insert exactly one validator', () => {
 				expect(instance.validators).toHaveLength(0);
-				const v = new KVPValidator<string>((val: string | null) => {
+				const v = new KVPValidator<string>((val: string) => {
 					return true;
 				});
 				expect(instance.add(v)).toBe(true);
@@ -64,32 +64,6 @@ describe('KVPValidators', () => {
 				fn1.run.mockClear();
 				fn2.run.mockClear();
 				fn3.run.mockClear();
-			});
-
-			it('should return true when all validators pass', () => {
-				const sampleStr = 'wonder_10984208';
-				const v1 = new KVPValidator<string>((val: string | null) => {
-					return true;
-				});
-				const v2 = new KVPValidator<string>((val: string | null) => {
-					return true;
-				});
-				instance.addGroup([v1, v2]);
-
-				expect(instance.run(sampleStr)).toBe(true);
-			});
-
-			it('should return false when at least one validators fails', () => {
-				const sampleStr = 'wonder_10984208';
-				const v1 = new KVPValidator<string>((val: string | null) => {
-					return true;
-				});
-				const v2 = new KVPValidator<string>((val: string | null) => {
-					return false;
-				});
-				instance.addGroup([v1, v2]);
-
-				expect(instance.run(sampleStr)).toBe(false);
 			});
 
 			it('should stop executing validators after one fails', () => {

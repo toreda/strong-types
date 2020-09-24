@@ -1,11 +1,9 @@
-import { KVPOpEqualTo } from './operator/equal-to';
+import {KVPOpEqualTo} from './operator/equal-to';
 import KVPRuleBe from './be';
-import KVPRuleChain from './rule-chain';
+import KVPRuleChain from './chain';
 import KVPRuleHave from './have';
 import KVPRuleMatch from './match';
 import KVPRuleNot from './not';
-import KVPRuleOperator from './operator/operator';
-import KVPRuleStatement from './statement';
 import createEqualTo from './operator/equal-to';
 
 export default class KVPRuleMust {

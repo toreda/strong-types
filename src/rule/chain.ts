@@ -1,22 +1,27 @@
-import KVPRule from './rule-node';
+import KVPRuleChainFn from './chain-fn';
 
 export default class KVPRuleChain {
-	public rules: KVPRule[];
+	public operations: KVPRuleChainFn[];
 	public openLogicalOperator: string | null;
 	public invertNextRule: boolean;
 
 	constructor() {
 		this.openLogicalOperator = null;
 		this.invertNextRule = false;
-		this.rules = [];
+		this.operations = [];
 	}
 
-	public or(): void {}
+	public add(fn: KVPRuleChainFn): void {
+		this.operations.push(fn);
+	}
 
-	public and(): void {}
+	public run(val: any | null): void {
+		let curr: any | null = val;
 
-	public not(): void {
-		this.invertNextRule = !this.invertNextRule;
+		for (let i = 0; i < this.operations.length; i++) {
+			const op = this.operations[i];
+
+		}
 	}
 
 	public operator(value: string): void {
@@ -27,5 +32,4 @@ export default class KVPRuleChain {
 		this.openLogicalOperator = value;
 	}
 
-	public rule(rule: KVPRule): void {}
 }

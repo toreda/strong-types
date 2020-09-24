@@ -1,5 +1,5 @@
 import KVPOptions from './options';
-import KVPRule from './rule/rule-node';
+import KVPRule from './rule/rule';
 import KVPRules from './rules';
 import KVPStateTransform from './state/transform';
 import KVPValidator from './validator';
@@ -28,7 +28,6 @@ export default class KVPState<T> {
 		return [];
 	}
 
-
 	public createTransforms<T>(rules?: KVPRules): any {
 		const transforms = {
 			number: {
@@ -40,5 +39,4 @@ export default class KVPState<T> {
 			return transforms;
 		}
 	}
-
 }

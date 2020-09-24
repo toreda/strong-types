@@ -1,3 +1,2 @@
-export default interface KVPRuleOperator {
-	(a: any): boolean;
-}
+type KVPRuleOperator = (a: any) => boolean;
+export default KVPRuleOperator;

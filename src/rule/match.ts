@@ -1,20 +1,24 @@
+import createMatchFormat, {KVPOpMatchFormat} from './format';
+import createMatchFormats, {KVPOpMatchFormats} from './formats';
 import createMatchType, {KVPOpMatchType} from './type';
 import createMatchTypes, {KVPOpMatchesTypes} from './types';
 
-import KVPRuleChain from './rule-chain';
-import KVPRuleNode from './rule-node';
+import KVPRule from './rule';
+import KVPRuleChain from './chain';
 import KVPRuleOr from './or';
-import KVPRuleStatement from './statement';
-import KVPRuleType from './type';
 
-export default class KVPRuleMatch implements KVPRuleNode {
+export default class KVPRuleMatch implements KVPRule {
 	public readonly or: KVPRuleOr;
 	public readonly type: KVPOpMatchType<KVPRuleMatch>;
 	public readonly types: KVPOpMatchesTypes<KVPRuleMatch>;
+	public readonly format: KVPOpMatchFormat<KVPRuleMatch>;
+	public readonly formats: KVPOpMatchFormats<KVPRuleMatch>;
 
 	constructor(chain: KVPRuleChain) {
 		this.or = new KVPRuleOr(chain);
 		this.type = createMatchType<KVPRuleMatch>(this, chain);
 		this.types = createMatchTypes<KVPRuleMatch>(this, chain);
+		this.format = createMatchFormat<KVPRuleMatch>(this, chain);
+		this.formats = createMatchFormats<KVPRuleMatch>(this, chain);
 	}
 }

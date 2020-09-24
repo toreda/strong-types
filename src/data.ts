@@ -39,7 +39,7 @@ export default class KVPData<T> {
 			return false;
 		}
 
-		let transformed = value;
+		const transformed = value;
 
 		this.value = value;
 
