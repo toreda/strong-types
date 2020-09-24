@@ -11,8 +11,8 @@ export default class KVPRules<T> {
 	}
 
 	public run(value: T | null): boolean {
-		for (const chain of this.chains) {
-			if (!chain.run(value)) {
+		for (const rule of this.rules) {
+			if (!rule.run(value)) {
 				return false;
 			}
 		}

@@ -22,7 +22,7 @@ export default function createMatchFormat<CallerType>(
 		const fn: KVPRuleFn = (currValue: string) => {
 			return formatMatchFn(expectedFormat, currValue);
 		};
-		const node = new KVPRuleNode(KVPRuleNodeType.COMPARISON, fn);
+		const node = new KVPRuleNode('MATCH_FORMAT', KVPRuleNodeType.CMP, fn);
 		rule.add(node);
 
 		return caller;

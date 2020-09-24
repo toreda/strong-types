@@ -4,10 +4,12 @@ import createMatchType, {KVPOpMatchType} from './type';
 import createMatchTypes, {KVPOpMatchesTypes} from './types';
 
 import KVPRule from './rule';
+import KVPRuleAnd from './and';
 import KVPRuleOr from './or';
 
 export default class KVPRuleMatch {
 	public readonly or: KVPRuleOr;
+	public readonly and: KVPRuleAnd;
 	public readonly type: KVPOpMatchType<KVPRuleMatch>;
 	public readonly types: KVPOpMatchesTypes<KVPRuleMatch>;
 	public readonly format: KVPOpMatchFormat<KVPRuleMatch>;
@@ -15,6 +17,7 @@ export default class KVPRuleMatch {
 
 	constructor(rule: KVPRule) {
 		this.or = new KVPRuleOr(rule);
+		this.and = new KVPRuleAnd(rule);
 		this.type = createMatchType<KVPRuleMatch>(this, rule);
 		this.types = createMatchTypes<KVPRuleMatch>(this, rule);
 		this.format = createMatchFormat<KVPRuleMatch>(this, rule);

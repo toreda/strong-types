@@ -33,7 +33,7 @@ export default function createMatchTypes<CallerType>(
 		const fn: KVPRuleFn = (currValue: any) => {
 			return isTypeMatch(currValue, targetTypes);
 		};
-		const node = new KVPRuleNode(KVPRuleNodeType.COMPARISON, fn);
+		const node = new KVPRuleNode('MATCH_TYPES', KVPRuleNodeType.CMP, fn);
 		rule.add(node);
 
 		return caller;

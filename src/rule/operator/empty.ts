@@ -15,17 +15,17 @@ const emptyFn = (curr: any[] | number) => {
 	return curr.length === 0;
 };
 
-export type KVPOpEmpty<CallerType> = (a: any) => CallerType;
+export type KVPOpIsEmpty<CallerType> = (a: any) => CallerType;
 
 export default function createEmpty<CallerType>(
 	caller: CallerType,
 	rule: KVPRule
-): KVPOpEmpty<CallerType> {
+): KVPOpIsEmpty<CallerType> {
 	function empty(): CallerType {
 		const ruleFn: KVPRuleFn = (curr: any[] | number): boolean => {
 			return emptyFn(curr);
 		};
-		const node = new KVPRuleNode(KVPRuleNodeType.COMPARISON, ruleFn);
+		const node = new KVPRuleNode('IS_EMPTY', KVPRuleNodeType.CMP, ruleFn);
 		rule.add(node);
 
 		return caller;

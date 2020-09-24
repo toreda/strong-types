@@ -1,8 +1,6 @@
 const enum KVPRuleNodeType {
-	OR,
-	AND,
 	OP,
-	COMPARISON
+	CMP
 }
 
 export default KVPRuleNodeType;

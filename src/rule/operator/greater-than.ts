@@ -18,7 +18,7 @@ export default function createGreaterThan<CallerType>(
 			return greaterThanFn(curr, target);
 		};
 
-		const node = new KVPRuleNode(KVPRuleNodeType.COMPARISON, ruleFn);
+		const node = new KVPRuleNode('GREATER_THAN', KVPRuleNodeType.CMP, ruleFn);
 		rule.add(node);
 
 		return caller;

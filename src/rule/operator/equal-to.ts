@@ -21,7 +21,7 @@ export default function createEqualTo<CallerType>(
 		const fn: KVPRuleFn = (curr: any): boolean => {
 			return equalToFn(curr, target);
 		};
-		const node = new KVPRuleNode(KVPRuleNodeType.COMPARISON, fn);
+		const node = new KVPRuleNode('EQUAL_TO', KVPRuleNodeType.CMP, fn);
 		rule.add(node);
 		return caller;
 	}
