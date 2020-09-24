@@ -34,11 +34,59 @@
 *.class         binary
 *.dll           binary
 *.ear           binary
-*.gif           binary
-*.ico           binary
 *.jar           binary
-*.jpg           binary
-*.jpeg          binary
-*.png           binary
 *.so            binary
 *.war           binary
+*.dds           binary
+
+# Audio Formats
+*.3gpp 			binary
+*.aac 			binary
+*.aiff 			binary
+*.alac 			binary
+*.cda           binary
+*.dsd 			binary
+*.flac 			binary
+*.m4a 			binary
+*.mp3           binary
+*.oga 			binary
+*.ogg           binary
+*.pcm 			binary
+*.wav 			binary
+*.wma 			binary
+
+# Image Formats
+*.bmp           binary
+*.jpg           binary
+*.jpeg          binary
+*.gif           binary
+*.iff           binary
+*.pict          binary
+*.png           binary
+*.psd           binary
+*.tga           binary
+*.tiff          binary
+*.webm   		binary
+
+# Video Formats
+*.asf  			binary
+*.avi   		binary
+*.avchd         binary
+*.flv           binary
+*.f4v  			binary
+*.mkv           binary
+*.mov           binary
+*.mp4           binary
+*.mpg   		binary
+*.mpeg   		binary
+*.mpeg2         binary
+*.qt           	binary
+*.swf           binary
+*.wmv           binary
+
+# Zip formats
+*.7z            binary
+*.gz           	binary
+*.rar           binary
+*.tar           binary
+*.zip           binary
