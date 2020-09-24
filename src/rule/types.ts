@@ -1,5 +1,7 @@
-import KVPRuleChain from './chain';
-import KVPRuleChainFn from './chain-fn';
+import KVPRule from './rule';
+import KVPRuleFn from './fn';
+import KVPRuleNode from './node';
+import KVPRuleNodeType from './node-type';
 
 export type KVPOpMatchesTypes<CallerType> = (a: string[]) => CallerType;
 
@@ -25,13 +27,14 @@ const isTypeMatch = (currValue: any, targetTypes: string[]): boolean => {
 
 export default function createMatchTypes<CallerType>(
 	caller: CallerType,
-	chain: KVPRuleChain
+	rule: KVPRule
 ): KVPOpMatchesTypes<CallerType> {
 	function matchesTypes(targetTypes: string[]): CallerType {
-		const chainFn: KVPRuleChainFn = (currValue: any) => {
+		const fn: KVPRuleFn = (currValue: any) => {
 			return isTypeMatch(currValue, targetTypes);
 		};
-		chain.add(chainFn);
+		const node = new KVPRuleNode(KVPRuleNodeType.COMPARISON, fn);
+		rule.add(node);
 
 		return caller;
 	}

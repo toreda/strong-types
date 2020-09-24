@@ -1,26 +1,28 @@
-import KVPRuleChain from '../chain';
-import KVPRuleChainFn from '../chain-fn';
+import KVPRule from '../rule';
+import KVPRuleFn from '../fn';
+import KVPRuleNode from '../node';
+import KVPRuleNodeType from '../node-type';
 
-// FIXME: Fix this before release. It does nothing.
-const equalToFn = (a: any, curr: any) => {
-	if (typeof a === 'undefined' || typeof curr === 'undefined') {
+const equalToFn = (curr: any, target: any): boolean => {
+	if (typeof target === 'undefined' || typeof curr === 'undefined') {
 		return false;
 	}
 
-	return a === curr;
+	return curr === target;
 };
 
 export type KVPOpEqualTo<CallerType> = (a: any) => CallerType;
 
 export default function createEqualTo<CallerType>(
 	caller: CallerType,
-	chain: KVPRuleChain
+	rule: KVPRule
 ): KVPOpEqualTo<CallerType> {
-	function equalTo(a: any): CallerType {
-		const chainFn: KVPRuleChainFn = (curr: any): boolean => {
-			return equalToFn(a, curr);
+	function equalTo(target: any): CallerType {
+		const fn: KVPRuleFn = (curr: any): boolean => {
+			return equalToFn(curr, target);
 		};
-		chain.add(chainFn);
+		const node = new KVPRuleNode(KVPRuleNodeType.COMPARISON, fn);
+		rule.add(node);
 		return caller;
 	}
 

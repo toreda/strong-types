@@ -1,7 +1,8 @@
 const enum KVPRuleNodeType {
 	OR,
 	AND,
-	FN
+	OP,
+	COMPARISON
 }
 
 export default KVPRuleNodeType;

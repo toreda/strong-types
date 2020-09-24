@@ -1,5 +1,7 @@
-import KVPRuleChain from '../chain';
-import KVPRuleChainFn from '../chain-fn';
+import KVPRule from '../rule';
+import KVPRuleFn from '../chain-fn';
+import KVPRuleNode from '../node';
+import KVPRuleNodeType from '../node-type';
 
 export type KVPOpGreaterThan<CallerType> = (target: number) => CallerType;
 
@@ -9,13 +11,15 @@ const greaterThanFn = (curr: number, target: number): boolean => {
 
 export default function createGreaterThan<CallerType>(
 	caller: CallerType,
-	chain: KVPRuleChain
+	rule: KVPRule
 ): KVPOpGreaterThan<CallerType> {
 	function greaterThan(target: number): CallerType {
-		const chainFn: KVPRuleChainFn = (curr: number) => {
+		const ruleFn: KVPRuleFn = (curr: number) => {
 			return greaterThanFn(curr, target);
 		};
-		chain.add(chainFn);
+
+		const node = new KVPRuleNode(KVPRuleNodeType.COMPARISON, ruleFn);
+		rule.add(node);
 
 		return caller;
 	}

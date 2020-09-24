@@ -1,13 +1,13 @@
-import KVPRuleChain from './rule/chain';
+import KVPRule from './rule/rule';
 import KVPRuleMust from './rule/must';
 
 export default class KVPRules<T> {
 	public readonly must: KVPRuleMust;
-	public readonly chains: KVPRuleChain[];
+	public readonly rules: KVPRule[];
 
 	constructor() {
-		this.chains = [];
-		this.must = new KVPRuleMust(this.chains, null);
+		this.rules = [];
+		this.must = new KVPRuleMust(this.rules, null);
 	}
 
 	public run(value: T | null): boolean {

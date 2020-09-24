@@ -1,5 +1,7 @@
-import KVPRuleChain from '../chain';
-import KVPRuleChainFn from '../chain-fn';
+import KVPRule from '../rule';
+import KVPRuleFn from '../fn';
+import KVPRuleNode from '../node';
+import KVPRuleNodeType from '../node-type';
 
 const emptyFn = (curr: any[] | number) => {
 	if (!Array.isArray(curr) && typeof curr !== 'number') {
@@ -17,13 +19,14 @@ export type KVPOpEmpty<CallerType> = (a: any) => CallerType;
 
 export default function createEmpty<CallerType>(
 	caller: CallerType,
-	chain: KVPRuleChain
+	rule: KVPRule
 ): KVPOpEmpty<CallerType> {
 	function empty(): CallerType {
-		const chainFn: KVPRuleChainFn = (curr: any[] | number): boolean => {
+		const ruleFn: KVPRuleFn = (curr: any[] | number): boolean => {
 			return emptyFn(curr);
 		};
-		chain.add(chainFn);
+		const node = new KVPRuleNode(KVPRuleNodeType.COMPARISON, ruleFn);
+		rule.add(node);
 
 		return caller;
 	}

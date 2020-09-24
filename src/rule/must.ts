@@ -1,7 +1,7 @@
 import {KVPOpEqualTo} from './operator/equal-to';
 import {KVPOpHaveLength} from './operator/have-length';
+import KVPRule from './rule';
 import KVPRuleBe from './be';
-import KVPRuleChain from './chain';
 import KVPRuleHave from './have';
 import KVPRuleMatch from './match';
 import KVPRuleNot from './not';
@@ -16,17 +16,17 @@ export default class KVPRuleMust {
 	public readonly match: KVPRuleMatch;
 	public readonly haveLength: KVPOpHaveLength<KVPRuleMust>;
 
-	constructor(chains: KVPRuleChain[], parentChain: KVPRuleChain | null) {
-		const chain = parentChain ? parentChain : new KVPRuleChain();
-		if (!parentChain) {
-			chains.push(chain);
+	constructor(rules: KVPRule[], parentRule: KVPRule | null) {
+		const rule = parentRule ? parentRule : new KVPRule();
+		if (!parentRule) {
+			rules.push(rule);
 		}
 
-		this.be = new KVPRuleBe(chain);
-		this.have = new KVPRuleHave(chain);
-		this.not = new KVPRuleNot(chain);
-		this.equal = createEqualTo<KVPRuleMust>(this, chain);
-		this.match = new KVPRuleMatch(chain);
-		this.haveLength = createHaveLength<KVPRuleMust>(this, chain);
+		this.be = new KVPRuleBe(rules);
+		this.have = new KVPRuleHave(rules);
+		this.not = new KVPRuleNot(rules);
+		this.equal = createEqualTo<KVPRuleMust>(this, rules);
+		this.match = new KVPRuleMatch(rules);
+		this.haveLength = createHaveLength<KVPRuleMust>(this, rules);
 	}
 }
