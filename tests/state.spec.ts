@@ -18,10 +18,5 @@ describe('KVPState', () => {
 				}).not.toThrow();
 			});
 		});
-
-
-		describe('creatorTransforms', () => {
-
-		});
 	});
 });
