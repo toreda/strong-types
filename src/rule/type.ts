@@ -21,6 +21,7 @@ export default function createMatchType<CallerType>(
 			return typeMatchFn(expectedType, currValue);
 		};
 		chain.add(chainFn);
+
 		return caller;
 	}
 

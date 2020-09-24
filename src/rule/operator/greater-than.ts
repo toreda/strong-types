@@ -1,7 +1,7 @@
 import KVPRuleChain from '../chain';
 import KVPRuleChainFn from '../chain-fn';
 
-export type KVPOpGreaterThan<CallerType> = (a: number) => CallerType;
+export type KVPOpGreaterThan<CallerType> = (target: number) => CallerType;
 
 const greaterThanFn = (curr: number, target: number): boolean => {
 	return curr > target;

@@ -1,7 +1,7 @@
 import KVPRuleChain from '../chain';
 import KVPRuleChainFn from '../chain-fn';
 
-export type KVPOpIsUndefined<CallerType> = (curr: any) => CallerType;
+export type KVPOpBeUndefined<CallerType> = (curr: any) => CallerType;
 
 function valueIsUndefined(currValue: any): boolean {
 	return typeof currValue === 'undefined';
@@ -10,7 +10,7 @@ function valueIsUndefined(currValue: any): boolean {
 export default function createUndefinedTest<CallerType>(
 	caller: CallerType,
 	chain: KVPRuleChain
-): KVPOpIsUndefined<CallerType> {
+): KVPOpBeUndefined<CallerType> {
 	function beUndefined(currValue: any): CallerType {
 		const chainFn: KVPRuleChainFn = (a: any) => {
 			return valueIsUndefined(currValue);

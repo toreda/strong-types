@@ -8,7 +8,9 @@ export interface TypeMap {
 	boolean: boolean;
 }
 
-export type PrimitiveOrConstructor = {new (...args: any[]): any} | keyof TypeMap; // 'string' | 'number' | 'boolean' | constructor
+/* eslint-disable */
+// 'string' | 'number' | 'boolean' | constructor
+export type PrimitiveOrConstructor = {new (...args: any[]): any} | keyof TypeMap;
 
 // infer the guarded type from a specific case of PrimitiveOrConstructor
 export type GuardedType<T extends PrimitiveOrConstructor> = T extends {
@@ -31,3 +33,4 @@ export default function typesMatch<T extends PrimitiveOrConstructor>(
 
 	return o instanceof localPrimitiveOrConstructor;
 }
+/* eslint-enable */
