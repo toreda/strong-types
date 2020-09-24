@@ -7,8 +7,11 @@ function isNull(curr: any): boolean {
 	return curr === null;
 }
 
-export default function createNullTest<CallerType>(caller: CallerType, chain: KVPRuleChain): KVPOpIsNull<CallerType> {
-	function nullTest(): CallerType {
+export default function createNullTest<CallerType>(
+	caller: CallerType,
+	chain: KVPRuleChain
+): KVPOpIsNull<CallerType> {
+	function beNull(): CallerType {
 		const chainFn: KVPRuleChainFn = (curr: any): boolean => {
 			return isNull(curr);
 		};
@@ -16,5 +19,5 @@ export default function createNullTest<CallerType>(caller: CallerType, chain: KV
 		return caller;
 	}
 
-	return nullTest;
+	return beNull;
 }

@@ -5,4 +5,4 @@ export default interface KVPConfigTransform {
 	strings?: {
 		trim: 'both' | 'left' | 'right' | 'none';
 	};
-};
+}

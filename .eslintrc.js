@@ -21,5 +21,6 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 'warn',
     '@typescript-eslint/no-inferrable-types': 'off',
     '@typescript-eslint/no-empty-interface': 'warn'
+    '@typescript-eslint/max-len': ['warn', {'code': 100}]
   },
 };

@@ -15,7 +15,10 @@ export function createKVPBool(initial: boolean, fallback: boolean): KVPBool {
 	return createKVP<boolean>(initial, fallback, rules);
 }
 
-export function createKVPBoolNullable(initial: boolean | null, fallback: boolean): KVPBoolNullable | null {
+export function createKVPBoolNullable(
+	initial: boolean | null,
+	fallback: boolean
+): KVPBoolNullable | null {
 	const rules = new KVPRules();
 	return createKVPNullable<boolean>(initial, fallback, rules);
 }

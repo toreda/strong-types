@@ -10,8 +10,7 @@ const isTypeMatch = (currValue: any, targetTypes: string[]): boolean => {
 
 	const currType = typeof currValue;
 
-	for (let i = 0; i < targetTypes.length; i++) {
-		const type = targetTypes[i];
+	for (const type of targetTypes) {
 		if (typeof type !== 'string') {
 			break;
 		}

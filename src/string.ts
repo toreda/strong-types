@@ -11,7 +11,10 @@ export function createKVPString(initial: string, fallback: string): KVPString {
 	return createKVP<string>(initial, fallback, rules);
 }
 
-export function createKVPStringNullable(initial: string | null, fallback: string): KVPStringNullable {
+export function createKVPStringNullable(
+	initial: string | null,
+	fallback: string
+): KVPStringNullable {
 	const rules = new KVPRules();
 	return createKVPNullable<string>(initial, fallback, rules);
 }

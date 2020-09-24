@@ -11,7 +11,10 @@ export function createKVPFloat(initial: number, fallback: number): KVPFloat {
 	return createKVP<number>(initial, fallback, rules);
 }
 
-export function createKVPFloatNullable(initial: number | null, fallback: number): KVPFloatNullable | null {
+export function createKVPFloatNullable(
+	initial: number | null,
+	fallback: number
+): KVPFloatNullable | null {
 	const rules = new KVPRules();
 	return createKVPNullable<number>(initial, fallback, rules);
 }

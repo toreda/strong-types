@@ -37,10 +37,9 @@ export default class KVPTransforms<T> {
 		}
 
 		let transformed: T = value;
-
-		for (let i = 0; i < this.transforms.length; i++) {
+		for (const transform of this.transforms) {
 			const input = transformed;
-			const output = this.transforms[i].run(input);
+			const output = transform.run(input);
 			transformed = output;
 		}
 
@@ -54,9 +53,9 @@ export default class KVPTransforms<T> {
 
 		let transformed: T | null = value;
 
-		for (let i = 0; i < this.transformsNullable.length; i++) {
+		for (const transform of this.transformsNullable) {
 			const input = transformed;
-			const output = this.transformsNullable[i].run(input);
+			const output = transform.run(input);
 			transformed = output;
 		}
 

@@ -19,7 +19,10 @@ export function createKVPInt(initial: number, fallback: number): KVPInt {
 	return createKVP<number>(initial, fallback, rules);
 }
 
-export function createKVPIntNullable(initial: number | null, fallback: number): KVPIntNullable | null {
+export function createKVPIntNullable(
+	initial: number | null,
+	fallback: number
+): KVPIntNullable | null {
 	const rules = new KVPRules();
 	return createKVPNullable<number>(initial, fallback, rules);
 }

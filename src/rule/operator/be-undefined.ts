@@ -11,7 +11,7 @@ export default function createUndefinedTest<CallerType>(
 	caller: CallerType,
 	chain: KVPRuleChain
 ): KVPOpIsUndefined<CallerType> {
-	function undefinedTest(currValue: any): CallerType {
+	function beUndefined(currValue: any): CallerType {
 		const chainFn: KVPRuleChainFn = (a: any) => {
 			return valueIsUndefined(currValue);
 		};
@@ -20,5 +20,5 @@ export default function createUndefinedTest<CallerType>(
 		return caller;
 	}
 
-	return undefinedTest;
+	return beUndefined;
 }

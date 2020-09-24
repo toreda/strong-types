@@ -25,8 +25,12 @@ export default class KVPValidators<T> {
 	}
 
 	public run(value: T | null): boolean {
-		for (let i = 0; i < this.validators.length; i++) {
-			const validator: KVPValidator<T> = this.validators[i];
+		for (const validator of this.validators) {
+			const result = validator.run(value);
+
+			if (!result) {
+				return false;
+			}
 		}
 
 		return true;
@@ -34,8 +38,6 @@ export default class KVPValidators<T> {
 
 	public reset(): void {
 		// Remove all validators
-		for (let i = this.validators.length - 1; i >= 0; i--) {
-			this.validators.pop();
-		}
+		this.validators.length = 0;
 	}
 }

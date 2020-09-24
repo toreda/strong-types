@@ -1,1 +1,3 @@
-export default interface KVPOptions {}
+export default interface KVPOptions {
+	transform?: KVPOptionsTransform;
+}

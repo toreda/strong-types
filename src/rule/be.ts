@@ -22,7 +22,7 @@ export default class KVPRuleBe implements KVPRule {
 		this.greaterThan = createGreaterThan<KVPRuleBe>(this, chain);
 		this.lessThan = createLessThan<KVPRuleBe>(this, chain);
 		this.equalTo = createEqualTo<KVPRuleBe>(this, chain);
-		this['undefined'] = createUndefinedTest<KVPRuleBe>(this, chain);
-		this['null'] = createNullTest<KVPRuleBe>(this, chain);
+		this.undefined = createUndefinedTest<KVPRuleBe>(this, chain);
+		this.null = createNullTest<KVPRuleBe>(this, chain);
 	}
 }

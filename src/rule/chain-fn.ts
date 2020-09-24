@@ -1,5 +1,3 @@
-type KVPRuleChainFn = {
-	(curr: any): boolean;
-};
+type KVPRuleChainFn = (curr: any) => boolean;
 
 export default KVPRuleChainFn;

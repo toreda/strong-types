@@ -16,10 +16,9 @@ export default class KVPRuleChain {
 	}
 
 	public run(val: any | null): void {
-		let curr: any | null = val;
+		//let curr: any | null = val;
 
-		for (let i = 0; i < this.operations.length; i++) {
-			const op = this.operations[i];
+		for (const op of this.operations) {
 
 		}
 	}
@@ -31,5 +30,4 @@ export default class KVPRuleChain {
 
 		this.openLogicalOperator = value;
 	}
-
 }

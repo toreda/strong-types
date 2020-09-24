@@ -2,20 +2,20 @@ import KVPKVP, {KVPNullable, createKVP, createKVPNullable} from './kvp';
 
 import KVPRules from './rules';
 
-type KVPArray<T> = KVPKVP<Array<T>>;
+type KVPArray<T> = KVPKVP<T[]>;
 export default KVPArray;
-export type KVPArrayNullable<T> = KVPNullable<Array<T>>;
+export type KVPArrayNullable<T> = KVPNullable<T[]>;
 
-export function createKVPArray<T>(initial: Array<T>, fallback: Array<T>): KVPArray<T> {
+export function createKVPArray<T>(initial: T[], fallback: T[]): KVPArray<T> {
 	const rules = new KVPRules();
-	return createKVP<Array<T>>(initial, fallback, rules);
+	return createKVP<T[]>(initial, fallback, rules);
 }
 
 export function createKVPArrayNullable<T>(
-	initial: Array<T> | null,
-	fallback: Array<T>,
+	initial: T[] | null,
+	fallback: T[],
 	options: any
 ): KVPArrayNullable<T> {
 	const rules = new KVPRules();
-	return createKVPNullable<Array<T>>(initial, fallback, rules);
+	return createKVPNullable<T[]>(initial, fallback, rules);
 }

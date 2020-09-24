@@ -14,7 +14,6 @@ export default class KVPRuleNot {
 	constructor(chain: KVPRuleChain) {
 		this.negates = true;
 		this.be = new KVPRuleBe(chain);
-		this.have = new KVPRuleHave(chain);
 		this.equal = createEqualTo<KVPRuleNot>(this, chain);
 	}
 }

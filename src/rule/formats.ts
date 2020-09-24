@@ -10,13 +10,12 @@ const isFormatMatch = (currValue: string, targetFormats: string[]): boolean => {
 
 	const currType = typeof currValue;
 
-	for (let i = 0; i < targetFormats.length; i++) {
-		const type = targetFormats[i];
-		if (typeof type !== 'string') {
+	for (const format of targetFormats) {
+		if (typeof format !== 'string') {
 			break;
 		}
 
-		if (currType === type) {
+		if (currType === format) {
 			return true;
 		}
 	}

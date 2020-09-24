@@ -15,7 +15,10 @@ export function createKVPUInt(initial: number, fallback: number): KVPUInt {
 	return createKVP<number>(initial, fallback, rules);
 }
 
-export function createKVPUIntNullable(initial: number | null, fallback: number): KVPUIntNullable {
+export function createKVPUIntNullable(
+	initial: number | null,
+	fallback: number
+): KVPUIntNullable {
 	const rules = new KVPRules();
 	return createKVPNullable<number>(initial, fallback, rules);
 }

@@ -11,13 +11,18 @@ export interface TypeMap {
 export type PrimitiveOrConstructor = {new (...args: any[]): any} | keyof TypeMap; // 'string' | 'number' | 'boolean' | constructor
 
 // infer the guarded type from a specific case of PrimitiveOrConstructor
-export type GuardedType<T extends PrimitiveOrConstructor> = T extends {new (...args: any[]): infer U}
+export type GuardedType<T extends PrimitiveOrConstructor> = T extends {
+	new (...args: any[]): infer U;
+}
 	? U
 	: T extends keyof TypeMap
 	? TypeMap[T]
 	: never;
 
-export default function typesMatch<T extends PrimitiveOrConstructor>(o, className: T): o is GuardedType<T> {
+export default function typesMatch<T extends PrimitiveOrConstructor>(
+	o: any,
+	className: T
+): o is GuardedType<T> {
 	const localPrimitiveOrConstructor: PrimitiveOrConstructor = className;
 
 	if (typeof localPrimitiveOrConstructor === 'string') {
