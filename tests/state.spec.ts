@@ -14,7 +14,7 @@ describe('KVPState', () => {
 		describe('create', () => {
 			it('should not throw when no options argument provided', () => {
 				expect(() => {
-					let result = instance.create();
+					const custom = new KVPState<string>();
 				}).not.toThrow();
 			});
 		});
