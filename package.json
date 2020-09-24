@@ -13,10 +13,6 @@
     "build": "yarn gulp",
     "test": "yarn jest --coverage"
   },
-  "engineStrict": true,
-  "engines": {
-  	"node": "12.0.0"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/toreda/kvp.git"
@@ -61,11 +57,10 @@
   },
   "dependencies": {},
   "browser": {
-  	"crypto": false,
-  	"buffer": false,
-  	"fs": false,
-  	"path": false,
-  	"crypto": false,
-  	"inspector": false
+    "crypto": false,
+    "buffer": false,
+    "fs": false,
+    "path": false,
+    "inspector": false
   }
 }
