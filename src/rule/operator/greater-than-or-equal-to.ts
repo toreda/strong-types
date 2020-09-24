@@ -3,13 +3,14 @@ import KVPRuleFn from '../fn';
 import KVPRuleNode from '../node';
 import KVPRuleNodeType from '../node-type';
 
-export type KVPOpGreaterThanOrEqualTo<CallerType> = (a: number) => CallerType;
+type KVPOpGreaterThanOrEqualTo<CallerType> = (a: number) => CallerType;
+export default KVPOpGreaterThanOrEqualTo;
 
-const greaterThanOrEqualToFn = (curr: number, target: number) => {
+const greaterThanOrEqualToFn = (curr: number, target: number): boolean => {
 	return curr >= target;
 };
 
-export default function createGreaterThan<CallerType>(
+export function createGreaterThanOrEqualTo<CallerType>(
 	caller: CallerType,
 	rule: KVPRule
 ): KVPOpGreaterThanOrEqualTo<CallerType> {

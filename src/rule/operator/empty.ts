@@ -6,7 +6,7 @@ import KVPRuleNodeType from '../node-type';
 type KVPOpIsEmpty<CallerType> = (a: any) => CallerType;
 export default KVPOpIsEmpty;
 
-const emptyFn = (curr: any[] | number) => {
+const emptyFn = (curr: any[] | number): boolean => {
 	if (!Array.isArray(curr) && typeof curr !== 'number') {
 		return false;
 	}

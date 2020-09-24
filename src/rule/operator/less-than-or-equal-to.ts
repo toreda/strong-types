@@ -3,13 +3,14 @@ import KVPRuleFn from '../fn';
 import KVPRuleNode from '../node';
 import KVPRuleNodeType from '../node-type';
 
-export type KVPOpLessThanOrEqualTo<CallerType> = (a: number) => CallerType;
+type KVPOpLessThanOrEqualTo<CallerType> = (a: number) => CallerType;
+export default KVPOpLessThanOrEqualTo;
 
-const lessThanOrEqualToFn = (curr: number, target: number) => {
+const lessThanOrEqualToFn = (curr: number, target: number): boolean => {
 	return curr <= target;
 };
 
-export default function createLessThan<CallerType>(
+export function createLessThanOrEqualTo<CallerType>(
 	caller: CallerType,
 	rule: KVPRule
 ): KVPOpLessThanOrEqualTo<CallerType> {

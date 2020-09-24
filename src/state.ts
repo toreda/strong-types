@@ -1,6 +1,5 @@
 import KVPOptions from './options';
 import KVPRule from './rule/rule';
-import KVPStateTransform from './state/transform';
 import KVPTransform from './transform';
 
 export default class KVPState<T> {
