@@ -16,10 +16,6 @@ export default class KVPRules<T> {
 	}
 
 	public run(value: T | null): boolean {
-		console.info(
-			`Rule run: ${value} - ${this.rules.length} rules: ${JSON.stringify(this.rules)}`
-		);
-
 		if (!this.rules || !this.rules.length) {
 			return true;
 		}

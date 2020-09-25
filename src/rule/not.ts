@@ -8,7 +8,7 @@ export default class KVPRuleNot {
 	public readonly equal: KVPOpEqualTo<KVPRuleNot>;
 
 	constructor(rule: KVPRule) {
-		rule.invertNextResult();
+		//rule.invertNextResult();
 		this.be = new KVPRuleBe(rule);
 		this.equal = createEqualTo<KVPRuleNot>(this, rule);
 	}

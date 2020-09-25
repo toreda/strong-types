@@ -26,7 +26,6 @@ export default class KVPRuleNode {
 		}
 
 		const result = this.fn(value);
-		console.info(`node id [${this.id}](${value}): ${result}`)
 		if (!this.invertResult) {
 			return result;
 		} else {

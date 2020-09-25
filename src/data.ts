@@ -32,7 +32,6 @@ export default class KVPData<T> {
 
 	public set(value: T | null): boolean {
 		if (typeof value === 'undefined') {
-			console.error('set called with undefined value');
 			return false;
 		}
 
@@ -40,9 +39,6 @@ export default class KVPData<T> {
 
 		const passedValidation = this.rules.run(transformed);
 		if (!passedValidation) {
-			console.error(
-				`on set validation failed for value: "${transformed}" using ${this.rules.rules.length} rules.`
-			);
 			return false;
 		}
 
