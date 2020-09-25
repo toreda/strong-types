@@ -1,14 +1,23 @@
 import KVPOpIsUndefined, {createIsUndefined} from '../../../src/rule/operator/undefined';
 
 import KVPRule from '../../../src/rule/rule';
+import KVPRuleModifiers from '../../../src/rule/modifiers';
 
 describe('IsUndefined', () => {
+	let mods: KVPRuleModifiers;
+
+	beforeAll(() => {
+		mods = {
+			invert: false
+		};
+	});
+
 	describe('Usage', () => {
 		it('should return false when value argument is undefined', () => {
 			const rule = new KVPRule();
 			const val = undefined;
 
-			const fn = createIsUndefined<KVPRule>(rule, rule);
+			const fn = createIsUndefined<KVPRule>(rule, rule, mods);
 			fn();
 			expect(rule.nodes[0].execute(val)).toBe(true);
 		});
@@ -17,7 +26,7 @@ describe('IsUndefined', () => {
 			const rule = new KVPRule();
 			const val = 'aaa';
 
-			const fn = createIsUndefined<KVPRule>(rule, rule);
+			const fn = createIsUndefined<KVPRule>(rule, rule, mods);
 			fn();
 			expect(rule.nodes[0].execute(val)).toBe(false);
 		});
@@ -26,7 +35,7 @@ describe('IsUndefined', () => {
 			const rule = new KVPRule();
 			const val = 44410;
 
-			const fn = createIsUndefined<KVPRule>(rule, rule);
+			const fn = createIsUndefined<KVPRule>(rule, rule, mods);
 			fn();
 			expect(rule.nodes[0].execute(val)).toBe(false);
 		});
@@ -35,7 +44,7 @@ describe('IsUndefined', () => {
 			const rule = new KVPRule();
 			const val = [];
 
-			const fn = createIsUndefined<KVPRule>(rule, rule);
+			const fn = createIsUndefined<KVPRule>(rule, rule, mods);
 			fn();
 			expect(rule.nodes[0].execute(val)).toBe(false);
 		});
@@ -44,7 +53,7 @@ describe('IsUndefined', () => {
 			const rule = new KVPRule();
 			const val = {};
 
-			const fn = createIsUndefined<KVPRule>(rule, rule);
+			const fn = createIsUndefined<KVPRule>(rule, rule, mods);
 			fn();
 			expect(rule.nodes[0].execute(val)).toBe(false);
 		});
@@ -53,7 +62,7 @@ describe('IsUndefined', () => {
 			const rule = new KVPRule();
 			const val = 0;
 
-			const fn = createIsUndefined<KVPRule>(rule, rule);
+			const fn = createIsUndefined<KVPRule>(rule, rule, mods);
 			fn();
 			expect(rule.nodes[0].execute(val)).toBe(false);
 		});
@@ -62,7 +71,7 @@ describe('IsUndefined', () => {
 			const rule = new KVPRule();
 			const val = 44410;
 
-			const fn = createIsUndefined<KVPRule>(rule, rule);
+			const fn = createIsUndefined<KVPRule>(rule, rule, mods);
 			fn();
 			expect(rule.nodes[0].execute(val)).toBe(false);
 		});
@@ -71,7 +80,7 @@ describe('IsUndefined', () => {
 			const rule = new KVPRule();
 			const val = '';
 
-			const fn = createIsUndefined<KVPRule>(rule, rule);
+			const fn = createIsUndefined<KVPRule>(rule, rule, mods);
 			fn();
 			expect(rule.nodes[0].execute(val)).toBe(false);
 		});

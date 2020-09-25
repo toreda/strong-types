@@ -1,15 +1,22 @@
 import KVPOpIsInteger, {createIsInteger} from '../../../src/rule/operator/integer';
 
 import KVPRule from '../../../src/rule/rule';
+import KVPRuleModifiers from '../../../src/rule/modifiers';
 
 describe('Integer', () => {
-	beforeAll(() => {});
+	let mods: KVPRuleModifiers
+
+	beforeAll(() => {
+		mods = {
+			invert: false
+		}
+	});
 
 	describe('createIsInteger', () => {
 		it('should return a function', () => {
 			const rule = new KVPRule();
 
-			const fn = createIsInteger<KVPRule>(rule, rule);
+			const fn = createIsInteger<KVPRule>(rule, rule, mods);
 			expect(typeof fn).toBe('function');
 		});
 	});
@@ -18,7 +25,7 @@ describe('Integer', () => {
 		it('should return false when curr value is a string', () => {
 			const rule = new KVPRule();
 
-			const fn = createIsInteger<KVPRule>(rule, rule);
+			const fn = createIsInteger<KVPRule>(rule, rule, mods);
 			fn();
 
 			const str = '111111111';
@@ -29,7 +36,7 @@ describe('Integer', () => {
 			const rule = new KVPRule();
 			const floatCurr = 1.333;
 
-			const fn = createIsInteger<KVPRule>(rule, rule);
+			const fn = createIsInteger<KVPRule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(floatCurr)).toBe(false);
@@ -39,7 +46,7 @@ describe('Integer', () => {
 			const rule = new KVPRule();
 			const floatCurr = -7.333;
 
-			const fn = createIsInteger<KVPRule>(rule, rule);
+			const fn = createIsInteger<KVPRule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(floatCurr)).toBe(false);
@@ -49,7 +56,7 @@ describe('Integer', () => {
 			const rule = new KVPRule();
 			const intCurr = 7;
 
-			const fn = createIsInteger<KVPRule>(rule, rule);
+			const fn = createIsInteger<KVPRule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(intCurr)).toBe(true);
@@ -59,7 +66,7 @@ describe('Integer', () => {
 			const rule = new KVPRule();
 			const intCurr = -43;
 
-			const fn = createIsInteger<KVPRule>(rule, rule);
+			const fn = createIsInteger<KVPRule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(intCurr)).toBe(true);
@@ -69,7 +76,7 @@ describe('Integer', () => {
 			const rule = new KVPRule();
 			const curr = true;
 
-			const fn = createIsInteger<KVPRule>(rule, rule);
+			const fn = createIsInteger<KVPRule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(curr)).toBe(false);
@@ -79,7 +86,7 @@ describe('Integer', () => {
 			const rule = new KVPRule();
 			const curr = false;
 
-			const fn = createIsInteger<KVPRule>(rule, rule);
+			const fn = createIsInteger<KVPRule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(curr)).toBe(false);
@@ -89,7 +96,7 @@ describe('Integer', () => {
 			const rule = new KVPRule();
 			const curr = [];
 
-			const fn = createIsInteger<KVPRule>(rule, rule);
+			const fn = createIsInteger<KVPRule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(curr)).toBe(false);
