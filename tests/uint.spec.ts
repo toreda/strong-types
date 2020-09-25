@@ -69,5 +69,37 @@ describe('KVPUInt', () => {
 });
 
 describe('KVPUIntNullable', () => {
-	describe('Implementation', () => {});
+	describe('Implementation', () => {
+		it('should return null when value is not set', () => {
+			const sampleFallbackDefault = 3900001;
+			const uint = createKVPUIntNullable(null, sampleFallbackDefault);
+			expect(uint()).toBeNull();
+		});
+
+		it('should return null after value has been set to null', () => {
+			const sampleFallbackDefault = 3900001;
+			const sampleInt = 223211;
+			const uint = createKVPUIntNullable(sampleInt, sampleFallbackDefault);
+			uint(null);
+			expect(uint()).toBeNull();
+		});
+	});
+
+	describe('Methods', () => {
+		describe('get', () => {
+			it('should return fallback when no value is set', () => {
+				const sampleFallbackDefault = 11122;
+				const uint = createKVPUIntNullable(null, sampleFallbackDefault);
+				expect(uint.get(sampleFallbackDefault)).toBe(sampleFallbackDefault);
+			});
+
+			it('should return fallback after previous value is overwritten with null', () => {
+				const sampleFallbackDefault = 11122;
+				const sampleInit = 444180;
+				const uint = createKVPUIntNullable(sampleInit, sampleFallbackDefault);
+				uint(null);
+				expect(uint.get(sampleFallbackDefault)).toBe(sampleFallbackDefault);
+			});
+		});
+	});
 });

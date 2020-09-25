@@ -17,6 +17,10 @@ describe('GreaterThanOrEqualTo', () => {
 		};
 	});
 
+	beforeEach(() => {
+		mods.invert = false;
+	});
+
 	describe('create', () => {
 		it('should return a function', () => {});
 	});
@@ -50,6 +54,17 @@ describe('GreaterThanOrEqualTo', () => {
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
 
+		it('should return false when both current and target arguments are 0 but invert flag is active', () => {
+			const rule = new KVPRule();
+			const curr = 0;
+			const target = 0;
+			mods.invert = true;
+
+			const fn = createGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
+			fn(target);
+			expect(rule.nodes[0].execute(curr)).toBe(false);
+		});
+
 		it('should return false when current is less than target', () => {
 			const rule = new KVPRule();
 			const curr = 23;
@@ -60,6 +75,17 @@ describe('GreaterThanOrEqualTo', () => {
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
 
+		it('should return true when current is less than target but invert flag is active', () => {
+			const rule = new KVPRule();
+			const curr = 23;
+			const target = 77;
+			mods.invert = true;
+
+			const fn = createGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
+			fn(target);
+			expect(rule.nodes[0].execute(curr)).toBe(true);
+		});
+
 		it('should return true when positive integer current is greater than positive integer target', () => {
 			const rule = new KVPRule();
 			const curr = 25;
@@ -68,6 +94,17 @@ describe('GreaterThanOrEqualTo', () => {
 			const fn = createGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
+		});
+
+		it('should return false when positive integer current is greater than positive integer target, but invert flag is active', () => {
+			const rule = new KVPRule();
+			const curr = 25;
+			const target = 10;
+			mods.invert = true;
+
+			const fn = createGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
+			fn(target);
+			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
 
 		it('should return true when positive integer current is greater than negative integer target', () => {

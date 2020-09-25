@@ -15,6 +15,10 @@ describe('GreaterThan', () => {
 		};
 	});
 
+	beforeEach(() => {
+		mods.invert = false;
+	});
+
 	describe('create', () => {
 		it('should return a function', () => {});
 	});
@@ -48,6 +52,17 @@ describe('GreaterThan', () => {
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
 
+		it('should return true when both current and target arguments are 0 but invert flag is set', () => {
+			const rule = new KVPRule();
+			const curr = 0;
+			const target = 0;
+			mods.invert = true;
+
+			const fn = createGreaterThan<KVPRule>(rule, rule, mods);
+			fn(target);
+			expect(rule.nodes[0].execute(curr)).toBe(true);
+		});
+
 		it('should return false when current is less than target', () => {
 			const rule = new KVPRule();
 			const curr = 13;
@@ -56,6 +71,17 @@ describe('GreaterThan', () => {
 			const fn = createGreaterThan<KVPRule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
+		});
+
+		it('should return true when current is less than target but invert flag is set', () => {
+			const rule = new KVPRule();
+			const curr = 13;
+			const target = 55;
+			mods.invert = true;
+
+			const fn = createGreaterThan<KVPRule>(rule, rule, mods);
+			fn(target);
+			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
 
 		it('should return true when positive integer current is greater than positive integer target', () => {

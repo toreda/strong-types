@@ -15,6 +15,10 @@ describe('LessThan', () => {
 		};
 	});
 
+	beforeEach(() => {
+		mods.invert = false;
+	});
+
 	describe('create', () => {
 		it('should return a function', () => {});
 	});
@@ -38,6 +42,15 @@ describe('LessThan', () => {
 			expect(rule.nodes[0].execute(MOCK_CURR)).toBe(false);
 		});
 
+		it('should return true when target value is not a number but mods.invert is true', () => {
+			const rule = new KVPRule();
+			const stringTarget = 'ffffffff';
+			mods.invert = true;
+			const fn = createLessThan<KVPRule>(rule, rule, mods);
+			fn(stringTarget as any);
+			expect(rule.nodes[0].execute(MOCK_CURR)).toBe(true);
+		});
+
 		it('should return false when both current and target arguments are 0', () => {
 			const rule = new KVPRule();
 			const curr = 0;
@@ -58,6 +71,17 @@ describe('LessThan', () => {
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
 
+		it('should return false when current is less than target but mods.invert is true', () => {
+			const rule = new KVPRule();
+			const curr = 71;
+			const target = 105;
+			mods.invert = true;
+
+			const fn = createLessThan<KVPRule>(rule, rule, mods);
+			fn(target);
+			expect(rule.nodes[0].execute(curr)).toBe(false);
+		});
+
 		it('should return false when current is greater than target', () => {
 			const rule = new KVPRule();
 			const curr = 88;
@@ -66,6 +90,17 @@ describe('LessThan', () => {
 			const fn = createLessThan<KVPRule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
+		});
+
+		it('should return true when current is greater than target but mods.invert is true', () => {
+			const rule = new KVPRule();
+			const curr = 88;
+			const target = 44;
+			mods.invert = true;
+
+			const fn = createLessThan<KVPRule>(rule, rule, mods);
+			fn(target);
+			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
 
 		it('should return false when positive integer current is greater than positive integer target', () => {

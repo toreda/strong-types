@@ -12,6 +12,10 @@ describe('Integer', () => {
 		}
 	});
 
+	beforeEach(() => {
+		mods.invert = false;
+	});
+
 	describe('createIsInteger', () => {
 		it('should return a function', () => {
 			const rule = new KVPRule();
@@ -50,6 +54,17 @@ describe('Integer', () => {
 			fn();
 
 			expect(rule.nodes[0].execute(floatCurr)).toBe(false);
+		});
+
+		it('should return true when curr a negative float but invert flag is set', () => {
+			const rule = new KVPRule();
+			const floatCurr = -7.333;
+			mods.invert = true;
+
+			const fn = createIsInteger<KVPRule>(rule, rule, mods);
+			fn();
+
+			expect(rule.nodes[0].execute(floatCurr)).toBe(true);
 		});
 
 		it('should return true when curr a positive integer', () => {
