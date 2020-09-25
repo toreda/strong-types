@@ -7,13 +7,13 @@ import KVPRuleNodeType from '../node-type';
 type KVPOpIsEmpty<CallerType> = (a: any) => CallerType;
 export default KVPOpIsEmpty;
 
-const emptyFn = (curr: any[] | number): boolean => {
-	if (!Array.isArray(curr) && typeof curr !== 'number') {
+const emptyFn = (curr: any[] | string): boolean => {
+	if (!Array.isArray(curr) && typeof curr !== 'string') {
 		return false;
 	}
 
-	if (typeof curr === 'number') {
-		return curr === 0;
+	if (typeof curr === 'string') {
+		return curr === '';
 	}
 
 	return curr.length === 0;
@@ -25,7 +25,7 @@ export function createIsEmpty<CallerType>(
 	mods: KVPRuleModifiers
 ): KVPOpIsEmpty<CallerType> {
 	function empty(): CallerType {
-		const ruleFn: KVPRuleFn = (curr: any[] | number): boolean => {
+		const ruleFn: KVPRuleFn = (curr: any[] | string): boolean => {
 			return emptyFn(curr);
 		};
 
