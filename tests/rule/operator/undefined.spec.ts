@@ -12,6 +12,10 @@ describe('IsUndefined', () => {
 		};
 	});
 
+	beforeEach(() => {
+		mods.invert = false;
+	});
+
 	describe('Usage', () => {
 		it('should return true when value argument is undefined', () => {
 			const rule = new KVPRule();
@@ -29,6 +33,25 @@ describe('IsUndefined', () => {
 			const fn = createIsUndefined<KVPRule>(rule, rule, mods);
 			fn();
 			expect(rule.nodes[0].execute(val)).toBe(false);
+		});
+
+		it('should return false when value argument is undefined and mods.invert is true', () => {
+			const rule = new KVPRule();
+			const val = undefined;
+			mods.invert = true;
+			const fn = createIsUndefined<KVPRule>(rule, rule, mods);
+			fn();
+			expect(rule.nodes[0].execute(val)).toBe(false);
+		});
+
+		it('should return true when value argument is a string and mods.invert is true', () => {
+			const rule = new KVPRule();
+			const val = 'aaa';
+			mods.invert = true;
+
+			const fn = createIsUndefined<KVPRule>(rule, rule, mods);
+			fn();
+			expect(rule.nodes[0].execute(val)).toBe(true);
 		});
 
 		it('should return false when value argument is a number', () => {

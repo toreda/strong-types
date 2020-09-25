@@ -12,7 +12,29 @@ describe('empty', () => {
 		};
 	});
 
+	beforeEach(() => {
+		mods.invert = false;
+	});
+
 	describe('Usage', () => {
+		it('should return true when input is a non-empty string and mods.invert is true', () => {
+			const rule = new KVPRule();
+			const value = 'aaaaaaaaa';
+			mods.invert = true;
+			const fn = createIsEmpty<KVPRule>(rule, rule, mods);
+			fn(value);
+			expect(rule.nodes[0].execute(value)).toBe(true);
+		});
+
+		it('should return false when input is an empty array and mods.invert is true', () => {
+			const rule = new KVPRule();
+			const value = [];
+			mods.invert = true;
+			const fn = createIsEmpty<KVPRule>(rule, rule, mods);
+			fn(value);
+			expect(rule.nodes[0].execute(value)).toBe(false);
+		});
+
 		it('should return false when input is a non-empty string', () => {
 			const rule = new KVPRule();
 			const value = 'aaaaaaaaa';

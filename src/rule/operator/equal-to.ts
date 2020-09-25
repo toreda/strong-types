@@ -12,6 +12,22 @@ const equalToFn = (curr: any, target: any): boolean => {
 		return false;
 	}
 
+	if (Array.isArray(curr) && Array.isArray(target)) {
+		if (curr.length !== target.length) {
+			return false;
+		}
+
+		// Naive check for equality. Will produce false negative
+		// if the arrays have the same contents in a different order.
+		for (let i = 0; i < curr.length; i++) {
+			if (curr[i] !== target[i]) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 	return curr === target;
 };
 
