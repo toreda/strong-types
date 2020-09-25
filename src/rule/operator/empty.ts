@@ -26,7 +26,12 @@ export function createIsEmpty<CallerType>(
 ): KVPOpIsEmpty<CallerType> {
 	function empty(): CallerType {
 		const ruleFn: KVPRuleFn = (curr: any[] | string): boolean => {
-			return emptyFn(curr);
+			const result = emptyFn(curr);
+			if (mods.invert) {
+				return !result;
+			}
+
+			return result;
 		};
 
 		const node = new KVPRuleNode('IS_EMPTY', KVPRuleNodeType.CMP, ruleFn);
