@@ -1,5 +1,6 @@
 import KVPRule from '../rule';
 import KVPRuleFn from '../fn';
+import KVPRuleModifiers from '../modifiers';
 import KVPRuleNode from '../node';
 import KVPRuleNodeType from '../node-type';
 
@@ -12,11 +13,18 @@ function isNull(curr: any): boolean {
 
 export function createIsNull<CallerType>(
 	caller: CallerType,
-	rule: KVPRule
+	rule: KVPRule,
+	mods: KVPRuleModifiers
 ): KVPOpIsNull<CallerType> {
 	function beNull(): CallerType {
 		const ruleFn: KVPRuleFn = (curr: any): boolean => {
-			return isNull(curr);
+			const result = isNull(curr);
+
+			if (mods.invert) {
+				return !result;
+			}
+
+			return result;
 		};
 
 		const node = new KVPRuleNode('IS_NULL', KVPRuleNodeType.CMP, ruleFn);

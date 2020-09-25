@@ -1,5 +1,6 @@
 import KVPRule from '../rule';
 import KVPRuleFn from '../fn';
+import KVPRuleModifiers from '../modifiers';
 import KVPRuleNode from '../node';
 import KVPRuleNodeType from '../node-type';
 
@@ -16,11 +17,18 @@ const equalToFn = (curr: any, target: any): boolean => {
 
 export function createEqualTo<CallerType>(
 	caller: CallerType,
-	rule: KVPRule
+	rule: KVPRule,
+	mods: KVPRuleModifiers
 ): KVPOpEqualTo<CallerType> {
 	function equalTo(target: any): CallerType {
 		const fn: KVPRuleFn = (curr: any): boolean => {
-			return equalToFn(curr, target);
+			const result = equalToFn(curr, target);
+
+			if (mods.invert) {
+				return !result;
+			}
+
+			return result;
 		};
 		const node = new KVPRuleNode('EQUAL_TO', KVPRuleNodeType.CMP, fn);
 		rule.add(node);

@@ -5,6 +5,7 @@ import KVPRule from './rule';
 import KVPRuleBe from './be';
 import KVPRuleHave from './have';
 import KVPRuleMatch from './match';
+import KVPRuleModifiers from '../rule/modifiers';
 import KVPRuleNot from './not';
 
 export default class KVPRuleMust {
@@ -21,11 +22,15 @@ export default class KVPRuleMust {
 			rules.push(rule);
 		}
 
-		this.be = new KVPRuleBe(rule);
+		const mods: KVPRuleModifiers = {
+			invert: false
+		};
+
+		this.be = new KVPRuleBe(rule, mods);
 		this.have = new KVPRuleHave();
-		this.not = new KVPRuleNot(rule);
-		this.equal = createEqualTo<KVPRuleMust>(this, rule);
-		this.match = new KVPRuleMatch(rule);
-		this.haveLength = createHaveLength<KVPRuleMust>(this, rule);
+		this.not = new KVPRuleNot(rule, mods);
+		this.equal = createEqualTo<KVPRuleMust>(this, rule, mods);
+		this.match = new KVPRuleMatch(rule, mods);
+		this.haveLength = createHaveLength<KVPRuleMust>(this, rule, mods);
 	}
 }

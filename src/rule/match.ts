@@ -1,20 +1,21 @@
-import createMatchFormat, {KVPOpMatchFormat} from './format';
-import createMatchFormats, {KVPOpMatchFormats} from './formats';
-
 import KVPRule from './rule';
+import KVPRuleModifiers from './modifiers';
 import KVPRuleOr from './or';
+import KVPRulePattern from './operator/pattern';
 import KVPRuleType from './operator/type';
 
 export default class KVPRuleMatch {
 	public readonly or: KVPRuleOr;
 	public readonly type: KVPRuleType;
-	public readonly format: KVPOpMatchFormat<KVPRuleMatch>;
-	public readonly formats: KVPOpMatchFormats<KVPRuleMatch>;
+	public readonly pattern: KVPRulePattern;
 
-	constructor(rule: KVPRule) {
-		this.or = new KVPRuleOr(rule);
-		this.type = new KVPRuleType(rule);
-		this.format = createMatchFormat<KVPRuleMatch>(this, rule);
-		this.formats = createMatchFormats<KVPRuleMatch>(this, rule);
+	constructor(rule: KVPRule, parentMods: KVPRuleModifiers) {
+		const mods: KVPRuleModifiers = {
+			invert: parentMods.invert
+		};
+
+		this.or = new KVPRuleOr(rule, mods);
+		this.type = new KVPRuleType(rule, mods);
+		this.pattern = new KVPRulePattern(rule, mods);
 	}
 }

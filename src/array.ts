@@ -1,10 +1,8 @@
-import KVPKVP, {KVPNullable, createKVP, createKVPNullable} from './kvp';
+import KVP, {KVPNullable, createKVP, createKVPNullable} from './kvp';
 
-import KVPOptions from './options';
 import KVPRules from './rules';
-import KVPType from './type';
 
-type KVPArray<T> = KVPKVP<T[]>;
+type KVPArray<T> = KVP<T[]>;
 export default KVPArray;
 export type KVPArrayNullable<T> = KVPNullable<T[]>;
 
@@ -13,12 +11,8 @@ export function createKVPArray<T>(initial: T[], fallback: T[]): KVPArray<T> {
 	return createKVP<T[]>(initial, fallback, rules);
 }
 
-export function createKVPArrayNullable<T>(
-	initial: T[] | null,
-	fallback: T[],
-	options?: KVPOptions
-): KVPArrayNullable<T> {
+export function createKVPArrayNullable<T>(initial: T[] | null, fallback: T[]): KVPArrayNullable<T> {
 	const rules = new KVPRules();
-	rules.must.match.type(KVPType.ARRAY);
+	//rules.add().must.match.typ
 	return createKVPNullable<T[]>(initial, fallback, rules);
 }

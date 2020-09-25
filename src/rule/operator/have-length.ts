@@ -1,5 +1,6 @@
 import KVPRule from '../rule';
 import KVPRuleFn from '../fn';
+import KVPRuleModifiers from '../modifiers';
 import KVPRuleNode from '../node';
 import KVPRuleNodeType from '../node-type';
 
@@ -20,7 +21,8 @@ const haveLengthFn = (curr: any[] | number, expectedLength: number) => {
 
 export function createHaveLength<CallerType>(
 	caller: CallerType,
-	rule: KVPRule
+	rule: KVPRule,
+	mods: KVPRuleModifiers
 ): KVPOpHaveLength<CallerType> {
 	function haveLength(expectedLength: number): CallerType {
 		const ruleFn: KVPRuleFn = (curr: any[] | number): boolean => {

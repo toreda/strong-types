@@ -1,5 +1,6 @@
 import KVPRule from '../rule';
 import KVPRuleFn from '../fn';
+import KVPRuleModifiers from '../modifiers';
 import KVPRuleNode from '../node';
 import KVPRuleNodeType from '../node-type';
 
@@ -16,11 +17,18 @@ const isInteger = (curr: number): boolean => {
 
 export function createIsInteger<CallerType>(
 	caller: CallerType,
-	rule: KVPRule
+	rule: KVPRule,
+	mods: KVPRuleModifiers
 ): KVPOpIsInteger<CallerType> {
 	function int(): CallerType {
 		const ruleFn: KVPRuleFn = (curr: number): boolean => {
-			return isInteger(curr);
+			const result = isInteger(curr);
+
+			if (mods.invert) {
+				return !result;
+			}
+
+			return result;
 		};
 
 		const node = new KVPRuleNode('IS_INTEGER', KVPRuleNodeType.CMP, ruleFn);

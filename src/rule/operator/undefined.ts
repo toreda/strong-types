@@ -1,5 +1,6 @@
 import KVPRule from '../rule';
 import KVPRuleFn from '../fn';
+import KVPRuleModifiers from '../modifiers';
 import KVPRuleNode from '../node';
 import KVPRuleNodeType from '../node-type';
 
@@ -12,11 +13,18 @@ function isUndefined(currValue: any): boolean {
 
 export function createIsUndefined<CallerType>(
 	caller: CallerType,
-	rule: KVPRule
+	rule: KVPRule,
+	mods: KVPRuleModifiers
 ): KVPOpIsUndefined<CallerType> {
 	function beUndefined(): CallerType {
 		const ruleFn: KVPRuleFn = (curr: number) => {
-			return isUndefined(curr);
+			const result = isUndefined(curr);
+
+			if (mods.invert) {
+				return !result;
+			}
+
+			return result;
 		};
 		const node = new KVPRuleNode('IS_UNDEFINED', KVPRuleNodeType.CMP, ruleFn);
 		rule.add(node);

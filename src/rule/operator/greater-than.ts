@@ -1,5 +1,6 @@
 import KVPRule from '../rule';
 import KVPRuleFn from '../fn';
+import KVPRuleModifiers from '../modifiers';
 import KVPRuleNode from '../node';
 import KVPRuleNodeType from '../node-type';
 
@@ -12,11 +13,18 @@ const greaterThanFn = (curr: number, target: number): boolean => {
 
 export function createGreaterThan<CallerType>(
 	caller: CallerType,
-	rule: KVPRule
+	rule: KVPRule,
+	mods: KVPRuleModifiers
 ): KVPOpGreaterThan<CallerType> {
 	function greaterThan(target: number): CallerType {
 		const ruleFn: KVPRuleFn = (curr: number) => {
-			return greaterThanFn(curr, target);
+			const result = greaterThanFn(curr, target);
+
+			if (mods.invert) {
+				return !result;
+			}
+
+			return result;
 		};
 
 		const node = new KVPRuleNode('GREATER_THAN', KVPRuleNodeType.CMP, ruleFn);

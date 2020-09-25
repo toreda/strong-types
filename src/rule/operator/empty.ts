@@ -1,5 +1,6 @@
 import KVPRule from '../rule';
 import KVPRuleFn from '../fn';
+import KVPRuleModifiers from '../modifiers';
 import KVPRuleNode from '../node';
 import KVPRuleNodeType from '../node-type';
 
@@ -20,7 +21,8 @@ const emptyFn = (curr: any[] | number): boolean => {
 
 export function createIsEmpty<CallerType>(
 	caller: CallerType,
-	rule: KVPRule
+	rule: KVPRule,
+	mods: KVPRuleModifiers
 ): KVPOpIsEmpty<CallerType> {
 	function empty(): CallerType {
 		const ruleFn: KVPRuleFn = (curr: any[] | number): boolean => {
