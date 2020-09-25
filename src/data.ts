@@ -38,7 +38,15 @@ export default class KVPData<T> {
 
 		const transformed = value;
 
-		this.value = value;
+		const passedValidation = this.rules.run(transformed);
+		if (!passedValidation) {
+			console.error(
+				`on set validation failed for value: "${transformed}" using ${this.rules.rules.length} rules.`
+			);
+			return false;
+		}
+
+		this.value = transformed;
 
 		return true;
 	}

@@ -9,8 +9,8 @@ export default KVPBool;
 
 export function createKVPBool(initial: boolean, fallback: boolean): KVPBool {
 	const rules = new KVPRules();
-	rules.must.match.type('boolean');
-	rules.must.match.type('boolean').or.type('array');
+	rules.must().match.type.integer();
+	//rules.must.match.type('boolean').or.type('array');
 
 	return createKVP<boolean>(initial, fallback, rules);
 }

@@ -9,13 +9,14 @@ export type KVPIntNullable = KVPNullable<number>;
 
 export function createKVPInt(initial: number, fallback: number): KVPInt {
 	const rules = new KVPRules();
-	rules.must.match.type('aaa');
-	rules.must.match.types(['aaa', 'bbbb', 'ccc']);
-	rules.must.be.lessThan(25);
-	rules.must.be.greaterThan(20);
-	rules.must.be.equalTo(24);
-	rules.must.not.be.undefined();
-	rules.must.match.type('string');
+
+	rules.must().match.type('aaa');
+	rules.must().match.types(['aaa', 'bbbb', 'ccc']);
+	rules.must().be.lessThan(25);
+	rules.must().be.greaterThan(20);
+	rules.must().be.equalTo(24);
+	rules.must().not.be.undefined();
+	rules.must().match.type('string');
 	return createKVP<number>(initial, fallback, rules);
 }
 

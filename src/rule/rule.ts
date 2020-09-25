@@ -9,14 +9,12 @@ export type RawNodeInfo = {
 
 export default class KVPRule {
 	public readonly nodes: KVPRuleNode[];
-	public prevNode: KVPRuleNode | null;
 	public readonly modifiers: KVPRuleModifiers;
 	public orOpCount: number;
 
 	constructor() {
 		this.orOpCount = 0;
 		this.nodes = [];
-		this.prevNode = null;
 		this.modifiers = {
 			invert: false
 		};
@@ -28,6 +26,8 @@ export default class KVPRule {
 				node.invertResult = true;
 				this.modifiers.invert = false;
 			}
+
+			this.nodes.push(node);
 		} else if (node.type === KVPRuleNodeType.OP) {
 			switch (node.id) {
 				case 'OR':
@@ -35,8 +35,6 @@ export default class KVPRule {
 					break;
 			}
 		}
-
-		this.nodes.push(node);
 	}
 
 	public run(value: any | null): boolean {
@@ -45,7 +43,7 @@ export default class KVPRule {
 		}
 
 		if (!this.nodes.length) {
-			return true;
+			return false;
 		}
 
 		let trueCount = 0;
@@ -55,6 +53,7 @@ export default class KVPRule {
 				trueCount++;
 			}
 		}
+
 		// Require at least comparison in set of
 		// OR operators to be true.
 		return trueCount > 0;

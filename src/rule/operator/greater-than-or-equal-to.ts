@@ -7,6 +7,10 @@ type KVPOpGreaterThanOrEqualTo<CallerType> = (a: number) => CallerType;
 export default KVPOpGreaterThanOrEqualTo;
 
 const greaterThanOrEqualToFn = (curr: number, target: number): boolean => {
+	if (typeof curr !== 'number' || typeof target !== 'number') {
+		return false;
+	}
+
 	return curr >= target;
 };
 
