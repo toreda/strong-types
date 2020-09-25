@@ -13,7 +13,7 @@ describe('IsUndefined', () => {
 	});
 
 	describe('Usage', () => {
-		it('should return false when value argument is undefined', () => {
+		it('should return true when value argument is undefined', () => {
 			const rule = new KVPRule();
 			const val = undefined;
 
