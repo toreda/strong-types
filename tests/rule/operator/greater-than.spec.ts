@@ -5,7 +5,7 @@ import KVPRule from '../../../src/rule/rule';
 const MOCK_TARGET = 44410;
 const MOCK_CURR = 1111;
 
-describe('GreaterThanOrEqualTo', () => {
+describe('GreaterThan', () => {
 	beforeAll(() => {});
 
 	describe('create', () => {
