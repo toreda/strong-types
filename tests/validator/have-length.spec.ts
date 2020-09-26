@@ -1,7 +1,7 @@
-import KVPOpHaveLength, {createHaveLength} from '../../../src/rule/operator/have-length';
+import KVPOpHaveLength, {createHaveLength} from '../../src/validator/have-length';
 
-import KVPRule from '../../../src/rule/rule';
-import KVPRuleModifiers from '../../../src/rule/modifiers';
+import KVPRule from '../../src/rule/rule';
+import KVPRuleModifiers from '../../src/rule/modifiers';
 
 describe('IsUndefined', () => {
 	let mods: KVPRuleModifiers;

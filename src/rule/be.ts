@@ -1,13 +1,13 @@
-import KVPOpEqualTo, {createEqualTo} from './operator/equal-to';
-import KVPOpGreaterThan, {createGreaterThan} from './operator/greater-than';
+import KVPOpEqualTo, {createEqualTo} from '../validator/equal-to';
+import KVPOpGreaterThan, {createGreaterThan} from '../validator/greater-than';
 import KVPOpGreaterThanOrEqualTo, {
 	createGreaterThanOrEqualTo
-} from './operator/greater-than-or-equal-to';
-import KVPOpIsEmpty, {createIsEmpty} from './operator/empty';
-import KVPOpIsNull, {createIsNull} from './operator/null';
-import KVPOpIsUndefined, {createIsUndefined} from './operator/undefined';
-import KVPOpLessThan, {createLessThan} from './operator/less-than';
-import KVPOpLessThanOrEqualTo, {createLessThanOrEqualTo} from './operator/less-than-or-equal-to';
+} from '../validator/greater-than-or-equal-to';
+import KVPOpIsEmpty, {createIsEmpty} from '../validator/empty';
+import KVPOpIsNull, {createIsNull} from '../validator/null';
+import KVPOpIsUndefined, {createIsUndefined} from '../validator/undefined';
+import KVPOpLessThan, {createLessThan} from '../validator/less-than';
+import KVPOpLessThanOrEqualTo, {createLessThanOrEqualTo} from '../validator/less-than-or-equal-to';
 
 import KVPRule from './rule';
 import KVPRuleModifiers from '../rule/modifiers';

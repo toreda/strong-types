@@ -1,5 +1,5 @@
-import KVPOpEqualTo, {createEqualTo} from './operator/equal-to';
-import KVPOpHaveLength, {createHaveLength} from './operator/have-length';
+import KVPOpEqualTo, {createEqualTo} from '../validator/equal-to';
+import KVPOpHaveLength, {createHaveLength} from '../validator/have-length';
 
 import KVPRule from './rule';
 import KVPRuleBe from './be';

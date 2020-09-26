@@ -1,7 +1,7 @@
-import KVPOpEqualTo, {createEqualTo} from '../../../src/rule/operator/equal-to';
+import KVPOpEqualTo, {createEqualTo} from '../../src/validator/equal-to';
 
-import KVPRule from '../../../src/rule/rule';
-import KVPRuleModifiers from '../../../src/rule/modifiers';
+import KVPRule from '../../src/rule/rule';
+import KVPRuleModifiers from '../../src/rule/modifiers';
 
 describe('EqualTo', () => {
 	let mods: KVPRuleModifiers;

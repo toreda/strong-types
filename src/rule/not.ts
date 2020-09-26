@@ -1,4 +1,4 @@
-import KVPOpEqualTo, {createEqualTo} from './operator/equal-to';
+import KVPOpEqualTo, {createEqualTo} from '../validator/equal-to';
 
 import KVPRule from './rule';
 import KVPRuleBe from './be';
@@ -9,7 +9,6 @@ export default class KVPRuleNot {
 	public readonly equal: KVPOpEqualTo<KVPRuleNot>;
 
 	constructor(rule: KVPRule, parentMods: KVPRuleModifiers) {
-		//rule.invertNextResult();
 		const mods: KVPRuleModifiers = {
 			invert: !parentMods.invert
 		};

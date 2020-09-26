@@ -1,8 +1,8 @@
 import KVPRule from './rule';
 import KVPRuleModifiers from './modifiers';
 import KVPRuleOr from './or';
-import KVPRulePattern from './operator/pattern';
-import KVPRuleType from './operator/type';
+import KVPRulePattern from '../validator/pattern';
+import KVPRuleType from '../validator/type';
 
 export default class KVPRuleMatch {
 	public readonly or: KVPRuleOr;

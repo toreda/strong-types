@@ -1,5 +1,5 @@
-import KVPRule from '../rule';
-import KVPRuleModifiers from '../modifiers';
+import KVPRule from '../rule/rule';
+import KVPRuleModifiers from '../rule/modifiers';
 
 export default class KVPRulePattern {
 	constructor(rule: KVPRule, mods: KVPRuleModifiers) {}

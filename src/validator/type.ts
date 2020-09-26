@@ -1,7 +1,7 @@
 import KVPOpIsInteger, {createIsInteger} from './integer';
 
-import KVPRule from '../rule';
-import KVPRuleModifiers from '../modifiers';
+import KVPRule from '../rule/rule';
+import KVPRuleModifiers from '../rule/modifiers';
 
 export default class KVPRuleType {
 	public readonly integer: KVPOpIsInteger<KVPRuleType>;
