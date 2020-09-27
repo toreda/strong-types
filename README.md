@@ -3,7 +3,7 @@
 
 ![CI](https://github.com/armorjvs/kvp/workflows/CI/badge.svg?branch=master) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=toreda_kvp&metric=coverage)](https://sonarcloud.io/dashboard?id=toreda_kvp) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=toreda_kvp&metric=alert_status)](https://sonarcloud.io/dashboard?id=toreda_kvp)
 
-`@toreda/kvp` offers a convenient and typesafe managed key-value pairs. Eliminate excessive type and safety checks with type-safe accessors for key-value pairs and built in parsing.
+Typescript-first library manage type-safe key value pairs. Eliminate excessive validation code with type-safe setters & getters.
 
 ## Contents
 
