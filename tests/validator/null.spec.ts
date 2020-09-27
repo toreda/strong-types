@@ -1,7 +1,7 @@
-import KVPOpIsNull, {createIsNull} from '../../src/validator/null';
+import {KVPOpIsNull, createIsNull} from '../../src/validator/null';
 
-import KVPRule from '../../src/rule/rule';
-import KVPRuleModifiers from '../../src/rule/modifiers';
+import {KVPRule} from '../../src/rule/rule';
+import {KVPRuleModifiers} from '../../src/rule/modifiers';
 
 describe('Empty', () => {
 	let mods: KVPRuleModifiers;

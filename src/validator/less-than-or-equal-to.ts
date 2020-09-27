@@ -1,11 +1,10 @@
-import KVPRule from '../rule/rule';
-import KVPRuleFn from '../rule/fn';
-import KVPRuleModifiers from '../rule/modifiers';
-import KVPRuleNode from '../rule/node';
-import KVPRuleNodeType from '../rule/node-type';
+import {KVPRule} from '../rule/rule';
+import {KVPRuleFn} from '../rule/fn';
+import {KVPRuleModifiers} from '../rule/modifiers';
+import {KVPRuleNode} from '../rule/node';
+import {KVPRuleNodeType} from '../rule/node-type';
 
-type KVPOpLessThanOrEqualTo<CallerType> = (a: number) => CallerType;
-export default KVPOpLessThanOrEqualTo;
+export type KVPOpLessThanOrEqualTo<CallerType> = (a: number) => CallerType;
 
 const lessThanOrEqualToFn = (curr: number, target: number): boolean => {
 	return curr <= target;

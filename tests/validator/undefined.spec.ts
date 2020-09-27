@@ -1,7 +1,7 @@
-import KVPOpIsUndefined, {createIsUndefined} from '../../src/validator/undefined';
+import {KVPOpIsUndefined, createIsUndefined} from '../../src/validator/undefined';
 
-import KVPRule from '../../src/rule/rule';
-import KVPRuleModifiers from '../../src/rule/modifiers';
+import {KVPRule} from '../../src/rule/rule';
+import {KVPRuleModifiers} from '../../src/rule/modifiers';
 
 describe('IsUndefined', () => {
 	let mods: KVPRuleModifiers;

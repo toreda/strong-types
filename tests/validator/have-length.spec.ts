@@ -1,7 +1,7 @@
-import KVPOpHaveLength, {createHaveLength} from '../../src/validator/have-length';
+import {KVPOpHaveLength, createHaveLength} from '../../src/validator/have-length';
 
-import KVPRule from '../../src/rule/rule';
-import KVPRuleModifiers from '../../src/rule/modifiers';
+import {KVPRule} from '../../src/rule/rule';
+import {KVPRuleModifiers} from '../../src/rule/modifiers';
 
 describe('IsUndefined', () => {
 	let mods: KVPRuleModifiers;
@@ -75,7 +75,6 @@ describe('IsUndefined', () => {
 				fn(expectedLength);
 				expect(rule.nodes[0].execute(currentValue)).toBe(false);
 			});
-
 
 			it('should return false when current value is null', () => {
 				const rule = new KVPRule();

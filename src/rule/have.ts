@@ -1,5 +1,4 @@
-
-export default class KVPHave {
+export class KVPRuleHave {
 	constructor() {
 		// TODO: Fill out have
 	}

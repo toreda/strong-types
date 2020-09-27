@@ -1,4 +1,4 @@
-import KVPUInt, {createKVPUInt, createKVPUIntNullable} from '../src/uint';
+import {KVPUInt, createKVPUInt, createKVPUIntNullable} from '../src/uint';
 
 const MOCK_INITIAL = 4410;
 const MOCK_FALLBACK_DEFAULT = 99121;

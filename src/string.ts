@@ -1,9 +1,9 @@
 import KVP, {KVPNullable, createKVP, createKVPNullable} from './kvp';
 
-import KVPRules from './rules';
+import {KVPRules} from './rules';
 
-type KVPString = KVP<string>;
-export default KVPString;
+export type KVPString = KVP<string>;
+
 export type KVPStringNullable = KVPNullable<string>;
 
 export function createKVPString(initial: string, fallback: string): KVPString {

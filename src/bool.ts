@@ -1,12 +1,10 @@
 import KVP, {KVPNullable, createKVP, createKVPNullable} from './kvp';
 
-import KVPRuleModifiers from './rule/modifiers';
-import KVPRules from './rules';
+import {KVPRuleModifiers} from './rule/modifiers';
+import {KVPRules} from './rules';
 
 export type KVPBool = KVP<boolean>;
 export type KVPBoolNullable = KVPNullable<boolean>;
-
-export default KVPBool;
 
 export function createKVPBool(initial: boolean, fallback: boolean): KVPBool {
 	const rules = new KVPRules();

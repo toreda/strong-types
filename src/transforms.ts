@@ -1,7 +1,7 @@
-import KVPTransform from './transform';
-import KVPTransformNullable from './transform-nullable';
+import {KVPTransform} from './transform';
+import {KVPTransformNullable} from './transform-nullable';
 
-export default class KVPTransforms<T> {
+export class KVPTransforms<T> {
 	public readonly transforms: KVPTransform<T>[];
 	public readonly transformsNullable: KVPTransformNullable<T>[];
 	public readonly fallbackDefault: T;

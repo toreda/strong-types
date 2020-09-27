@@ -1,11 +1,10 @@
-import KVPRule from '../rule/rule';
-import KVPRuleFn from '../rule/fn';
-import KVPRuleModifiers from '../rule/modifiers';
-import KVPRuleNode from '../rule/node';
-import KVPRuleNodeType from '../rule/node-type';
+import {KVPRule} from '../rule/rule';
+import {KVPRuleFn} from '../rule/fn';
+import {KVPRuleModifiers} from '../rule/modifiers';
+import {KVPRuleNode} from '../rule/node';
+import {KVPRuleNodeType} from '../rule/node-type';
 
-type KVPOpIsUndefined<CallerType> = () => CallerType;
-export default KVPOpIsUndefined;
+export type KVPOpIsUndefined<CallerType> = () => CallerType;
 
 function isUndefined(currValue: any): boolean {
 	return typeof currValue === 'undefined';

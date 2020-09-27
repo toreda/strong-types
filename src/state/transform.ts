@@ -1,4 +1,4 @@
-export default interface KVPStateTransform<T> {
+export interface KVPStateTransform<T> {
 	number: {
 		operation?: 'trunc' | 'ceil' | 'floor' | 'none';
 	};

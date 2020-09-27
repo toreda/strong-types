@@ -1,4 +1,4 @@
-export default interface KVPTransformOptions {
+export interface KVPTransformOptions {
 	id?: string;
 	nullable?: boolean;
 }

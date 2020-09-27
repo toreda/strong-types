@@ -1,7 +1,7 @@
-import KVPOpGreaterThan, {createGreaterThan} from '../../src/validator/greater-than';
+import {KVPOpGreaterThan, createGreaterThan} from '../../src/validator/greater-than';
 
-import KVPRule from '../../src/rule/rule';
-import KVPRuleModifiers from '../../src/rule/modifiers';
+import {KVPRule} from '../../src/rule/rule';
+import {KVPRuleModifiers} from '../../src/rule/modifiers';
 
 const MOCK_TARGET = 44410;
 const MOCK_CURR = 1111;

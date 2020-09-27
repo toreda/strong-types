@@ -1,7 +1,7 @@
-import KVPOpIsDouble, {createIsDouble} from '../../src/validator/double';
+import {KVPOpIsDouble, createIsDouble} from '../../src/validator/double';
 
-import KVPRule from '../../src/rule/rule';
-import KVPRuleModifiers from '../../src/rule/modifiers';
+import {KVPRule} from '../../src/rule/rule';
+import {KVPRuleModifiers} from '../../src/rule/modifiers';
 
 describe('Double', () => {
 	let mods: KVPRuleModifiers;

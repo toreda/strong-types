@@ -1,8 +1,6 @@
-import KVPRule from './rule';
-import KVPRuleModifiers from '../rule/modifiers';
+import {KVPRule} from './rule';
+import {KVPRuleModifiers} from '../rule/modifiers';
 
-export default class KVPRuleOr {
-	constructor(rule: KVPRule, parentMods: KVPRuleModifiers) {
-
-	}
+export class KVPRuleOr {
+	constructor(rule: KVPRule, parentMods: KVPRuleModifiers) {}
 }

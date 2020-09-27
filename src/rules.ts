@@ -1,8 +1,8 @@
-import KVPRule from './rule/rule';
-import KVPRuleMust from './rule/must';
-import KVPRuleRoot from './rule/root';
+import {KVPRule} from './rule/rule';
+import {KVPRuleMust} from './rule/must';
+import {KVPRuleRoot} from './rule/root';
 
-export default class KVPRules<T> {
+export class KVPRules<T> {
 	public readonly rules: KVPRule[];
 
 	constructor() {

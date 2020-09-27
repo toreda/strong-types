@@ -1,11 +1,10 @@
-import KVPRule from '../rule/rule';
-import KVPRuleFn from '../rule/fn';
-import KVPRuleModifiers from '../rule/modifiers';
-import KVPRuleNode from '../rule/node';
-import KVPRuleNodeType from '../rule/node-type';
+import {KVPRule} from '../rule/rule';
+import {KVPRuleFn} from '../rule/fn';
+import {KVPRuleModifiers} from '../rule/modifiers';
+import {KVPRuleNode} from '../rule/node';
+import {KVPRuleNodeType} from '../rule/node-type';
 
-type KVPOpEqualTo<CallerType> = (a: any) => CallerType;
-export default KVPOpEqualTo;
+export type KVPOpEqualTo<CallerType> = (a: any) => CallerType;
 
 const equalToFn = (curr: any, target: any): boolean => {
 	if (typeof target === 'undefined' || typeof curr === 'undefined') {

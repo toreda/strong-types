@@ -1,6 +1,6 @@
-import KVPRule from '../../src/rule/rule';
-import KVPRuleNode from '../../src/rule/node';
-import KVPRuleNodeType from '../../src/rule/node-type';
+import {KVPRule} from '../../src/rule/rule';
+import {KVPRuleNode} from '../../src/rule/node';
+import {KVPRuleNodeType} from '../../src/rule/node-type';
 
 const EMPTY_ARRAY = [];
 

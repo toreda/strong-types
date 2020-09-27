@@ -1,10 +1,8 @@
 import KVP, {KVPNullable, createKVP, createKVPNullable} from './kvp';
 
-import KVPRules from './rules';
+import {KVPRules} from './rules';
 
-type KVPInt = KVP<number>;
-export default KVPInt;
-
+export type KVPInt = KVP<number>;
 export type KVPIntNullable = KVPNullable<number>;
 const rules = new KVPRules();
 rules.add().must.match.type.integer();

@@ -1,7 +1,7 @@
-import KVPTransformFnNullable from './transform-fn';
-import KVPTransformOptions from './transform-options';
+import {KVPTransformFnNullable} from './transform-fn-nullable';
+import {KVPTransformOptions} from './transform-options';
 
-export default class KVPTransformNullable<T> {
+export class KVPTransformNullable<T> {
 	public readonly id: string;
 	public readonly label: string;
 	public readonly fn: KVPTransformFnNullable<T>;

@@ -1,5 +1,5 @@
-import KVPRuleNode from '../../src/rule/node';
-import KVPRuleNodeType from '../../src/rule/node-type';
+import {KVPRuleNode} from '../../src/rule/node';
+import {KVPRuleNodeType} from '../../src/rule/node-type';
 
 const EMPTY_ARRAY = [];
 const MOCK_ID = 'AA410912CC_11';

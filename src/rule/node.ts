@@ -1,7 +1,7 @@
-import KVPRuleFn from './fn';
-import KVPRuleNodeType from './node-type';
+import {KVPRuleFn} from './fn';
+import {KVPRuleNodeType} from './node-type';
 
-export default class KVPRuleNode {
+export class KVPRuleNode {
 	public readonly id: string;
 	public readonly children: KVPRuleNode[];
 	public readonly fn: KVPRuleFn | null;

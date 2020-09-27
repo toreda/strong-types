@@ -1,15 +1,15 @@
-import KVPOpIsInteger, {createIsInteger} from '../../src/validator/integer';
+import {KVPOpIsInteger, createIsInteger} from '../../src/validator/integer';
 
-import KVPRule from '../../src/rule/rule';
-import KVPRuleModifiers from '../../src/rule/modifiers';
+import {KVPRule} from '../../src/rule/rule';
+import {KVPRuleModifiers} from '../../src/rule/modifiers';
 
 describe('Integer', () => {
-	let mods: KVPRuleModifiers
+	let mods: KVPRuleModifiers;
 
 	beforeAll(() => {
 		mods = {
 			invert: false
-		}
+		};
 	});
 
 	beforeEach(() => {

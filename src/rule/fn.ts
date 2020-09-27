@@ -1,2 +1,1 @@
-type KVPRuleFn = (curr: any) => boolean;
-export default KVPRuleFn;
+export type KVPRuleFn = (curr: any) => boolean;

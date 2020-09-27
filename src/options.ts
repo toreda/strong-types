@@ -1,1 +1,4 @@
-export default interface KVPOptions {}
+export interface KVPOptions {
+	nullable?: boolean;
+	transform?: null;
+}

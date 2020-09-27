@@ -1,4 +1,4 @@
-export default interface KVPConfigTransform {
+export interface KVPConfigTransform {
 	numbers?: {
 		round?: 'trunc' | 'ceil' | 'floor' | 'none';
 	};

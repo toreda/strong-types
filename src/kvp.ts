@@ -1,5 +1,5 @@
-import KVPData from './data';
-import KVPRules from './rules';
+import {KVPData} from './data';
+import {KVPRules} from './rules';
 
 interface KVP<T> {
 	(val?: T | null): T;

@@ -1,18 +1,19 @@
-import KVPOpEqualTo, {createEqualTo} from '../validator/equal-to';
-import KVPOpGreaterThan, {createGreaterThan} from '../validator/greater-than';
-import KVPOpGreaterThanOrEqualTo, {
+import {KVPOpEqualTo, createEqualTo} from '../validator/equal-to';
+import {KVPOpGreaterThan, createGreaterThan} from '../validator/greater-than';
+import {
+	KVPOpGreaterThanOrEqualTo,
 	createGreaterThanOrEqualTo
 } from '../validator/greater-than-or-equal-to';
-import KVPOpIsEmpty, {createIsEmpty} from '../validator/empty';
-import KVPOpIsNull, {createIsNull} from '../validator/null';
-import KVPOpIsUndefined, {createIsUndefined} from '../validator/undefined';
-import KVPOpLessThan, {createLessThan} from '../validator/less-than';
-import KVPOpLessThanOrEqualTo, {createLessThanOrEqualTo} from '../validator/less-than-or-equal-to';
+import {KVPOpIsEmpty, createIsEmpty} from '../validator/empty';
+import {KVPOpIsNull, createIsNull} from '../validator/null';
+import {KVPOpIsUndefined, createIsUndefined} from '../validator/undefined';
+import {KVPOpLessThan, createLessThan} from '../validator/less-than';
+import {KVPOpLessThanOrEqualTo, createLessThanOrEqualTo} from '../validator/less-than-or-equal-to';
 
-import KVPRule from './rule';
-import KVPRuleModifiers from '../rule/modifiers';
+import {KVPRule} from './rule';
+import {KVPRuleModifiers} from '../rule/modifiers';
 
-export default class KVPRuleBe {
+export class KVPRuleBe {
 	public readonly greaterThan: KVPOpGreaterThan<KVPRuleBe>;
 	public readonly greaterThanOrEqualTo: KVPOpGreaterThanOrEqualTo<KVPRuleBe>;
 	public readonly lessThanOrEqualTo: KVPOpLessThanOrEqualTo<KVPRuleBe>;

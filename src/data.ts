@@ -1,8 +1,8 @@
-import KVPRules from './rules';
-import KVPState from './state';
-import KVPTransforms from './transforms';
+import {KVPRules} from './rules';
+import {KVPState} from './state';
+import {KVPTransforms} from './transforms';
 
-export default class KVPData<T> {
+export class KVPData<T> {
 	public value: T | null;
 	public readonly fallbackDefault: T;
 	public readonly state: KVPState<T>;

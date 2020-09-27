@@ -1,9 +1,10 @@
-import KVPOpLessThanOrEqualTo, {
+import {
+	KVPOpLessThanOrEqualTo,
 	createLessThanOrEqualTo
 } from '../../src/validator/less-than-or-equal-to';
 
-import KVPRule from '../../src/rule/rule';
-import KVPRuleModifiers from '../../src/rule/modifiers';
+import {KVPRule} from '../../src/rule/rule';
+import {KVPRuleModifiers} from '../../src/rule/modifiers';
 
 const MOCK_TARGET = 44410;
 const MOCK_CURR = 1111;

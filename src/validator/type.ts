@@ -1,10 +1,10 @@
-import KVPOpIsDouble, {createIsDouble} from './double';
-import KVPOpIsInteger, {createIsInteger} from './integer';
+import {KVPOpIsDouble, createIsDouble} from './double';
+import {KVPOpIsInteger, createIsInteger} from './integer';
 
-import KVPRule from '../rule/rule';
-import KVPRuleModifiers from '../rule/modifiers';
+import {KVPRule} from '../rule/rule';
+import {KVPRuleModifiers} from '../rule/modifiers';
 
-export default class KVPRuleType {
+export class KVPRuleType {
 	public readonly integer: KVPOpIsInteger<KVPRuleType>;
 	public readonly double: KVPOpIsDouble<KVPRuleType>;
 

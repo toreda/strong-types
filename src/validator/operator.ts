@@ -1,2 +1,1 @@
-type KVPValidator = (a: any) => boolean;
-export default KVPValidator
+export type KVPValidator = (a: any) => boolean;

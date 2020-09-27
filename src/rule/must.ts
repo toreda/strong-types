@@ -1,14 +1,14 @@
-import KVPOpEqualTo, {createEqualTo} from '../validator/equal-to';
-import KVPOpHaveLength, {createHaveLength} from '../validator/have-length';
+import {KVPOpEqualTo, createEqualTo} from '../validator/equal-to';
+import {KVPOpHaveLength, createHaveLength} from '../validator/have-length';
 
-import KVPRule from './rule';
-import KVPRuleBe from './be';
-import KVPRuleHave from './have';
-import KVPRuleMatch from './match';
-import KVPRuleModifiers from '../rule/modifiers';
-import KVPRuleNot from './not';
+import {KVPRule} from './rule';
+import {KVPRuleBe} from './be';
+import {KVPRuleHave} from './have';
+import {KVPRuleMatch} from './match';
+import {KVPRuleModifiers} from '../rule/modifiers';
+import {KVPRuleNot} from './not';
 
-export default class KVPRuleMust {
+export class KVPRuleMust {
 	public readonly be: KVPRuleBe;
 	public readonly have: KVPRuleHave;
 	public readonly not: KVPRuleNot;

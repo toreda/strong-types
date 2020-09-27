@@ -1,9 +1,8 @@
 import KVP, {KVPNullable, createKVP, createKVPNullable} from './kvp';
 
-import KVPRules from './rules';
+import {KVPRules} from './rules';
 
-type KVPDouble = KVP<number>;
-export default KVPDouble;
+export type KVPDouble = KVP<number>;
 
 export type KVPDoubleNullable = KVPNullable<number>;
 

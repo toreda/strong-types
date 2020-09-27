@@ -1,5 +1,5 @@
-import KVPTransform from '../src/transform';
-import KVPTransforms from '../src/transforms';
+import {KVPTransform} from '../src/transform';
+import {KVPTransforms} from '../src/transforms';
 
 const MOCK_STRING = 'oneoneone';
 

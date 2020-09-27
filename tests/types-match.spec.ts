@@ -1,4 +1,4 @@
-import typesMatch from '../src/types-match';
+import {typesMatch} from '../src/types-match';
 
 describe('types-match', () => {
 	it('should be a function', () => {

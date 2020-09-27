@@ -1,5 +1,5 @@
-import KVPRule from '../../src/rule/rule';
-import KVPRuleMust from '../../src/rule/must';
+import {KVPRule} from '../../src/rule/rule';
+import {KVPRuleMust} from '../../src/rule/must';
 
 describe('KVPMust', () => {
 	let instance: KVPRuleMust;

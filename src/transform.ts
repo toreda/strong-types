@@ -1,7 +1,7 @@
-import KVPTransformFn from './transform-fn';
-import KVPTransformOptions from './transform-options';
+import {KVPTransformFn} from './transform-fn';
+import {KVPTransformOptions} from './transform-options';
 
-export default class KVPTransform<T> {
+export class KVPTransform<T> {
 	public readonly id: string;
 	public readonly label: string;
 	public readonly fn: KVPTransformFn<T>;

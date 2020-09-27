@@ -1,5 +1,5 @@
-import KVPData from '../src/data';
-import KVPTransformOptions from '../src/transform-options';
+import {KVPData} from '../src/data';
+import {KVPTransformOptions} from '../src/transform-options';
 
 const MOCK_INITIAL = 1;
 const MOCK_FALLBACK_DEFAULT = 2;

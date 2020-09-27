@@ -1,5 +1,5 @@
-import KVPRuleMust from './must';
+import {KVPRuleMust} from './must';
 
-export default interface KVPRuleRoot {
+export interface KVPRuleRoot {
 	must: KVPRuleMust;
 }

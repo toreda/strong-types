@@ -1,11 +1,10 @@
-import KVPRule from '../rule/rule';
-import KVPRuleFn from '../rule/fn';
-import KVPRuleModifiers from '../rule/modifiers';
-import KVPRuleNode from '../rule/node';
-import KVPRuleNodeType from '../rule/node-type';
+import {KVPRule} from '../rule/rule';
+import {KVPRuleFn} from '../rule/fn';
+import {KVPRuleModifiers} from '../rule/modifiers';
+import {KVPRuleNode} from '../rule/node';
+import {KVPRuleNodeType} from '../rule/node-type';
 
-type KVPOpIsNull<CallerType> = () => CallerType;
-export default KVPOpIsNull;
+export type KVPOpIsNull<CallerType> = () => CallerType;
 
 function isNull(curr: any): boolean {
 	return curr === null;

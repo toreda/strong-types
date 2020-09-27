@@ -1,5 +1,5 @@
-import KVPOptions from '../src/options';
-import KVPState from '../src/state';
+import {KVPOptions} from '../src/options';
+import {KVPState} from '../src/state';
 
 describe('KVPState', () => {
 	let instance: KVPState<string>;

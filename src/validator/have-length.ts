@@ -1,11 +1,10 @@
-import KVPRule from '../rule/rule';
-import KVPRuleFn from '../rule/fn';
-import KVPRuleModifiers from '../rule/modifiers';
-import KVPRuleNode from '../rule/node';
-import KVPRuleNodeType from '../rule/node-type';
+import {KVPRule} from '../rule/rule';
+import {KVPRuleFn} from '../rule/fn';
+import {KVPRuleModifiers} from '../rule/modifiers';
+import {KVPRuleNode} from '../rule/node';
+import {KVPRuleNodeType} from '../rule/node-type';
 
-type KVPOpHaveLength<CallerType> = (a: number) => CallerType;
-export default KVPOpHaveLength;
+export type KVPOpHaveLength<CallerType> = (a: number) => CallerType;
 
 const haveLengthFn = (curr: any, expectedLength: number) => {
 	if (!Array.isArray(curr) && typeof curr !== 'number' && typeof curr !== 'string') {

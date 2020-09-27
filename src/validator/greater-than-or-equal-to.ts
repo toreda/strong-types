@@ -1,11 +1,10 @@
-import KVPRule from '../rule/rule';
-import KVPRuleFn from '../rule/fn';
-import KVPRuleModifiers from '../rule/modifiers';
-import KVPRuleNode from '../rule/node';
-import KVPRuleNodeType from '../rule/node-type';
+import {KVPRule} from '../rule/rule';
+import {KVPRuleFn} from '../rule/fn';
+import {KVPRuleModifiers} from '../rule/modifiers';
+import {KVPRuleNode} from '../rule/node';
+import {KVPRuleNodeType} from '../rule/node-type';
 
-type KVPOpGreaterThanOrEqualTo<CallerType> = (a: number) => CallerType;
-export default KVPOpGreaterThanOrEqualTo;
+export type KVPOpGreaterThanOrEqualTo<CallerType> = (a: number) => CallerType;
 
 const greaterThanOrEqualToFn = (curr: number, target: number): boolean => {
 	if (typeof curr !== 'number' || typeof target !== 'number') {

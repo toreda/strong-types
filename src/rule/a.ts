@@ -1,4 +1,1 @@
-
-export default class KVPRuleA {
-
-}
+export class KVPRuleA {}

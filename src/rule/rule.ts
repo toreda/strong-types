@@ -1,7 +1,7 @@
-import KVPRuleNode from './node';
-import KVPRuleNodeType from './node-type';
+import {KVPRuleNode} from './node';
+import {KVPRuleNodeType} from './node-type';
 
-export default class KVPRule {
+export class KVPRule {
 	public readonly nodes: KVPRuleNode[];
 
 	constructor() {

@@ -1,6 +1,4 @@
-const enum KVPRuleNodeType {
+export const enum KVPRuleNodeType {
 	OP,
 	CMP
 }
-
-export default KVPRuleNodeType;

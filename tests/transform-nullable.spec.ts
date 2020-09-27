@@ -1,5 +1,5 @@
 import KVP from '../src/kvp';
-import KVPTransformNullable from '../src/transform-nullable';
+import {KVPTransformNullable} from '../src/transform-nullable';
 
 describe('KVPTransformNullable', () => {
 	describe('Constructor', () => {

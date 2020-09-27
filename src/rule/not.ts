@@ -1,10 +1,10 @@
-import KVPOpEqualTo, {createEqualTo} from '../validator/equal-to';
+import {KVPOpEqualTo, createEqualTo} from '../validator/equal-to';
 
-import KVPRule from './rule';
-import KVPRuleBe from './be';
-import KVPRuleModifiers from './modifiers';
+import {KVPRule} from './rule';
+import {KVPRuleBe} from './be';
+import {KVPRuleModifiers} from './modifiers';
 
-export default class KVPRuleNot {
+export class KVPRuleNot {
 	public readonly be: KVPRuleBe;
 	public readonly equal: KVPOpEqualTo<KVPRuleNot>;
 

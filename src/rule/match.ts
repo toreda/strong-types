@@ -1,10 +1,10 @@
-import KVPRule from './rule';
-import KVPRuleModifiers from './modifiers';
-import KVPRuleOr from './or';
-import KVPRulePattern from '../validator/pattern/pattern';
-import KVPRuleType from '../validator/type';
+import {KVPRule} from './rule';
+import {KVPRuleModifiers} from './modifiers';
+import {KVPRuleOr} from './or';
+import {KVPRulePattern} from '../validator/pattern/pattern';
+import {KVPRuleType} from '../validator/type';
 
-export default class KVPRuleMatch {
+export class KVPRuleMatch {
 	public readonly or: KVPRuleOr;
 	public readonly type: KVPRuleType;
 	public readonly pattern: KVPRulePattern;

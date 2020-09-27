@@ -1,8 +1,8 @@
-import KVPOptions from './options';
-import KVPRule from './rule/rule';
-import KVPTransform from './transform';
+import {KVPOptions} from './options';
+import {KVPRule} from './rule/rule';
+import {KVPTransform} from './transform';
 
-export default class KVPState<T> {
+export class KVPState<T> {
 	public readonly rules: KVPRule[];
 	public readonly transforms: KVPTransform<T>[];
 

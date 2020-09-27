@@ -1,11 +1,10 @@
-import KVPRule from '../rule/rule';
-import KVPRuleFn from '../rule/fn';
-import KVPRuleModifiers from '../rule/modifiers';
-import KVPRuleNode from '../rule/node';
-import KVPRuleNodeType from '../rule/node-type';
+import {KVPRule} from '../rule/rule';
+import {KVPRuleFn} from '../rule/fn';
+import {KVPRuleModifiers} from '../rule/modifiers';
+import {KVPRuleNode} from '../rule/node';
+import {KVPRuleNodeType} from '../rule/node-type';
 
-type KVPOpIsEmpty<CallerType> = (a: any) => CallerType;
-export default KVPOpIsEmpty;
+export type KVPOpIsEmpty<CallerType> = (a: any) => CallerType;
 
 const emptyFn = (curr: any[] | string): boolean => {
 	if (!Array.isArray(curr) && typeof curr !== 'string') {

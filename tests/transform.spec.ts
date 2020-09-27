@@ -1,5 +1,5 @@
 import KVP from '../src/kvp';
-import KVPTransform from '../src/transform';
+import {KVPTransform} from '../src/transform';
 
 describe('KVPTransform', () => {
 	describe('Constructor', () => {

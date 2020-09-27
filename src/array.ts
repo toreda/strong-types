@@ -1,9 +1,8 @@
 import KVP, {KVPNullable, createKVP, createKVPNullable} from './kvp';
 
-import KVPRules from './rules';
+import {KVPRules} from './rules';
 
-type KVPArray<T> = KVP<T[]>;
-export default KVPArray;
+export type KVPArray<T> = KVP<T[]>;
 export type KVPArrayNullable<T> = KVPNullable<T[]>;
 
 export function createKVPArray<T>(initial: T[], fallback: T[]): KVPArray<T> {
