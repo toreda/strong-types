@@ -5,6 +5,8 @@ const MOCK_INITIAL = '11110209';
 const MOCK_STRING = '113333';
 const MOCK_STRING2 = '10914094aaal';
 const MOCK_FALLBACK = 'roman bree';
+const MOCK_VALUE_UNDEFINED = undefined;
+const MOCK_VALUE_NULL = null;
 
 interface TestSet<T> {
 	type: any;
@@ -12,29 +14,6 @@ interface TestSet<T> {
 	initial: T | null;
 	fallback: T;
 }
-
-/* const TEST_SETS: TestSet<any>[] = [
-	{
-		type: String,
-		label: 'String',
-		initial: '10948728710',
-		fallback: '4812019283492'
-	} as TestSet<string>,
-	{
-		type: Number,
-		label: 'Number',
-		initial: 101,
-		fallback: 202
-	} as TestSet<number>,
-	{
-		type: Boolean,
-		label: 'Boolean',
-		initial: true,
-		fallback: true
-	} as TestSet<boolean>
-];
-
-const TEST_SETS_NULLABLE: TestSet<any>[] = []; */
 
 describe('KVP', () => {
 	describe('createKVP', () => {
@@ -139,9 +118,62 @@ describe('KVP', () => {
 	});
 
 	describe('createKVPNullable', () => {
-		describe('types', () => {
-			describe('string', () => {
-				it('should return value when value is set', () => {});
+		describe('Usage', () => {
+			let kvp: KVPNullable<string>;
+
+			beforeAll(() => {
+				kvp = createKVPNullable<string>(MOCK_INITIAL, MOCK_FALLBACK);
+			});
+
+			beforeEach(() => {
+				kvp.reset();
+			});
+
+			describe('invoking kvp()', () => {
+				it('should return null when value is null', () => {
+					const sampleStr = 'AAAVB';
+					expect(kvp()).toBeNull();
+
+					kvp(sampleStr);
+					expect(kvp()).toBe(sampleStr);
+				});
+
+				it('should return string when value is set to string', () => {
+					expect(kvp()).toBeNull();
+					const sampleStr = 'VVVV0192309';
+					kvp(sampleStr);
+					expect(kvp()).toBe(sampleStr);
+				});
+			});
+
+			describe('invoking kvp(value)', () => {
+				it('should set value to null when value argument is null', () => {
+					expect(kvp()).toBeNull();
+					const sampleStr = 'VVVV0192309';
+					kvp(sampleStr);
+					expect(kvp()).toBe(sampleStr);
+					kvp(null);
+					expect(kvp()).toBeNull();
+				});
+
+				it('should not update current value when value argument is undefined', () => {
+					expect(kvp()).toBeNull();
+					const sampleStr = '110982_AAVMFKA';
+					kvp(sampleStr);
+					expect(kvp()).toBe(sampleStr);
+					kvp(MOCK_VALUE_UNDEFINED);
+					expect(kvp()).toBe(sampleStr);
+				});
+			});
+
+			describe('kvp.reset()', () => {
+				it('should set value to null when value is set invoking kvp("val") with argument', () => {
+					const sampleStr = '4423211V';
+					kvp(sampleStr);
+					expect(kvp()).toBe(sampleStr);
+					kvp.reset();
+					expect(kvp()).toBeNull();
+				});
 			});
 		});
 	});

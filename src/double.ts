@@ -21,5 +21,6 @@ export function createKVPDoubleNullable(
 	fallback: number
 ): KVPDoubleNullable {
 	const rules = new KVPRules();
+	rules.add().must.match.type.double();
 	return createKVPNullable<number>(initial, fallback, rules);
 }
