@@ -18,12 +18,12 @@ describe('types-match', () => {
 			expect(typesMatch(-1, 'number')).toBe(true);
 		});
 
-		it('should return false for \'1\' matching number type', () => {
+		it("should return false for '1' matching number type", () => {
 			expect(typesMatch('1', 'number')).toBe(false);
 		});
 
-		it('should return false for \'0\' matching number type', () => {
-				expect(typesMatch('0', 'number')).toBe(false);
+		it("should return false for '0' matching number type", () => {
+			expect(typesMatch('0', 'number')).toBe(false);
 		});
 	});
 
@@ -40,7 +40,7 @@ describe('types-match', () => {
 			expect(typesMatch(' ', 'string')).toBe(true);
 		});
 
-		it('should return true for \'1\' matching string type', () => {
+		it("should return true for '1' matching string type", () => {
 			expect(typesMatch('1', 'string')).toBe(true);
 		});
 

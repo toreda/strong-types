@@ -1,4 +1,5 @@
-import KVP from './kvp';
+import KVP, {createKVP, createKVPNullable} from './kvp';
+export {createKVP, createKVPNullable};
 export default KVP;
 
 export * from './array';
