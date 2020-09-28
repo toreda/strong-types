@@ -1,20 +1,17 @@
-import KVP, {KVPNullable, createKVP, createKVPNullable} from './kvp';
+import {KVP, KVPNB, createKVP, createKVPNB} from './kvp';
 
 import {KVPRules} from './rules';
 
 export type KVPString = KVP<string>;
 
-export type KVPStringNullable = KVPNullable<string>;
+export type KVPStringNB = KVPNB<string>;
 
 export function createKVPString(initial: string, fallback: string): KVPString {
 	const rules = new KVPRules();
 	return createKVP<string>(initial, fallback, rules);
 }
 
-export function createKVPStringNullable(
-	initial: string | null,
-	fallback: string
-): KVPStringNullable {
+export function createKVPStringNB(initial: string | null, fallback: string): KVPStringNB {
 	const rules = new KVPRules();
-	return createKVPNullable<string>(initial, fallback, rules);
+	return createKVPNB<string>(initial, fallback, rules);
 }

@@ -1,4 +1,4 @@
-import {KVPOpEqualTo, createEqualTo} from '../../src/validator/equal-to';
+import {KVPOpIsEqualTo, createIsEqualTo} from '../../src/validator/equal-to';
 
 import {KVPRule} from '../../src/rule/rule';
 import {KVPRuleModifiers} from '../../src/rule/modifiers';
@@ -22,7 +22,7 @@ describe('EqualTo', () => {
 				const rule = new KVPRule();
 				const value = 'aaaaaaaaa';
 				const value2 = 'aaaaaaaaa';
-				const fn = createEqualTo<KVPRule>(rule, rule, mods);
+				const fn = createIsEqualTo<KVPRule>(rule, rule, mods);
 				fn(value);
 				expect(rule.nodes[0].execute(value2)).toBe(true);
 			});
@@ -33,7 +33,7 @@ describe('EqualTo', () => {
 				const value2 = 'aaaaaaaaa';
 				mods.invert = true;
 
-				const fn = createEqualTo<KVPRule>(rule, rule, mods);
+				const fn = createIsEqualTo<KVPRule>(rule, rule, mods);
 				fn(value);
 				expect(rule.nodes[0].execute(value2)).toBe(false);
 			});
@@ -45,7 +45,7 @@ describe('EqualTo', () => {
 				const value = 0;
 				const value2 = 0;
 
-				const fn = createEqualTo<KVPRule>(rule, rule, mods);
+				const fn = createIsEqualTo<KVPRule>(rule, rule, mods);
 				fn(value);
 				expect(rule.nodes[0].execute(value2)).toBe(true);
 			});
@@ -55,7 +55,7 @@ describe('EqualTo', () => {
 				const value = 1;
 				const value2 = 1;
 
-				const fn = createEqualTo<KVPRule>(rule, rule, mods);
+				const fn = createIsEqualTo<KVPRule>(rule, rule, mods);
 				fn(value);
 				expect(rule.nodes[0].execute(value2)).toBe(true);
 			});
@@ -67,7 +67,7 @@ describe('EqualTo', () => {
 				const current = [];
 				const target = [];
 
-				const fn = createEqualTo<KVPRule>(rule, rule, mods);
+				const fn = createIsEqualTo<KVPRule>(rule, rule, mods);
 				fn(target);
 				expect(rule.nodes[0].execute(current)).toBe(true);
 			});
@@ -78,7 +78,7 @@ describe('EqualTo', () => {
 				const current = [val];
 				const target = [val];
 
-				const fn = createEqualTo<KVPRule>(rule, rule, mods);
+				const fn = createIsEqualTo<KVPRule>(rule, rule, mods);
 				fn(target);
 				expect(rule.nodes[0].execute(current)).toBe(true);
 			});
@@ -88,7 +88,7 @@ describe('EqualTo', () => {
 				const current = ['one', 'two'];
 				const target = ['one', 'two', 'three'];
 
-				const fn = createEqualTo<KVPRule>(rule, rule, mods);
+				const fn = createIsEqualTo<KVPRule>(rule, rule, mods);
 				fn(target);
 				expect(rule.nodes[0].execute(current)).toBe(false);
 			});
@@ -98,7 +98,7 @@ describe('EqualTo', () => {
 				const current = ['one', 'two', 'four'];
 				const target = ['one', 'two', 'five'];
 
-				const fn = createEqualTo<KVPRule>(rule, rule, mods);
+				const fn = createIsEqualTo<KVPRule>(rule, rule, mods);
 				fn(target);
 				expect(rule.nodes[0].execute(current)).toBe(false);
 			});
@@ -110,7 +110,7 @@ describe('EqualTo', () => {
 				const current = undefined;
 				const target = 1000;
 
-				const fn = createEqualTo<KVPRule>(rule, rule, mods);
+				const fn = createIsEqualTo<KVPRule>(rule, rule, mods);
 				fn(target);
 				expect(rule.nodes[0].execute(current)).toBe(false);
 			});
@@ -120,7 +120,7 @@ describe('EqualTo', () => {
 				const current = 4981;
 				const target = undefined;
 
-				const fn = createEqualTo<KVPRule>(rule, rule, mods);
+				const fn = createIsEqualTo<KVPRule>(rule, rule, mods);
 				fn(target);
 				expect(rule.nodes[0].execute(current)).toBe(false);
 			});
@@ -130,7 +130,7 @@ describe('EqualTo', () => {
 				const current = 2222;
 				const target = 2222;
 
-				const fn = createEqualTo<KVPRule>(rule, rule, mods);
+				const fn = createIsEqualTo<KVPRule>(rule, rule, mods);
 				fn(target);
 				expect(rule.nodes[0].execute(current)).toBe(true);
 			});

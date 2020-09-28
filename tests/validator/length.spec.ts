@@ -1,7 +1,6 @@
-import {KVPOpHaveLength, createHaveLength} from '../../src/validator/have-length';
-
 import {KVPRule} from '../../src/rule/rule';
 import {KVPRuleModifiers} from '../../src/rule/modifiers';
+import {createIsLength} from '../../src/validator/length';
 
 describe('IsUndefined', () => {
 	let mods: KVPRuleModifiers;
@@ -19,7 +18,7 @@ describe('IsUndefined', () => {
 				const currentValue = '';
 				const expectedLength = 1;
 
-				const fn = createHaveLength<KVPRule>(rule, rule, mods);
+				const fn = createIsLength<KVPRule>(rule, rule, mods);
 				fn(expectedLength);
 				expect(rule.nodes[0].execute(currentValue)).toBe(false);
 			});
@@ -29,7 +28,7 @@ describe('IsUndefined', () => {
 				const currentValue = '';
 				const expectedLength = 0;
 
-				const fn = createHaveLength<KVPRule>(rule, rule, mods);
+				const fn = createIsLength<KVPRule>(rule, rule, mods);
 				fn(expectedLength);
 				expect(rule.nodes[0].execute(currentValue)).toBe(true);
 			});
@@ -41,7 +40,7 @@ describe('IsUndefined', () => {
 				const currentValue = [];
 				const expectedLength = 0;
 
-				const fn = createHaveLength<KVPRule>(rule, rule, mods);
+				const fn = createIsLength<KVPRule>(rule, rule, mods);
 				fn(expectedLength);
 				expect(rule.nodes[0].execute(currentValue)).toBe(true);
 			});
@@ -51,7 +50,7 @@ describe('IsUndefined', () => {
 				const currentValue = ['a'];
 				const expectedLength = 1;
 
-				const fn = createHaveLength<KVPRule>(rule, rule, mods);
+				const fn = createIsLength<KVPRule>(rule, rule, mods);
 				fn(expectedLength);
 				expect(rule.nodes[0].execute(currentValue)).toBe(true);
 			});
@@ -61,7 +60,7 @@ describe('IsUndefined', () => {
 				const currentValue = [11, 50982, 11092, 11092];
 				const expectedLength = 4;
 
-				const fn = createHaveLength<KVPRule>(rule, rule, mods);
+				const fn = createIsLength<KVPRule>(rule, rule, mods);
 				fn(expectedLength);
 				expect(rule.nodes[0].execute(currentValue)).toBe(true);
 			});
@@ -71,7 +70,7 @@ describe('IsUndefined', () => {
 				const currentValue = undefined as any;
 				const expectedLength = 0;
 
-				const fn = createHaveLength<KVPRule>(rule, rule, mods);
+				const fn = createIsLength<KVPRule>(rule, rule, mods);
 				fn(expectedLength);
 				expect(rule.nodes[0].execute(currentValue)).toBe(false);
 			});
@@ -81,7 +80,7 @@ describe('IsUndefined', () => {
 				const currentValue = null as any;
 				const expectedLength = 0;
 
-				const fn = createHaveLength<KVPRule>(rule, rule, mods);
+				const fn = createIsLength<KVPRule>(rule, rule, mods);
 				fn(expectedLength);
 				expect(rule.nodes[0].execute(currentValue)).toBe(false);
 			});
@@ -93,7 +92,7 @@ describe('IsUndefined', () => {
 				const currentValue = 1;
 				const expectedLength = 0;
 
-				const fn = createHaveLength<KVPRule>(rule, rule, mods);
+				const fn = createIsLength<KVPRule>(rule, rule, mods);
 				fn(expectedLength);
 				expect(rule.nodes[0].execute(currentValue)).toBe(false);
 			});
@@ -103,7 +102,7 @@ describe('IsUndefined', () => {
 				const currentValue = 1;
 				const expectedLength = 1;
 
-				const fn = createHaveLength<KVPRule>(rule, rule, mods);
+				const fn = createIsLength<KVPRule>(rule, rule, mods);
 				fn(expectedLength);
 				expect(rule.nodes[0].execute(currentValue)).toBe(true);
 			});
@@ -113,7 +112,7 @@ describe('IsUndefined', () => {
 				const currentValue = 105;
 				const expectedLength = 10;
 
-				const fn = createHaveLength<KVPRule>(rule, rule, mods);
+				const fn = createIsLength<KVPRule>(rule, rule, mods);
 				fn(expectedLength);
 				expect(rule.nodes[0].execute(currentValue)).toBe(false);
 			});
@@ -123,7 +122,7 @@ describe('IsUndefined', () => {
 				const currentValue = 77;
 				const expectedLength = 120;
 
-				const fn = createHaveLength<KVPRule>(rule, rule, mods);
+				const fn = createIsLength<KVPRule>(rule, rule, mods);
 				fn(expectedLength);
 				expect(rule.nodes[0].execute(currentValue)).toBe(false);
 			});
@@ -135,7 +134,7 @@ describe('IsUndefined', () => {
 				const currentValue = true as any;
 				const expectedLength = 1;
 
-				const fn = createHaveLength<KVPRule>(rule, rule, mods);
+				const fn = createIsLength<KVPRule>(rule, rule, mods);
 				fn(expectedLength);
 				expect(rule.nodes[0].execute(currentValue)).toBe(false);
 			});
@@ -145,7 +144,7 @@ describe('IsUndefined', () => {
 				const currentValue = false as any;
 				const expectedLength = 0;
 
-				const fn = createHaveLength<KVPRule>(rule, rule, mods);
+				const fn = createIsLength<KVPRule>(rule, rule, mods);
 				fn(expectedLength);
 				expect(rule.nodes[0].execute(currentValue)).toBe(false);
 			});

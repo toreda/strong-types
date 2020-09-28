@@ -32,7 +32,7 @@ describe('KVPTransforms', () => {
 			});
 		});
 
-		describe('addNullable', () => {
+		describe('addNB', () => {
 			let custom: KVPTransforms<string>;
 			const MOCK_FALLBACK1 = '22222233333___11';
 
@@ -41,11 +41,11 @@ describe('KVPTransforms', () => {
 			});
 
 			it('should return false when transform argument is null', () => {
-				expect(custom.addNullable(null as any)).toBe(false);
+				expect(custom.addNB(null as any)).toBe(false);
 			});
 
 			it('should return false when transform argument is undefined', () => {
-				expect(custom.addNullable(undefined as any)).toBe(false);
+				expect(custom.addNB(undefined as any)).toBe(false);
 			});
 		});
 
@@ -113,17 +113,17 @@ describe('KVPTransforms', () => {
 			});
 
 			it('should return null when value argument is null', () => {
-				expect(custom.runNullable(null as any)).toBeNull();
+				expect(custom.runNB(null as any)).toBeNull();
 			});
 
 			it('should return null when value argument is undefined', () => {
-				expect(custom.runNullable(undefined as any)).toBeNull();
+				expect(custom.runNB(undefined as any)).toBeNull();
 			});
 
 			it('should return value argument when no transforms are applied', () => {
 				const inputValue = 'one_one_two';
 				expect(custom.transforms).toHaveLength(0);
-				expect(custom.runNullable(inputValue)).toBe(inputValue);
+				expect(custom.runNB(inputValue)).toBe(inputValue);
 			});
 		});
 	});

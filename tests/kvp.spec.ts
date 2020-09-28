@@ -1,19 +1,11 @@
-import KVP, {KVPNullable, createKVP, createKVPNullable} from '../src/kvp';
+import KVP, {KVPNB, createKVP, createKVPNB} from '../src/kvp';
 
-const types = [];
 const MOCK_INITIAL = '11110209';
 const MOCK_STRING = '113333';
 const MOCK_STRING2 = '10914094aaal';
 const MOCK_FALLBACK = 'roman bree';
 const MOCK_VALUE_UNDEFINED = undefined;
 const MOCK_VALUE_NULL = null;
-
-interface TestSet<T> {
-	type: any;
-	label: string;
-	initial: T | null;
-	fallback: T;
-}
 
 describe('KVP', () => {
 	describe('createKVP', () => {
@@ -117,12 +109,12 @@ describe('KVP', () => {
 		});
 	});
 
-	describe('createKVPNullable', () => {
+	describe('createKVPNB', () => {
 		describe('Usage', () => {
-			let kvp: KVPNullable<string>;
+			let kvp: KVPNB<string>;
 
 			beforeAll(() => {
-				kvp = createKVPNullable<string>(MOCK_INITIAL, MOCK_FALLBACK);
+				kvp = createKVPNB<string>(MOCK_INITIAL, MOCK_FALLBACK);
 			});
 
 			beforeEach(() => {

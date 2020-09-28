@@ -19,7 +19,7 @@ export function createIsInteger<CallerType>(
 	rule: KVPRule,
 	mods: KVPRuleModifiers
 ): KVPOpIsInteger<CallerType> {
-	function int(): CallerType {
+	return (): CallerType => {
 		const fn: KVPRuleFn = (curr: number): boolean => {
 			return isInteger(curr);
 		};
@@ -28,7 +28,5 @@ export function createIsInteger<CallerType>(
 		rule.add(node);
 
 		return caller;
-	}
-
-	return int;
+	};
 }

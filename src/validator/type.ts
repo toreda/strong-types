@@ -1,3 +1,4 @@
+import {KVPOpIsBoolean, createIsBoolean} from './boolean';
 import {KVPOpIsDouble, createIsDouble} from './double';
 import {KVPOpIsInteger, createIsInteger} from './integer';
 
@@ -7,9 +8,11 @@ import {KVPRuleModifiers} from '../rule/modifiers';
 export class KVPRuleType {
 	public readonly integer: KVPOpIsInteger<KVPRuleType>;
 	public readonly double: KVPOpIsDouble<KVPRuleType>;
+	public readonly boolean: KVPOpIsBoolean<KVPRuleType>;
 
 	constructor(rule: KVPRule, mods: KVPRuleModifiers) {
 		this.integer = createIsInteger<KVPRuleType>(this, rule, mods);
 		this.double = createIsDouble<KVPRuleType>(this, rule, mods);
+		this.boolean = createIsBoolean<KVPRuleType>(this, rule, mods);
 	}
 }

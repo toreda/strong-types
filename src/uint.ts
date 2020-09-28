@@ -1,10 +1,10 @@
-import KVP, {KVPNullable, createKVP, createKVPNullable} from './kvp';
+import {KVP, KVPNB, createKVP, createKVPNB} from './kvp';
 
 import {KVPRules} from './rules';
 
 export type KVPUInt = KVP<number>;
 
-export type KVPUIntNullable = KVPNullable<number>;
+export type KVPUIntNB = KVPNB<number>;
 
 export function createKVPUInt(initial: number | null, fallback: number): KVPUInt {
 	const rules = new KVPRules<number>();
@@ -15,7 +15,7 @@ export function createKVPUInt(initial: number | null, fallback: number): KVPUInt
 	return createKVP<number>(initial, fallback, rules);
 }
 
-export function createKVPUIntNullable(initial: number | null, fallback: number): KVPUIntNullable {
+export function createKVPUIntNB(initial: number | null, fallback: number): KVPUIntNB {
 	const rules = new KVPRules();
-	return createKVPNullable<number>(initial, fallback, rules);
+	return createKVPNB<number>(initial, fallback, rules);
 }

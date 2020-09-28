@@ -1,7 +1,6 @@
-import {KVPOpIsInteger, createIsInteger} from '../../src/validator/integer';
-
 import {KVPRule} from '../../src/rule/rule';
 import {KVPRuleModifiers} from '../../src/rule/modifiers';
+import {createIsInteger} from '../../src/validator/integer';
 
 describe('Integer', () => {
 	let mods: KVPRuleModifiers;

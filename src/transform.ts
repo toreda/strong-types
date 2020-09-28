@@ -1,12 +1,12 @@
-import {KVPTransformFn} from './transform-fn';
+import {KVPTransformFN} from './transform-fn';
 import {KVPTransformOptions} from './transform-options';
 
 export class KVPTransform<T> {
 	public readonly id: string;
 	public readonly label: string;
-	public readonly fn: KVPTransformFn<T>;
+	public readonly fn: KVPTransformFN<T>;
 
-	constructor(fn: KVPTransformFn<T>, options?: KVPTransformOptions) {
+	constructor(fn: KVPTransformFN<T>, options?: KVPTransformOptions) {
 		if (!fn) {
 			throw new Error('KVPTransform init failed - fn argument missing.');
 		}

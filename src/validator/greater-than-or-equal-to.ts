@@ -4,7 +4,7 @@ import {KVPRuleModifiers} from '../rule/modifiers';
 import {KVPRuleNode} from '../rule/node';
 import {KVPRuleNodeType} from '../rule/node-type';
 
-export type KVPOpGreaterThanOrEqualTo<CallerType> = (a: number) => CallerType;
+export type KVPOpIsGreaterThanOrEqualTo<CallerType> = (a: number) => CallerType;
 
 export const greaterThanOrEqualToFn = (curr: number, target: number): boolean => {
 	if (typeof curr !== 'number' || typeof target !== 'number') {
@@ -14,12 +14,12 @@ export const greaterThanOrEqualToFn = (curr: number, target: number): boolean =>
 	return curr >= target;
 };
 
-export function createGreaterThanOrEqualTo<CallerType>(
+export function createIsGreaterThanOrEqualTo<CallerType>(
 	caller: CallerType,
 	rule: KVPRule,
 	mods: KVPRuleModifiers
-): KVPOpGreaterThanOrEqualTo<CallerType> {
-	function greaterThanOrEqualTo(target: number): CallerType {
+): KVPOpIsGreaterThanOrEqualTo<CallerType> {
+	return (target: number): CallerType => {
 		const fn: KVPRuleFn = (curr: number) => {
 			return greaterThanOrEqualToFn(curr, target);
 		};
@@ -28,7 +28,5 @@ export function createGreaterThanOrEqualTo<CallerType>(
 		rule.add(node);
 
 		return caller;
-	}
-
-	return greaterThanOrEqualTo;
+	};
 }

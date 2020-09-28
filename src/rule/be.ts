@@ -1,34 +1,37 @@
-import {KVPOpEqualTo, createEqualTo} from '../validator/equal-to';
-import {KVPOpGreaterThan, createGreaterThan} from '../validator/greater-than';
-import {
-	KVPOpGreaterThanOrEqualTo,
-	createGreaterThanOrEqualTo
-} from '../validator/greater-than-or-equal-to';
 import {KVPOpIsEmpty, createIsEmpty} from '../validator/empty';
+import {KVPOpIsEqualTo, createIsEqualTo} from '../validator/equal-to';
+import {KVPOpIsGreaterThan, createIsGreaterThan} from '../validator/greater-than';
+import {
+	KVPOpIsGreaterThanOrEqualTo,
+	createIsGreaterThanOrEqualTo
+} from '../validator/greater-than-or-equal-to';
+import {KVPOpIsLessThan, createIsLessThan} from '../validator/less-than';
+import {
+	KVPOpIsLessThanOrEqualTo,
+	createIsLessThanOrEqualTo
+} from '../validator/less-than-or-equal-to';
 import {KVPOpIsNull, createIsNull} from '../validator/null';
 import {KVPOpIsUndefined, createIsUndefined} from '../validator/undefined';
-import {KVPOpLessThan, createLessThan} from '../validator/less-than';
-import {KVPOpLessThanOrEqualTo, createLessThanOrEqualTo} from '../validator/less-than-or-equal-to';
 
 import {KVPRule} from './rule';
 import {KVPRuleModifiers} from '../rule/modifiers';
 
 export class KVPRuleBe {
-	public readonly greaterThan: KVPOpGreaterThan<KVPRuleBe>;
-	public readonly greaterThanOrEqualTo: KVPOpGreaterThanOrEqualTo<KVPRuleBe>;
-	public readonly lessThanOrEqualTo: KVPOpLessThanOrEqualTo<KVPRuleBe>;
-	public readonly lessThan: KVPOpLessThan<KVPRuleBe>;
-	public readonly equalTo: KVPOpEqualTo<KVPRuleBe>;
+	public readonly greaterThan: KVPOpIsGreaterThan<KVPRuleBe>;
+	public readonly greaterThanOrEqualTo: KVPOpIsGreaterThanOrEqualTo<KVPRuleBe>;
+	public readonly lessThanOrEqualTo: KVPOpIsLessThanOrEqualTo<KVPRuleBe>;
+	public readonly lessThan: KVPOpIsLessThan<KVPRuleBe>;
+	public readonly equalTo: KVPOpIsEqualTo<KVPRuleBe>;
 	public readonly ['undefined']: KVPOpIsUndefined<KVPRuleBe>;
 	public readonly ['null']: KVPOpIsNull<KVPRuleBe>;
 	public readonly empty: KVPOpIsEmpty<KVPRuleBe>;
 
 	constructor(rule: KVPRule, mods: KVPRuleModifiers) {
-		this.greaterThan = createGreaterThan<KVPRuleBe>(this, rule, mods);
-		this.greaterThanOrEqualTo = createGreaterThanOrEqualTo<KVPRuleBe>(this, rule, mods);
-		this.lessThan = createLessThan<KVPRuleBe>(this, rule, mods);
-		this.lessThanOrEqualTo = createLessThanOrEqualTo<KVPRuleBe>(this, rule, mods);
-		this.equalTo = createEqualTo<KVPRuleBe>(this, rule, mods);
+		this.greaterThan = createIsGreaterThan<KVPRuleBe>(this, rule, mods);
+		this.greaterThanOrEqualTo = createIsGreaterThanOrEqualTo<KVPRuleBe>(this, rule, mods);
+		this.lessThan = createIsLessThan<KVPRuleBe>(this, rule, mods);
+		this.lessThanOrEqualTo = createIsLessThanOrEqualTo<KVPRuleBe>(this, rule, mods);
+		this.equalTo = createIsEqualTo<KVPRuleBe>(this, rule, mods);
 		this.undefined = createIsUndefined<KVPRuleBe>(this, rule, mods);
 		this.null = createIsNull<KVPRuleBe>(this, rule, mods);
 		this.empty = createIsEmpty<KVPRuleBe>(this, rule, mods);

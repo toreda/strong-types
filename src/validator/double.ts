@@ -23,7 +23,7 @@ export function createIsDouble<CallerType>(
 	rule: KVPRule,
 	mods: KVPRuleModifiers
 ): KVPOpIsDouble<CallerType> {
-	function int(): CallerType {
+	return (): CallerType => {
 		const fn: KVPRuleFn = (curr: number): boolean => {
 			return isDouble(curr);
 		};
@@ -32,7 +32,5 @@ export function createIsDouble<CallerType>(
 		rule.add(node);
 
 		return caller;
-	}
-
-	return int;
+	};
 }

@@ -1,16 +1,14 @@
 import {KVPData} from './data';
 import {KVPRules} from './rules';
 
-interface KVP<T> {
+export interface KVP<T> {
 	(val?: T | null): T;
 	get: (fallback: T) => T;
 	getNullable: () => T | null;
 	reset: () => void;
 }
 
-export default KVP;
-
-export interface KVPNullable<T> {
+export interface KVPNB<T> {
 	(val?: T | null): T | null;
 	get: (fallback: T) => T;
 	reset: () => void;
@@ -19,11 +17,10 @@ export interface KVPNullable<T> {
 export function createKVP<T>(initialValue: T | null, fallbackArg: T, rules?: KVPRules<T>): KVP<T> {
 	const instance = new KVPData<T>(initialValue, fallbackArg, rules);
 
+	const localFallback = fallbackArg !== undefined ? fallbackArg : instance.fallbackDefault;
+
 	const helper: KVP<T> = Object.assign(
 		(val?: T): T => {
-			const localFallback =
-				typeof fallbackArg !== 'undefined' ? fallbackArg : instance.fallbackDefault;
-
 			if (typeof val !== 'undefined') {
 				instance.set(val);
 
@@ -51,14 +48,10 @@ export function createKVP<T>(initialValue: T | null, fallbackArg: T, rules?: KVP
 	return helper;
 }
 
-export function createKVPNullable<T>(
-	initial: T | null,
-	fallbackArg: T,
-	rules?: KVPRules<T>
-): KVPNullable<T> {
+export function createKVPNB<T>(initial: T | null, fallbackArg: T, rules?: KVPRules<T>): KVPNB<T> {
 	const instance = new KVPData<T>(initial, fallbackArg, rules);
 
-	const helper: KVPNullable<T> = Object.assign(
+	const helper: KVPNB<T> = Object.assign(
 		(val?: T): T | null => {
 			if (typeof val !== 'undefined') {
 				instance.set(val);

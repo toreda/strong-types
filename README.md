@@ -125,7 +125,7 @@ const value = uint();
 import KVPUInt, {createKVPUInt} from '@toreda/kvp';
 const uint = createKVPUInt(null, 30);
 
-// kvp.get(fallback) returns the fallback when the kvp 
+// kvp.get(fallback) returns the fallback when the kvp
 // has no value set.
 const fallback = 25;
 // Returns 25 because value is currently null.
@@ -159,7 +159,7 @@ const value = uint();
 
 ### Create a key-value pair
 ```typescript
-import KVP, {createKVP} from '@toreda/kvp';
+import {KVP, createKVP} from '@toreda/kvp';
 const initial = 'hello';
 const fallbackDefault = 'goodbye';
 const myValue = createKVP<string>(initial, fallbackDefault);

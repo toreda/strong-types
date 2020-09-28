@@ -1,4 +1,3 @@
-import {KVPOptions} from '../src/options';
 import {KVPState} from '../src/state';
 
 describe('KVPState', () => {

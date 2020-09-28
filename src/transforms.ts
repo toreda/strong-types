@@ -1,23 +1,23 @@
 import {KVPTransform} from './transform';
-import {KVPTransformNullable} from './transform-nullable';
+import {KVPTransformNB} from './transform-nb';
 
 export class KVPTransforms<T> {
 	public readonly transforms: KVPTransform<T>[];
-	public readonly transformsNullable: KVPTransformNullable<T>[];
+	public readonly transformsNB: KVPTransformNB<T>[];
 	public readonly fallbackDefault: T;
 
 	constructor(fallbackDefault: T) {
 		this.transforms = [];
-		this.transformsNullable = [];
+		this.transformsNB = [];
 		this.fallbackDefault = fallbackDefault;
 	}
 
-	public addNullable(transform: KVPTransformNullable<T>): boolean {
+	public addNB(transform: KVPTransformNB<T>): boolean {
 		if (!transform) {
 			return false;
 		}
 
-		this.transformsNullable.push(transform);
+		this.transformsNB.push(transform);
 		return true;
 	}
 
@@ -46,14 +46,14 @@ export class KVPTransforms<T> {
 		return transformed;
 	}
 
-	public runNullable(value: T | null): T | null {
+	public runNB(value: T | null): T | null {
 		if (typeof value === 'undefined' || value === null) {
 			return null;
 		}
 
 		let transformed: T | null = value;
 
-		for (const transform of this.transformsNullable) {
+		for (const transform of this.transformsNB) {
 			const input = transformed;
 			const output = transform.run(input);
 			transformed = output;

@@ -1,10 +1,6 @@
-import {
-	KVPOpGreaterThanOrEqualTo,
-	createGreaterThanOrEqualTo
-} from '../../src/validator/greater-than-or-equal-to';
-
 import {KVPRule} from '../../src/rule/rule';
 import {KVPRuleModifiers} from '../../src/rule/modifiers';
+import {createIsGreaterThanOrEqualTo} from '../../src/validator/greater-than-or-equal-to';
 
 const MOCK_TARGET = 44410;
 const MOCK_CURR = 1111;
@@ -31,7 +27,7 @@ describe('GreaterThanOrEqualTo', () => {
 			const rule = new KVPRule();
 			const stringCurr = 'aaaa';
 
-			const fn = createGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
+			const fn = createIsGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
 			fn(MOCK_TARGET);
 			expect(rule.nodes[0].execute(stringCurr as any)).toBe(false);
 		});
@@ -40,7 +36,7 @@ describe('GreaterThanOrEqualTo', () => {
 			const rule = new KVPRule();
 			const stringTarget = 'ffffffff';
 
-			const fn = createGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
+			const fn = createIsGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
 			fn(stringTarget as any);
 			expect(rule.nodes[0].execute(MOCK_CURR)).toBe(false);
 		});
@@ -50,7 +46,7 @@ describe('GreaterThanOrEqualTo', () => {
 			const curr = 0;
 			const target = 0;
 
-			const fn = createGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
+			const fn = createIsGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -61,7 +57,7 @@ describe('GreaterThanOrEqualTo', () => {
 			const target = 0;
 			mods.invert = true;
 
-			const fn = createGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
+			const fn = createIsGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
@@ -71,7 +67,7 @@ describe('GreaterThanOrEqualTo', () => {
 			const curr = 23;
 			const target = 77;
 
-			const fn = createGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
+			const fn = createIsGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
@@ -82,7 +78,7 @@ describe('GreaterThanOrEqualTo', () => {
 			const target = 77;
 			mods.invert = true;
 
-			const fn = createGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
+			const fn = createIsGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -92,7 +88,7 @@ describe('GreaterThanOrEqualTo', () => {
 			const curr = 25;
 			const target = 10;
 
-			const fn = createGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
+			const fn = createIsGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -103,7 +99,7 @@ describe('GreaterThanOrEqualTo', () => {
 			const target = 10;
 			mods.invert = true;
 
-			const fn = createGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
+			const fn = createIsGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
@@ -113,7 +109,7 @@ describe('GreaterThanOrEqualTo', () => {
 			const curr = 25;
 			const target = -10;
 
-			const fn = createGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
+			const fn = createIsGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -123,7 +119,7 @@ describe('GreaterThanOrEqualTo', () => {
 			const curr = -2;
 			const target = -10;
 
-			const fn = createGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
+			const fn = createIsGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -133,7 +129,7 @@ describe('GreaterThanOrEqualTo', () => {
 			const curr = 2.223;
 			const target = -10;
 
-			const fn = createGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
+			const fn = createIsGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -143,7 +139,7 @@ describe('GreaterThanOrEqualTo', () => {
 			const curr = -3.3;
 			const target = -10;
 
-			const fn = createGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
+			const fn = createIsGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -153,7 +149,7 @@ describe('GreaterThanOrEqualTo', () => {
 			const curr = 25;
 			const target = -10;
 
-			const fn = createGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
+			const fn = createIsGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -163,7 +159,7 @@ describe('GreaterThanOrEqualTo', () => {
 			const curr = 4.4422;
 			const target = -5.2111;
 
-			const fn = createGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
+			const fn = createIsGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -173,7 +169,7 @@ describe('GreaterThanOrEqualTo', () => {
 			const curr = -7.11;
 			const target = -11.5557;
 
-			const fn = createGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
+			const fn = createIsGreaterThanOrEqualTo<KVPRule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});

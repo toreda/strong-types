@@ -11,7 +11,7 @@ export function createIsNull<CallerType>(
 	rule: KVPRule,
 	mods: KVPRuleModifiers
 ): KVPOpIsNull<CallerType> {
-	function beNull(): CallerType {
+	return (): CallerType => {
 		const fn: KVPRuleFn = (curr: any): boolean => {
 			return curr === null;
 		};
@@ -20,7 +20,5 @@ export function createIsNull<CallerType>(
 		rule.add(node);
 
 		return caller;
-	}
-
-	return beNull;
+	};
 }

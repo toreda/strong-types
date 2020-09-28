@@ -58,7 +58,7 @@ export function createIsHexColorCode<CallerType>(
 	rule: KVPRule,
 	mods: KVPRuleModifiers
 ): KVPOpIsHexColorCode<CallerType> {
-	return function validationFn(): CallerType {
+	return (): CallerType => {
 		const fn: KVPRuleFn = (curr: string): boolean => {
 			return isHexColorFn(curr);
 		};

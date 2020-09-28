@@ -1,14 +1,14 @@
-import {KVPTransformFnNullable} from './transform-fn-nullable';
+import {KVPTransformFNNB} from './transform-fn-nb';
 import {KVPTransformOptions} from './transform-options';
 
-export class KVPTransformNullable<T> {
+export class KVPTransformNB<T> {
 	public readonly id: string;
 	public readonly label: string;
-	public readonly fn: KVPTransformFnNullable<T>;
+	public readonly fn: KVPTransformFNNB<T>;
 
-	constructor(fn: KVPTransformFnNullable<T>, options?: KVPTransformOptions) {
+	constructor(fn: KVPTransformFNNB<T>, options?: KVPTransformOptions) {
 		if (!fn) {
-			throw new Error('KVPTransformNullable init failed - fn argument missing.');
+			throw new Error('KVPTransformNB init failed - fn argument missing.');
 		}
 
 		this.fn = fn;

@@ -1,12 +1,12 @@
 import KVP from '../src/kvp';
-import {KVPTransformNullable} from '../src/transform-nullable';
+import {KVPTransformNB} from '../src/transform-nb';
 
-describe('KVPTransformNullable', () => {
+describe('KVPTransformNB', () => {
 	describe('Constructor', () => {
 		it('should throw when fn argument is not provided', () => {
 			expect(() => {
-				const custom = new KVPTransformNullable<string>(undefined as any);
-			}).toThrow('KVPTransformNullable init failed - fn argument missing.');
+				const custom = new KVPTransformNB<string>(undefined as any);
+			}).toThrow('KVPTransformNB init failed - fn argument missing.');
 		});
 
 		it('should set id when provided in options argument', () => {
@@ -14,7 +14,7 @@ describe('KVPTransformNullable', () => {
 				return value;
 			};
 			const sampleId = 'AAA_@@@@@33321__334';
-			const custom = new KVPTransformNullable<string>(fn, {
+			const custom = new KVPTransformNB<string>(fn, {
 				id: sampleId
 			});
 
@@ -32,7 +32,7 @@ describe('KVPTransformNullable', () => {
 
 				expect(() => {
 					const sampleVal = 'hello225425';
-					const custom = new KVPTransformNullable<string>(fn, {});
+					const custom = new KVPTransformNB<string>(fn, {});
 					custom.run(sampleVal);
 				}).not.toThrow();
 			});
@@ -43,7 +43,7 @@ describe('KVPTransformNullable', () => {
 					throw new Error('woop woop');
 				});
 				const sampleVal = 'hi_30091';
-				const custom = new KVPTransformNullable<string>(fn, {});
+				const custom = new KVPTransformNB<string>(fn, {});
 
 				expect(custom.run(sampleVal)).toBe(sampleVal);
 			});
@@ -54,7 +54,7 @@ describe('KVPTransformNullable', () => {
 					return null;
 				});
 				const sampleVal = 'hi_223134';
-				const custom = new KVPTransformNullable<string>(fn, {});
+				const custom = new KVPTransformNB<string>(fn, {});
 
 				expect(custom.run(sampleVal)).toBeNull();
 			});
@@ -65,7 +65,7 @@ describe('KVPTransformNullable', () => {
 					return null;
 				});
 				const sampleVal = 'hi_223134';
-				const custom = new KVPTransformNullable<string>(fn, {});
+				const custom = new KVPTransformNB<string>(fn, {});
 				expect(() => {
 					custom.run(null);
 				}).not.toThrow();
@@ -76,7 +76,7 @@ describe('KVPTransformNullable', () => {
 				fn.mockImplementation(() => {
 					return null;
 				});
-				const custom = new KVPTransformNullable<string>(fn, {});
+				const custom = new KVPTransformNB<string>(fn, {});
 				custom.run(null);
 				expect(fn).toHaveBeenCalledTimes(1);
 				expect(fn).toHaveBeenCalledWith(null);

@@ -15,7 +15,7 @@ export function createIsUndefined<CallerType>(
 	rule: KVPRule,
 	mods: KVPRuleModifiers
 ): KVPOpIsUndefined<CallerType> {
-	function beUndefined(): CallerType {
+	return (): CallerType => {
 		const fn: KVPRuleFn = (curr: number) => {
 			return isUndefined(curr);
 		};
@@ -24,7 +24,5 @@ export function createIsUndefined<CallerType>(
 		rule.add(node);
 
 		return caller;
-	}
-
-	return beUndefined;
+	};
 }

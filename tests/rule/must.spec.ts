@@ -29,9 +29,5 @@ describe('KVPMust', () => {
 		it(`should initialize 'match' property`, () => {
 			expect(instance.match).not.toBeUndefined();
 		});
-
-		it(`should initialize 'haveLength' property`, () => {
-			expect(instance.haveLength).not.toBeUndefined();
-		});
 	});
 });

@@ -1,4 +1,4 @@
-import {KVPUInt, createKVPUInt, createKVPUIntNullable} from '../src/uint';
+import {KVPUInt, createKVPUInt, createKVPUIntNB} from '../src/uint';
 
 const MOCK_INITIAL = 4410;
 const MOCK_FALLBACK_DEFAULT = 99121;
@@ -68,18 +68,18 @@ describe('KVPUInt', () => {
 	});
 });
 
-describe('KVPUIntNullable', () => {
+describe('KVPUIntNB', () => {
 	describe('Implementation', () => {
 		it('should return null when value is not set', () => {
 			const sampleFallbackDefault = 3900001;
-			const uint = createKVPUIntNullable(null, sampleFallbackDefault);
+			const uint = createKVPUIntNB(null, sampleFallbackDefault);
 			expect(uint()).toBeNull();
 		});
 
 		it('should return null after value has been set to null', () => {
 			const sampleFallbackDefault = 3900001;
 			const sampleInt = 223211;
-			const uint = createKVPUIntNullable(sampleInt, sampleFallbackDefault);
+			const uint = createKVPUIntNB(sampleInt, sampleFallbackDefault);
 			uint(null);
 			expect(uint()).toBeNull();
 		});
@@ -89,14 +89,14 @@ describe('KVPUIntNullable', () => {
 		describe('get', () => {
 			it('should return fallback when no value is set', () => {
 				const sampleFallbackDefault = 11122;
-				const uint = createKVPUIntNullable(null, sampleFallbackDefault);
+				const uint = createKVPUIntNB(null, sampleFallbackDefault);
 				expect(uint.get(sampleFallbackDefault)).toBe(sampleFallbackDefault);
 			});
 
 			it('should return fallback after previous value is overwritten with null', () => {
 				const sampleFallbackDefault = 11122;
 				const sampleInit = 444180;
-				const uint = createKVPUIntNullable(sampleInit, sampleFallbackDefault);
+				const uint = createKVPUIntNB(sampleInit, sampleFallbackDefault);
 				uint(null);
 				expect(uint.get(sampleFallbackDefault)).toBe(sampleFallbackDefault);
 			});
