@@ -6,7 +6,15 @@ import {KVPRuleNodeType} from '../rule/node-type';
 
 export type KVPOpLessThan<CallerType> = (a: number) => CallerType;
 
-const lessThanFn = (curr: number, target: number): boolean => {
+export const lessThanFn = (curr: number, target: number): boolean => {
+	if (typeof curr !== 'number') {
+		return false;
+	}
+
+	if (typeof target !== 'number') {
+		return false;
+	}
+
 	return curr < target;
 };
 
@@ -16,17 +24,11 @@ export function createLessThan<CallerType>(
 	mods: KVPRuleModifiers
 ): KVPOpLessThan<CallerType> {
 	function lessThan(target: number): CallerType {
-		const ruleFn: KVPRuleFn = (curr: number) => {
-			const result = lessThanFn(curr, target);
-
-			if (mods.invert) {
-				return !result;
-			}
-
-			return result;
+		const fn: KVPRuleFn = (curr: number) => {
+			return lessThanFn(curr, target);
 		};
 
-		const node = new KVPRuleNode('LESS_THAN', KVPRuleNodeType.CMP, ruleFn);
+		const node = new KVPRuleNode('LT', KVPRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

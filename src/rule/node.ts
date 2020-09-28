@@ -8,12 +8,12 @@ export class KVPRuleNode {
 	public readonly type: KVPRuleNodeType;
 	public invertResult: boolean;
 
-	constructor(id: string, type: KVPRuleNodeType, fn: KVPRuleFn | null) {
+	constructor(id: string, type: KVPRuleNodeType, fn: KVPRuleFn | null, invert?: boolean) {
 		this.id = id;
 		this.children = [];
 		this.fn = fn;
 		this.type = type;
-		this.invertResult = false;
+		this.invertResult = invert === true ? true : false;
 	}
 
 	public execute(value: any | null): boolean {

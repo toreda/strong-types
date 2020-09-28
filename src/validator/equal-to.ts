@@ -6,7 +6,7 @@ import {KVPRuleNodeType} from '../rule/node-type';
 
 export type KVPOpEqualTo<CallerType> = (a: any) => CallerType;
 
-const equalToFn = (curr: any, target: any): boolean => {
+export const equalToFn = (curr: any, target: any): boolean => {
 	if (typeof target === 'undefined' || typeof curr === 'undefined') {
 		return false;
 	}
@@ -37,15 +37,9 @@ export function createEqualTo<CallerType>(
 ): KVPOpEqualTo<CallerType> {
 	function equalTo(target: any): CallerType {
 		const fn: KVPRuleFn = (curr: any): boolean => {
-			const result = equalToFn(curr, target);
-
-			if (mods.invert) {
-				return !result;
-			}
-
-			return result;
+			return equalToFn(curr, target);
 		};
-		const node = new KVPRuleNode('EQUAL_TO', KVPRuleNodeType.CMP, fn);
+		const node = new KVPRuleNode('EQT', KVPRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 		return caller;
 	}

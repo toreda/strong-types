@@ -6,7 +6,7 @@ import {KVPRuleNodeType} from '../rule/node-type';
 
 export type KVPOpGreaterThanOrEqualTo<CallerType> = (a: number) => CallerType;
 
-const greaterThanOrEqualToFn = (curr: number, target: number): boolean => {
+export const greaterThanOrEqualToFn = (curr: number, target: number): boolean => {
 	if (typeof curr !== 'number' || typeof target !== 'number') {
 		return false;
 	}
@@ -20,17 +20,11 @@ export function createGreaterThanOrEqualTo<CallerType>(
 	mods: KVPRuleModifiers
 ): KVPOpGreaterThanOrEqualTo<CallerType> {
 	function greaterThanOrEqualTo(target: number): CallerType {
-		const ruleFn: KVPRuleFn = (curr: number) => {
-			const result = greaterThanOrEqualToFn(curr, target);
-
-			if (mods.invert) {
-				return !result;
-			}
-
-			return result;
+		const fn: KVPRuleFn = (curr: number) => {
+			return greaterThanOrEqualToFn(curr, target);
 		};
 
-		const node = new KVPRuleNode('GREATER_THAN_OR_EQUAL_TO', KVPRuleNodeType.CMP, ruleFn);
+		const node = new KVPRuleNode('GT_EQT', KVPRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

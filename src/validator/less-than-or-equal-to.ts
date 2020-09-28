@@ -6,7 +6,7 @@ import {KVPRuleNodeType} from '../rule/node-type';
 
 export type KVPOpLessThanOrEqualTo<CallerType> = (a: number) => CallerType;
 
-const lessThanOrEqualToFn = (curr: number, target: number): boolean => {
+export const lessThanOrEqualToFn = (curr: number, target: number): boolean => {
 	return curr <= target;
 };
 
@@ -17,16 +17,10 @@ export function createLessThanOrEqualTo<CallerType>(
 ): KVPOpLessThanOrEqualTo<CallerType> {
 	function lessThanOrEqualTo(target: number): CallerType {
 		const ruleFn: KVPRuleFn = (curr: number) => {
-			const result = lessThanOrEqualToFn(curr, target);
-
-			if (mods.invert) {
-				return !result;
-			}
-
-			return result;
+			return lessThanOrEqualToFn(curr, target);
 		};
 
-		const node = new KVPRuleNode('LESS_THAN_OR_EQUAL_TO', KVPRuleNodeType.CMP, ruleFn);
+		const node = new KVPRuleNode('LT_EQT', KVPRuleNodeType.CMP, ruleFn, mods.invert);
 		rule.add(node);
 
 		return caller;

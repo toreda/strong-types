@@ -6,7 +6,7 @@ import {KVPRuleNodeType} from '../rule/node-type';
 
 export type KVPOpIsEmpty<CallerType> = (a: any) => CallerType;
 
-const emptyFn = (curr: any[] | string): boolean => {
+export const emptyFn = (curr: any[] | string): boolean => {
 	if (!Array.isArray(curr) && typeof curr !== 'string') {
 		return false;
 	}
@@ -24,16 +24,11 @@ export function createIsEmpty<CallerType>(
 	mods: KVPRuleModifiers
 ): KVPOpIsEmpty<CallerType> {
 	function empty(): CallerType {
-		const ruleFn: KVPRuleFn = (curr: any[] | string): boolean => {
-			const result = emptyFn(curr);
-			if (mods.invert) {
-				return !result;
-			}
-
-			return result;
+		const fn: KVPRuleFn = (curr: any[] | string): boolean => {
+			return emptyFn(curr);
 		};
 
-		const node = new KVPRuleNode('IS_EMPTY', KVPRuleNodeType.CMP, ruleFn);
+		const node = new KVPRuleNode('IS_EMPTY', KVPRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

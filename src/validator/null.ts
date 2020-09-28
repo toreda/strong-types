@@ -6,27 +6,17 @@ import {KVPRuleNodeType} from '../rule/node-type';
 
 export type KVPOpIsNull<CallerType> = () => CallerType;
 
-function isNull(curr: any): boolean {
-	return curr === null;
-}
-
 export function createIsNull<CallerType>(
 	caller: CallerType,
 	rule: KVPRule,
 	mods: KVPRuleModifiers
 ): KVPOpIsNull<CallerType> {
 	function beNull(): CallerType {
-		const ruleFn: KVPRuleFn = (curr: any): boolean => {
-			const result = isNull(curr);
-
-			if (mods.invert) {
-				return !result;
-			}
-
-			return result;
+		const fn: KVPRuleFn = (curr: any): boolean => {
+			return curr === null;
 		};
 
-		const node = new KVPRuleNode('IS_NULL', KVPRuleNodeType.CMP, ruleFn);
+		const node = new KVPRuleNode('IS_NULL', KVPRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

@@ -6,7 +6,7 @@ import {KVPRuleNodeType} from '../rule/node-type';
 
 export type KVPOpHaveLength<CallerType> = (a: number) => CallerType;
 
-const haveLengthFn = (curr: any, expectedLength: number) => {
+export const haveLengthFn = (curr: any, expectedLength: number) => {
 	if (!Array.isArray(curr) && typeof curr !== 'number' && typeof curr !== 'string') {
 		return false;
 	}
@@ -28,11 +28,11 @@ export function createHaveLength<CallerType>(
 	mods: KVPRuleModifiers
 ): KVPOpHaveLength<CallerType> {
 	function haveLength(expectedLength: number): CallerType {
-		const ruleFn: KVPRuleFn = (curr: any): boolean => {
+		const fn: KVPRuleFn = (curr: any): boolean => {
 			return haveLengthFn(curr, expectedLength);
 		};
 
-		const node = new KVPRuleNode('HAS_LENGTH', KVPRuleNodeType.CMP, ruleFn);
+		const node = new KVPRuleNode('HAS_LENGTH', KVPRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

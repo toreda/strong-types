@@ -16,16 +16,11 @@ export function createIsUndefined<CallerType>(
 	mods: KVPRuleModifiers
 ): KVPOpIsUndefined<CallerType> {
 	function beUndefined(): CallerType {
-		const ruleFn: KVPRuleFn = (curr: number) => {
-			const result = isUndefined(curr);
-
-			if (mods.invert) {
-				return !result;
-			}
-
-			return result;
+		const fn: KVPRuleFn = (curr: number) => {
+			return isUndefined(curr);
 		};
-		const node = new KVPRuleNode('IS_UNDEFINED', KVPRuleNodeType.CMP, ruleFn);
+
+		const node = new KVPRuleNode('IS_UNDEFINED', KVPRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

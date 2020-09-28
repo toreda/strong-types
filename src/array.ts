@@ -12,6 +12,5 @@ export function createKVPArray<T>(initial: T[], fallback: T[]): KVPArray<T> {
 
 export function createKVPArrayNullable<T>(initial: T[] | null, fallback: T[]): KVPArrayNullable<T> {
 	const rules = new KVPRules();
-	//rules.add().must.match.typ
 	return createKVPNullable<T[]>(initial, fallback, rules);
 }

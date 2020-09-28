@@ -6,7 +6,7 @@ import {KVPRuleNodeType} from '../rule/node-type';
 
 export type KVPOpIsDouble<CallerType> = () => CallerType;
 
-const isDouble = (curr: number): boolean => {
+export const isDouble = (curr: number): boolean => {
 	if (typeof curr !== 'number') {
 		return false;
 	}
@@ -24,17 +24,11 @@ export function createIsDouble<CallerType>(
 	mods: KVPRuleModifiers
 ): KVPOpIsDouble<CallerType> {
 	function int(): CallerType {
-		const ruleFn: KVPRuleFn = (curr: number): boolean => {
-			const result = isDouble(curr);
-
-			if (mods.invert) {
-				return !result;
-			}
-
-			return result;
+		const fn: KVPRuleFn = (curr: number): boolean => {
+			return isDouble(curr);
 		};
 
-		const node = new KVPRuleNode('IS_DOUBLE', KVPRuleNodeType.CMP, ruleFn);
+		const node = new KVPRuleNode('IS_DOUBLE', KVPRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;
