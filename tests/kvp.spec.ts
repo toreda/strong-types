@@ -1,4 +1,4 @@
-import KVP, {KVPNB, createKVP, createKVPNB} from '../src/kvp';
+import {KVP, KVPNB, createKVP, createKVPNB} from '../src/kvp';
 
 const MOCK_INITIAL = '11110209';
 const MOCK_STRING = '113333';
