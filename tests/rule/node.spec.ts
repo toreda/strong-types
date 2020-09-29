@@ -68,11 +68,7 @@ describe('TBRuleNode', () => {
 			});
 
 			it("should return true when node's fn property is undefined", () => {
-				const custom = new TBRuleNode(
-					MOCK_ID,
-					TBRuleNodeType.OP,
-					MOCK_FN_UNDEFINED as any
-				);
+				const custom = new TBRuleNode(MOCK_ID, TBRuleNodeType.OP, MOCK_FN_UNDEFINED as any);
 				expect(custom.execute(MOCK_VALUE_STR)).toBe(false);
 			});
 
