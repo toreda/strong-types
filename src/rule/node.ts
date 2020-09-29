@@ -8,7 +8,7 @@ export class TBRuleNode {
 	public readonly type: TBRuleNodeType;
 	public invertResult: boolean;
 
-	constructor(id: string, type: TBRuleNodeType, fn: TBRuleFn | null, invert?: boolean) {
+	constructor(id: string, type: TBRuleNodeType, fn: TBRuleFn | null, invert: boolean = false) {
 		this.id = id;
 		this.children = [];
 		this.fn = fn;
