@@ -1,4 +1,4 @@
-import KVP from '../src/kvp';
+import {KVP} from '../src/kvp';
 import {KVPTransform} from '../src/transform';
 
 describe('KVPTransform', () => {
@@ -42,11 +42,10 @@ describe('KVPTransform', () => {
 				fn.mockImplementation(() => {
 					throw new Error('woop woop');
 				});
-					const sampleVal = 'hi441091';
-					const custom = new KVPTransform<string>(fn, {});
+				const sampleVal = 'hi441091';
+				const custom = new KVPTransform<string>(fn, {});
 
-					expect(custom.run(sampleVal)).toBe(sampleVal);
-
+				expect(custom.run(sampleVal)).toBe(sampleVal);
 			});
 		});
 	});

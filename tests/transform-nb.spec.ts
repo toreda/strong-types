@@ -1,4 +1,4 @@
-import KVP from '../src/kvp';
+import {KVP} from '../src/kvp';
 import {KVPTransformNB} from '../src/transform-nb';
 
 describe('KVPTransformNB', () => {
