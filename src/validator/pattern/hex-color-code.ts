@@ -6,12 +6,15 @@ import {TBRuleNodeType} from '../../rule/node-type';
 
 export type TBOpIsHexColorCode<CallerType> = () => CallerType;
 
+const MIN_HEX_VALUE = 0x0;
+const MAX_HEX_VALUE = 0xffffff;
+
 export function isHexColorCode(value: number): boolean {
 	if (isNaN(value)) {
 		return false;
 	}
 
-	return value >= 0 && value <= 16777215;
+	return value >= MIN_HEX_VALUE && value <= MAX_HEX_VALUE;
 }
 
 export function isHexColorCodeStr(value: string): boolean {
