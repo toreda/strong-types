@@ -1,9 +1,9 @@
-import {KVPTransform} from './transform';
-import {KVPTransformNB} from './transform-nb';
+import {TBTransform} from './transform';
+import {TBTransformNB} from './transform-nb';
 
-export class KVPTransforms<T> {
-	public readonly transforms: KVPTransform<T>[];
-	public readonly transformsNB: KVPTransformNB<T>[];
+export class TBTransforms<T> {
+	public readonly transforms: TBTransform<T>[];
+	public readonly transformsNB: TBTransformNB<T>[];
 	public readonly fallbackDefault: T;
 
 	constructor(fallbackDefault: T) {
@@ -12,7 +12,7 @@ export class KVPTransforms<T> {
 		this.fallbackDefault = fallbackDefault;
 	}
 
-	public addNB(transform: KVPTransformNB<T>): boolean {
+	public addNB(transform: TBTransformNB<T>): boolean {
 		if (!transform) {
 			return false;
 		}
@@ -21,7 +21,7 @@ export class KVPTransforms<T> {
 		return true;
 	}
 
-	public add(transform: KVPTransform<T>): boolean {
+	public add(transform: TBTransform<T>): boolean {
 		if (!transform) {
 			return false;
 		}

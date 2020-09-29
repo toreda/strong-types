@@ -1,5 +1,5 @@
 {
-  "name": "@toreda/kvp",
+  "name": "@toreda/type-box",
   "version": "0.5.1",
   "description": "Typescript first package for managed and typed key value pairs.",
   "main": "./dist/index",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/toreda/kvp.git"
+    "url": "git+https://github.com/toreda/type-box.git"
   },
   "keywords": [
     "key-value",
@@ -29,9 +29,9 @@
   "author": "Toreda, Inc.",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/toreda/kvp/issues"
+    "url": "https://github.com/toreda/type-box/issues"
   },
-  "homepage": "https://github.com/toreda/kvp#readme",
+  "homepage": "https://github.com/toreda/type-box#readme",
   "devDependencies": {
     "@armorjs/build": "^0.0.2",
     "@microsoft/tsdoc": "^0.12.21",

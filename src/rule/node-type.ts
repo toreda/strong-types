@@ -1,4 +1,4 @@
-export const enum KVPRuleNodeType {
+export const enum TBRuleNodeType {
 	OP,
 	CMP
 }

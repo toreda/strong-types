@@ -1,10 +1,10 @@
 
 
-# `@toreda/kvp` Toreda Key-Value Pair (KVP)
+# `@toreda/type-box`
 
-![CI](https://github.com/toreda/kvp/workflows/CI/badge.svg?branch=master) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=toreda_kvp&metric=coverage)](https://sonarcloud.io/dashboard?id=toreda_kvp) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=toreda_kvp&metric=alert_status)](https://sonarcloud.io/dashboard?id=toreda_kvp)
+![CI](https://github.com/toreda/type-box/workflows/CI/badge.svg?branch=master) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=toreda_type-box&metric=coverage)](https://sonarcloud.io/dashboard?id=toreda_type-box) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=toreda_type-box&metric=alert_status)](https://sonarcloud.io/dashboard?id=toreda_type-box)
 
-Typescript-first library manage type-safe key value pairs. Eliminate excessive validation code with type-safe setters & getters.
+Typescript-first package to store and manage typed values. Eliminate excessive validation code with type-safe setters & getters.
 
 ## Contents
 
@@ -19,12 +19,12 @@ Typescript-first library manage type-safe key value pairs. Eliminate excessive v
 
 **_With yarn (preferred):_**
 ```bash
-yarn add @toreda/kvp
+yarn add @toreda/type-box
 ```
 
 With NPM:
 ```bash
-npm install @toreda/kvp
+npm install @toreda/type-box
 ```
 
 ## Usage
@@ -32,14 +32,14 @@ npm install @toreda/kvp
 
 ###  Built-in Types
 
-#### KVPInt - integers
+#### TBInt - Type Box Integers
 Accepts integer values only.
 ##### Creating Ints
 ```typescript
-import {KVPInt, createKVPInt} from '@toreda/kvp';
+import {TBInt, createTBInt} from '@toreda/type-box';
 const initial = 11;
 const fallback = 55;
-const int = createKVPInt(initial, fallback);
+const int = createTBInt(initial, fallback);
 
 // Returns 11 - initial value was 11.
 const value = int();
@@ -47,10 +47,10 @@ const value = int();
 
 ##### Fallback Default
 ```typescript
-import {KVPInt, createKVPInt} from '@toreda/kvp';
+import {KVPInt, createTBInt} from '@toreda/type-box';
 const initial = null;
 const fallback = 101;
-const uint = createKVPInt(initial, fallback);
+const uint = createTBInt(initial, fallback);
 
 // Returns 101 - current value is null (no value set).
 const value = uint();
@@ -58,8 +58,8 @@ const value = uint();
 
 ##### Individual Fallbacks
 ```typescript
-import {KVPInt, createKVPInt} from '@toreda/kvp';
-const int = createKVPInt(null, 201);
+import {KVPInt, createTBInt} from '@toreda/type-box';
+const int = createTBInt(null, 201);
 
 // kvp.get(fallback) returns the fallback argument when the kvp instance
 // has no value set.
@@ -77,8 +77,8 @@ const value = int.get(fallback);
 KVPInt will not update t's value called with a positive or negative integer.
 ```typescript
 
-import {KVPInt, createKVPInt} from '@toreda/kvp';
-const uint = createKVPInt(50, 100);
+import {KVPInt, createTBInt} from '@toreda/type-box';
+const uint = createTBInt(50, 100);
 
 // Attempting to set value to a negative integer.
 // Success will be false.
@@ -94,11 +94,11 @@ Accepts positive integer values only. Everything else will be rejected and will 
 
 ##### Creating UInts
 ```typescript
-import {KVPUInt, createKVPUInt} from '@toreda/kvp';
+import {KVPUInt, createTBUInt} from '@toreda/type-box';
 // UInt starting value.
 const initial = 44;
 const fallbackDefault = 1;
-const uint = createKVPUInt(initialValue, fallbackDefault);
+const uint = createTBUInt(initialValue, fallbackDefault);
 
 // Get the current value 44.
 const uintValue = uint();
@@ -109,10 +109,10 @@ uint(14);
 
 ##### Using the  Fallback Default
 ```typescript
-import {KVPUInt, createKVPUInt} from '@toreda/kvp';
+import {KVPUInt, createTBUInt} from '@toreda/type-box';
 const initialValue = null;
 const fallbackDefault = 27;
-const uint = createKVPUInt(initialValue, fallbackDefault);
+const uint = createTBUInt(initialValue, fallbackDefault);
 
 // Returns 27. Getting the current value with uint() guarantees a type-safe return value.
 // When the current value is null (not set), the default fallback is returned instead.
@@ -122,8 +122,8 @@ const value = uint();
 
 ##### Individual Fallbacks
 ```typescript
-import {KVPUInt, createKVPUInt} from '@toreda/kvp';
-const uint = createKVPUInt(null, 30);
+import {KVPUInt, createTBUInt} from '@toreda/type-box';
+const uint = createTBUInt(null, 30);
 
 // kvp.get(fallback) returns the fallback when the kvp
 // has no value set.
@@ -141,8 +141,8 @@ const value = uint.get(fallback);
 KVPUInt performs automatic input validation and will not update it's value unless the provided input is an unsigned integer.
 ```typescript
 
-import {KVPUInt, createKVPUInt} from '@toreda/kvp';
-const uint = createKVPUInt(20, 40);
+import {KVPUInt, createTBUInt} from '@toreda/type-box';
+const uint = createTBUInt(20, 40);
 
 // Attempting to set value to a negative integer.
 // Success will be false.
@@ -154,15 +154,15 @@ const value = uint();
 ```
 
 
-#### KVPDouble - doubles
+#### TBDouble - Type Box Doubles
 
 
 ### Create a key-value pair
 ```typescript
-import {KVP, createKVP} from '@toreda/kvp';
+import {TypeBox, createTB} from '@toreda/type-box';
 const initial = 'hello';
 const fallbackDefault = 'goodbye';
-const myValue = createKVP<string>(initial, fallbackDefault);
+const myValue = createTB<string>(initial, fallbackDefault);
 ```
 
 ### Get value
@@ -181,13 +181,13 @@ const value = myValue.get(fallback);
 
 ### Set value
 ```typescript
-// Set kvp to string 'trendy'
+// Set value to string 'trendy'
 myValue('trendy');
 ```
 
 ### Set value to null
 ```typescript
-// Set kvp to be null.
+// Set value to be null.
 myValue(null);
 ```
 

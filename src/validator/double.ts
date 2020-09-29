@@ -1,10 +1,10 @@
-import {KVPRule} from '../rule/rule';
-import {KVPRuleFn} from '../rule/fn';
-import {KVPRuleModifiers} from '../rule/modifiers';
-import {KVPRuleNode} from '../rule/node';
-import {KVPRuleNodeType} from '../rule/node-type';
+import {TBRule} from '../rule/rule';
+import {TBRuleFn} from '../rule/fn';
+import {TBRuleModifiers} from '../rule/modifiers';
+import {TBRuleNode} from '../rule/node';
+import {TBRuleNodeType} from '../rule/node-type';
 
-export type KVPOpIsDouble<CallerType> = () => CallerType;
+export type TBOpIsDouble<CallerType> = () => CallerType;
 
 export const isDouble = (curr: number): boolean => {
 	if (typeof curr !== 'number') {
@@ -20,15 +20,15 @@ export const isDouble = (curr: number): boolean => {
 
 export function createIsDouble<CallerType>(
 	caller: CallerType,
-	rule: KVPRule,
-	mods: KVPRuleModifiers
-): KVPOpIsDouble<CallerType> {
+	rule: TBRule,
+	mods: TBRuleModifiers
+): TBOpIsDouble<CallerType> {
 	return (): CallerType => {
-		const fn: KVPRuleFn = (curr: number): boolean => {
+		const fn: TBRuleFn = (curr: number): boolean => {
 			return isDouble(curr);
 		};
 
-		const node = new KVPRuleNode('IS_DOUBLE', KVPRuleNodeType.CMP, fn, mods.invert);
+		const node = new TBRuleNode('IS_DOUBLE', TBRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

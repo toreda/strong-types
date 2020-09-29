@@ -1,12 +1,12 @@
-import {KVPOpIsHexColorCode, createIsHexColorCode} from './hex-color-code';
+import {TBOpIsHexColorCode, createIsHexColorCode} from './hex-color-code';
 
-import {KVPRule} from '../../rule/rule';
-import {KVPRuleModifiers} from '../../rule/modifiers';
+import {TBRule} from '../../rule/rule';
+import {TBRuleModifiers} from '../../rule/modifiers';
 
-export class KVPValidatorPattern {
-	public readonly hexColor: KVPOpIsHexColorCode<KVPValidatorPattern>;
+export class TBValidatorPattern {
+	public readonly hexColor: TBOpIsHexColorCode<TBValidatorPattern>;
 
-	constructor(rule: KVPRule, mods: KVPRuleModifiers) {
+	constructor(rule: TBRule, mods: TBRuleModifiers) {
 		this.hexColor = createIsHexColorCode(this, rule, mods);
 	}
 }

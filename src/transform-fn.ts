@@ -1,1 +1,1 @@
-export type KVPTransformFN<T> = (value: T | null) => T;
+export type TBTransformFN<T> = (value: T | null) => T;

@@ -1,21 +1,21 @@
-import {KVPRule} from './rule';
-import {KVPRuleModifiers} from './modifiers';
-import {KVPRuleOr} from './or';
-import {KVPRuleType} from '../validator/type';
-import {KVPValidatorPattern} from '../validator/pattern/pattern';
+import {TBRule} from './rule';
+import {TBRuleModifiers} from './modifiers';
+import {TBRuleOr} from './or';
+import {TBRuleType} from '../validator/type';
+import {TBValidatorPattern} from '../validator/pattern/pattern';
 
-export class KVPRuleMatch {
-	public readonly or: KVPRuleOr;
-	public readonly type: KVPRuleType;
-	public readonly pattern: KVPValidatorPattern;
+export class TBRuleMatch {
+	public readonly or: TBRuleOr;
+	public readonly type: TBRuleType;
+	public readonly pattern: TBValidatorPattern;
 
-	constructor(rule: KVPRule, parentMods: KVPRuleModifiers) {
-		const mods: KVPRuleModifiers = {
+	constructor(rule: TBRule, parentMods: TBRuleModifiers) {
+		const mods: TBRuleModifiers = {
 			invert: parentMods.invert
 		};
 
-		this.or = new KVPRuleOr(rule, mods);
-		this.type = new KVPRuleType(rule, mods);
-		this.pattern = new KVPValidatorPattern(rule, mods);
+		this.or = new TBRuleOr(rule, mods);
+		this.type = new TBRuleType(rule, mods);
+		this.pattern = new TBValidatorPattern(rule, mods);
 	}
 }

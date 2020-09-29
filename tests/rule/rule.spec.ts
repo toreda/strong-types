@@ -1,13 +1,13 @@
-import {KVPRule} from '../../src/rule/rule';
-import {KVPRuleNode} from '../../src/rule/node';
-import {KVPRuleNodeType} from '../../src/rule/node-type';
+import {TBRule} from '../../src/rule/rule';
+import {TBRuleNode} from '../../src/rule/node';
+import {TBRuleNodeType} from '../../src/rule/node-type';
 
 const EMPTY_ARRAY = [];
 
-describe('KVPRule', () => {
+describe('TBRule', () => {
 	describe('Constructor', () => {
 		it('should initialize nodes to an empty array', () => {
-			const rule = new KVPRule();
+			const rule = new TBRule();
 			expect(rule.nodes).toEqual(EMPTY_ARRAY);
 		});
 	});
@@ -15,16 +15,16 @@ describe('KVPRule', () => {
 	describe('Methods', () => {
 		describe('add', () => {
 			it('should add exactly one comparison node when called with a cmp node', () => {
-				const node = new KVPRuleNode('CMP', KVPRuleNodeType.CMP, () => true);
-				const rule = new KVPRule();
+				const node = new TBRuleNode('CMP', TBRuleNodeType.CMP, () => true);
+				const rule = new TBRule();
 				expect(rule.nodes).toHaveLength(0);
 				rule.add(node);
 				expect(rule.nodes).toHaveLength(1);
 			});
 
 			it('should not add node when node type is OP', () => {
-				const node = new KVPRuleNode('CMP', KVPRuleNodeType.OP, () => true);
-				const rule = new KVPRule();
+				const node = new TBRuleNode('CMP', TBRuleNodeType.OP, () => true);
+				const rule = new TBRule();
 				expect(rule.nodes).toHaveLength(0);
 				rule.add(node);
 				expect(rule.nodes).toHaveLength(0);
@@ -33,16 +33,16 @@ describe('KVPRule', () => {
 
 		describe('run', () => {
 			it('should return false when rule has no nodes', () => {
-				const rule = new KVPRule();
+				const rule = new TBRule();
 				const value = 111;
 				expect(rule.run(value)).toBe(false);
 			});
 
 			it('should return false when all nodes return false', () => {
-				const node1 = new KVPRuleNode('CMP', KVPRuleNodeType.CMP, () => false);
-				const node2 = new KVPRuleNode('CMP', KVPRuleNodeType.CMP, () => false);
-				const node3 = new KVPRuleNode('CMP', KVPRuleNodeType.CMP, () => false);
-				const rule = new KVPRule();
+				const node1 = new TBRuleNode('CMP', TBRuleNodeType.CMP, () => false);
+				const node2 = new TBRuleNode('CMP', TBRuleNodeType.CMP, () => false);
+				const node3 = new TBRuleNode('CMP', TBRuleNodeType.CMP, () => false);
+				const rule = new TBRule();
 
 				rule.add(node1);
 				rule.add(node2);
@@ -53,10 +53,10 @@ describe('KVPRule', () => {
 			});
 
 			it('should return true when at least 1 node returns true', () => {
-				const node1 = new KVPRuleNode('CMP', KVPRuleNodeType.CMP, () => false);
-				const node2 = new KVPRuleNode('CMP', KVPRuleNodeType.CMP, () => true);
-				const node3 = new KVPRuleNode('CMP', KVPRuleNodeType.CMP, () => false);
-				const rule = new KVPRule();
+				const node1 = new TBRuleNode('CMP', TBRuleNodeType.CMP, () => false);
+				const node2 = new TBRuleNode('CMP', TBRuleNodeType.CMP, () => true);
+				const node3 = new TBRuleNode('CMP', TBRuleNodeType.CMP, () => false);
+				const rule = new TBRule();
 
 				rule.add(node1);
 				rule.add(node2);
@@ -67,10 +67,10 @@ describe('KVPRule', () => {
 			});
 
 			it('should return true when all nodes return true', () => {
-				const node1 = new KVPRuleNode('CMP', KVPRuleNodeType.CMP, () => true);
-				const node2 = new KVPRuleNode('CMP', KVPRuleNodeType.CMP, () => true);
-				const node3 = new KVPRuleNode('CMP', KVPRuleNodeType.CMP, () => true);
-				const rule = new KVPRule();
+				const node1 = new TBRuleNode('CMP', TBRuleNodeType.CMP, () => true);
+				const node2 = new TBRuleNode('CMP', TBRuleNodeType.CMP, () => true);
+				const node3 = new TBRuleNode('CMP', TBRuleNodeType.CMP, () => true);
+				const rule = new TBRule();
 
 				rule.add(node1);
 				rule.add(node2);

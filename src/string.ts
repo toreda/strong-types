@@ -1,17 +1,17 @@
-import {KVP, KVPNB, createKVP, createKVPNB} from './kvp';
+import {TypeBox, TypeBoxNB, createTypeBox, createTypeBoxNB} from './type-box';
 
-import {KVPRules} from './rules';
+import {TBRules} from './rules';
 
-export type KVPString = KVP<string>;
+export type TBString = TypeBox<string>;
 
-export type KVPStringNB = KVPNB<string>;
+export type TBStringNB = TypeBoxNB<string>;
 
-export function createKVPString(initial: string, fallback: string): KVPString {
-	const rules = new KVPRules();
-	return createKVP<string>(initial, fallback, rules);
+export function createTBString(initial: string, fallback: string): TBString {
+	const rules = new TBRules();
+	return createTypeBox<string>(initial, fallback, rules);
 }
 
-export function createKVPStringNB(initial: string | null, fallback: string): KVPStringNB {
-	const rules = new KVPRules();
-	return createKVPNB<string>(initial, fallback, rules);
+export function createTBStringNB(initial: string | null, fallback: string): TBStringNB {
+	const rules = new TBRules();
+	return createTypeBoxNB<string>(initial, fallback, rules);
 }

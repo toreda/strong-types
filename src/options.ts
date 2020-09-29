@@ -1,4 +1,4 @@
-export interface KVPOptions {
+export interface TBOptions {
 	nullable?: boolean;
 	transform?: null;
 }

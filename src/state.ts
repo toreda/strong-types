@@ -1,12 +1,12 @@
-import {KVPOptions} from './options';
-import {KVPRule} from './rule/rule';
-import {KVPTransform} from './transform';
+import {TBOptions} from './options';
+import {TBRule} from './rule/rule';
+import {TBTransform} from './transform';
 
-export class KVPState<T> {
-	public readonly rules: KVPRule[];
-	public readonly transforms: KVPTransform<T>[];
+export class TBState<T> {
+	public readonly rules: TBRule[];
+	public readonly transforms: TBTransform<T>[];
 
-	constructor(options?: KVPOptions) {
+	constructor(options?: TBOptions) {
 		this.transforms = [];
 		this.rules = [];
 	}

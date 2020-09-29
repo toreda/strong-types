@@ -1,5 +1,5 @@
-import {KVPRuleMust} from './must';
+import {TBRuleMust} from './must';
 
-export interface KVPRuleRoot {
-	must: KVPRuleMust;
+export interface TBRuleRoot {
+	must: TBRuleMust;
 }

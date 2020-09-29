@@ -1,18 +1,18 @@
-import {KVPOpIsBoolean, createIsBoolean} from './boolean';
-import {KVPOpIsDouble, createIsDouble} from './double';
-import {KVPOpIsInteger, createIsInteger} from './integer';
+import {TBOpIsBoolean, createIsBoolean} from './boolean';
+import {TBOpIsDouble, createIsDouble} from './double';
+import {TBOpIsInteger, createIsInteger} from './integer';
 
-import {KVPRule} from '../rule/rule';
-import {KVPRuleModifiers} from '../rule/modifiers';
+import {TBRule} from '../rule/rule';
+import {TBRuleModifiers} from '../rule/modifiers';
 
-export class KVPRuleType {
-	public readonly integer: KVPOpIsInteger<KVPRuleType>;
-	public readonly double: KVPOpIsDouble<KVPRuleType>;
-	public readonly boolean: KVPOpIsBoolean<KVPRuleType>;
+export class TBRuleType {
+	public readonly integer: TBOpIsInteger<TBRuleType>;
+	public readonly double: TBOpIsDouble<TBRuleType>;
+	public readonly boolean: TBOpIsBoolean<TBRuleType>;
 
-	constructor(rule: KVPRule, mods: KVPRuleModifiers) {
-		this.integer = createIsInteger<KVPRuleType>(this, rule, mods);
-		this.double = createIsDouble<KVPRuleType>(this, rule, mods);
-		this.boolean = createIsBoolean<KVPRuleType>(this, rule, mods);
+	constructor(rule: TBRule, mods: TBRuleModifiers) {
+		this.integer = createIsInteger<TBRuleType>(this, rule, mods);
+		this.double = createIsDouble<TBRuleType>(this, rule, mods);
+		this.boolean = createIsBoolean<TBRuleType>(this, rule, mods);
 	}
 }

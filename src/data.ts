@@ -1,20 +1,20 @@
-import {KVPRules} from './rules';
-import {KVPState} from './state';
-import {KVPTransforms} from './transforms';
+import {TBRules} from './rules';
+import {TBState} from './state';
+import {TBTransforms} from './transforms';
 
-export class KVPData<T> {
+export class TBData<T> {
 	public value: T | null;
 	public readonly fallbackDefault: T;
-	public readonly state: KVPState<T>;
-	public readonly transforms: KVPTransforms<T>;
-	public readonly rules: KVPRules<T>;
+	public readonly state: TBState<T>;
+	public readonly transforms: TBTransforms<T>;
+	public readonly rules: TBRules<T>;
 
-	constructor(initial: T | null, fallbackDefault: T, rules?: KVPRules<T>) {
+	constructor(initial: T | null, fallbackDefault: T, rules?: TBRules<T>) {
 		this.value = null;
 		this.fallbackDefault = fallbackDefault;
-		this.state = new KVPState<T>();
-		this.transforms = new KVPTransforms<T>(fallbackDefault);
-		this.rules = rules ? rules : new KVPRules();
+		this.state = new TBState<T>();
+		this.transforms = new TBTransforms<T>(fallbackDefault);
+		this.rules = rules ? rules : new TBRules();
 		this.set(initial);
 	}
 

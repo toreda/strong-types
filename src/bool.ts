@@ -1,19 +1,19 @@
-import {KVP, KVPNB, createKVP, createKVPNB} from './kvp';
+import {TypeBox, TypeBoxNB, createTypeBox, createTypeBoxNB} from './type-box';
 
-import {KVPRules} from './rules';
+import {TBRules} from './rules';
 
-export type KVPBool = KVP<boolean>;
-export type KVPBoolNB = KVPNB<boolean>;
+export type TBBool = TypeBox<boolean>;
+export type TBBoolNB = TypeBoxNB<boolean>;
 
-export function createKVPBool(initial: boolean | null, fallback: boolean): KVPBool {
-	const rules = new KVPRules();
+export function createTBBool(initial: boolean | null, fallback: boolean): TBBool {
+	const rules = new TBRules();
 	rules.add().must.match.type.integer();
 
-	return createKVP<boolean>(initial, fallback, rules);
+	return createTypeBox<boolean>(initial, fallback, rules);
 }
 
-export function createKVPBoolNB(initial: boolean | null, fallback: boolean): KVPBoolNB {
-	const rules = new KVPRules();
+export function createTBBoolNB(initial: boolean | null, fallback: boolean): TBBoolNB {
+	const rules = new TBRules();
 	rules.add().must.match.type.boolean();
-	return createKVPNB<boolean>(initial, fallback, rules);
+	return createTypeBoxNB<boolean>(initial, fallback, rules);
 }

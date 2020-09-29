@@ -1,16 +1,16 @@
-import {KVP, KVPNB, createKVP, createKVPNB} from './kvp';
+import {TypeBox, TypeBoxNB, createTypeBox, createTypeBoxNB} from './type-box';
 
-import {KVPRules} from './rules';
+import {TBRules} from './rules';
 
-export type KVPArray<T> = KVP<T[]>;
-export type KVPArrayNB<T> = KVPNB<T[]>;
+export type TBArray<T> = TypeBox<T[]>;
+export type TBArrayNB<T> = TypeBoxNB<T[]>;
 
-export function createKVPArray<T>(initial: T[], fallback: T[]): KVPArray<T> {
-	const rules = new KVPRules();
-	return createKVP<T[]>(initial, fallback, rules);
+export function createTBArray<T>(initial: T[], fallback: T[]): TBArray<T> {
+	const rules = new TBRules();
+	return createTypeBox<T[]>(initial, fallback, rules);
 }
 
-export function createKVPArrayNB<T>(initial: T[] | null, fallback: T[]): KVPArrayNB<T> {
-	const rules = new KVPRules();
-	return createKVPNB<T[]>(initial, fallback, rules);
+export function createTBArrayNB<T>(initial: T[] | null, fallback: T[]): TBArrayNB<T> {
+	const rules = new TBRules();
+	return createTypeBoxNB<T[]>(initial, fallback, rules);
 }

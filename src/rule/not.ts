@@ -1,18 +1,18 @@
-import {KVPOpIsEqualTo, createIsEqualTo} from '../validator/equal-to';
+import {TBOpIsEqualTo, createIsEqualTo} from '../validator/equal-to';
 
-import {KVPRule} from './rule';
-import {KVPRuleBe} from './be';
-import {KVPRuleModifiers} from './modifiers';
+import {TBRule} from './rule';
+import {TBRuleBe} from './be';
+import {TBRuleModifiers} from './modifiers';
 
-export class KVPRuleNot {
-	public readonly be: KVPRuleBe;
-	public readonly equal: KVPOpIsEqualTo<KVPRuleNot>;
+export class TBRuleNot {
+	public readonly be: TBRuleBe;
+	public readonly equal: TBOpIsEqualTo<TBRuleNot>;
 
-	constructor(rule: KVPRule, parentMods: KVPRuleModifiers) {
-		const mods: KVPRuleModifiers = {
+	constructor(rule: TBRule, parentMods: TBRuleModifiers) {
+		const mods: TBRuleModifiers = {
 			invert: !parentMods.invert
 		};
-		this.be = new KVPRuleBe(rule, mods);
-		this.equal = createIsEqualTo<KVPRuleNot>(this, rule, mods);
+		this.be = new TBRuleBe(rule, mods);
+		this.equal = createIsEqualTo<TBRuleNot>(this, rule, mods);
 	}
 }

@@ -1,12 +1,11 @@
-import {KVP} from '../src/kvp';
-import {KVPTransformNB} from '../src/transform-nb';
+import {TBTransformNB} from '../src/transform-nb';
 
-describe('KVPTransformNB', () => {
+describe('TBTransformNB', () => {
 	describe('Constructor', () => {
 		it('should throw when fn argument is not provided', () => {
 			expect(() => {
-				const custom = new KVPTransformNB<string>(undefined as any);
-			}).toThrow('KVPTransformNB init failed - fn argument missing.');
+				const custom = new TBTransformNB<string>(undefined as any);
+			}).toThrow('TBTransformNB init failed - fn argument missing.');
 		});
 
 		it('should set id when provided in options argument', () => {
@@ -14,7 +13,7 @@ describe('KVPTransformNB', () => {
 				return value;
 			};
 			const sampleId = 'AAA_@@@@@33321__334';
-			const custom = new KVPTransformNB<string>(fn, {
+			const custom = new TBTransformNB<string>(fn, {
 				id: sampleId
 			});
 
@@ -32,7 +31,7 @@ describe('KVPTransformNB', () => {
 
 				expect(() => {
 					const sampleVal = 'hello225425';
-					const custom = new KVPTransformNB<string>(fn, {});
+					const custom = new TBTransformNB<string>(fn, {});
 					custom.run(sampleVal);
 				}).not.toThrow();
 			});
@@ -43,7 +42,7 @@ describe('KVPTransformNB', () => {
 					throw new Error('woop woop');
 				});
 				const sampleVal = 'hi_30091';
-				const custom = new KVPTransformNB<string>(fn, {});
+				const custom = new TBTransformNB<string>(fn, {});
 
 				expect(custom.run(sampleVal)).toBe(sampleVal);
 			});
@@ -54,7 +53,7 @@ describe('KVPTransformNB', () => {
 					return null;
 				});
 				const sampleVal = 'hi_223134';
-				const custom = new KVPTransformNB<string>(fn, {});
+				const custom = new TBTransformNB<string>(fn, {});
 
 				expect(custom.run(sampleVal)).toBeNull();
 			});
@@ -65,7 +64,7 @@ describe('KVPTransformNB', () => {
 					return null;
 				});
 				const sampleVal = 'hi_223134';
-				const custom = new KVPTransformNB<string>(fn, {});
+				const custom = new TBTransformNB<string>(fn, {});
 				expect(() => {
 					custom.run(null);
 				}).not.toThrow();
@@ -76,7 +75,7 @@ describe('KVPTransformNB', () => {
 				fn.mockImplementation(() => {
 					return null;
 				});
-				const custom = new KVPTransformNB<string>(fn, {});
+				const custom = new TBTransformNB<string>(fn, {});
 				custom.run(null);
 				expect(fn).toHaveBeenCalledTimes(1);
 				expect(fn).toHaveBeenCalledWith(null);

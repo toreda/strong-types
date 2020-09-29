@@ -1,13 +1,13 @@
-import {KVPTransform} from '../src/transform';
-import {KVPTransforms} from '../src/transforms';
+import {TBTransform} from '../src/transform';
+import {TBTransforms} from '../src/transforms';
 
 const MOCK_STRING = 'oneoneone';
 
-describe('KVPTransforms', () => {
-	let instance: KVPTransforms<string>;
+describe('TBTransforms', () => {
+	let instance: TBTransforms<string>;
 
 	beforeAll(() => {
-		instance = new KVPTransforms<string>(MOCK_STRING);
+		instance = new TBTransforms<string>(MOCK_STRING);
 	});
 
 	describe('Constructor', () => {
@@ -16,11 +16,11 @@ describe('KVPTransforms', () => {
 
 	describe('Implementation', () => {
 		describe('add', () => {
-			let custom: KVPTransforms<string>;
+			let custom: TBTransforms<string>;
 			const MOCK_FALLBACK1 = '22222233333___11';
 
 			beforeEach(() => {
-				custom = new KVPTransforms<string>(MOCK_FALLBACK1);
+				custom = new TBTransforms<string>(MOCK_FALLBACK1);
 			});
 
 			it('should return false when transform argument is null', () => {
@@ -33,11 +33,11 @@ describe('KVPTransforms', () => {
 		});
 
 		describe('addNB', () => {
-			let custom: KVPTransforms<string>;
+			let custom: TBTransforms<string>;
 			const MOCK_FALLBACK1 = '22222233333___11';
 
 			beforeEach(() => {
-				custom = new KVPTransforms<string>(MOCK_FALLBACK1);
+				custom = new TBTransforms<string>(MOCK_FALLBACK1);
 			});
 
 			it('should return false when transform argument is null', () => {
@@ -50,10 +50,10 @@ describe('KVPTransforms', () => {
 		});
 
 		describe('run', () => {
-			let custom: KVPTransforms<string>;
+			let custom: TBTransforms<string>;
 			const MOCK_FALLBACK1 = '22222233333___11';
 			beforeEach(() => {
-				custom = new KVPTransforms<string>(MOCK_FALLBACK1);
+				custom = new TBTransforms<string>(MOCK_FALLBACK1);
 			});
 
 			it('should return fallback default when value argument is null', () => {
@@ -75,18 +75,18 @@ describe('KVPTransforms', () => {
 				tf1.mockImplementation((val: string) => {
 					return val;
 				});
-				const transform1 = new KVPTransform(tf1);
+				const transform1 = new TBTransform(tf1);
 
 				const tf2 = jest.fn();
 				tf1.mockImplementation((val: string) => {
 					return val;
 				});
-				const transform2 = new KVPTransform(tf2);
+				const transform2 = new TBTransform(tf2);
 				const tf3 = jest.fn();
 				tf3.mockImplementation((val: string) => {
 					return val;
 				});
-				const transform3 = new KVPTransform(tf3);
+				const transform3 = new TBTransform(tf3);
 
 				custom.add(transform1);
 				custom.add(transform2);
@@ -106,10 +106,10 @@ describe('KVPTransforms', () => {
 		});
 
 		describe('runNullable', () => {
-			let custom: KVPTransforms<string>;
+			let custom: TBTransforms<string>;
 			const MOCK_FALLBACK1 = '22222233333___11';
 			beforeEach(() => {
-				custom = new KVPTransforms<string>(MOCK_FALLBACK1);
+				custom = new TBTransforms<string>(MOCK_FALLBACK1);
 			});
 
 			it('should return null when value argument is null', () => {

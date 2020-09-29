@@ -1,10 +1,10 @@
-import {KVPRule} from '../../rule/rule';
-import {KVPRuleFn} from '../../rule/fn';
-import {KVPRuleModifiers} from '../../rule/modifiers';
-import {KVPRuleNode} from '../../rule/node';
-import {KVPRuleNodeType} from '../../rule/node-type';
+import {TBRule} from '../../rule/rule';
+import {TBRuleFn} from '../../rule/fn';
+import {TBRuleModifiers} from '../../rule/modifiers';
+import {TBRuleNode} from '../../rule/node';
+import {TBRuleNodeType} from '../../rule/node-type';
 
-export type KVPOpIsHexColorCode<CallerType> = () => CallerType;
+export type TBOpIsHexColorCode<CallerType> = () => CallerType;
 
 export function isHexColorCode(value: number): boolean {
 	if (isNaN(value)) {
@@ -55,15 +55,15 @@ export const isHexColorFn = (curr: string | number): boolean => {
 
 export function createIsHexColorCode<CallerType>(
 	caller: CallerType,
-	rule: KVPRule,
-	mods: KVPRuleModifiers
-): KVPOpIsHexColorCode<CallerType> {
+	rule: TBRule,
+	mods: TBRuleModifiers
+): TBOpIsHexColorCode<CallerType> {
 	return (): CallerType => {
-		const fn: KVPRuleFn = (curr: string): boolean => {
+		const fn: TBRuleFn = (curr: string): boolean => {
 			return isHexColorFn(curr);
 		};
 
-		const node = new KVPRuleNode('IS_HEX_COLOR_CODE', KVPRuleNodeType.CMP, fn, mods.invert);
+		const node = new TBRuleNode('IS_HEX_COLOR_CODE', TBRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

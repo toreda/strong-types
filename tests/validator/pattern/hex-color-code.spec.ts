@@ -1,10 +1,6 @@
-import {
-	KVPOpIsHexColorCode,
-	createIsHexColorCode
-} from '../../../src/validator/pattern/hex-color-code';
-
-import {KVPRule} from '../../../src/rule/rule';
-import {KVPRuleModifiers} from '../../../src/rule/modifiers';
+import {TBRule} from '../../../src/rule/rule';
+import {TBRuleModifiers} from '../../../src/rule/modifiers';
+import {createIsHexColorCode} from '../../../src/validator/pattern/hex-color-code';
 
 const EMPTY_STRING = '';
 const EMPTY_ARRAY = [];
@@ -252,11 +248,11 @@ const TEST_INPUTS = [
 ];
 
 describe('HexColorCode', () => {
-	let mods: KVPRuleModifiers;
-	let rule: KVPRule;
+	let mods: TBRuleModifiers;
+	let rule: TBRule;
 
 	beforeAll(() => {
-		rule = new KVPRule();
+		rule = new TBRule();
 		mods = {
 			invert: false
 		};

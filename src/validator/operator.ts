@@ -1,1 +1,1 @@
-export type KVPValidator = (a: any) => boolean;
+export type TBValidator = (a: any) => boolean;

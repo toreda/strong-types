@@ -1,10 +1,10 @@
-import {KVPRule} from '../rule/rule';
-import {KVPRuleFn} from '../rule/fn';
-import {KVPRuleModifiers} from '../rule/modifiers';
-import {KVPRuleNode} from '../rule/node';
-import {KVPRuleNodeType} from '../rule/node-type';
+import {TBRule} from '../rule/rule';
+import {TBRuleFn} from '../rule/fn';
+import {TBRuleModifiers} from '../rule/modifiers';
+import {TBRuleNode} from '../rule/node';
+import {TBRuleNodeType} from '../rule/node-type';
 
-export type KVPOpIsLessThanOrEqualTo<CallerType> = (a: number) => CallerType;
+export type TBOpIsLessThanOrEqualTo<CallerType> = (a: number) => CallerType;
 
 export const lessThanOrEqualToFn = (curr: number, target: number): boolean => {
 	return curr <= target;
@@ -12,15 +12,15 @@ export const lessThanOrEqualToFn = (curr: number, target: number): boolean => {
 
 export function createIsLessThanOrEqualTo<CallerType>(
 	caller: CallerType,
-	rule: KVPRule,
-	mods: KVPRuleModifiers
-): KVPOpIsLessThanOrEqualTo<CallerType> {
+	rule: TBRule,
+	mods: TBRuleModifiers
+): TBOpIsLessThanOrEqualTo<CallerType> {
 	return (target: number): CallerType => {
-		const ruleFn: KVPRuleFn = (curr: number) => {
+		const ruleFn: TBRuleFn = (curr: number) => {
 			return lessThanOrEqualToFn(curr, target);
 		};
 
-		const node = new KVPRuleNode('LT_EQT', KVPRuleNodeType.CMP, ruleFn, mods.invert);
+		const node = new TBRuleNode('LT_EQT', TBRuleNodeType.CMP, ruleFn, mods.invert);
 		rule.add(node);
 
 		return caller;

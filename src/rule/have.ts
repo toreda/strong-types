@@ -1,12 +1,12 @@
-import {KVPOpIsLength, createIsLength} from '../validator/length';
+import {TBOpIsLength, createIsLength} from '../validator/length';
 
-import {KVPRule} from './rule';
-import {KVPRuleModifiers} from './modifiers';
+import {TBRule} from './rule';
+import {TBRuleModifiers} from './modifiers';
 
-export class KVPRuleHave {
-	public readonly length: KVPOpIsLength<KVPRuleHave>;
+export class TBRuleHave {
+	public readonly length: TBOpIsLength<TBRuleHave>;
 
-	constructor(rule: KVPRule, mods: KVPRuleModifiers) {
-		this.length = createIsLength<KVPRuleHave>(this, rule, mods);
+	constructor(rule: TBRule, mods: TBRuleModifiers) {
+		this.length = createIsLength<TBRuleHave>(this, rule, mods);
 	}
 }

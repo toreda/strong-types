@@ -1,12 +1,12 @@
-import {KVPRule} from '../../src/rule/rule';
-import {KVPRuleMust} from '../../src/rule/must';
+import {TBRule} from '../../src/rule/rule';
+import {TBRuleMust} from '../../src/rule/must';
 
-describe('KVPMust', () => {
-	let instance: KVPRuleMust;
-	const rules: KVPRule[] = [];
+describe('TBMust', () => {
+	let instance: TBRuleMust;
+	const rules: TBRule[] = [];
 
 	beforeAll(() => {
-		instance = new KVPRuleMust(rules, null);
+		instance = new TBRuleMust(rules, null);
 	});
 
 	describe('Constructor', () => {

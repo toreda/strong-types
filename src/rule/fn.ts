@@ -1,1 +1,1 @@
-export type KVPRuleFn = (curr: any) => boolean;
+export type TBRuleFn = (curr: any) => boolean;

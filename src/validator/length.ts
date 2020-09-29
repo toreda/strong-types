@@ -1,10 +1,10 @@
-import {KVPRule} from '../rule/rule';
-import {KVPRuleFn} from '../rule/fn';
-import {KVPRuleModifiers} from '../rule/modifiers';
-import {KVPRuleNode} from '../rule/node';
-import {KVPRuleNodeType} from '../rule/node-type';
+import {TBRule} from '../rule/rule';
+import {TBRuleFn} from '../rule/fn';
+import {TBRuleModifiers} from '../rule/modifiers';
+import {TBRuleNode} from '../rule/node';
+import {TBRuleNodeType} from '../rule/node-type';
 
-export type KVPOpIsLength<CallerType> = (a: number) => CallerType;
+export type TBOpIsLength<CallerType> = (a: number) => CallerType;
 
 export const isLengthFn = (curr: any, expectedLength: number) => {
 	if (!Array.isArray(curr) && typeof curr !== 'number' && typeof curr !== 'string') {
@@ -24,15 +24,15 @@ export const isLengthFn = (curr: any, expectedLength: number) => {
 
 export function createIsLength<CallerType>(
 	caller: CallerType,
-	rule: KVPRule,
-	mods: KVPRuleModifiers
-): KVPOpIsLength<CallerType> {
+	rule: TBRule,
+	mods: TBRuleModifiers
+): TBOpIsLength<CallerType> {
 	return (expectedLength: number): CallerType => {
-		const fn: KVPRuleFn = (curr: any): boolean => {
+		const fn: TBRuleFn = (curr: any): boolean => {
 			return isLengthFn(curr, expectedLength);
 		};
 
-		const node = new KVPRuleNode('HAS_LENGTH', KVPRuleNodeType.CMP, fn, mods.invert);
+		const node = new TBRuleNode('HAS_LENGTH', TBRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

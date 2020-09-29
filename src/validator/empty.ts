@@ -1,10 +1,10 @@
-import {KVPRule} from '../rule/rule';
-import {KVPRuleFn} from '../rule/fn';
-import {KVPRuleModifiers} from '../rule/modifiers';
-import {KVPRuleNode} from '../rule/node';
-import {KVPRuleNodeType} from '../rule/node-type';
+import {TBRule} from '../rule/rule';
+import {TBRuleFn} from '../rule/fn';
+import {TBRuleModifiers} from '../rule/modifiers';
+import {TBRuleNode} from '../rule/node';
+import {TBRuleNodeType} from '../rule/node-type';
 
-export type KVPOpIsEmpty<CallerType> = (a: any) => CallerType;
+export type TBOpIsEmpty<CallerType> = (a: any) => CallerType;
 
 export const emptyFn = (curr: any[] | string): boolean => {
 	if (!Array.isArray(curr) && typeof curr !== 'string') {
@@ -20,15 +20,15 @@ export const emptyFn = (curr: any[] | string): boolean => {
 
 export function createIsEmpty<CallerType>(
 	caller: CallerType,
-	rule: KVPRule,
-	mods: KVPRuleModifiers
-): KVPOpIsEmpty<CallerType> {
+	rule: TBRule,
+	mods: TBRuleModifiers
+): TBOpIsEmpty<CallerType> {
 	return (): CallerType => {
-		const fn: KVPRuleFn = (curr: any[] | string): boolean => {
+		const fn: TBRuleFn = (curr: any[] | string): boolean => {
 			return emptyFn(curr);
 		};
 
-		const node = new KVPRuleNode('IS_EMPTY', KVPRuleNodeType.CMP, fn, mods.invert);
+		const node = new TBRuleNode('IS_EMPTY', TBRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

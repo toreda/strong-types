@@ -1,19 +1,18 @@
-import {KVPState} from '../src/state';
+import {TBState} from '../src/state';
 
-describe('KVPState', () => {
-	let instance: KVPState<string>;
+describe('TBState', () => {
+	let instance: TBState<string>;
 
 	beforeAll(() => {
-		instance = new KVPState<string>();
+		instance = new TBState<string>();
 	});
-
 	describe('Constructor', () => {});
 
 	describe('Implementation', () => {
 		describe('create', () => {
 			it('should not throw when no options argument provided', () => {
 				expect(() => {
-					const custom = new KVPState<string>();
+					const custom = new TBState<string>();
 				}).not.toThrow();
 			});
 		});

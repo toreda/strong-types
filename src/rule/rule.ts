@@ -1,15 +1,15 @@
-import {KVPRuleNode} from './node';
-import {KVPRuleNodeType} from './node-type';
+import {TBRuleNode} from './node';
+import {TBRuleNodeType} from './node-type';
 
-export class KVPRule {
-	public readonly nodes: KVPRuleNode[];
+export class TBRule {
+	public readonly nodes: TBRuleNode[];
 
 	constructor() {
 		this.nodes = [];
 	}
 
-	public add(node: KVPRuleNode): void {
-		if (node.type !== KVPRuleNodeType.CMP) {
+	public add(node: TBRuleNode): void {
+		if (node.type !== TBRuleNodeType.CMP) {
 			return;
 		}
 

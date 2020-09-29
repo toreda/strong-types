@@ -1,22 +1,22 @@
-import {KVPRule} from '../rule/rule';
-import {KVPRuleFn} from '../rule/fn';
-import {KVPRuleModifiers} from '../rule/modifiers';
-import {KVPRuleNode} from '../rule/node';
-import {KVPRuleNodeType} from '../rule/node-type';
+import {TBRule} from '../rule/rule';
+import {TBRuleFn} from '../rule/fn';
+import {TBRuleModifiers} from '../rule/modifiers';
+import {TBRuleNode} from '../rule/node';
+import {TBRuleNodeType} from '../rule/node-type';
 
-export type KVPOpIsNull<CallerType> = () => CallerType;
+export type TBOpIsNull<CallerType> = () => CallerType;
 
 export function createIsNull<CallerType>(
 	caller: CallerType,
-	rule: KVPRule,
-	mods: KVPRuleModifiers
-): KVPOpIsNull<CallerType> {
+	rule: TBRule,
+	mods: TBRuleModifiers
+): TBOpIsNull<CallerType> {
 	return (): CallerType => {
-		const fn: KVPRuleFn = (curr: any): boolean => {
+		const fn: TBRuleFn = (curr: any): boolean => {
 			return curr === null;
 		};
 
-		const node = new KVPRuleNode('IS_NULL', KVPRuleNodeType.CMP, fn, mods.invert);
+		const node = new TBRuleNode('IS_NULL', TBRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

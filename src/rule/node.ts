@@ -1,14 +1,14 @@
-import {KVPRuleFn} from './fn';
-import {KVPRuleNodeType} from './node-type';
+import {TBRuleFn} from './fn';
+import {TBRuleNodeType} from './node-type';
 
-export class KVPRuleNode {
+export class TBRuleNode {
 	public readonly id: string;
-	public readonly children: KVPRuleNode[];
-	public readonly fn: KVPRuleFn | null;
-	public readonly type: KVPRuleNodeType;
+	public readonly children: TBRuleNode[];
+	public readonly fn: TBRuleFn | null;
+	public readonly type: TBRuleNodeType;
 	public invertResult: boolean;
 
-	constructor(id: string, type: KVPRuleNodeType, fn: KVPRuleFn | null, invert?: boolean) {
+	constructor(id: string, type: TBRuleNodeType, fn: TBRuleFn | null, invert?: boolean) {
 		this.id = id;
 		this.children = [];
 		this.fn = fn;

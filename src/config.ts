@@ -1,1 +1,1 @@
-export class KVPConfig {}
+export class TBConfig {}

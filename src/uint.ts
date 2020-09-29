@@ -1,21 +1,21 @@
-import {KVP, KVPNB, createKVP, createKVPNB} from './kvp';
+import {TypeBox, TypeBoxNB, createTypeBox, createTypeBoxNB} from './type-box';
 
-import {KVPRules} from './rules';
+import {TBRules} from './rules';
 
-export type KVPUInt = KVP<number>;
+export type TBUInt = TypeBox<number>;
 
-export type KVPUIntNB = KVPNB<number>;
+export type TBUIntNB = TypeBoxNB<number>;
 
-export function createKVPUInt(initial: number | null, fallback: number): KVPUInt {
-	const rules = new KVPRules<number>();
+export function createTBUInt(initial: number | null, fallback: number): TBUInt {
+	const rules = new TBRules<number>();
 
 	rules.add().must.match.type.integer();
 	rules.add().must.be.greaterThanOrEqualTo(0);
 
-	return createKVP<number>(initial, fallback, rules);
+	return createTypeBox<number>(initial, fallback, rules);
 }
 
-export function createKVPUIntNB(initial: number | null, fallback: number): KVPUIntNB {
-	const rules = new KVPRules();
-	return createKVPNB<number>(initial, fallback, rules);
+export function createTBUIntNB(initial: number | null, fallback: number): TBUIntNB {
+	const rules = new TBRules();
+	return createTypeBoxNB<number>(initial, fallback, rules);
 }

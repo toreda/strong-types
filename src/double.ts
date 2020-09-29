@@ -1,22 +1,22 @@
-import {KVP, KVPNB, createKVP, createKVPNB} from './kvp';
+import {TypeBox, TypeBoxNB, createTypeBox, createTypeBoxNB} from './type-box';
 
-import {KVPRules} from './rules';
+import {TBRules} from './rules';
 
-export type KVPDouble = KVP<number>;
+export type TBDouble = TypeBox<number>;
 
-export type KVPDoubleNB = KVPNB<number>;
+export type TBDoubleNB = TypeBoxNB<number>;
 
-export function createKVPDouble(initial: number | null, fallback: number): KVPDouble {
-	const rules = new KVPRules<number>();
+export function createTBDouble(initial: number | null, fallback: number): TBDouble {
+	const rules = new TBRules<number>();
 
 	rules.add().must.match.type.double();
 
-	return createKVP<number>(initial, fallback, rules);
+	return createTypeBox<number>(initial, fallback, rules);
 }
 
-export function createKVPDoubleNB(initial: number | null, fallback: number): KVPDoubleNB {
-	const rules = new KVPRules();
+export function createTBDoubleNB(initial: number | null, fallback: number): TBDoubleNB {
+	const rules = new TBRules();
 	rules.add().must.match.type.double();
 
-	return createKVPNB<number>(initial, fallback, rules);
+	return createTypeBoxNB<number>(initial, fallback, rules);
 }

@@ -1,10 +1,10 @@
-import {KVPRule} from '../rule/rule';
-import {KVPRuleFn} from '../rule/fn';
-import {KVPRuleModifiers} from '../rule/modifiers';
-import {KVPRuleNode} from '../rule/node';
-import {KVPRuleNodeType} from '../rule/node-type';
+import {TBRule} from '../rule/rule';
+import {TBRuleFn} from '../rule/fn';
+import {TBRuleModifiers} from '../rule/modifiers';
+import {TBRuleNode} from '../rule/node';
+import {TBRuleNodeType} from '../rule/node-type';
 
-export type KVPOpIsInteger<CallerType> = () => CallerType;
+export type TBOpIsInteger<CallerType> = () => CallerType;
 
 export const isInteger = (curr: number): boolean => {
 	if (typeof curr !== 'number') {
@@ -16,15 +16,15 @@ export const isInteger = (curr: number): boolean => {
 
 export function createIsInteger<CallerType>(
 	caller: CallerType,
-	rule: KVPRule,
-	mods: KVPRuleModifiers
-): KVPOpIsInteger<CallerType> {
+	rule: TBRule,
+	mods: TBRuleModifiers
+): TBOpIsInteger<CallerType> {
 	return (): CallerType => {
-		const fn: KVPRuleFn = (curr: number): boolean => {
+		const fn: TBRuleFn = (curr: number): boolean => {
 			return isInteger(curr);
 		};
 
-		const node = new KVPRuleNode('IS_INT', KVPRuleNodeType.CMP, fn, mods.invert);
+		const node = new TBRuleNode('IS_INT', TBRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

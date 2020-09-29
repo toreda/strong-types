@@ -1,10 +1,10 @@
-import {KVPRule} from '../rule/rule';
-import {KVPRuleFn} from '../rule/fn';
-import {KVPRuleModifiers} from '../rule/modifiers';
-import {KVPRuleNode} from '../rule/node';
-import {KVPRuleNodeType} from '../rule/node-type';
+import {TBRule} from '../rule/rule';
+import {TBRuleFn} from '../rule/fn';
+import {TBRuleModifiers} from '../rule/modifiers';
+import {TBRuleNode} from '../rule/node';
+import {TBRuleNodeType} from '../rule/node-type';
 
-export type KVPOpIsEqualTo<CallerType> = (a: any) => CallerType;
+export type TBOpIsEqualTo<CallerType> = (a: any) => CallerType;
 
 export const equalToFn = (curr: any, target: any): boolean => {
 	if (typeof target === 'undefined' || typeof curr === 'undefined') {
@@ -32,14 +32,14 @@ export const equalToFn = (curr: any, target: any): boolean => {
 
 export function createIsEqualTo<CallerType>(
 	caller: CallerType,
-	rule: KVPRule,
-	mods: KVPRuleModifiers
-): KVPOpIsEqualTo<CallerType> {
+	rule: TBRule,
+	mods: TBRuleModifiers
+): TBOpIsEqualTo<CallerType> {
 	return (target: any): CallerType => {
-		const fn: KVPRuleFn = (curr: any): boolean => {
+		const fn: TBRuleFn = (curr: any): boolean => {
 			return equalToFn(curr, target);
 		};
-		const node = new KVPRuleNode('EQT', KVPRuleNodeType.CMP, fn, mods.invert);
+		const node = new TBRuleNode('EQT', TBRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 		return caller;
 	};

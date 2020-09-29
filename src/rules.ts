@@ -1,17 +1,17 @@
-import {KVPRule} from './rule/rule';
-import {KVPRuleMust} from './rule/must';
-import {KVPRuleRoot} from './rule/root';
+import {TBRule} from './rule/rule';
+import {TBRuleMust} from './rule/must';
+import {TBRuleRoot} from './rule/root';
 
-export class KVPRules<T> {
-	public readonly rules: KVPRule[];
+export class TBRules<T> {
+	public readonly rules: TBRule[];
 
 	constructor() {
 		this.rules = [];
 	}
 
-	public add(): KVPRuleRoot {
+	public add(): TBRuleRoot {
 		return {
-			must: new KVPRuleMust(this.rules, null)
+			must: new TBRuleMust(this.rules, null)
 		};
 	}
 

@@ -1,6 +1,6 @@
-import {KVPRule} from './rule';
-import {KVPRuleModifiers} from '../rule/modifiers';
+import {TBRule} from './rule';
+import {TBRuleModifiers} from '../rule/modifiers';
 
-export class KVPRuleOr {
-	constructor(rule: KVPRule, parentMods: KVPRuleModifiers) {}
+export class TBRuleOr {
+	constructor(rule: TBRule, parentMods: TBRuleModifiers) {}
 }

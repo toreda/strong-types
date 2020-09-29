@@ -1,4 +1,4 @@
-import {KVP, KVPNB, createKVP, createKVPNB} from '../src/kvp';
+import {TypeBox, TypeBoxNB, createTypeBox, createTypeBoxNB} from '../src/type-box';
 
 const MOCK_INITIAL = '11110209';
 const MOCK_STRING = '113333';
@@ -7,164 +7,164 @@ const MOCK_FALLBACK = 'roman bree';
 const MOCK_VALUE_UNDEFINED = undefined;
 const MOCK_VALUE_NULL = null;
 
-describe('KVP', () => {
-	describe('createKVP', () => {
+describe('TypeBox', () => {
+	describe('createTypeBox', () => {
 		describe('types', () => {
-			let kvp: KVP<string>;
+			let tb: TypeBox<string>;
 
 			beforeAll(() => {
-				kvp = createKVP<string>(MOCK_INITIAL, MOCK_FALLBACK);
+				tb = createTypeBox<string>(MOCK_INITIAL, MOCK_FALLBACK);
 			});
 
 			beforeEach(() => {
-				kvp.reset();
+				tb.reset();
 			});
 
 			it('should create and return a function', () => {
-				expect(typeof kvp).toBe('function');
+				expect(typeof tb).toBe('function');
 			});
 
 			it('should return initial value when call with no arguments', () => {
 				const sampleStr = '44198657635';
-				const customKVP = createKVP<string>(sampleStr, MOCK_FALLBACK);
-				expect(customKVP()).toBe(sampleStr);
+				const customTB = createTypeBox<string>(sampleStr, MOCK_FALLBACK);
+				expect(customTB()).toBe(sampleStr);
 			});
 
 			it('should return default fallback value argument is not provided and value is null', () => {
-				const customKVP = createKVP<string>(null, MOCK_FALLBACK);
-				expect(customKVP()).toBe(MOCK_FALLBACK);
+				const customTB = createTypeBox<string>(null, MOCK_FALLBACK);
+				expect(customTB()).toBe(MOCK_FALLBACK);
 			});
 
-			it('should set value when kvp is called with an argument', () => {
+			it('should set value when tb is called with an argument', () => {
 				const sampleStr = '44810100929';
-				kvp(sampleStr);
-				expect(kvp()).toBe(sampleStr);
+				tb(sampleStr);
+				expect(tb()).toBe(sampleStr);
 			});
 
 			it('should return fallback default when invoked with no arguments and value has been set to null', () => {
 				const sampleStr = '44810100929';
-				const kvp = createKVP<string>(MOCK_STRING, MOCK_FALLBACK);
-				kvp(null);
-				expect(kvp()).toBe(MOCK_FALLBACK);
+				const tb = createTypeBox<string>(MOCK_STRING, MOCK_FALLBACK);
+				tb(null);
+				expect(tb()).toBe(MOCK_FALLBACK);
 			});
 
 			describe('get', () => {
 				it('should return provided fallback when value is null', () => {
 					const sampleStr = '9419814981';
-					expect(kvp.get(sampleStr)).toBe(sampleStr);
+					expect(tb.get(sampleStr)).toBe(sampleStr);
 				});
 
 				it('should return the fallback default when value is null and provided fallback is not valid', () => {
 					const sampleStr = '4098211872';
-					const kvp = createKVP<string>(MOCK_STRING, sampleStr);
-					kvp(null);
-					expect(kvp.get(undefined as any)).toBe(sampleStr);
+					const tb = createTypeBox<string>(MOCK_STRING, sampleStr);
+					tb(null);
+					expect(tb.get(undefined as any)).toBe(sampleStr);
 				});
 			});
 
 			describe('getNullable', () => {
 				it('should return value when value is not null', () => {
 					const sampleStr = '6766199823';
-					const kvp = createKVP<string>(sampleStr, MOCK_FALLBACK);
-					expect(kvp.getNullable()).toBe(sampleStr);
+					const tb = createTypeBox<string>(sampleStr, MOCK_FALLBACK);
+					expect(tb.getNullable()).toBe(sampleStr);
 				});
 
 				it('should return null when value is null', () => {
-					kvp(null);
-					expect(kvp.getNullable()).toBeNull();
+					tb(null);
+					expect(tb.getNullable()).toBeNull();
 				});
 			});
 
 			describe('reset', () => {
 				it('should set value to null when value is set by initial value', () => {
-					const kvp = createKVP<string>(null, MOCK_FALLBACK);
-					expect(kvp.getNullable()).toBeNull();
+					const tb = createTypeBox<string>(null, MOCK_FALLBACK);
+					expect(tb.getNullable()).toBeNull();
 				});
 
-				it('should set value to null when value is set invoking kvp("val") with argument', () => {
+				it('should set value to null when value is set invoking tb("val") with argument', () => {
 					const sampleStr = '881032091';
-					kvp(sampleStr);
-					expect(kvp()).toBe(sampleStr);
-					kvp.reset();
-					expect(kvp.getNullable()).toBeNull();
+					tb(sampleStr);
+					expect(tb()).toBe(sampleStr);
+					tb.reset();
+					expect(tb.getNullable()).toBeNull();
 				});
 
 				it('should not throw when value is already null', () => {
-					kvp(null);
+					tb(null);
 					expect(() => {
-						kvp.reset();
+						tb.reset();
 					}).not.toThrow();
-					expect(kvp.getNullable()).toBeNull();
+					expect(tb.getNullable()).toBeNull();
 				});
 
 				it('should not throw when called repeatedly', () => {
 					expect(() => {
 						for (let i = 0; i < 10; i++) {
-							kvp.reset();
+							tb.reset();
 						}
 					}).not.toThrow();
-					expect(kvp.getNullable()).toBeNull();
+					expect(tb.getNullable()).toBeNull();
 				});
 			});
 		});
 	});
 
-	describe('createKVPNB', () => {
+	describe('createTypeBoxNB', () => {
 		describe('Usage', () => {
-			let kvp: KVPNB<string>;
+			let tb: TypeBoxNB<string>;
 
 			beforeAll(() => {
-				kvp = createKVPNB<string>(MOCK_INITIAL, MOCK_FALLBACK);
+				tb = createTypeBoxNB<string>(MOCK_INITIAL, MOCK_FALLBACK);
 			});
 
 			beforeEach(() => {
-				kvp.reset();
+				tb.reset();
 			});
 
-			describe('invoking kvp()', () => {
+			describe('invoking tb()', () => {
 				it('should return null when value is null', () => {
 					const sampleStr = 'AAAVB';
-					expect(kvp()).toBeNull();
+					expect(tb()).toBeNull();
 
-					kvp(sampleStr);
-					expect(kvp()).toBe(sampleStr);
+					tb(sampleStr);
+					expect(tb()).toBe(sampleStr);
 				});
 
 				it('should return string when value is set to string', () => {
-					expect(kvp()).toBeNull();
+					expect(tb()).toBeNull();
 					const sampleStr = 'VVVV0192309';
-					kvp(sampleStr);
-					expect(kvp()).toBe(sampleStr);
+					tb(sampleStr);
+					expect(tb()).toBe(sampleStr);
 				});
 			});
 
-			describe('invoking kvp(value)', () => {
+			describe('invoking tb(value)', () => {
 				it('should set value to null when value argument is null', () => {
-					expect(kvp()).toBeNull();
+					expect(tb()).toBeNull();
 					const sampleStr = 'VVVV0192309';
-					kvp(sampleStr);
-					expect(kvp()).toBe(sampleStr);
-					kvp(null);
-					expect(kvp()).toBeNull();
+					tb(sampleStr);
+					expect(tb()).toBe(sampleStr);
+					tb(null);
+					expect(tb()).toBeNull();
 				});
 
 				it('should not update current value when value argument is undefined', () => {
-					expect(kvp()).toBeNull();
+					expect(tb()).toBeNull();
 					const sampleStr = '110982_AAVMFKA';
-					kvp(sampleStr);
-					expect(kvp()).toBe(sampleStr);
-					kvp(MOCK_VALUE_UNDEFINED);
-					expect(kvp()).toBe(sampleStr);
+					tb(sampleStr);
+					expect(tb()).toBe(sampleStr);
+					tb(MOCK_VALUE_UNDEFINED);
+					expect(tb()).toBe(sampleStr);
 				});
 			});
 
-			describe('kvp.reset()', () => {
-				it('should set value to null when value is set invoking kvp("val") with argument', () => {
+			describe('tb.reset()', () => {
+				it('should set value to null when value is set invoking tb("val") with argument', () => {
 					const sampleStr = '4423211V';
-					kvp(sampleStr);
-					expect(kvp()).toBe(sampleStr);
-					kvp.reset();
-					expect(kvp()).toBeNull();
+					tb(sampleStr);
+					expect(tb()).toBe(sampleStr);
+					tb.reset();
+					expect(tb()).toBeNull();
 				});
 			});
 		});

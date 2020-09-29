@@ -1,3 +1,3 @@
-export interface KVPRuleModifiers {
+export interface TBRuleModifiers {
 	invert: boolean;
 }

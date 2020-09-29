@@ -1,1 +1,1 @@
-export class KVPRuleA {}
+export class TBRuleA {}

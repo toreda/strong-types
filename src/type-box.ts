@@ -1,25 +1,25 @@
-import {KVPData} from './data';
-import {KVPRules} from './rules';
+import {TBData} from './data';
+import {TBRules} from './rules';
 
-export interface KVP<T> {
+export interface TypeBox<T> {
 	(val?: T | null): T;
 	get: (fallback: T) => T;
 	getNullable: () => T | null;
 	reset: () => void;
 }
 
-export interface KVPNB<T> {
+export interface TypeBoxNB<T> {
 	(val?: T | null): T | null;
 	get: (fallback: T) => T;
 	reset: () => void;
 }
 
-export function createKVP<T>(initialValue: T | null, fallbackArg: T, rules?: KVPRules<T>): KVP<T> {
-	const instance = new KVPData<T>(initialValue, fallbackArg, rules);
+export function createTypeBox<T>(initialValue: T | null, fallbackArg: T, rules?: TBRules<T>): TypeBox<T> {
+	const instance = new TBData<T>(initialValue, fallbackArg, rules);
 
 	const localFallback = fallbackArg !== undefined ? fallbackArg : instance.fallbackDefault;
 
-	const helper: KVP<T> = Object.assign(
+	const helper: TypeBox<T> = Object.assign(
 		(val?: T): T => {
 			if (typeof val !== 'undefined') {
 				instance.set(val);
@@ -48,10 +48,10 @@ export function createKVP<T>(initialValue: T | null, fallbackArg: T, rules?: KVP
 	return helper;
 }
 
-export function createKVPNB<T>(initial: T | null, fallbackArg: T, rules?: KVPRules<T>): KVPNB<T> {
-	const instance = new KVPData<T>(initial, fallbackArg, rules);
+export function createTypeBoxNB<T>(initial: T | null, fallbackArg: T, rules?: TBRules<T>): TypeBoxNB<T> {
+	const instance = new TBData<T>(initial, fallbackArg, rules);
 
-	const helper: KVPNB<T> = Object.assign(
+	const helper: TypeBoxNB<T> = Object.assign(
 		(val?: T): T | null => {
 			if (typeof val !== 'undefined') {
 				instance.set(val);
