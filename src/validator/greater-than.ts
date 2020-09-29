@@ -24,5 +24,5 @@ export function createIsGreaterThan<CallerType>(
 		rule.add(node);
 
 		return caller;
-	}
+	};
 }
