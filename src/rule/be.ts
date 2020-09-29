@@ -6,10 +6,7 @@ import {
 	createIsGreaterThanOrEqualTo
 } from '../validator/greater-than-or-equal-to';
 import {KVPOpIsLessThan, createIsLessThan} from '../validator/less-than';
-import {
-	KVPOpIsLessThanOrEqualTo,
-	createIsLessThanOrEqualTo
-} from '../validator/less-than-or-equal-to';
+import {KVPOpIsLessThanOrEqualTo, createIsLessThanOrEqualTo} from '../validator/less-than-or-equal-to';
 import {KVPOpIsNull, createIsNull} from '../validator/null';
 import {KVPOpIsUndefined, createIsUndefined} from '../validator/undefined';
 

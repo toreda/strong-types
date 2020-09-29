@@ -1,13 +1,13 @@
 export {KVP, KVPNB, createKVP, createKVPNB} from './kvp';
 
-export {KVPArray, KVPArrayNB} from './array';
-export {KVPInt, KVPIntNB} from './int';
-export {KVPString, KVPStringNB} from './string';
+export {KVPArray, KVPArrayNB, createKVPArray, createKVPArrayNB} from './array';
+export {KVPInt, KVPIntNB, createKVPInt, createKVPIntNB} from './int';
 export {KVPState} from './state';
 export {KVPData} from './data';
-export {KVPDouble} from './double';
+export {KVPDouble, KVPDoubleNB, createKVPDouble, createKVPDoubleNB} from './double';
 export {KVPConfig} from './config';
-
+export {KVPBool, KVPBoolNB, createKVPBool, createKVPBoolNB} from './bool';
+export {KVPString, KVPStringNB, createKVPString, createKVPStringNB} from './string';
 // Validators
 export {KVPOpIsBoolean, createIsBoolean} from './validator/boolean';
 export {KVPOpIsEmpty, createIsEmpty} from './validator/empty';
@@ -32,7 +32,7 @@ export {KVPTransform} from './transform';
 export {KVPTransformFN} from './transform-fn';
 export {KVPTransformFNNB} from './transform-fn-nb';
 export {KVPTransforms} from './transforms';
-export {KVPUInt, createKVPUInt} from './uint';
+export {KVPUInt, KVPUIntNB, createKVPUInt, createKVPUIntNB} from './uint';
 export {KVPOptions} from './options';
 export {KVPRules} from './rules';
 export {KVPRuleA} from './rule/a';
