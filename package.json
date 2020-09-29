@@ -1,6 +1,6 @@
 {
   "name": "@toreda/type-box",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Typescript first package for managed and typed key value pairs.",
   "main": "./dist/index",
   "typings": "./dist/index.d.ts",

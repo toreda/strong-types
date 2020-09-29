@@ -4,7 +4,7 @@ const MOCK_INITIAL = 4410;
 const MOCK_FALLBACK_DEFAULT = 99121;
 const MOCK_FALLBACK = 172091;
 
-describe('KVPUInt', () => {
+describe('TBUInt', () => {
 	describe('Implementation', () => {
 		it('should set value to initialValue argument', () => {
 			const sampleInitial = 11098;
@@ -68,7 +68,7 @@ describe('KVPUInt', () => {
 	});
 });
 
-describe('KVPUIntNB', () => {
+describe('TBUIntNB', () => {
 	describe('Implementation', () => {
 		it('should return null when value is not set', () => {
 			const sampleFallbackDefault = 3900001;

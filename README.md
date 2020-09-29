@@ -36,10 +36,10 @@ npm install @toreda/type-box
 Accepts integer values only.
 ##### Creating Ints
 ```typescript
-import {TBInt, createTBInt} from '@toreda/type-box';
+import {TBInt, createInt} from '@toreda/type-box';
 const initial = 11;
 const fallback = 55;
-const int = createTBInt(initial, fallback);
+const int = createInt(initial, fallback);
 
 // Returns 11 - initial value was 11.
 const value = int();
@@ -47,10 +47,10 @@ const value = int();
 
 ##### Fallback Default
 ```typescript
-import {KVPInt, createTBInt} from '@toreda/type-box';
+import {TBInt, createInt} from '@toreda/type-box';
 const initial = null;
 const fallback = 101;
-const uint = createTBInt(initial, fallback);
+const uint = createInt(initial, fallback);
 
 // Returns 101 - current value is null (no value set).
 const value = uint();
@@ -58,8 +58,8 @@ const value = uint();
 
 ##### Individual Fallbacks
 ```typescript
-import {KVPInt, createTBInt} from '@toreda/type-box';
-const int = createTBInt(null, 201);
+import {TBInt, createInt} from '@toreda/type-box';
+const int = createInt(null, 201);
 
 // kvp.get(fallback) returns the fallback argument when the kvp instance
 // has no value set.
@@ -74,31 +74,31 @@ const value = int.get(fallback);
 ```
 
 ##### Validation
-KVPInt will not update t's value called with a positive or negative integer.
+TBInt will not update t's value called with a positive or negative integer.
 ```typescript
 
-import {KVPInt, createTBInt} from '@toreda/type-box';
-const uint = createTBInt(50, 100);
+import {TBInt, createInt} from '@toreda/type-box';
+const uint = createInt(50, 100);
 
 // Attempting to set value to a negative integer.
 // Success will be false.
-const success = int(1.5);
+const success = uint(1.5);
 
 // value is still 50. 1.5 is not an integer.
 const value = uint();
 ```
 
 
-#### KVPUInt - unsigned integers
+#### TBUInt - unsigned integers
 Accepts positive integer values only. Everything else will be rejected and will not update the value.
 
 ##### Creating UInts
 ```typescript
-import {KVPUInt, createTBUInt} from '@toreda/type-box';
+import {TBUInt, createUInt} from '@toreda/type-box';
 // UInt starting value.
 const initial = 44;
 const fallbackDefault = 1;
-const uint = createTBUInt(initialValue, fallbackDefault);
+const uint = createUInt(initialValue, fallbackDefault);
 
 // Get the current value 44.
 const uintValue = uint();
@@ -109,10 +109,10 @@ uint(14);
 
 ##### Using the  Fallback Default
 ```typescript
-import {KVPUInt, createTBUInt} from '@toreda/type-box';
+import {TBUInt, createUInt} from '@toreda/type-box';
 const initialValue = null;
 const fallbackDefault = 27;
-const uint = createTBUInt(initialValue, fallbackDefault);
+const uint = createUInt(initialValue, fallbackDefault);
 
 // Returns 27. Getting the current value with uint() guarantees a type-safe return value.
 // When the current value is null (not set), the default fallback is returned instead.
@@ -122,8 +122,8 @@ const value = uint();
 
 ##### Individual Fallbacks
 ```typescript
-import {KVPUInt, createTBUInt} from '@toreda/type-box';
-const uint = createTBUInt(null, 30);
+import {TBUInt, createUInt} from '@toreda/type-box';
+const uint = createUInt(null, 30);
 
 // kvp.get(fallback) returns the fallback when the kvp
 // has no value set.
@@ -138,11 +138,11 @@ const value = uint.get(fallback);
 ```
 
 ##### Type Validation
-KVPUInt performs automatic input validation and will not update it's value unless the provided input is an unsigned integer.
+TBUInt performs automatic input validation and will not update it's value unless the provided input is an unsigned integer.
 ```typescript
 
-import {KVPUInt, createTBUInt} from '@toreda/type-box';
-const uint = createTBUInt(20, 40);
+import {TBUInt, createUInt} from '@toreda/type-box';
+const uint = createUInt(20, 40);
 
 // Attempting to set value to a negative integer.
 // Success will be false.
@@ -159,10 +159,10 @@ const value = uint();
 
 ### Create a key-value pair
 ```typescript
-import {TypeBox, createTB} from '@toreda/type-box';
+import {TypeBox, create} from '@toreda/type-box';
 const initial = 'hello';
 const fallbackDefault = 'goodbye';
-const myValue = createTB<string>(initial, fallbackDefault);
+const myValue = create<string>(initial, fallbackDefault);
 ```
 
 ### Get value
