@@ -19,7 +19,7 @@ export function createTypeBox<T>(initialValue: T | null, fallbackArg: T, rules?:
 
 	const localFallback = fallbackArg !== undefined ? fallbackArg : instance.fallbackDefault;
 
-	const helper: TypeBox<T> = Object.assign(
+	return Object.assign(
 		(val?: T): T => {
 			if (typeof val !== 'undefined') {
 				instance.set(val);
@@ -44,14 +44,12 @@ export function createTypeBox<T>(initialValue: T | null, fallbackArg: T, rules?:
 			}
 		}
 	);
-
-	return helper;
 }
 
 export function createTypeBoxNB<T>(initial: T | null, fallbackArg: T, rules?: TBRules<T>): TypeBoxNB<T> {
 	const instance = new TBData<T>(initial, fallbackArg, rules);
 
-	const helper: TypeBoxNB<T> = Object.assign(
+	return Object.assign(
 		(val?: T): T | null => {
 			if (typeof val !== 'undefined') {
 				instance.set(val);
@@ -69,6 +67,4 @@ export function createTypeBoxNB<T>(initial: T | null, fallbackArg: T, rules?: TB
 			}
 		}
 	);
-
-	return helper;
 }
