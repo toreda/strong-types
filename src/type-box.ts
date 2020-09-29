@@ -14,7 +14,7 @@ export interface TypeBoxNB<T> {
 	reset: () => void;
 }
 
-export function createTypeBox<T>(initialValue: T | null, fallbackArg: T, rules?: TBRules<T>): TypeBox<T> {
+export function create<T>(initialValue: T | null, fallbackArg: T, rules?: TBRules<T>): TypeBox<T> {
 	const instance = new TBData<T>(initialValue, fallbackArg, rules);
 
 	const localFallback = fallbackArg !== undefined ? fallbackArg : instance.fallbackDefault;
@@ -46,7 +46,7 @@ export function createTypeBox<T>(initialValue: T | null, fallbackArg: T, rules?:
 	);
 }
 
-export function createTypeBoxNB<T>(initial: T | null, fallbackArg: T, rules?: TBRules<T>): TypeBoxNB<T> {
+export function createNB<T>(initial: T | null, fallbackArg: T, rules?: TBRules<T>): TypeBoxNB<T> {
 	const instance = new TBData<T>(initial, fallbackArg, rules);
 
 	return Object.assign(

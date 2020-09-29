@@ -1,13 +1,13 @@
-export {TypeBox, TypeBoxNB, createTypeBox, createTypeBoxNB} from './type-box';
+export {TypeBox, TypeBoxNB, create, createNB} from './type-box';
 
 export {TBArray, TBArrayNB, createTBArray, createTBArrayNB} from './array';
-export {TBInt, TBIntNB, createTBInt, createTBIntNB} from './int';
+export {TBInt, TBIntNB, createInt, createIntNB} from './int';
 export {TBState} from './state';
 export {TBData} from './data';
-export {TBDouble, TBDoubleNB, createTBDouble, createTBDoubleNB} from './double';
+export {TBDouble, TBDoubleNB, createDouble, createDoubleNB} from './double';
 export {TBConfig} from './config';
-export {TBBool, TBBoolNB, createTBBool, createTBBoolNB} from './bool';
-export {TBString, TBStringNB, createTBString, createTBStringNB} from './string';
+export {TBBool, TBBoolNB, createBool, createBoolNB} from './bool';
+export {TBString, TBStringNB, createString, createStringNB} from './string';
 // Validators
 export {TBOpIsBoolean, createIsBoolean} from './validator/boolean';
 export {TBOpIsEmpty, createIsEmpty} from './validator/empty';
@@ -29,7 +29,7 @@ export {TBTransform} from './transform';
 export {TBTransformFN} from './transform-fn';
 export {TBTransformFNNB} from './transform-fn-nb';
 export {TBTransforms} from './transforms';
-export {TBUInt, TBUIntNB, createTBUInt, createTBUIntNB} from './uint';
+export {TBUInt, TBUIntNB, createUInt, createUIntNB} from './uint';
 export {TBOptions} from './options';
 export {TBRules} from './rules';
 export {TBRuleA} from './rule/a';

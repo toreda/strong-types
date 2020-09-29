@@ -1,4 +1,4 @@
-import {TypeBox, TypeBoxNB, createTypeBox, createTypeBoxNB} from '../src/type-box';
+import {TypeBox, TypeBoxNB, create, createNB} from '../src/type-box';
 
 const MOCK_INITIAL = '11110209';
 const MOCK_STRING = '113333';
@@ -8,12 +8,12 @@ const MOCK_VALUE_UNDEFINED = undefined;
 const MOCK_VALUE_NULL = null;
 
 describe('TypeBox', () => {
-	describe('createTypeBox', () => {
+	describe('create', () => {
 		describe('types', () => {
 			let tb: TypeBox<string>;
 
 			beforeAll(() => {
-				tb = createTypeBox<string>(MOCK_INITIAL, MOCK_FALLBACK);
+				tb = create<string>(MOCK_INITIAL, MOCK_FALLBACK);
 			});
 
 			beforeEach(() => {
@@ -26,12 +26,12 @@ describe('TypeBox', () => {
 
 			it('should return initial value when call with no arguments', () => {
 				const sampleStr = '44198657635';
-				const customTB = createTypeBox<string>(sampleStr, MOCK_FALLBACK);
+				const customTB = create<string>(sampleStr, MOCK_FALLBACK);
 				expect(customTB()).toBe(sampleStr);
 			});
 
 			it('should return default fallback value argument is not provided and value is null', () => {
-				const customTB = createTypeBox<string>(null, MOCK_FALLBACK);
+				const customTB = create<string>(null, MOCK_FALLBACK);
 				expect(customTB()).toBe(MOCK_FALLBACK);
 			});
 
@@ -43,7 +43,7 @@ describe('TypeBox', () => {
 
 			it('should return fallback default when invoked with no arguments and value has been set to null', () => {
 				const sampleStr = '44810100929';
-				const tb = createTypeBox<string>(MOCK_STRING, MOCK_FALLBACK);
+				const tb = create<string>(MOCK_STRING, MOCK_FALLBACK);
 				tb(null);
 				expect(tb()).toBe(MOCK_FALLBACK);
 			});
@@ -56,7 +56,7 @@ describe('TypeBox', () => {
 
 				it('should return the fallback default when value is null and provided fallback is not valid', () => {
 					const sampleStr = '4098211872';
-					const tb = createTypeBox<string>(MOCK_STRING, sampleStr);
+					const tb = create<string>(MOCK_STRING, sampleStr);
 					tb(null);
 					expect(tb.get(undefined as any)).toBe(sampleStr);
 				});
@@ -65,7 +65,7 @@ describe('TypeBox', () => {
 			describe('getNullable', () => {
 				it('should return value when value is not null', () => {
 					const sampleStr = '6766199823';
-					const tb = createTypeBox<string>(sampleStr, MOCK_FALLBACK);
+					const tb = create<string>(sampleStr, MOCK_FALLBACK);
 					expect(tb.getNullable()).toBe(sampleStr);
 				});
 
@@ -77,7 +77,7 @@ describe('TypeBox', () => {
 
 			describe('reset', () => {
 				it('should set value to null when value is set by initial value', () => {
-					const tb = createTypeBox<string>(null, MOCK_FALLBACK);
+					const tb = create<string>(null, MOCK_FALLBACK);
 					expect(tb.getNullable()).toBeNull();
 				});
 
@@ -109,12 +109,12 @@ describe('TypeBox', () => {
 		});
 	});
 
-	describe('createTypeBoxNB', () => {
+	describe('createNB', () => {
 		describe('Usage', () => {
 			let tb: TypeBoxNB<string>;
 
 			beforeAll(() => {
-				tb = createTypeBoxNB<string>(MOCK_INITIAL, MOCK_FALLBACK);
+				tb = createNB<string>(MOCK_INITIAL, MOCK_FALLBACK);
 			});
 
 			beforeEach(() => {

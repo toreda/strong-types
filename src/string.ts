@@ -1,4 +1,4 @@
-import {TypeBox, TypeBoxNB, createTypeBox, createTypeBoxNB} from './type-box';
+import {TypeBox, TypeBoxNB, create, createNB} from './type-box';
 
 import {TBRules} from './rules';
 
@@ -6,12 +6,12 @@ export type TBString = TypeBox<string>;
 
 export type TBStringNB = TypeBoxNB<string>;
 
-export function createTBString(initial: string, fallback: string): TBString {
+export function createString(initial: string, fallback: string): TBString {
 	const rules = new TBRules();
-	return createTypeBox<string>(initial, fallback, rules);
+	return create<string>(initial, fallback, rules);
 }
 
-export function createTBStringNB(initial: string | null, fallback: string): TBStringNB {
+export function createStringNB(initial: string | null, fallback: string): TBStringNB {
 	const rules = new TBRules();
-	return createTypeBoxNB<string>(initial, fallback, rules);
+	return createNB<string>(initial, fallback, rules);
 }
