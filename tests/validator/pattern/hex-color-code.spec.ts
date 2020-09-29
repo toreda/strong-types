@@ -1,6 +1,7 @@
+import {createIsHexColorCode, isHexColorCodeStr} from '../../../src/validator/pattern/hex-color-code';
+
 import {TBRule} from '../../../src/rule/rule';
 import {TBRuleModifiers} from '../../../src/rule/modifiers';
-import {createIsHexColorCode} from '../../../src/validator/pattern/hex-color-code';
 
 const EMPTY_STRING = '';
 const EMPTY_ARRAY = [];
@@ -271,5 +272,19 @@ describe('HexColorCode', () => {
 				expect(rule.nodes[0].execute(input.value)).toBe(input.expectedResult);
 			});
 		}
+	});
+
+	describe('isHexColorCodeStr', () => {
+		it('should return false when value input is a number', () => {
+			expect(isHexColorCodeStr(111 as any)).toBe(false);
+		});
+
+		it('should return false when input is an empty string', () => {
+			expect(isHexColorCodeStr(EMPTY_STRING)).toBe(false);
+		});
+
+		it('should return false when value input is a non-hex string', () => {
+			expect(isHexColorCodeStr('nachos')).toBe(false);
+		});
 	});
 });

@@ -1,6 +1,6 @@
 export {TypeBox, TypeBoxNB, create, createNB} from './type-box';
 
-export {TBArray, TBArrayNB, createTBArray, createTBArrayNB} from './array';
+export {TBArray, TBArrayNB, createArray, createArrayNB} from './array';
 export {TBInt, TBIntNB, createInt, createIntNB} from './int';
 export {TBState} from './state';
 export {TBData} from './data';

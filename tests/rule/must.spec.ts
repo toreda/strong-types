@@ -9,6 +9,10 @@ describe('TBMust', () => {
 		instance = new TBRuleMust(rules, null);
 	});
 
+	beforeEach(() => {
+		rules.length = 0;
+	});
+
 	describe('Constructor', () => {
 		it(`should initialize 'be' property`, () => {
 			expect(instance.be).not.toBeUndefined();
@@ -28,6 +32,19 @@ describe('TBMust', () => {
 
 		it(`should initialize 'match' property`, () => {
 			expect(instance.match).not.toBeUndefined();
+		});
+
+		it('should push a rule to rules array when parentRule argument is null', () => {
+			expect(rules).toHaveLength(0);
+			const custom = new TBRuleMust(rules, null);
+			expect(rules).toHaveLength(1);
+		});
+
+		it('should not push parentRule to rules array when provided', () => {
+			const rule = new TBRule();
+			expect(rules).toHaveLength(0);
+			const custom = new TBRuleMust(rules, rule);
+			expect(rules).toHaveLength(0);
 		});
 	});
 });

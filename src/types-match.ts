@@ -21,10 +21,7 @@ export type GuardedType<T extends PrimitiveOrConstructor> = T extends {
 	? TypeMap[T]
 	: never;
 
-export function typesMatch<T extends PrimitiveOrConstructor>(
-	o: any,
-	className: T
-): o is GuardedType<T> {
+export function typesMatch<T extends PrimitiveOrConstructor>(o: any, className: T): o is GuardedType<T> {
 	const localPrimitiveOrConstructor: PrimitiveOrConstructor = className;
 
 	if (typeof localPrimitiveOrConstructor === 'string') {

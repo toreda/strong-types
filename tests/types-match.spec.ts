@@ -1,3 +1,4 @@
+import { TBRule } from '../src/rule/rule';
 import {typesMatch} from '../src/types-match';
 
 describe('types-match', () => {
@@ -74,6 +75,36 @@ describe('types-match', () => {
 
 		it('should return false for 0 matching boolean type', () => {
 			expect(typesMatch(0, 'boolean')).toBe(false);
+		});
+	});
+
+	describe('number validation', () => {
+		it('should return true for number literal 12', () => {
+			expect(typesMatch(12, 'number')).toBe(true);
+		});
+
+		it('should return true for number literal 0', () => {
+			expect(typesMatch(0, 'number')).toBe(true);
+		});
+
+		it('should return true for number literal -10', () => {
+			expect(typesMatch(-10, 'number')).toBe(true);
+		});
+
+		it('should return true for number literal -15.5', () => {
+			expect(typesMatch(-15.5, 'number')).toBe(true);
+		});
+
+		it('should return true for literal 22.333', () => {
+			expect(typesMatch(23.333, 'number')).toBe(true);
+		});
+	});
+
+
+	describe('TBRule validation', () => {
+		it('should return true for TBRule', () => {
+			const rule = new TBRule();
+			expect(typesMatch(rule, TBRule)).toBe(true);
 		});
 	});
 });

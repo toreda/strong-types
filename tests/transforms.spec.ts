@@ -1,4 +1,5 @@
 import {TBTransform} from '../src/transform';
+import {TBTransformNB} from '../src/transform-nb';
 import {TBTransforms} from '../src/transforms';
 
 const MOCK_STRING = 'oneoneone';
@@ -46,6 +47,14 @@ describe('TBTransforms', () => {
 
 			it('should return false when transform argument is undefined', () => {
 				expect(custom.addNB(undefined as any)).toBe(false);
+			});
+
+			it('should add exactly 1 element to transformsNB when argument is a transform', () => {
+				const fn = jest.fn();
+				const transformNB = new TBTransform<string>(fn);
+				expect(custom.transformsNB).toHaveLength(0);
+				custom.addNB(transformNB);
+				expect(custom.transformsNB).toHaveLength(1);
 			});
 		});
 
@@ -105,9 +114,10 @@ describe('TBTransforms', () => {
 			});
 		});
 
-		describe('runNullable', () => {
+		describe('runNB', () => {
 			let custom: TBTransforms<string>;
 			const MOCK_FALLBACK1 = '22222233333___11';
+
 			beforeEach(() => {
 				custom = new TBTransforms<string>(MOCK_FALLBACK1);
 			});
@@ -124,6 +134,29 @@ describe('TBTransforms', () => {
 				const inputValue = 'one_one_two';
 				expect(custom.transforms).toHaveLength(0);
 				expect(custom.runNB(inputValue)).toBe(inputValue);
+			});
+
+			it('should return a final value modified by each transform in order', () => {
+				const fn1 = jest.fn();
+				fn1.mockImplementation((a: number): number => {
+					return a + 1;
+				});
+				const fn2 = jest.fn();
+				fn2.mockImplementation((a: number): number => {
+					return a * 2;
+				});
+				const fn3 = jest.fn();
+				fn3.mockImplementation((a: number): number => {
+					return a * 10;
+				});
+				const tb = new TBTransforms<number>(0);
+				const nbt1 = new TBTransformNB<number>(fn1);
+				const nbt2 = new TBTransformNB<number>(fn2);
+				const nbt3 = new TBTransformNB<number>(fn3);
+				tb.addNB(nbt1);
+				tb.addNB(nbt2);
+				tb.addNB(nbt3);
+				expect(tb.runNB(0)).toBe(20);
 			});
 		});
 	});
