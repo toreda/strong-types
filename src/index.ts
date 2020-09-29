@@ -1,36 +1,47 @@
-export {TypeBox, TypeBoxNB, create, createNB} from './type-box';
+export {TypeBox, TypeBoxNB, make, makeNB} from './type-box';
 
-export {TBArray, TBArrayNB, createArray, createArrayNB} from './array';
-export {TBInt, TBIntNB, createInt, createIntNB} from './int';
-export {TBState} from './state';
-export {TBData} from './data';
-export {TBDouble, TBDoubleNB, createDouble, createDoubleNB} from './double';
+// Type Box Components
 export {TBConfig} from './config';
-export {TBBool, TBBoolNB, createBool, createBoolNB} from './bool';
-export {TBString, TBStringNB, createString, createStringNB} from './string';
+export {TBData} from './data';
+export {TBOptions} from './options';
+export {TBState} from './state';
+
+// Custom Types
+export {TBArray, TBArrayNB, makeArray, makeArrayNB} from './types/array';
+export {TBBool, TBBoolNB, makeBool, makeBoolNB} from './types/bool';
+export {TBDouble, TBDoubleNB, makeDouble, makeDoubleNB} from './types/double';
+export {TBInt, TBIntNB, makeInt, makeIntNB} from './types/int';
+export {TBUInt, TBUIntNB, makeUInt, makeUIntNB} from './types/uint';
+export {TBString, TBStringNB, makeString, makeStringNB} from './types/string';
+
 // Validators
-export {TBOpIsBoolean, createIsBoolean} from './validator/boolean';
-export {TBOpIsEmpty, createIsEmpty} from './validator/empty';
-export {TBOpIsEqualTo, createIsEqualTo} from './validator/equal-to';
-export {TBOpIsInteger, createIsInteger} from './validator/integer';
-export {TBOpIsNull, createIsNull} from './validator/null';
-export * from './validator/type';
-export {TBOpIsLength, createIsLength} from './validator/length';
-export {TBOpIsGreaterThan, createIsGreaterThan} from './validator/greater-than';
-export {TBOpIsGreaterThanOrEqualTo, createIsGreaterThanOrEqualTo} from './validator/greater-than-or-equal-to';
-export {TBOpIsLessThan, createIsLessThan} from './validator/less-than';
-export {TBOpIsLessThanOrEqualTo, createIsLessThanOrEqualTo} from './validator/less-than-or-equal-to';
-export {TBOpIsUndefined, createIsUndefined} from './validator/undefined';
+export {TBOpIsBoolean, makeIsBoolean} from './validator/is-boolean';
+export {TBOpIsEmpty, makeIsEmpty} from './validator/is-empty';
+export {TBOpIsEqualTo, makeIsEqualTo} from './validator/is-equal-to';
+export {TBOpIsInteger, makeIsInteger} from './validator/is-integer';
+export {TBOpIsNull, makeIsNull} from './validator/is-null';
+
+export {TBOpIsLength, makeIsLength} from './validator/is-length';
+export {TBOpIsGreaterThan, makeIsGreaterThan} from './validator/is-greater-than';
+export {
+	TBOpIsGreaterThanOrEqualTo,
+	makeIsGreaterThanOrEqualTo
+} from './validator/is-greater-than-or-equal-to';
+export {TBOpIsLessThan, makeIsLessThan} from './validator/is-less-than';
+export {TBOpIsLessThanOrEqualTo, makeIsLessThanOrEqualTo} from './validator/is-less-than-or-equal-to';
+export {TBOpIsUndefined, makeIsUndefined} from './validator/is-undefined';
 
 // Patterns
 export {TBValidatorPattern} from './validator/pattern/pattern';
 
+// Transforms
 export {TBTransform} from './transform';
 export {TBTransformFN} from './transform-fn';
 export {TBTransformFNNB} from './transform-fn-nb';
 export {TBTransforms} from './transforms';
-export {TBUInt, TBUIntNB, createUInt, createUIntNB} from './uint';
-export {TBOptions} from './options';
+
+// Rules
+export {TBRule} from './rule/rule';
 export {TBRules} from './rules';
 export {TBRuleA} from './rule/a';
 export {TBRuleBe} from './rule/be';
@@ -44,4 +55,4 @@ export {TBRuleNodeType} from './rule/node-type';
 export {TBRuleNot} from './rule/not';
 export {TBRuleOr} from './rule/or';
 export {TBRuleRoot} from './rule/root';
-export {TBRule} from './rule/rule';
+export {TBRuleType} from './rule/type';

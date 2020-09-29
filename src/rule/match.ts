@@ -1,7 +1,7 @@
 import {TBRule} from './rule';
 import {TBRuleModifiers} from './modifiers';
 import {TBRuleOr} from './or';
-import {TBRuleType} from '../validator/type';
+import {TBRuleType} from '../rule/type';
 import {TBValidatorPattern} from '../validator/pattern/pattern';
 
 export class TBRuleMatch {

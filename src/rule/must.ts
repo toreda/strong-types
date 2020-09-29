@@ -1,4 +1,4 @@
-import {TBOpIsEqualTo, createIsEqualTo} from '../validator/equal-to';
+import {TBOpIsEqualTo, makeIsEqualTo} from '../validator/is-equal-to';
 
 import {TBRule} from './rule';
 import {TBRuleBe} from './be';
@@ -27,7 +27,7 @@ export class TBRuleMust {
 		this.be = new TBRuleBe(rule, mods);
 		this.have = new TBRuleHave(rule, mods);
 		this.not = new TBRuleNot(rule, mods);
-		this.equal = createIsEqualTo<TBRuleMust>(this, rule, mods);
+		this.equal = makeIsEqualTo<TBRuleMust>(this, rule, mods);
 		this.match = new TBRuleMatch(rule, mods);
 	}
 }

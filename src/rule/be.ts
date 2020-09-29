@@ -1,14 +1,14 @@
-import {TBOpIsEmpty, createIsEmpty} from '../validator/empty';
-import {TBOpIsEqualTo, createIsEqualTo} from '../validator/equal-to';
-import {TBOpIsGreaterThan, createIsGreaterThan} from '../validator/greater-than';
+import {TBOpIsEmpty, makeIsEmpty} from '../validator/is-empty';
+import {TBOpIsEqualTo, makeIsEqualTo} from '../validator/is-equal-to';
+import {TBOpIsGreaterThan, makeIsGreaterThan} from '../validator/is-greater-than';
 import {
 	TBOpIsGreaterThanOrEqualTo,
-	createIsGreaterThanOrEqualTo
-} from '../validator/greater-than-or-equal-to';
-import {TBOpIsLessThan, createIsLessThan} from '../validator/less-than';
-import {TBOpIsLessThanOrEqualTo, createIsLessThanOrEqualTo} from '../validator/less-than-or-equal-to';
-import {TBOpIsNull, createIsNull} from '../validator/null';
-import {TBOpIsUndefined, createIsUndefined} from '../validator/undefined';
+	makeIsGreaterThanOrEqualTo
+} from '../validator/is-greater-than-or-equal-to';
+import {TBOpIsLessThan, makeIsLessThan} from '../validator/is-less-than';
+import {TBOpIsLessThanOrEqualTo, makeIsLessThanOrEqualTo} from '../validator/is-less-than-or-equal-to';
+import {TBOpIsNull, makeIsNull} from '../validator/is-null';
+import {TBOpIsUndefined, makeIsUndefined} from '../validator/is-undefined';
 
 import {TBRule} from './rule';
 import {TBRuleModifiers} from '../rule/modifiers';
@@ -24,13 +24,13 @@ export class TBRuleBe {
 	public readonly empty: TBOpIsEmpty<TBRuleBe>;
 
 	constructor(rule: TBRule, mods: TBRuleModifiers) {
-		this.greaterThan = createIsGreaterThan<TBRuleBe>(this, rule, mods);
-		this.greaterThanOrEqualTo = createIsGreaterThanOrEqualTo<TBRuleBe>(this, rule, mods);
-		this.lessThan = createIsLessThan<TBRuleBe>(this, rule, mods);
-		this.lessThanOrEqualTo = createIsLessThanOrEqualTo<TBRuleBe>(this, rule, mods);
-		this.equalTo = createIsEqualTo<TBRuleBe>(this, rule, mods);
-		this.undefined = createIsUndefined<TBRuleBe>(this, rule, mods);
-		this.null = createIsNull<TBRuleBe>(this, rule, mods);
-		this.empty = createIsEmpty<TBRuleBe>(this, rule, mods);
+		this.greaterThan = makeIsGreaterThan<TBRuleBe>(this, rule, mods);
+		this.greaterThanOrEqualTo = makeIsGreaterThanOrEqualTo<TBRuleBe>(this, rule, mods);
+		this.lessThan = makeIsLessThan<TBRuleBe>(this, rule, mods);
+		this.lessThanOrEqualTo = makeIsLessThanOrEqualTo<TBRuleBe>(this, rule, mods);
+		this.equalTo = makeIsEqualTo<TBRuleBe>(this, rule, mods);
+		this.undefined = makeIsUndefined<TBRuleBe>(this, rule, mods);
+		this.null = makeIsNull<TBRuleBe>(this, rule, mods);
+		this.empty = makeIsEmpty<TBRuleBe>(this, rule, mods);
 	}
 }
