@@ -4,7 +4,32 @@
 
 ![CI](https://github.com/toreda/type-box/workflows/CI/badge.svg?branch=master) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=toreda_type-box&metric=coverage)](https://sonarcloud.io/dashboard?id=toreda_type-box) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=toreda_type-box&metric=alert_status)](https://sonarcloud.io/dashboard?id=toreda_type-box)
 
-Typescript-first package to store and manage typed values. Eliminate excessive validation code with type-safe setters & getters.
+Native TypeScript containers for generic values. Reliably store and retrieve values without writing validation or type checking code. Use predefined types & validators, or make your own.
+
+
+What does it do?
+```typescript
+import { TBInt, makeInt } from '@toreda/type-box';
+//  int with initial value 10.
+const int = makeInt(10, 0);
+// Prints 10. It always return an int.
+console.log(int());
+
+// Set the value
+int(11);
+// Prints 11.
+console.log(int());
+
+// Won't set the value - it's not an int.
+int(null);
+int(undefined);
+int(3.33);
+int({});
+
+// Prints 11
+console.log(int());
+
+```
 
 ## Contents
 
@@ -36,21 +61,21 @@ npm install @toreda/type-box
 Accepts integer values only.
 ##### Creating Ints
 ```typescript
-import {TBInt, createInt} from '@toreda/type-box';
+import {TBInt, makeInt} from '@toreda/type-box';
 const initial = 11;
 const fallback = 55;
-const int = createInt(initial, fallback);
+const int = makeInt(initial, fallback);
 
 // Returns 11 - initial value was 11.
-const value = int();
+const value = TBInt();
 ```
 
 ##### Fallback Default
 ```typescript
-import {TBInt, createInt} from '@toreda/type-box';
+import {TBInt, makeInt} from '@toreda/type-box';
 const initial = null;
 const fallback = 101;
-const uint = createInt(initial, fallback);
+const uint = makeInt(initial, fallback);
 
 // Returns 101 - current value is null (no value set).
 const value = uint();
@@ -58,8 +83,8 @@ const value = uint();
 
 ##### Individual Fallbacks
 ```typescript
-import {TBInt, createInt} from '@toreda/type-box';
-const int = createInt(null, 201);
+import {TBInt, makeInt} from '@toreda/type-box';
+const int = makeInt(null, 201);
 
 // kvp.get(fallback) returns the fallback argument when the kvp instance
 // has no value set.
@@ -77,8 +102,8 @@ const value = int.get(fallback);
 TBInt will not update t's value called with a positive or negative integer.
 ```typescript
 
-import {TBInt, createInt} from '@toreda/type-box';
-const uint = createInt(50, 100);
+import {TBInt, makeInt} from '@toreda/type-box';
+const uint = makeInt(50, 100);
 
 // Attempting to set value to a negative integer.
 // Success will be false.
@@ -92,13 +117,13 @@ const value = uint();
 #### TBUInt - unsigned integers
 Accepts positive integer values only. Everything else will be rejected and will not update the value.
 
-##### Creating UInts
+##### Make UInts
 ```typescript
-import {TBUInt, createUInt} from '@toreda/type-box';
+import {TBUInt, makeUInt} from '@toreda/type-box';
 // UInt starting value.
 const initial = 44;
 const fallbackDefault = 1;
-const uint = createUInt(initialValue, fallbackDefault);
+const uint = makeUInt(initialValue, fallbackDefault);
 
 // Get the current value 44.
 const uintValue = uint();
@@ -109,10 +134,10 @@ uint(14);
 
 ##### Using the  Fallback Default
 ```typescript
-import {TBUInt, createUInt} from '@toreda/type-box';
+import {TBUInt, makeUInt} from '@toreda/type-box';
 const initialValue = null;
 const fallbackDefault = 27;
-const uint = createUInt(initialValue, fallbackDefault);
+const uint = makeUInt(initialValue, fallbackDefault);
 
 // Returns 27. Getting the current value with uint() guarantees a type-safe return value.
 // When the current value is null (not set), the default fallback is returned instead.
@@ -122,8 +147,8 @@ const value = uint();
 
 ##### Individual Fallbacks
 ```typescript
-import {TBUInt, createUInt} from '@toreda/type-box';
-const uint = createUInt(null, 30);
+import {TBUInt, makeUInt} from '@toreda/type-box';
+const uint = makeUInt(null, 30);
 
 // kvp.get(fallback) returns the fallback when the kvp
 // has no value set.
@@ -141,8 +166,8 @@ const value = uint.get(fallback);
 TBUInt performs automatic input validation and will not update it's value unless the provided input is an unsigned integer.
 ```typescript
 
-import {TBUInt, createUInt} from '@toreda/type-box';
-const uint = createUInt(20, 40);
+import {TBUInt, makeUInt} from '@toreda/type-box';
+const uint = makeUInt(20, 40);
 
 // Attempting to set value to a negative integer.
 // Success will be false.
@@ -159,10 +184,10 @@ const value = uint();
 
 ### Create a key-value pair
 ```typescript
-import {TypeBox, create} from '@toreda/type-box';
+import {TypeBox, make} from '@toreda/type-box';
 const initial = 'hello';
 const fallbackDefault = 'goodbye';
-const myValue = create<string>(initial, fallbackDefault);
+const myValue = make<string>(initial, fallbackDefault);
 ```
 
 ### Get value
