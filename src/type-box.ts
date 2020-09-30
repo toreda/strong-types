@@ -6,12 +6,14 @@ export interface TypeBox<T> {
 	get: (fallback: T) => T;
 	getNullable: () => T | null;
 	reset: () => void;
+	typeId: string;
 }
 
 export interface TypeBoxNB<T> {
 	(val?: T | null): T | null;
 	get: (fallback: T) => T;
 	reset: () => void;
+	typeId: string;
 }
 
 export function make<T>(initialValue: T | null, fallbackArg: T, rules?: TBRules<T>): TypeBox<T> {
@@ -41,7 +43,8 @@ export function make<T>(initialValue: T | null, fallbackArg: T, rules?: TBRules<
 			},
 			reset: (): void => {
 				instance.reset();
-			}
+			},
+			typeId: 'TypeBox'
 		}
 	);
 }
@@ -64,7 +67,8 @@ export function makeNB<T>(initial: T | null, fallbackArg: T, rules?: TBRules<T>)
 			},
 			reset: () => {
 				instance.reset();
-			}
+			},
+			typeId: 'TypeBoxNB'
 		}
 	);
 }

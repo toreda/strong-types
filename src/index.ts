@@ -6,6 +6,8 @@ export {TBData} from './data';
 export {TBOptions} from './options';
 export {TBState} from './state';
 
+export {isType} from './validator/is-type';
+
 // Custom Types
 export {TBArray, TBArrayNB, makeArray, makeArrayNB} from './types/array';
 export {TBBool, TBBoolNB, makeBool, makeBoolNB} from './types/bool';
