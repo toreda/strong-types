@@ -101,7 +101,6 @@ const value = int.get(fallback);
 ##### Validation
 TBInt will not update t's value called with a positive or negative integer.
 ```typescript
-
 import {TBInt, makeInt} from '@toreda/type-box';
 const uint = makeInt(50, 100);
 
@@ -165,7 +164,6 @@ const value = uint.get(fallback);
 ##### Type Validation
 TBUInt performs automatic input validation and will not update it's value unless the provided input is an unsigned integer.
 ```typescript
-
 import {TBUInt, makeUInt} from '@toreda/type-box';
 const uint = makeUInt(20, 40);
 

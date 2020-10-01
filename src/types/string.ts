@@ -6,7 +6,7 @@ export type TBString = TypeBox<string>;
 
 export type TBStringNB = TypeBoxNB<string>;
 
-export function makeString(initial: string, fallback: string): TBString {
+export function makeString(initial: string | null, fallback: string): TBString {
 	const rules = new TBRules();
 	rules.add().must.match.type.string();
 	return make<string>(initial, fallback, rules);

@@ -5,7 +5,7 @@ import {TBRules} from '../rules';
 export type TBArray<T> = TypeBox<T[]>;
 export type TBArrayNB<T> = TypeBoxNB<T[]>;
 
-export function makeArray<T>(initial: T[], fallback: T[]): TBArray<T> {
+export function makeArray<T>(initial: T[] | null, fallback: T[]): TBArray<T> {
 	const rules = new TBRules();
 	rules.add().must.match.type.array();
 	return make<T[]>(initial, fallback, rules);
