@@ -6,7 +6,7 @@ export type TBUInt = TypeBox<number>;
 
 export type TBUIntNB = TypeBoxNB<number>;
 
-export function makeUInt(initial: number | null, fallback: number): TBUInt {
+export function makeUInt(initial: number | null | undefined, fallback: number): TBUInt {
 	const rules = new TBRules<number>();
 
 	rules.add().must.match.type.integer();
@@ -15,7 +15,7 @@ export function makeUInt(initial: number | null, fallback: number): TBUInt {
 	return make<number>(initial, fallback, rules);
 }
 
-export function makeUIntNB(initial: number | null, fallback: number): TBUIntNB {
+export function makeUIntNB(initial: number | null | undefined, fallback: number): TBUIntNB {
 	const rules = new TBRules();
 	return makeNB<number>(initial, fallback, rules);
 }

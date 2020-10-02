@@ -9,7 +9,7 @@ export class TBData<T> {
 	public readonly transforms: TBTransforms<T>;
 	public readonly rules: TBRules<T>;
 
-	constructor(initial: T | null, fallbackDefault: T, rules?: TBRules<T>) {
+	constructor(initial: T | null | undefined, fallbackDefault: T, rules?: TBRules<T>) {
 		this.value = null;
 		this.fallbackDefault = fallbackDefault;
 		this.state = new TBState<T>();
@@ -30,7 +30,7 @@ export class TBData<T> {
 		return this.value;
 	}
 
-	public set(value: T | null): boolean {
+	public set(value: T | null | undefined): boolean {
 		if (typeof value === 'undefined') {
 			return false;
 		}
@@ -48,6 +48,10 @@ export class TBData<T> {
 	}
 
 	public getNullable(): T | null {
+		if (typeof this.value === 'undefined') {
+			return null;
+		}
+
 		return this.value;
 	}
 

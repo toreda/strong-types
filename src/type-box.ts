@@ -16,7 +16,7 @@ export interface TypeBoxNB<T> {
 	typeId: string;
 }
 
-export function make<T>(initialValue: T | null, fallbackArg: T, rules?: TBRules<T>): TypeBox<T> {
+export function make<T>(initialValue: T | null | undefined, fallbackArg: T, rules?: TBRules<T>): TypeBox<T> {
 	const instance = new TBData<T>(initialValue, fallbackArg, rules);
 
 	const localFallback = fallbackArg !== undefined ? fallbackArg : instance.fallbackDefault;
@@ -49,14 +49,14 @@ export function make<T>(initialValue: T | null, fallbackArg: T, rules?: TBRules<
 	);
 }
 
-export function makeNB<T>(initial: T | null, fallbackArg: T, rules?: TBRules<T>): TypeBoxNB<T> {
+export function makeNB<T>(initial: T | null | undefined, fallbackArg: T, rules?: TBRules<T>): TypeBoxNB<T> {
 	const instance = new TBData<T>(initial, fallbackArg, rules);
 
 	return Object.assign(
 		(val?: T): T | null => {
 			if (typeof val !== 'undefined') {
 				instance.set(val);
-				return initial;
+				return val;
 			}
 
 			return instance.getNullable();
