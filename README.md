@@ -1,10 +1,12 @@
 
 
+
+
 # `@toreda/type-box`
 
 ![CI](https://github.com/toreda/type-box/workflows/CI/badge.svg?branch=master) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=toreda_type-box&metric=coverage)](https://sonarcloud.io/dashboard?id=toreda_type-box) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=toreda_type-box&metric=alert_status)](https://sonarcloud.io/dashboard?id=toreda_type-box)
 
-Native TypeScript containers for generic values. Reliably store and retrieve values without writing validation or type checking code. Use predefined types & validators, or make your own.
+Native TypeScript containers for generic value storage. Reliably store and retrieve typed values without writing validation or type checking code. Use [built-in types](#BuiltInTypes) or define your own.
 
 
 What does it do?
@@ -28,38 +30,69 @@ int({});
 
 // Prints 11
 console.log(int());
+```
+# Contents
+* [**Basic Usage**](#basic-usage)
+*	[**Built-in Types**](#built-in-types)
+	  -	[`TBArray`](#TBArray)
+	  - [`TBBoolean`](#TBBoolean)
+	  - [`TBDouble`](#TBDouble)
+	  - [`TBInt`](#TBInt)
+	  - [`TBString`](#TBString)
+	  - [`TBUInt`](#TBUInt)
+*	[**Custom Types**](#custom-types)
+	  - [Validators](#Validators)
+* 	[**Package**](#Package)
+	-	[Build](#Build)
+	-	[Testing](#testing)
+	-   [License](#license)
 
+
+# Basic Usage
+
+## Set value
+```typescript
+// Set value to string 'trendy'
+myValue('trendy');
 ```
 
-## Contents
-
--   [Installation](#Installation)
--   [Usage](#usage)
--   [Build](#build)
--   [Testing](#testing)
--   [License](#license)
-
-
-## Install
-
-**_With yarn (preferred):_**
-```bash
-yarn add @toreda/type-box
+## Set value to null
+```typescript
+// Set value to be null.
+myValue(null);
 ```
 
-With NPM:
-```bash
-npm install @toreda/type-box
+## Reset
+Reset will set value to null without using set functionality.
+```typescript
+// set kvp to hello
+myValue('hello');
+
+// Outputs hello
+myValue();
+
+// value will become null.
+myValue.reset();
 ```
 
-## Usage
+# Supported Types
+* [`TBArray`](#tbarray-typebox-array), arrays 
+* [`TBBoolean`](#tbboolean-typebox-boolean), booleans (strict)
+* [`TBDouble`](#TBDouble), doubles
+* [`TBInt`](#tb-Int), integers
+* [`TBUInt`](#TBUint), unsigned integers
+* [`TBString`](#TBString) - strings
 
 
-###  Built-in Types
+## TBArray - TypeBox Array
 
-#### TBInt - Type Box Integers
-Accepts integer values only.
-##### Creating Ints
+## TBBoolean - TypeBox Boolean
+
+## TBDouble - Type Box Doubles
+
+## TBInt - TypeBox Integer
+
+#### Creating TBInt
 ```typescript
 import {TBInt, makeInt} from '@toreda/type-box';
 const initial = 11;
@@ -70,7 +103,7 @@ const int = makeInt(initial, fallback);
 const value = TBInt();
 ```
 
-##### Fallback Default
+#### Default Fallback
 ```typescript
 import {TBInt, makeInt} from '@toreda/type-box';
 const initial = null;
@@ -81,7 +114,7 @@ const uint = makeInt(initial, fallback);
 const value = uint();
 ```
 
-##### Individual Fallbacks
+#### Fallback
 ```typescript
 import {TBInt, makeInt} from '@toreda/type-box';
 const int = makeInt(null, 201);
@@ -98,7 +131,7 @@ int(500);
 const value = int.get(fallback);
 ```
 
-##### Validation
+#### Validation
 TBInt will not update t's value called with a positive or negative integer.
 ```typescript
 import {TBInt, makeInt} from '@toreda/type-box';
@@ -112,36 +145,6 @@ const success = uint(1.5);
 const value = uint();
 ```
 
-
-#### TBUInt - unsigned integers
-Accepts positive integer values only. Everything else will be rejected and will not update the value.
-
-##### Make UInts
-```typescript
-import {TBUInt, makeUInt} from '@toreda/type-box';
-// UInt starting value.
-const initial = 44;
-const fallbackDefault = 1;
-const uint = makeUInt(initialValue, fallbackDefault);
-
-// Get the current value 44.
-const uintValue = uint();
-
-// Set value to 14.
-uint(14);
-```
-
-##### Using the  Fallback Default
-```typescript
-import {TBUInt, makeUInt} from '@toreda/type-box';
-const initialValue = null;
-const fallbackDefault = 27;
-const uint = makeUInt(initialValue, fallbackDefault);
-
-// Returns 27. Getting the current value with uint() guarantees a type-safe return value.
-// When the current value is null (not set), the default fallback is returned instead.
-const value = uint();
-```
 
 
 ##### Individual Fallbacks
@@ -177,10 +180,8 @@ const value = uint();
 ```
 
 
-#### TBDouble - Type Box Doubles
 
-
-### Create a key-value pair
+### Create value
 ```typescript
 import {TypeBox, make} from '@toreda/type-box';
 const initial = 'hello';
@@ -202,38 +203,87 @@ const fallback = 'goodbye again';
 const value = myValue.get(fallback);
 ```
 
-### Set value
+## TBString - Type Box Strings
+
+
+## TBUInt - TypeBox Unsigned Integers
+Accepts positive integer values only. Everything else will be rejected and will not update the value.
+
+##### Make UInts
 ```typescript
-// Set value to string 'trendy'
-myValue('trendy');
+import {TBUInt, makeUInt} from '@toreda/type-box';
+// UInt starting value.
+const initial = 44;
+const fallbackDefault = 1;
+const uint = makeUInt(initialValue, fallbackDefault);
+
+// Get the current value 44.
+const uintValue = uint();
+
+// Set value to 14.
+uint(14);
 ```
 
-### Set value to null
+##### Using the  Fallback Default
 ```typescript
-// Set value to be null.
-myValue(null);
+import {TBUInt, makeUInt} from '@toreda/type-box';
+const initialValue = null;
+const fallbackDefault = 27;
+const uint = makeUInt(initialValue, fallbackDefault);
+
+// Returns 27. Getting the current value with uint() guarantees a type-safe return value.
+// When the current value is null (not set), the default fallback is returned instead.
+const value = uint();
 ```
 
-### Reset value
-Reset will set value to null without using set functionality.
-```typescript
-// set kvp to hello
-myValue('hello');
 
-// Outputs hello
-myValue();
 
-// value will become null.
-myValue.reset();
-```
+# Install
+Install `@toreda/type-box` directly from NPM or [clone the Github repo](https://github.com/toreda/type-box).
 
-## Build
-First run `yarn` to install repo packages. Then, run the build command.
+### Install using Yarn (preferred)
+ 1. Open a shell (or console).
+ 2. Navigate to the the TypeBox root project folder.
+ 3. Enter the following commands in order. Wait for each to complete before typing the next.
 ```bash
 yarn
+```
+
+### Install using NPM
+ 1. Open a shell (or console).
+ 2. Navigate to the the TypeBox root project folder.
+ 3. Enter the following commands in order. Wait for each to complete before typing the next.
+```bash
+npm install
+```
+
+
+# Run Unit Tests
+Install or clone TypeBox [(see above)](#install).
+
+TypeBox tests are written with [Jest](https://jestjs.io/) which is also a project dev dependency.
+
+Installing jest is not required after project dependencies are installed ([see above](#install)).
+```bash
+yarn test
+```
+
+# Build from source
+
+The next steps are the same whether you installed the package using NPM or cloned the repo from Github.
+
+### Build with Yarn
+ Enter the following commands in order from the TypeBox root project folder.
+```bash
 yarn build
 ```
 
-## License
+### Build with NPM
+ Enter the following commands in order from the TypeBox root project folder.
+```bash
+npm run-script build
+```
+
+# License
 
 [MIT](LICENSE) &copy; Toreda, Inc.

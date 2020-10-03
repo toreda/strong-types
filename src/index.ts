@@ -10,7 +10,7 @@ export {isType} from './validator/is-type';
 
 // Custom Types
 export {TBArray, TBArrayNB, makeArray, makeArrayNB} from './types/array';
-export {TBBool, TBBoolNB, makeBool, makeBoolNB} from './types/bool';
+export {TBBoolean, TBBooleanNB, makeBoolean, makeBooleanNB} from './types/boolean';
 export {TBDouble, TBDoubleNB, makeDouble, makeDoubleNB} from './types/double';
 export {TBInt, TBIntNB, makeInt, makeIntNB} from './types/int';
 export {TBUInt, TBUIntNB, makeUInt, makeUIntNB} from './types/uint';
