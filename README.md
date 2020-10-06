@@ -11,7 +11,7 @@ Native TypeScript containers for generic value storage. Reliably store and retri
 
 What does it do?
 ```typescript
-import { STInt, makeStrongInt } from '@toreda/strong-types';
+import { STInt, makeInt } from '@toreda/strong-types';
 //  int with initial value 10.
 const int = makeStrongInt(10, 0);
 // Prints 10. It always return an int.
@@ -35,12 +35,12 @@ console.log(int());
 
 * [**Basic Usage**](#basic-usage)
 *	[**Built-in Types**](#built-in-types)
-	  -	[`STArray`](#STArray)
-	  - [`STBoolean`](#STBoolean)
-	  - [`STDouble`](#STDouble)
-	  - [`STInt`](#STInt)
-	  - [`STString`](#STString)
-	  - [`STUInt`](#STUInt)
+	  -	[`StrongArray`](#StrongArray)
+	  - [`StrongBoolean`](#StrongBoolean)
+	  - [`StrongDouble`](#StrongDouble)
+	  - [`StrongInt`](#StrongInt)
+	  - [`StrongStrongring`](#StrongStrongring)
+	  - [`StrongUInt`](#StrongUInt)
 *	[**Custom Types**](#custom-types)
 	  - [Validators](#Validators)
 * 	[**Package**](#Package)
@@ -77,23 +77,23 @@ myValue.reset();
 ```
 
 # Supported Types
-* [`STArray`](#STarray-typebox-array), arrays
-* [`STBoolean`](#STboolean-typebox-boolean), booleans (strict)
-* [`STDouble`](#STDouble), doubles
-* [`STInt`](#ST-Int), integers
-* [`STUInt`](#STUint), unsigned integers
-* [`STString`](#STString) - strings
+* [`StrongArray`](#StrongArray), arrays
+* [`StrongBoolean`](#StrongBoolean), booleans (strict)
+* [`StrongDouble`](#StrongDouble), doubles
+* [`StrongInt`](#StrongInt), integers
+* [`STUInt`](#StrongUint), unsigned integers
+* [`StrongString`](#StrongString) - strings
 
 
-## STArray - TypeBox Array
+## `StrongArray`
 
-## STBoolean - TypeBox Boolean
+## `StrongBoolean`
 
-## STDouble - Type Box Doubles
+## `StrongDouble`
 
-## STInt - TypeBox Integer
+## `StrongInt`
 
-#### Creating STInt
+#### Instantiation
 ```typescript
 import {STInt, makeStrongInt} from '@toreda/strong-types';
 const initial = 11;
@@ -147,7 +147,6 @@ const value = uint();
 ```
 
 
-
 ##### Individual Fallbacks
 ```typescript
 import {STUInt, makeStrongUInt} from '@toreda/strong-types';
@@ -184,10 +183,10 @@ const value = uint();
 
 ### Create value
 ```typescript
-import {TypeBox, make} from '@toreda/strong-types';
+import {StrongType, makeStrong} from '@toreda/strong-types';
 const initial = 'hello';
 const fallbackDefault = 'goodbye';
-const myValue = make<string>(initial, fallbackDefault);
+const myValue = makeStrong<string>(initial, fallbackDefault);
 ```
 
 ### Get value
@@ -204,13 +203,13 @@ const fallback = 'goodbye again';
 const value = myValue.get(fallback);
 ```
 
-## STString - Type Box Strings
+## `StrongString`
 
 
-## STUInt - TypeBox Unsigned Integers
+## `StrongUInt`
 Accepts positive integer values only. Everything else will be rejected and will not update the value.
 
-##### Make UInts
+##### Instantiation
 ```typescript
 import {STUInt, makeStrongUInt} from '@toreda/strong-types';
 // UInt starting value.
@@ -225,7 +224,7 @@ const uintValue = uint();
 uint(14);
 ```
 
-##### Using the  Fallback Default
+##### Using the Fallback Default
 ```typescript
 import {STUInt, makeStrongUInt} from '@toreda/strong-types';
 const initialValue = null;
@@ -238,13 +237,12 @@ const value = uint();
 ```
 
 
-
 # Install
 Install `@toreda/strong-types` directly from NPM or [clone the Github repo](https://github.com/toreda/strong-types).
 
 ### Install using Yarn (preferred)
  1. Open a shell (or console).
- 2. Navigate to the the TypeBox root project folder.
+ 2. Navigate to the the StrongTypes root project folder.
  3. Enter the following commands in order. Wait for each to complete before typing the next.
 ```bash
 yarn
@@ -252,7 +250,7 @@ yarn
 
 ### Install using NPM
  1. Open a shell (or console).
- 2. Navigate to the the TypeBox root project folder.
+ 2. Navigate to the the StrongTypes root project folder.
  3. Enter the following commands in order. Wait for each to complete before typing the next.
 ```bash
 npm install
@@ -260,9 +258,9 @@ npm install
 
 
 # Run Unit Tests
-Install or clone TypeBox [(see above)](#install).
+Install or clone StrongTypes [(see above)](#install).
 
-TypeBox tests are written with [Jest](https://jestjs.io/) which is also a project dev dependency.
+StrongTypes tests are written with [Jest](https://jestjs.io/) which is also a project dev dependency.
 
 Installing jest is not required after project dependencies are installed ([see above](#install)).
 ```bash
@@ -274,13 +272,13 @@ yarn test
 The next steps are the same whether you installed the package using NPM or cloned the repo from Github.
 
 ### Build with Yarn
- Enter the following commands in order from the TypeBox root project folder.
+ Enter the following commands in order from the StrongTypes root project folder.
 ```bash
 yarn build
 ```
 
 ### Build with NPM
- Enter the following commands in order from the TypeBox root project folder.
+ Enter the following commands in order from the StrongTypes root project folder.
 ```bash
 npm run-script build
 ```
