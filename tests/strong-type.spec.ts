@@ -10,7 +10,7 @@ const MOCK_VALUE_NULL = null;
 describe('TypeBox', () => {
 	describe('make', () => {
 		describe('types', () => {
-			let st: StrongType<string, void>;
+			let st: StrongType<string>;
 
 			beforeAll(() => {
 				st = makeStrong<string>(MOCK_INITIAL, MOCK_FALLBACK);
@@ -62,23 +62,23 @@ describe('TypeBox', () => {
 				});
 			});
 
-			describe('getNullable', () => {
+			describe('getNull', () => {
 				it('should return value when value is not null', () => {
 					const sampleStr = '6766199823';
 					const st = makeStrong<string>(sampleStr, MOCK_FALLBACK);
-					expect(st.getNullable()).toBe(sampleStr);
+					expect(st.getNull()).toBe(sampleStr);
 				});
 
 				it('should return null when value is null', () => {
 					st(null);
-					expect(st.getNullable()).toBeNull();
+					expect(st.getNull()).toBeNull();
 				});
 			});
 
 			describe('reset', () => {
 				it('should set value to null when value is set by initial value', () => {
 					const st = makeStrong<string>(null, MOCK_FALLBACK);
-					expect(st.getNullable()).toBeNull();
+					expect(st.getNull()).toBeNull();
 				});
 
 				it('should set value to null when value is set invoking st("val") with argument', () => {
@@ -86,7 +86,7 @@ describe('TypeBox', () => {
 					st(sampleStr);
 					expect(st()).toBe(sampleStr);
 					st.reset();
-					expect(st.getNullable()).toBeNull();
+					expect(st.getNull()).toBeNull();
 				});
 
 				it('should not throw when value is already null', () => {
@@ -94,7 +94,7 @@ describe('TypeBox', () => {
 					expect(() => {
 						st.reset();
 					}).not.toThrow();
-					expect(st.getNullable()).toBeNull();
+					expect(st.getNull()).toBeNull();
 				});
 
 				it('should not throw when called repeatedly', () => {
@@ -103,7 +103,7 @@ describe('TypeBox', () => {
 							st.reset();
 						}
 					}).not.toThrow();
-					expect(st.getNullable()).toBeNull();
+					expect(st.getNull()).toBeNull();
 				});
 			});
 		});

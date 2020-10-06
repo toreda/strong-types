@@ -2,7 +2,7 @@ import {STRules} from './rules';
 import {STState} from './state';
 import {STTransforms} from './transforms';
 
-export class STData<ValueT, ExtraReturnT = void> {
+export class STData<ValueT> {
 	public value: ValueT | null;
 	public readonly fallbackDefault: ValueT;
 	public readonly state: STState<ValueT>;
@@ -18,7 +18,7 @@ export class STData<ValueT, ExtraReturnT = void> {
 		this.set(initial);
 	}
 
-	public get(fallback: ValueT): ValueT | ExtraReturnT {
+	public get(fallback: ValueT): ValueT {
 		if (this.value === null) {
 			if (typeof fallback === 'undefined' || fallback === null) {
 				return this.fallbackDefault;
@@ -52,7 +52,7 @@ export class STData<ValueT, ExtraReturnT = void> {
 		return true;
 	}
 
-	public getNullable(): ValueT | ExtraReturnT | null {
+	public getNull(): ValueT | null {
 		if (typeof this.value === 'undefined') {
 			return null;
 		}

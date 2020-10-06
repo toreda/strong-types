@@ -1,10 +1,10 @@
 import {STData} from './data';
 import {STRules} from './rules';
 
-export interface StrongType<ValueT, EmptyT> {
-	(val?: ValueT | null): ValueT | EmptyT;
-	get: (fallback: ValueT) => ValueT | EmptyT;
-	getNullable: () => ValueT | EmptyT | null;
+export interface StrongType<ValueT> {
+	(val?: ValueT | null): ValueT;
+	get: (fallback: ValueT) => ValueT;
+	getNull: () => ValueT | null;
 	reset: () => void;
 	typeId: string;
 }
@@ -13,25 +13,13 @@ export function makeStrong<ValueT>(
 	initial: ValueT | null | undefined,
 	fallbackArg: ValueT,
 	rules?: STRules<ValueT>
-): StrongType<ValueT, ValueT>;
-
-export function makeStrong<ValueT, EmptyReturnT>(
-	initial: ValueT | null | undefined,
-	fallbackArg: ValueT,
-	rules?: STRules<ValueT>
-): StrongType<ValueT, EmptyReturnT>;
-
-export function makeStrong<ValueT, EmptyT = ValueT>(
-	initial: ValueT | null | undefined,
-	fallbackArg: ValueT,
-	rules?: STRules<ValueT>
-): StrongType<ValueT, EmptyT> {
-	const instance = new STData<ValueT, EmptyT>(initial, fallbackArg, rules);
+): StrongType<ValueT> {
+	const instance = new STData<ValueT>(initial, fallbackArg, rules);
 
 	const localFallback = fallbackArg !== undefined ? fallbackArg : instance.fallbackDefault;
 
 	return Object.assign(
-		(val?: ValueT | null): ValueT | EmptyT => {
+		(val?: ValueT | null): ValueT => {
 			if (typeof val !== 'undefined') {
 				instance.set(val);
 
@@ -44,11 +32,11 @@ export function makeStrong<ValueT, EmptyT = ValueT>(
 			return instance.get(localFallback);
 		},
 		{
-			get: (fallback: ValueT): ValueT | EmptyT => {
+			get: (fallback: ValueT): ValueT | ValueT => {
 				return instance.get(fallback);
 			},
-			getNullable: (): ValueT | EmptyT | null => {
-				return instance.getNullable();
+			getNull: (): ValueT | null => {
+				return instance.getNull();
 			},
 			reset: (): void => {
 				instance.reset();

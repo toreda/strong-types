@@ -1,4 +1,4 @@
-import {StrongUInt, makeUInt, makeUIntNull} from '../../src/types/uint';
+import {StrongUInt, makeUInt} from '../../src/types/uint';
 
 const MOCK_INITIAL = 4410;
 const MOCK_FALLBACK_DEFAULT = 99121;
@@ -63,42 +63,6 @@ describe('StrongUInt', () => {
 
 				const uint = makeUInt(sampleInitial, MOCK_FALLBACK_DEFAULT);
 				expect(uint.get(MOCK_FALLBACK)).toBe(sampleInitial);
-			});
-		});
-	});
-});
-
-describe('StrongUIntNull', () => {
-	describe('Implementation', () => {
-		it('should return null when value is not set', () => {
-			const sampleFallbackDefault = 3900001;
-			const uint = makeUIntNull(null, sampleFallbackDefault);
-			expect(uint()).toBeNull();
-		});
-
-		it('should return null after value has been set to null', () => {
-			const sampleFallbackDefault = 4141029;
-			const sampleInt = 223211;
-			const uint = makeUIntNull(sampleInt, sampleFallbackDefault);
-			uint(null);
-			expect(uint()).toBeNull();
-		});
-	});
-
-	describe('Methods', () => {
-		describe('get', () => {
-			it('should return fallback when no value is set', () => {
-				const sampleFallbackDefault = 11122;
-				const uint = makeUIntNull(null, sampleFallbackDefault);
-				expect(uint.get(sampleFallbackDefault)).toBe(sampleFallbackDefault);
-			});
-
-			it('should return fallback after previous value is overwritten with null', () => {
-				const sampleFallbackDefault = 299281;
-				const sampleInit = 444180;
-				const uint = makeUIntNull(sampleInit, sampleFallbackDefault);
-				uint(null);
-				expect(uint.get(3333)).toBe(sampleFallbackDefault);
 			});
 		});
 	});

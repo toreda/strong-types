@@ -25,6 +25,7 @@ module.exports = {
     '@typescript-eslint/no-inferrable-types': 'off',
     '@typescript-eslint/no-empty-interface': 'warn',
     '@typescript-eslint/explicit-function-return-type': 'error',
+    '@typescript-eslint/ban-ts-comment': 'warn',
     'max-len': ['warn', {'code': 110}]
   }
 };
