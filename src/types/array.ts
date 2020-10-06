@@ -1,18 +1,18 @@
-import {StrongType, StrongTypeNB, makeStrong, makeStrongNB} from '../strong-type';
+import {StrongType, makeStrong} from '../strong-type';
 
 import {STRules} from '../rules';
 
-export type StrongArray<T> = StrongType<T[]>;
-export type StrongArrayNB<T> = StrongTypeNB<T[]>;
+export type StrongArray<T> = StrongType<T[], T[]>;
+export type StrongArrayNull<T> = StrongType<T[], null>;
 
-export function makeStrongArray<T>(initial: T[] | null | undefined, fallback: T[]): StrongArray<T> {
+export function makeArray<T>(initial: T[] | null | undefined, fallback: T[]): StrongArray<T> {
 	const rules = new STRules();
 	rules.add().must.match.type.array();
 	return makeStrong<T[]>(initial, fallback, rules);
 }
 
-export function makeStrongArrayNB<T>(initial: T[] | null | undefined, fallback: T[]): StrongArrayNB<T> {
+export function makeArrayNB<T>(initial: T[] | null | undefined, fallback: T[]): StrongArrayNull<T> {
 	const rules = new STRules();
 	rules.add().must.match.type.array();
-	return makeStrongNB<T[]>(initial, fallback, rules);
+	return makeStrong<T[], null>(initial, fallback, rules);
 }

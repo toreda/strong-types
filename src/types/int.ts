@@ -1,18 +1,18 @@
-import {StrongType, StrongTypeNB, makeStrong, makeStrongNB} from '../strong-type';
+import {StrongType, makeStrong} from '../strong-type';
 
 import {STRules} from '../rules';
 
-export type StrongInt = StrongType<number>;
-export type StrongIntNB = StrongTypeNB<number>;
+export type StrongInt = StrongType<number, number>;
+export type StrongIntNull = StrongType<number, null>;
 
-export function makeStrongInt(initial: number | null | undefined, fallback: number): StrongInt {
+export function makeInt(initial: number | null | undefined, fallback: number): StrongInt {
 	const rules = new STRules();
 	rules.add().must.match.type.integer();
 	return makeStrong<number>(initial, fallback, rules);
 }
 
-export function makeStrongIntNB(initial: number | null | undefined, fallback: number): StrongIntNB | null {
+export function makeIntNull(initial: number | null | undefined, fallback: number): StrongIntNull {
 	const rules = new STRules();
 	rules.add().must.match.type.integer();
-	return makeStrongNB<number>(initial, fallback, rules);
+	return makeStrong<number, null>(initial, fallback, rules);
 }

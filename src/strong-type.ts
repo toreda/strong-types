@@ -1,32 +1,37 @@
 import {STData} from './data';
 import {STRules} from './rules';
 
-export interface StrongType<T> {
-	(val?: T | null): T;
-	get: (fallback: T) => T;
-	getNullable: () => T | null;
+export interface StrongType<ValueT, EmptyT> {
+	(val?: ValueT | null): ValueT | EmptyT;
+	get: (fallback: ValueT) => ValueT | EmptyT;
+	getNullable: () => ValueT | EmptyT | null;
 	reset: () => void;
 	typeId: string;
 }
 
-export interface StrongTypeNB<T> {
-	(val?: T | null): T | null;
-	get: (fallback: T) => T;
-	reset: () => void;
-	typeId: string;
-}
+export function makeStrong<ValueT>(
+	initial: ValueT | null | undefined,
+	fallbackArg: ValueT,
+	rules?: STRules<ValueT>
+): StrongType<ValueT, ValueT>;
 
-export function makeStrong<T>(
-	initialValue: T | null | undefined,
-	fallbackArg: T,
-	rules?: STRules<T>
-): StrongType<T> {
-	const instance = new STData<T>(initialValue, fallbackArg, rules);
+export function makeStrong<ValueT, EmptyReturnT>(
+	initial: ValueT | null | undefined,
+	fallbackArg: ValueT,
+	rules?: STRules<ValueT>
+): StrongType<ValueT, EmptyReturnT>;
+
+export function makeStrong<ValueT, EmptyT = ValueT>(
+	initial: ValueT | null | undefined,
+	fallbackArg: ValueT,
+	rules?: STRules<ValueT>
+): StrongType<ValueT, EmptyT> {
+	const instance = new STData<ValueT, EmptyT>(initial, fallbackArg, rules);
 
 	const localFallback = fallbackArg !== undefined ? fallbackArg : instance.fallbackDefault;
 
 	return Object.assign(
-		(val?: T): T => {
+		(val?: ValueT | null): ValueT | EmptyT => {
 			if (typeof val !== 'undefined') {
 				instance.set(val);
 
@@ -39,44 +44,16 @@ export function makeStrong<T>(
 			return instance.get(localFallback);
 		},
 		{
-			get: (fallback: T): T => {
+			get: (fallback: ValueT): ValueT | EmptyT => {
 				return instance.get(fallback);
 			},
-			getNullable: (): T | null => {
+			getNullable: (): ValueT | EmptyT | null => {
 				return instance.getNullable();
 			},
 			reset: (): void => {
 				instance.reset();
 			},
 			typeId: 'StrongType'
-		}
-	);
-}
-
-export function makeStrongNB<T>(
-	initial: T | null | undefined,
-	fallbackArg: T,
-	rules?: STRules<T>
-): StrongTypeNB<T> {
-	const instance = new STData<T>(initial, fallbackArg, rules);
-
-	return Object.assign(
-		(val?: T): T | null => {
-			if (typeof val !== 'undefined') {
-				instance.set(val);
-				return val;
-			}
-
-			return instance.getNullable();
-		},
-		{
-			get: (fallback: T): T => {
-				return instance.get(fallback);
-			},
-			reset: () => {
-				instance.reset();
-			},
-			typeId: 'StrongTypeNB'
 		}
 	);
 }

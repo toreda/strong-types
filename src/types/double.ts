@@ -1,21 +1,21 @@
-import {StrongType, StrongTypeNB, makeStrong, makeStrongNB} from '../strong-type';
+import {StrongType, makeStrong} from '../strong-type';
 
 import {STRules} from '../rules';
 
-export type StrongDouble = StrongType<number>;
+export type StrongDouble = StrongType<number, number>;
 
-export type StrongDoubleNB = StrongTypeNB<number>;
+export type StrongDoubleNull = StrongType<number, null>;
 
-export function makeStrongDouble(initial: number | null | undefined, fallback: number): StrongDouble {
+export function makeDouble(initial: number | null | undefined, fallback: number): StrongDouble {
 	const rules = new STRules<number>();
 	rules.add().must.match.type.double();
 
-	return makeStrong<number>(initial, fallback, rules);
+	return makeStrong<number, number>(initial, fallback, rules);
 }
 
-export function makeStrongDoubleNB(initial: number | null | undefined, fallback: number): StrongDoubleNB {
+export function makeDoubleNull(initial: number | null | undefined, fallback: number): StrongDoubleNull {
 	const rules = new STRules();
 	rules.add().must.match.type.double();
 
-	return makeStrongNB<number>(initial, fallback, rules);
+	return makeStrong<number, null>(initial, fallback, rules);
 }

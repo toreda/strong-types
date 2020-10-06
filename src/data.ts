@@ -2,23 +2,23 @@ import {STRules} from './rules';
 import {STState} from './state';
 import {STTransforms} from './transforms';
 
-export class STData<T> {
-	public value: T | null;
-	public readonly fallbackDefault: T;
-	public readonly state: STState<T>;
-	public readonly transforms: STTransforms<T>;
-	public readonly rules: STRules<T>;
+export class STData<ValueT, ExtraReturnT = void> {
+	public value: ValueT | null;
+	public readonly fallbackDefault: ValueT;
+	public readonly state: STState<ValueT>;
+	public readonly transforms: STTransforms<ValueT>;
+	public readonly rules: STRules<ValueT>;
 
-	constructor(initial: T | null | undefined, fallbackDefault: T, rules?: STRules<T>) {
+	constructor(initial: ValueT | null | undefined, fallbackDefault: ValueT, rules?: STRules<ValueT>) {
 		this.value = null;
 		this.fallbackDefault = fallbackDefault;
-		this.state = new STState<T>();
-		this.transforms = new STTransforms<T>(fallbackDefault);
+		this.state = new STState<ValueT>();
+		this.transforms = new STTransforms<ValueT>(fallbackDefault);
 		this.rules = rules ? rules : new STRules();
 		this.set(initial);
 	}
 
-	public get(fallback: T): T {
+	public get(fallback: ValueT): ValueT | ExtraReturnT {
 		if (this.value === null) {
 			if (typeof fallback === 'undefined' || fallback === null) {
 				return this.fallbackDefault;
@@ -30,9 +30,14 @@ export class STData<T> {
 		return this.value;
 	}
 
-	public set(value: T | null | undefined): boolean {
+	public set(value: ValueT | null | undefined): boolean {
 		if (typeof value === 'undefined') {
 			return false;
+		}
+
+		if (value === null) {
+			this.value = null;
+			return true;
 		}
 
 		const transformed = value;
@@ -47,7 +52,7 @@ export class STData<T> {
 		return true;
 	}
 
-	public getNullable(): T | null {
+	public getNullable(): ValueT | ExtraReturnT | null {
 		if (typeof this.value === 'undefined') {
 			return null;
 		}

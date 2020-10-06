@@ -1,19 +1,19 @@
-import {StrongType, StrongTypeNB, makeStrong, makeStrongNB} from '../strong-type';
+import {StrongType, makeStrong} from '../strong-type';
 
 import {STRules} from '../rules';
 
-export type StrongBoolean = StrongType<boolean>;
-export type StrongBooleanNB = StrongTypeNB<boolean>;
+export type StrongBoolean = StrongType<boolean, boolean>;
+export type StrongBooleanNull = StrongType<boolean, null>;
 
-export function makeStrongBoolean(initial: boolean | null | undefined, fallback: boolean): StrongBoolean {
+export function makeBoolean(initial: boolean | null | undefined, fallback: boolean): StrongBoolean {
 	const rules = new STRules();
 	rules.add().must.match.type.boolean();
 
 	return makeStrong<boolean>(initial, fallback, rules);
 }
 
-export function makeStrongBooleanNB(initial: boolean | null | undefined, fallback: boolean): StrongBooleanNB {
+export function makeBooleanNull(initial: boolean | null | undefined, fallback: boolean): StrongBooleanNull {
 	const rules = new STRules();
 	rules.add().must.match.type.boolean();
-	return makeStrongNB<boolean>(initial, fallback, rules);
+	return makeStrong<boolean, null>(initial, fallback, rules);
 }

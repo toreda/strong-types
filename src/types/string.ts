@@ -1,19 +1,19 @@
-import {StrongType, StrongTypeNB, makeStrong, makeStrongNB} from '../strong-type';
+import {StrongType, makeStrong} from '../strong-type';
 
 import {STRules} from '../rules';
 
-export type StrongString = StrongType<string>;
+export type StrongString = StrongType<string, string>;
 
-export type StrongStringNB = StrongTypeNB<string>;
+export type StrongStringNull = StrongType<string, null>;
 
-export function makeStrongString(initial: string | null | undefined, fallback: string): StrongString {
+export function makeString(initial: string | null | undefined, fallback: string): StrongString {
 	const rules = new STRules();
 	rules.add().must.match.type.string();
 	return makeStrong<string>(initial, fallback, rules);
 }
 
-export function makeStrongStringNB(initial: string | null | undefined, fallback: string): StrongStringNB {
+export function makeStringNull(initial: string | null | undefined, fallback: string): StrongString {
 	const rules = new STRules();
 	rules.add().must.match.type.string();
-	return makeStrongNB<string>(initial, fallback, rules);
+	return makeStrong<string>(initial, fallback, rules);
 }

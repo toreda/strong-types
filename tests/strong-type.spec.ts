@@ -1,4 +1,4 @@
-import {StrongType, StrongTypeNB, makeStrong, makeStrongNB} from '../src/strong-type';
+import {StrongType, makeStrong} from '../src/strong-type';
 
 const MOCK_INITIAL = '11110209';
 const MOCK_STRING = '113333';
@@ -10,7 +10,7 @@ const MOCK_VALUE_NULL = null;
 describe('TypeBox', () => {
 	describe('make', () => {
 		describe('types', () => {
-			let st: StrongType<string>;
+			let st: StrongType<string, void>;
 
 			beforeAll(() => {
 				st = makeStrong<string>(MOCK_INITIAL, MOCK_FALLBACK);
@@ -104,67 +104,6 @@ describe('TypeBox', () => {
 						}
 					}).not.toThrow();
 					expect(st.getNullable()).toBeNull();
-				});
-			});
-		});
-	});
-
-	describe('makeStrongNB', () => {
-		describe('Usage', () => {
-			let st: StrongTypeNB<string>;
-
-			beforeAll(() => {
-				st = makeStrongNB<string>(MOCK_INITIAL, MOCK_FALLBACK);
-			});
-
-			beforeEach(() => {
-				st.reset();
-			});
-
-			describe('invoking st()', () => {
-				it('should return null when value is null', () => {
-					const sampleStr = 'AAAVB';
-					expect(st()).toBeNull();
-
-					st(sampleStr);
-					expect(st()).toBe(sampleStr);
-				});
-
-				it('should return string when value is set to string', () => {
-					expect(st()).toBeNull();
-					const sampleStr = 'VVVV0192309';
-					st(sampleStr);
-					expect(st()).toBe(sampleStr);
-				});
-			});
-
-			describe('invoking st(value)', () => {
-				it('should set value to null when value argument is null', () => {
-					expect(st()).toBeNull();
-					const sampleStr = 'VVVV0192309';
-					st(sampleStr);
-					expect(st()).toBe(sampleStr);
-					st(null);
-					expect(st()).toBeNull();
-				});
-
-				it('should not update current value when value argument is undefined', () => {
-					expect(st()).toBeNull();
-					const sampleStr = '110982_AAVMFKA';
-					st(sampleStr);
-					expect(st()).toBe(sampleStr);
-					st(MOCK_VALUE_UNDEFINED);
-					expect(st()).toBe(sampleStr);
-				});
-			});
-
-			describe('st.reset()', () => {
-				it('should set value to null when value is set invoking st("val") with argument', () => {
-					const sampleStr = '4423211V';
-					st(sampleStr);
-					expect(st()).toBe(sampleStr);
-					st.reset();
-					expect(st()).toBeNull();
 				});
 			});
 		});

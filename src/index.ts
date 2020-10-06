@@ -1,4 +1,4 @@
-export {StrongType, StrongTypeNB, makeStrong, makeStrongNB} from './strong-type';
+export {StrongType, makeStrong} from './strong-type';
 
 // Type Box Components
 export {STConfig} from './config';
@@ -9,12 +9,12 @@ export {STState} from './state';
 export {isType} from './validator/is-type';
 
 // Custom Types
-export {StrongArray, StrongArrayNB, makeStrongArray, makeStrongArrayNB} from './types/array';
-export {StrongBoolean, StrongBooleanNB, makeStrongBoolean, makeStrongBooleanNB} from './types/boolean';
-export {StrongDouble, StrongDoubleNB, makeStrongDouble, makeStrongDoubleNB} from './types/double';
-export {StrongInt, StrongIntNB, makeStrongInt, makeStrongIntNB} from './types/int';
-export {StrongUInt, StrongUIntNB, makeStrongUInt, makeStrongUIntNB} from './types/uint';
-export {StrongString, StrongStringNB, makeStrongString, makeStrongStringNB} from './types/string';
+export {StrongArray, makeArray} from './types/array';
+export {StrongBoolean, makeBoolean} from './types/boolean';
+export {StrongDouble, makeDouble} from './types/double';
+export {StrongInt, makeInt} from './types/int';
+export {StrongUInt, makeUInt} from './types/uint';
+export {StrongString, makeString} from './types/string';
 
 // Validators
 export {STOpIsBoolean, makeIsBoolean} from './validator/is-boolean';
