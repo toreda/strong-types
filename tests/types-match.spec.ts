@@ -1,4 +1,4 @@
-import {TBRule} from '../src/rule/rule';
+import {STRule} from '../src/rule/rule';
 import {isType} from '../src/validator/is-type';
 
 describe('types-match', () => {
@@ -100,10 +100,10 @@ describe('types-match', () => {
 		});
 	});
 
-	describe('TBRule validation', () => {
-		it('should return true for TBRule', () => {
-			const rule = new TBRule();
-			expect(isType(rule, TBRule)).toBe(true);
+	describe('STRule validation', () => {
+		it('should return true for STRule', () => {
+			const rule = new STRule();
+			expect(isType(rule, STRule)).toBe(true);
 		});
 	});
 });

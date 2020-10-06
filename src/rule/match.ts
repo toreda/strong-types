@@ -1,21 +1,21 @@
-import {TBRule} from './rule';
-import {TBRuleModifiers} from './modifiers';
-import {TBRuleOr} from './or';
-import {TBRuleType} from '../rule/type';
-import {TBValidatorPattern} from '../validator/pattern/pattern';
+import {STRule} from './rule';
+import {STRuleModifiers} from './modifiers';
+import {STRuleOr} from './or';
+import {STRuleType} from '../rule/type';
+import {STValidatorPattern} from '../validator/pattern/pattern';
 
-export class TBRuleMatch {
-	public readonly or: TBRuleOr;
-	public readonly type: TBRuleType;
-	public readonly pattern: TBValidatorPattern;
+export class STRuleMatch {
+	public readonly or: STRuleOr;
+	public readonly type: STRuleType;
+	public readonly pattern: STValidatorPattern;
 
-	constructor(rule: TBRule, parentMods: TBRuleModifiers) {
-		const mods: TBRuleModifiers = {
+	constructor(rule: STRule, parentMods: STRuleModifiers) {
+		const mods: STRuleModifiers = {
 			invert: parentMods.invert
 		};
 
-		this.or = new TBRuleOr(rule, mods);
-		this.type = new TBRuleType(rule, mods);
-		this.pattern = new TBValidatorPattern(rule, mods);
+		this.or = new STRuleOr(rule, mods);
+		this.type = new STRuleType(rule, mods);
+		this.pattern = new STValidatorPattern(rule, mods);
 	}
 }

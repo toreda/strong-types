@@ -1,7 +1,7 @@
 import {createIsHexColorCode, isHexColorCodeStr} from '../../../src/validator/pattern/hex-color-code';
 
-import {TBRule} from '../../../src/rule/rule';
-import {TBRuleModifiers} from '../../../src/rule/modifiers';
+import {STRule} from '../../../src/rule/rule';
+import {STRuleModifiers} from '../../../src/rule/modifiers';
 
 const EMPTY_STRING = '';
 const EMPTY_ARRAY = [];
@@ -249,11 +249,11 @@ const TEST_INPUTS = [
 ];
 
 describe('HexColorCode', () => {
-	let mods: TBRuleModifiers;
-	let rule: TBRule;
+	let mods: STRuleModifiers;
+	let rule: STRule;
 
 	beforeAll(() => {
-		rule = new TBRule();
+		rule = new STRule();
 		mods = {
 			invert: false
 		};

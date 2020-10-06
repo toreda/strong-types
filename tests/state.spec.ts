@@ -1,10 +1,10 @@
-import {TBState} from '../src/state';
+import {STState} from '../src/state';
 
-describe('TBState', () => {
-	let instance: TBState<string>;
+describe('STState', () => {
+	let instance: STState<string>;
 
 	beforeAll(() => {
-		instance = new TBState<string>();
+		instance = new STState<string>();
 	});
 	describe('Constructor', () => {});
 
@@ -12,7 +12,7 @@ describe('TBState', () => {
 		describe('create', () => {
 			it('should not throw when no options argument provided', () => {
 				expect(() => {
-					const custom = new TBState<string>();
+					const custom = new STState<string>();
 				}).not.toThrow();
 			});
 		});

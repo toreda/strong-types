@@ -1,10 +1,10 @@
-import {TBRule} from '../../rule/rule';
-import {TBRuleFn} from '../../rule/fn';
-import {TBRuleModifiers} from '../../rule/modifiers';
-import {TBRuleNode} from '../../rule/node';
-import {TBRuleNodeType} from '../../rule/node-type';
+import {STRule} from '../../rule/rule';
+import {STRuleFn} from '../../rule/fn';
+import {STRuleModifiers} from '../../rule/modifiers';
+import {STRuleNode} from '../../rule/node';
+import {STRuleNodeType} from '../../rule/node-type';
 
-export type TBOpIsHexColorCode<CallerType> = () => CallerType;
+export type STOpIsHexColorCode<CallerType> = () => CallerType;
 
 const MIN_HEX_VALUE = 0x0;
 const MAX_HEX_VALUE = 0xffffff;
@@ -58,15 +58,15 @@ export const isHexColorFn = (curr: string | number): boolean => {
 
 export function createIsHexColorCode<CallerType>(
 	caller: CallerType,
-	rule: TBRule,
-	mods: TBRuleModifiers
-): TBOpIsHexColorCode<CallerType> {
+	rule: STRule,
+	mods: STRuleModifiers
+): STOpIsHexColorCode<CallerType> {
 	return (): CallerType => {
-		const fn: TBRuleFn = (curr: string): boolean => {
+		const fn: STRuleFn = (curr: string): boolean => {
 			return isHexColorFn(curr);
 		};
 
-		const node = new TBRuleNode('IS_HEX_COLOR_CODE', TBRuleNodeType.CMP, fn, mods.invert);
+		const node = new STRuleNode('IS_HEX_COLOR_CODE', STRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

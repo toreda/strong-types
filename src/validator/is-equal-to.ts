@@ -1,10 +1,10 @@
-import {TBRule} from '../rule/rule';
-import {TBRuleFn} from '../rule/fn';
-import {TBRuleModifiers} from '../rule/modifiers';
-import {TBRuleNode} from '../rule/node';
-import {TBRuleNodeType} from '../rule/node-type';
+import {STRule} from '../rule/rule';
+import {STRuleFn} from '../rule/fn';
+import {STRuleModifiers} from '../rule/modifiers';
+import {STRuleNode} from '../rule/node';
+import {STRuleNodeType} from '../rule/node-type';
 
-export type TBOpIsEqualTo<CallerType> = (a: any) => CallerType;
+export type STOpIsEqualTo<CallerType> = (a: any) => CallerType;
 
 export const equalToFn = (curr: any, target: any): boolean => {
 	if (typeof target === 'undefined' || typeof curr === 'undefined') {
@@ -32,14 +32,14 @@ export const equalToFn = (curr: any, target: any): boolean => {
 
 export function makeIsEqualTo<CallerType>(
 	caller: CallerType,
-	rule: TBRule,
-	mods: TBRuleModifiers
-): TBOpIsEqualTo<CallerType> {
+	rule: STRule,
+	mods: STRuleModifiers
+): STOpIsEqualTo<CallerType> {
 	return (target: any): CallerType => {
-		const fn: TBRuleFn = (curr: any): boolean => {
+		const fn: STRuleFn = (curr: any): boolean => {
 			return equalToFn(curr, target);
 		};
-		const node = new TBRuleNode('IS_EQ', TBRuleNodeType.CMP, fn, mods.invert);
+		const node = new STRuleNode('IS_EQ', STRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 		return caller;
 	};

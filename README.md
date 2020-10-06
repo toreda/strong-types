@@ -2,18 +2,18 @@
 
 
 
-# `@toreda/type-box`
+# `@toreda/strong-types`
 
-![CI](https://github.com/toreda/type-box/workflows/CI/badge.svg?branch=master) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=toreda_type-box&metric=coverage)](https://sonarcloud.io/dashboard?id=toreda_type-box) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=toreda_type-box&metric=alert_status)](https://sonarcloud.io/dashboard?id=toreda_type-box)
+![CI](https://github.com/toreda/strong-types/workflows/CI/badge.svg?branch=master) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=toreda_strong-types&metric=coverage)](https://sonarcloud.io/dashboard?id=toreda_strong-types) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=toreda_strong-types&metric=alert_status)](https://sonarcloud.io/dashboard?id=toreda_strong-types)
 
 Native TypeScript containers for generic value storage. Reliably store and retrieve typed values without writing validation or type checking code. Use [built-in types](#BuiltInTypes) or define your own.
 
 
 What does it do?
 ```typescript
-import { TBInt, makeInt } from '@toreda/type-box';
+import { STInt, makeStrongInt } from '@toreda/strong-types';
 //  int with initial value 10.
-const int = makeInt(10, 0);
+const int = makeStrongInt(10, 0);
 // Prints 10. It always return an int.
 console.log(int());
 
@@ -32,14 +32,15 @@ int({});
 console.log(int());
 ```
 # Contents
+
 * [**Basic Usage**](#basic-usage)
 *	[**Built-in Types**](#built-in-types)
-	  -	[`TBArray`](#TBArray)
-	  - [`TBBoolean`](#TBBoolean)
-	  - [`TBDouble`](#TBDouble)
-	  - [`TBInt`](#TBInt)
-	  - [`TBString`](#TBString)
-	  - [`TBUInt`](#TBUInt)
+	  -	[`STArray`](#STArray)
+	  - [`STBoolean`](#STBoolean)
+	  - [`STDouble`](#STDouble)
+	  - [`STInt`](#STInt)
+	  - [`STString`](#STString)
+	  - [`STUInt`](#STUInt)
 *	[**Custom Types**](#custom-types)
 	  - [Validators](#Validators)
 * 	[**Package**](#Package)
@@ -76,39 +77,39 @@ myValue.reset();
 ```
 
 # Supported Types
-* [`TBArray`](#tbarray-typebox-array), arrays 
-* [`TBBoolean`](#tbboolean-typebox-boolean), booleans (strict)
-* [`TBDouble`](#TBDouble), doubles
-* [`TBInt`](#tb-Int), integers
-* [`TBUInt`](#TBUint), unsigned integers
-* [`TBString`](#TBString) - strings
+* [`STArray`](#STarray-typebox-array), arrays
+* [`STBoolean`](#STboolean-typebox-boolean), booleans (strict)
+* [`STDouble`](#STDouble), doubles
+* [`STInt`](#ST-Int), integers
+* [`STUInt`](#STUint), unsigned integers
+* [`STString`](#STString) - strings
 
 
-## TBArray - TypeBox Array
+## STArray - TypeBox Array
 
-## TBBoolean - TypeBox Boolean
+## STBoolean - TypeBox Boolean
 
-## TBDouble - Type Box Doubles
+## STDouble - Type Box Doubles
 
-## TBInt - TypeBox Integer
+## STInt - TypeBox Integer
 
-#### Creating TBInt
+#### Creating STInt
 ```typescript
-import {TBInt, makeInt} from '@toreda/type-box';
+import {STInt, makeStrongInt} from '@toreda/strong-types';
 const initial = 11;
 const fallback = 55;
-const int = makeInt(initial, fallback);
+const int = makeStrongInt(initial, fallback);
 
 // Returns 11 - initial value was 11.
-const value = TBInt();
+const value = STInt();
 ```
 
 #### Default Fallback
 ```typescript
-import {TBInt, makeInt} from '@toreda/type-box';
+import {STInt, makeStrongInt} from '@toreda/strong-types';
 const initial = null;
 const fallback = 101;
-const uint = makeInt(initial, fallback);
+const uint = makeStrongInt(initial, fallback);
 
 // Returns 101 - current value is null (no value set).
 const value = uint();
@@ -116,8 +117,8 @@ const value = uint();
 
 #### Fallback
 ```typescript
-import {TBInt, makeInt} from '@toreda/type-box';
-const int = makeInt(null, 201);
+import {STInt, makeStrongInt} from '@toreda/strong-types';
+const int = makeStrongInt(null, 201);
 
 // kvp.get(fallback) returns the fallback argument when the kvp instance
 // has no value set.
@@ -132,10 +133,10 @@ const value = int.get(fallback);
 ```
 
 #### Validation
-TBInt will not update t's value called with a positive or negative integer.
+STInt will not update t's value called with a positive or negative integer.
 ```typescript
-import {TBInt, makeInt} from '@toreda/type-box';
-const uint = makeInt(50, 100);
+import {STInt, makeStrongInt} from '@toreda/strong-types';
+const uint = makeStrongInt(50, 100);
 
 // Attempting to set value to a negative integer.
 // Success will be false.
@@ -149,8 +150,8 @@ const value = uint();
 
 ##### Individual Fallbacks
 ```typescript
-import {TBUInt, makeUInt} from '@toreda/type-box';
-const uint = makeUInt(null, 30);
+import {STUInt, makeStrongUInt} from '@toreda/strong-types';
+const uint = makeStrongUInt(null, 30);
 
 // kvp.get(fallback) returns the fallback when the kvp
 // has no value set.
@@ -165,10 +166,10 @@ const value = uint.get(fallback);
 ```
 
 ##### Type Validation
-TBUInt performs automatic input validation and will not update it's value unless the provided input is an unsigned integer.
+STUInt performs automatic input validation and will not update it's value unless the provided input is an unsigned integer.
 ```typescript
-import {TBUInt, makeUInt} from '@toreda/type-box';
-const uint = makeUInt(20, 40);
+import {STUInt, makeStrongUInt} from '@toreda/strong-types';
+const uint = makeStrongUInt(20, 40);
 
 // Attempting to set value to a negative integer.
 // Success will be false.
@@ -183,7 +184,7 @@ const value = uint();
 
 ### Create value
 ```typescript
-import {TypeBox, make} from '@toreda/type-box';
+import {TypeBox, make} from '@toreda/strong-types';
 const initial = 'hello';
 const fallbackDefault = 'goodbye';
 const myValue = make<string>(initial, fallbackDefault);
@@ -203,19 +204,19 @@ const fallback = 'goodbye again';
 const value = myValue.get(fallback);
 ```
 
-## TBString - Type Box Strings
+## STString - Type Box Strings
 
 
-## TBUInt - TypeBox Unsigned Integers
+## STUInt - TypeBox Unsigned Integers
 Accepts positive integer values only. Everything else will be rejected and will not update the value.
 
 ##### Make UInts
 ```typescript
-import {TBUInt, makeUInt} from '@toreda/type-box';
+import {STUInt, makeStrongUInt} from '@toreda/strong-types';
 // UInt starting value.
 const initial = 44;
 const fallbackDefault = 1;
-const uint = makeUInt(initialValue, fallbackDefault);
+const uint = makeStrongUInt(initialValue, fallbackDefault);
 
 // Get the current value 44.
 const uintValue = uint();
@@ -226,10 +227,10 @@ uint(14);
 
 ##### Using the  Fallback Default
 ```typescript
-import {TBUInt, makeUInt} from '@toreda/type-box';
+import {STUInt, makeStrongUInt} from '@toreda/strong-types';
 const initialValue = null;
 const fallbackDefault = 27;
-const uint = makeUInt(initialValue, fallbackDefault);
+const uint = makeStrongUInt(initialValue, fallbackDefault);
 
 // Returns 27. Getting the current value with uint() guarantees a type-safe return value.
 // When the current value is null (not set), the default fallback is returned instead.
@@ -239,7 +240,7 @@ const value = uint();
 
 
 # Install
-Install `@toreda/type-box` directly from NPM or [clone the Github repo](https://github.com/toreda/type-box).
+Install `@toreda/strong-types` directly from NPM or [clone the Github repo](https://github.com/toreda/strong-types).
 
 ### Install using Yarn (preferred)
  1. Open a shell (or console).

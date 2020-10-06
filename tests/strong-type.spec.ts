@@ -1,4 +1,4 @@
-import {TypeBox, TypeBoxNB, make, makeNB} from '../src/type-box';
+import {StrongType, StrongTypeNB, makeStrong, makeStrongNB} from '../src/strong-type';
 
 const MOCK_INITIAL = '11110209';
 const MOCK_STRING = '113333';
@@ -10,161 +10,161 @@ const MOCK_VALUE_NULL = null;
 describe('TypeBox', () => {
 	describe('make', () => {
 		describe('types', () => {
-			let tb: TypeBox<string>;
+			let st: StrongType<string>;
 
 			beforeAll(() => {
-				tb = make<string>(MOCK_INITIAL, MOCK_FALLBACK);
+				st = makeStrong<string>(MOCK_INITIAL, MOCK_FALLBACK);
 			});
 
 			beforeEach(() => {
-				tb.reset();
+				st.reset();
 			});
 
 			it('should make and return a function', () => {
-				expect(typeof tb).toBe('function');
+				expect(typeof st).toBe('function');
 			});
 
 			it('should return initial value when call with no arguments', () => {
 				const sampleStr = '44198657635';
-				const customTB = make<string>(sampleStr, MOCK_FALLBACK);
-				expect(customTB()).toBe(sampleStr);
+				const custom = makeStrong<string>(sampleStr, MOCK_FALLBACK);
+				expect(custom()).toBe(sampleStr);
 			});
 
 			it('should return default fallback value argument is not provided and value is null', () => {
-				const customTB = make<string>(null, MOCK_FALLBACK);
-				expect(customTB()).toBe(MOCK_FALLBACK);
+				const custom = makeStrong<string>(null, MOCK_FALLBACK);
+				expect(custom()).toBe(MOCK_FALLBACK);
 			});
 
-			it('should set value when tb is called with an argument', () => {
+			it('should set value when st is called with an argument', () => {
 				const sampleStr = '44810100929';
-				tb(sampleStr);
-				expect(tb()).toBe(sampleStr);
+				st(sampleStr);
+				expect(st()).toBe(sampleStr);
 			});
 
 			it('should return fallback default when invoked with no arguments and value has been set to null', () => {
 				const sampleStr = '44810100929';
-				const tb = make<string>(MOCK_STRING, MOCK_FALLBACK);
-				tb(null);
-				expect(tb()).toBe(MOCK_FALLBACK);
+				const st = makeStrong<string>(MOCK_STRING, MOCK_FALLBACK);
+				st(null);
+				expect(st()).toBe(MOCK_FALLBACK);
 			});
 
 			describe('get', () => {
 				it('should return provided fallback when value is null', () => {
 					const sampleStr = '9419814981';
-					expect(tb.get(sampleStr)).toBe(sampleStr);
+					expect(st.get(sampleStr)).toBe(sampleStr);
 				});
 
 				it('should return the fallback default when value is null and provided fallback is not valid', () => {
 					const sampleStr = '4098211872';
-					const tb = make<string>(MOCK_STRING, sampleStr);
-					tb(null);
-					expect(tb.get(undefined as any)).toBe(sampleStr);
+					const st = makeStrong<string>(MOCK_STRING, sampleStr);
+					st(null);
+					expect(st.get(undefined as any)).toBe(sampleStr);
 				});
 			});
 
 			describe('getNullable', () => {
 				it('should return value when value is not null', () => {
 					const sampleStr = '6766199823';
-					const tb = make<string>(sampleStr, MOCK_FALLBACK);
-					expect(tb.getNullable()).toBe(sampleStr);
+					const st = makeStrong<string>(sampleStr, MOCK_FALLBACK);
+					expect(st.getNullable()).toBe(sampleStr);
 				});
 
 				it('should return null when value is null', () => {
-					tb(null);
-					expect(tb.getNullable()).toBeNull();
+					st(null);
+					expect(st.getNullable()).toBeNull();
 				});
 			});
 
 			describe('reset', () => {
 				it('should set value to null when value is set by initial value', () => {
-					const tb = make<string>(null, MOCK_FALLBACK);
-					expect(tb.getNullable()).toBeNull();
+					const st = makeStrong<string>(null, MOCK_FALLBACK);
+					expect(st.getNullable()).toBeNull();
 				});
 
-				it('should set value to null when value is set invoking tb("val") with argument', () => {
+				it('should set value to null when value is set invoking st("val") with argument', () => {
 					const sampleStr = '881032091';
-					tb(sampleStr);
-					expect(tb()).toBe(sampleStr);
-					tb.reset();
-					expect(tb.getNullable()).toBeNull();
+					st(sampleStr);
+					expect(st()).toBe(sampleStr);
+					st.reset();
+					expect(st.getNullable()).toBeNull();
 				});
 
 				it('should not throw when value is already null', () => {
-					tb(null);
+					st(null);
 					expect(() => {
-						tb.reset();
+						st.reset();
 					}).not.toThrow();
-					expect(tb.getNullable()).toBeNull();
+					expect(st.getNullable()).toBeNull();
 				});
 
 				it('should not throw when called repeatedly', () => {
 					expect(() => {
 						for (let i = 0; i < 10; i++) {
-							tb.reset();
+							st.reset();
 						}
 					}).not.toThrow();
-					expect(tb.getNullable()).toBeNull();
+					expect(st.getNullable()).toBeNull();
 				});
 			});
 		});
 	});
 
-	describe('makeNB', () => {
+	describe('makeStrongNB', () => {
 		describe('Usage', () => {
-			let tb: TypeBoxNB<string>;
+			let st: StrongTypeNB<string>;
 
 			beforeAll(() => {
-				tb = makeNB<string>(MOCK_INITIAL, MOCK_FALLBACK);
+				st = makeStrongNB<string>(MOCK_INITIAL, MOCK_FALLBACK);
 			});
 
 			beforeEach(() => {
-				tb.reset();
+				st.reset();
 			});
 
-			describe('invoking tb()', () => {
+			describe('invoking st()', () => {
 				it('should return null when value is null', () => {
 					const sampleStr = 'AAAVB';
-					expect(tb()).toBeNull();
+					expect(st()).toBeNull();
 
-					tb(sampleStr);
-					expect(tb()).toBe(sampleStr);
+					st(sampleStr);
+					expect(st()).toBe(sampleStr);
 				});
 
 				it('should return string when value is set to string', () => {
-					expect(tb()).toBeNull();
+					expect(st()).toBeNull();
 					const sampleStr = 'VVVV0192309';
-					tb(sampleStr);
-					expect(tb()).toBe(sampleStr);
+					st(sampleStr);
+					expect(st()).toBe(sampleStr);
 				});
 			});
 
-			describe('invoking tb(value)', () => {
+			describe('invoking st(value)', () => {
 				it('should set value to null when value argument is null', () => {
-					expect(tb()).toBeNull();
+					expect(st()).toBeNull();
 					const sampleStr = 'VVVV0192309';
-					tb(sampleStr);
-					expect(tb()).toBe(sampleStr);
-					tb(null);
-					expect(tb()).toBeNull();
+					st(sampleStr);
+					expect(st()).toBe(sampleStr);
+					st(null);
+					expect(st()).toBeNull();
 				});
 
 				it('should not update current value when value argument is undefined', () => {
-					expect(tb()).toBeNull();
+					expect(st()).toBeNull();
 					const sampleStr = '110982_AAVMFKA';
-					tb(sampleStr);
-					expect(tb()).toBe(sampleStr);
-					tb(MOCK_VALUE_UNDEFINED);
-					expect(tb()).toBe(sampleStr);
+					st(sampleStr);
+					expect(st()).toBe(sampleStr);
+					st(MOCK_VALUE_UNDEFINED);
+					expect(st()).toBe(sampleStr);
 				});
 			});
 
-			describe('tb.reset()', () => {
-				it('should set value to null when value is set invoking tb("val") with argument', () => {
+			describe('st.reset()', () => {
+				it('should set value to null when value is set invoking st("val") with argument', () => {
 					const sampleStr = '4423211V';
-					tb(sampleStr);
-					expect(tb()).toBe(sampleStr);
-					tb.reset();
-					expect(tb()).toBeNull();
+					st(sampleStr);
+					expect(st()).toBe(sampleStr);
+					st.reset();
+					expect(st()).toBeNull();
 				});
 			});
 		});

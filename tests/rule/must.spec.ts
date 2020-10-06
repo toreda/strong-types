@@ -1,12 +1,12 @@
-import {TBRule} from '../../src/rule/rule';
-import {TBRuleMust} from '../../src/rule/must';
+import {STRule} from '../../src/rule/rule';
+import {STRuleMust} from '../../src/rule/must';
 
-describe('TBMust', () => {
-	let instance: TBRuleMust;
-	const rules: TBRule[] = [];
+describe('STMust', () => {
+	let instance: STRuleMust;
+	const rules: STRule[] = [];
 
 	beforeAll(() => {
-		instance = new TBRuleMust(rules, null);
+		instance = new STRuleMust(rules, null);
 	});
 
 	beforeEach(() => {
@@ -36,14 +36,14 @@ describe('TBMust', () => {
 
 		it('should push a rule to rules array when parentRule argument is null', () => {
 			expect(rules).toHaveLength(0);
-			const custom = new TBRuleMust(rules, null);
+			const custom = new STRuleMust(rules, null);
 			expect(rules).toHaveLength(1);
 		});
 
 		it('should not push parentRule to rules array when provided', () => {
-			const rule = new TBRule();
+			const rule = new STRule();
 			expect(rules).toHaveLength(0);
-			const custom = new TBRuleMust(rules, rule);
+			const custom = new STRuleMust(rules, rule);
 			expect(rules).toHaveLength(0);
 		});
 	});

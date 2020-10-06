@@ -1,20 +1,20 @@
-import {TBRules} from './rules';
-import {TBState} from './state';
-import {TBTransforms} from './transforms';
+import {STRules} from './rules';
+import {STState} from './state';
+import {STTransforms} from './transforms';
 
-export class TBData<T> {
+export class STData<T> {
 	public value: T | null;
 	public readonly fallbackDefault: T;
-	public readonly state: TBState<T>;
-	public readonly transforms: TBTransforms<T>;
-	public readonly rules: TBRules<T>;
+	public readonly state: STState<T>;
+	public readonly transforms: STTransforms<T>;
+	public readonly rules: STRules<T>;
 
-	constructor(initial: T | null | undefined, fallbackDefault: T, rules?: TBRules<T>) {
+	constructor(initial: T | null | undefined, fallbackDefault: T, rules?: STRules<T>) {
 		this.value = null;
 		this.fallbackDefault = fallbackDefault;
-		this.state = new TBState<T>();
-		this.transforms = new TBTransforms<T>(fallbackDefault);
-		this.rules = rules ? rules : new TBRules();
+		this.state = new STState<T>();
+		this.transforms = new STTransforms<T>(fallbackDefault);
+		this.rules = rules ? rules : new STRules();
 		this.set(initial);
 	}
 

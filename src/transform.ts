@@ -1,19 +1,19 @@
-import {TBTransformFN} from './transform-fn';
-import {TBTransformOptions} from './transform-options';
+import {STTransformFN} from './transform-fn';
+import {STTransformOptions} from './transform-options';
 
-export class TBTransform<T> {
+export class STTransform<T> {
 	public readonly id: string;
 	public readonly label: string;
-	public readonly fn: TBTransformFN<T>;
+	public readonly fn: STTransformFN<T>;
 
-	constructor(fn: TBTransformFN<T>, options?: TBTransformOptions) {
+	constructor(fn: STTransformFN<T>, options?: STTransformOptions) {
 		if (!fn) {
-			throw new Error('TBTransform init failed - fn argument missing.');
+			throw new Error('STTransform init failed - fn argument missing.');
 		}
 
 		this.fn = fn;
-		this.id = options && typeof options.id === 'string' ? options.id : 'tb_tf';
-		this.label = `tb_filter_${this.id}`;
+		this.id = options && typeof options.id === 'string' ? options.id : 'ST_tf';
+		this.label = `ST_filter_${this.id}`;
 	}
 
 	public run(value: T): T {

@@ -1,12 +1,12 @@
-import {TBOpIsLength, makeIsLength} from '../validator/is-length';
+import {STOpIsLength, makeIsLength} from '../validator/is-length';
 
-import {TBRule} from './rule';
-import {TBRuleModifiers} from './modifiers';
+import {STRule} from './rule';
+import {STRuleModifiers} from './modifiers';
 
-export class TBRuleHave {
-	public readonly length: TBOpIsLength<TBRuleHave>;
+export class STRuleHave {
+	public readonly length: STOpIsLength<STRuleHave>;
 
-	constructor(rule: TBRule, mods: TBRuleModifiers) {
-		this.length = makeIsLength<TBRuleHave>(this, rule, mods);
+	constructor(rule: STRule, mods: STRuleModifiers) {
+		this.length = makeIsLength<STRuleHave>(this, rule, mods);
 	}
 }

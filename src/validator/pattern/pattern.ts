@@ -1,12 +1,12 @@
-import {TBOpIsHexColorCode, createIsHexColorCode} from './hex-color-code';
+import {STOpIsHexColorCode, createIsHexColorCode} from './hex-color-code';
 
-import {TBRule} from '../../rule/rule';
-import {TBRuleModifiers} from '../../rule/modifiers';
+import {STRule} from '../../rule/rule';
+import {STRuleModifiers} from '../../rule/modifiers';
 
-export class TBValidatorPattern {
-	public readonly hexColor: TBOpIsHexColorCode<TBValidatorPattern>;
+export class STValidatorPattern {
+	public readonly hexColor: STOpIsHexColorCode<STValidatorPattern>;
 
-	constructor(rule: TBRule, mods: TBRuleModifiers) {
+	constructor(rule: STRule, mods: STRuleModifiers) {
 		this.hexColor = createIsHexColorCode(this, rule, mods);
 	}
 }

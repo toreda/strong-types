@@ -1,12 +1,12 @@
-import {TBRule} from '../rule/rule';
-import {TBRuleFn} from '../rule/fn';
-import {TBRuleModifiers} from '../rule/modifiers';
-import {TBRuleNode} from '../rule/node';
-import {TBRuleNodeType} from '../rule/node-type';
+import {STRule} from '../rule/rule';
+import {STRuleFn} from '../rule/fn';
+import {STRuleModifiers} from '../rule/modifiers';
+import {STRuleNode} from '../rule/node';
+import {STRuleNodeType} from '../rule/node-type';
 
-export type TBOpIsLength<CallerType> = (a: number) => CallerType;
+export type STOpIsLength<CallerType> = (a: number) => CallerType;
 
-export const isLengthFn = (curr: any, expectedLength: number) => {
+export const isLengthFn = (curr: any, expectedLength: number): boolean => {
 	if (!Array.isArray(curr) && typeof curr !== 'number' && typeof curr !== 'string') {
 		return false;
 	}
@@ -24,15 +24,15 @@ export const isLengthFn = (curr: any, expectedLength: number) => {
 
 export function makeIsLength<CallerType>(
 	caller: CallerType,
-	rule: TBRule,
-	mods: TBRuleModifiers
-): TBOpIsLength<CallerType> {
+	rule: STRule,
+	mods: STRuleModifiers
+): STOpIsLength<CallerType> {
 	return (expectedLength: number): CallerType => {
-		const fn: TBRuleFn = (curr: any): boolean => {
+		const fn: STRuleFn = (curr: any): boolean => {
 			return isLengthFn(curr, expectedLength);
 		};
 
-		const node = new TBRuleNode('IS_LENGTH', TBRuleNodeType.CMP, fn, mods.invert);
+		const node = new STRuleNode('IS_LENGTH', STRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

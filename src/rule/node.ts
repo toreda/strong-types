@@ -1,14 +1,14 @@
-import {TBRuleFn} from './fn';
-import {TBRuleNodeType} from './node-type';
+import {STRuleFn} from './fn';
+import {STRuleNodeType} from './node-type';
 
-export class TBRuleNode {
+export class STRuleNode {
 	public readonly id: string;
-	public readonly children: TBRuleNode[];
-	public readonly fn: TBRuleFn | null;
-	public readonly type: TBRuleNodeType;
+	public readonly children: STRuleNode[];
+	public readonly fn: STRuleFn | null;
+	public readonly type: STRuleNodeType;
 	public invertResult: boolean;
 
-	constructor(id: string, type: TBRuleNodeType, fn: TBRuleFn | null, invert: boolean = false) {
+	constructor(id: string, type: STRuleNodeType, fn: STRuleFn | null, invert: boolean = false) {
 		this.id = id;
 		this.children = [];
 		this.fn = fn;

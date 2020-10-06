@@ -1,18 +1,18 @@
-import {TypeBox, TypeBoxNB, make, makeNB} from '../type-box';
+import {StrongType, StrongTypeNB, makeStrong, makeStrongNB} from '../strong-type';
 
-import {TBRules} from '../rules';
+import {STRules} from '../rules';
 
-export type TBArray<T> = TypeBox<T[]>;
-export type TBArrayNB<T> = TypeBoxNB<T[]>;
+export type StrongArray<T> = StrongType<T[]>;
+export type StrongArrayNB<T> = StrongTypeNB<T[]>;
 
-export function makeArray<T>(initial: T[] | null | undefined, fallback: T[]): TBArray<T> {
-	const rules = new TBRules();
+export function makeStrongArray<T>(initial: T[] | null | undefined, fallback: T[]): StrongArray<T> {
+	const rules = new STRules();
 	rules.add().must.match.type.array();
-	return make<T[]>(initial, fallback, rules);
+	return makeStrong<T[]>(initial, fallback, rules);
 }
 
-export function makeArrayNB<T>(initial: T[] | null | undefined, fallback: T[]): TBArrayNB<T> {
-	const rules = new TBRules();
+export function makeStrongArrayNB<T>(initial: T[] | null | undefined, fallback: T[]): StrongArrayNB<T> {
+	const rules = new STRules();
 	rules.add().must.match.type.array();
-	return makeNB<T[]>(initial, fallback, rules);
+	return makeStrongNB<T[]>(initial, fallback, rules);
 }

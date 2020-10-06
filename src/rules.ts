@@ -1,17 +1,17 @@
-import {TBRule} from './rule/rule';
-import {TBRuleMust} from './rule/must';
-import {TBRuleRoot} from './rule/root';
+import {STRule} from './rule/rule';
+import {STRuleMust} from './rule/must';
+import {STRuleRoot} from './rule/root';
 
-export class TBRules<T> {
-	public readonly rules: TBRule[];
+export class STRules<T> {
+	public readonly rules: STRule[];
 
 	constructor() {
 		this.rules = [];
 	}
 
-	public add(): TBRuleRoot {
+	public add(): STRuleRoot {
 		return {
-			must: new TBRuleMust(this.rules, null)
+			must: new STRuleMust(this.rules, null)
 		};
 	}
 

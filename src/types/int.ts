@@ -1,18 +1,18 @@
-import {TypeBox, TypeBoxNB, make, makeNB} from '../type-box';
+import {StrongType, StrongTypeNB, makeStrong, makeStrongNB} from '../strong-type';
 
-import {TBRules} from '../rules';
+import {STRules} from '../rules';
 
-export type TBInt = TypeBox<number>;
-export type TBIntNB = TypeBoxNB<number>;
+export type StrongInt = StrongType<number>;
+export type StrongIntNB = StrongTypeNB<number>;
 
-export function makeInt(initial: number | null | undefined, fallback: number): TBInt {
-	const rules = new TBRules();
+export function makeStrongInt(initial: number | null | undefined, fallback: number): StrongInt {
+	const rules = new STRules();
 	rules.add().must.match.type.integer();
-	return make<number>(initial, fallback, rules);
+	return makeStrong<number>(initial, fallback, rules);
 }
 
-export function makeIntNB(initial: number | null | undefined, fallback: number): TBIntNB | null {
-	const rules = new TBRules();
+export function makeStrongIntNB(initial: number | null | undefined, fallback: number): StrongIntNB | null {
+	const rules = new STRules();
 	rules.add().must.match.type.integer();
-	return makeNB<number>(initial, fallback, rules);
+	return makeStrongNB<number>(initial, fallback, rules);
 }

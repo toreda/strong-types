@@ -1,36 +1,36 @@
-import {TBOpIsEmpty, makeIsEmpty} from '../validator/is-empty';
-import {TBOpIsEqualTo, makeIsEqualTo} from '../validator/is-equal-to';
-import {TBOpIsGreaterThan, makeIsGreaterThan} from '../validator/is-greater-than';
+import {STOpIsEmpty, makeIsEmpty} from '../validator/is-empty';
+import {STOpIsEqualTo, makeIsEqualTo} from '../validator/is-equal-to';
+import {STOpIsGreaterThan, makeIsGreaterThan} from '../validator/is-greater-than';
 import {
-	TBOpIsGreaterThanOrEqualTo,
+	STOpIsGreaterThanOrEqualTo,
 	makeIsGreaterThanOrEqualTo
 } from '../validator/is-greater-than-or-equal-to';
-import {TBOpIsLessThan, makeIsLessThan} from '../validator/is-less-than';
-import {TBOpIsLessThanOrEqualTo, makeIsLessThanOrEqualTo} from '../validator/is-less-than-or-equal-to';
-import {TBOpIsNull, makeIsNull} from '../validator/is-null';
-import {TBOpIsUndefined, makeIsUndefined} from '../validator/is-undefined';
+import {STOpIsLessThan, makeIsLessThan} from '../validator/is-less-than';
+import {STOpIsLessThanOrEqualTo, makeIsLessThanOrEqualTo} from '../validator/is-less-than-or-equal-to';
+import {STOpIsNull, makeIsNull} from '../validator/is-null';
+import {STOpIsUndefined, makeIsUndefined} from '../validator/is-undefined';
 
-import {TBRule} from './rule';
-import {TBRuleModifiers} from '../rule/modifiers';
+import {STRule} from './rule';
+import {STRuleModifiers} from '../rule/modifiers';
 
-export class TBRuleBe {
-	public readonly greaterThan: TBOpIsGreaterThan<TBRuleBe>;
-	public readonly greaterThanOrEqualTo: TBOpIsGreaterThanOrEqualTo<TBRuleBe>;
-	public readonly lessThanOrEqualTo: TBOpIsLessThanOrEqualTo<TBRuleBe>;
-	public readonly lessThan: TBOpIsLessThan<TBRuleBe>;
-	public readonly equalTo: TBOpIsEqualTo<TBRuleBe>;
-	public readonly ['undefined']: TBOpIsUndefined<TBRuleBe>;
-	public readonly ['null']: TBOpIsNull<TBRuleBe>;
-	public readonly empty: TBOpIsEmpty<TBRuleBe>;
+export class STRuleBe {
+	public readonly greaterThan: STOpIsGreaterThan<STRuleBe>;
+	public readonly greaterThanOrEqualTo: STOpIsGreaterThanOrEqualTo<STRuleBe>;
+	public readonly lessThanOrEqualTo: STOpIsLessThanOrEqualTo<STRuleBe>;
+	public readonly lessThan: STOpIsLessThan<STRuleBe>;
+	public readonly equalTo: STOpIsEqualTo<STRuleBe>;
+	public readonly ['undefined']: STOpIsUndefined<STRuleBe>;
+	public readonly ['null']: STOpIsNull<STRuleBe>;
+	public readonly empty: STOpIsEmpty<STRuleBe>;
 
-	constructor(rule: TBRule, mods: TBRuleModifiers) {
-		this.greaterThan = makeIsGreaterThan<TBRuleBe>(this, rule, mods);
-		this.greaterThanOrEqualTo = makeIsGreaterThanOrEqualTo<TBRuleBe>(this, rule, mods);
-		this.lessThan = makeIsLessThan<TBRuleBe>(this, rule, mods);
-		this.lessThanOrEqualTo = makeIsLessThanOrEqualTo<TBRuleBe>(this, rule, mods);
-		this.equalTo = makeIsEqualTo<TBRuleBe>(this, rule, mods);
-		this.undefined = makeIsUndefined<TBRuleBe>(this, rule, mods);
-		this.null = makeIsNull<TBRuleBe>(this, rule, mods);
-		this.empty = makeIsEmpty<TBRuleBe>(this, rule, mods);
+	constructor(rule: STRule, mods: STRuleModifiers) {
+		this.greaterThan = makeIsGreaterThan<STRuleBe>(this, rule, mods);
+		this.greaterThanOrEqualTo = makeIsGreaterThanOrEqualTo<STRuleBe>(this, rule, mods);
+		this.lessThan = makeIsLessThan<STRuleBe>(this, rule, mods);
+		this.lessThanOrEqualTo = makeIsLessThanOrEqualTo<STRuleBe>(this, rule, mods);
+		this.equalTo = makeIsEqualTo<STRuleBe>(this, rule, mods);
+		this.undefined = makeIsUndefined<STRuleBe>(this, rule, mods);
+		this.null = makeIsNull<STRuleBe>(this, rule, mods);
+		this.empty = makeIsEmpty<STRuleBe>(this, rule, mods);
 	}
 }

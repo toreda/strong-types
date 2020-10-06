@@ -1,21 +1,21 @@
-import {TypeBox, TypeBoxNB, make, makeNB} from '../type-box';
+import {StrongType, StrongTypeNB, makeStrong, makeStrongNB} from '../strong-type';
 
-import {TBRules} from '../rules';
+import {STRules} from '../rules';
 
-export type TBDouble = TypeBox<number>;
+export type StrongDouble = StrongType<number>;
 
-export type TBDoubleNB = TypeBoxNB<number>;
+export type StrongDoubleNB = StrongTypeNB<number>;
 
-export function makeDouble(initial: number | null | undefined, fallback: number): TBDouble {
-	const rules = new TBRules<number>();
+export function makeStrongDouble(initial: number | null | undefined, fallback: number): StrongDouble {
+	const rules = new STRules<number>();
 	rules.add().must.match.type.double();
 
-	return make<number>(initial, fallback, rules);
+	return makeStrong<number>(initial, fallback, rules);
 }
 
-export function makeDoubleNB(initial: number | null | undefined, fallback: number): TBDoubleNB {
-	const rules = new TBRules();
+export function makeStrongDoubleNB(initial: number | null | undefined, fallback: number): StrongDoubleNB {
+	const rules = new STRules();
 	rules.add().must.match.type.double();
 
-	return makeNB<number>(initial, fallback, rules);
+	return makeStrongNB<number>(initial, fallback, rules);
 }

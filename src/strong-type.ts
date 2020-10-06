@@ -1,7 +1,7 @@
-import {TBData} from './data';
-import {TBRules} from './rules';
+import {STData} from './data';
+import {STRules} from './rules';
 
-export interface TypeBox<T> {
+export interface StrongType<T> {
 	(val?: T | null): T;
 	get: (fallback: T) => T;
 	getNullable: () => T | null;
@@ -9,15 +9,19 @@ export interface TypeBox<T> {
 	typeId: string;
 }
 
-export interface TypeBoxNB<T> {
+export interface StrongTypeNB<T> {
 	(val?: T | null): T | null;
 	get: (fallback: T) => T;
 	reset: () => void;
 	typeId: string;
 }
 
-export function make<T>(initialValue: T | null | undefined, fallbackArg: T, rules?: TBRules<T>): TypeBox<T> {
-	const instance = new TBData<T>(initialValue, fallbackArg, rules);
+export function makeStrong<T>(
+	initialValue: T | null | undefined,
+	fallbackArg: T,
+	rules?: STRules<T>
+): StrongType<T> {
+	const instance = new STData<T>(initialValue, fallbackArg, rules);
 
 	const localFallback = fallbackArg !== undefined ? fallbackArg : instance.fallbackDefault;
 
@@ -44,13 +48,17 @@ export function make<T>(initialValue: T | null | undefined, fallbackArg: T, rule
 			reset: (): void => {
 				instance.reset();
 			},
-			typeId: 'TypeBox'
+			typeId: 'StrongType'
 		}
 	);
 }
 
-export function makeNB<T>(initial: T | null | undefined, fallbackArg: T, rules?: TBRules<T>): TypeBoxNB<T> {
-	const instance = new TBData<T>(initial, fallbackArg, rules);
+export function makeStrongNB<T>(
+	initial: T | null | undefined,
+	fallbackArg: T,
+	rules?: STRules<T>
+): StrongTypeNB<T> {
+	const instance = new STData<T>(initial, fallbackArg, rules);
 
 	return Object.assign(
 		(val?: T): T | null => {
@@ -68,7 +76,7 @@ export function makeNB<T>(initial: T | null | undefined, fallbackArg: T, rules?:
 			reset: () => {
 				instance.reset();
 			},
-			typeId: 'TypeBoxNB'
+			typeId: 'StrongTypeNB'
 		}
 	);
 }

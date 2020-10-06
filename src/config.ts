@@ -1,1 +1,1 @@
-export class TBConfig {}
+export class STConfig {}

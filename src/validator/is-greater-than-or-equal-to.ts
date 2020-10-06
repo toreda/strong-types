@@ -1,10 +1,10 @@
-import {TBRule} from '../rule/rule';
-import {TBRuleFn} from '../rule/fn';
-import {TBRuleModifiers} from '../rule/modifiers';
-import {TBRuleNode} from '../rule/node';
-import {TBRuleNodeType} from '../rule/node-type';
+import {STRule} from '../rule/rule';
+import {STRuleFn} from '../rule/fn';
+import {STRuleModifiers} from '../rule/modifiers';
+import {STRuleNode} from '../rule/node';
+import {STRuleNodeType} from '../rule/node-type';
 
-export type TBOpIsGreaterThanOrEqualTo<CallerType> = (a: number) => CallerType;
+export type STOpIsGreaterThanOrEqualTo<CallerType> = (a: number) => CallerType;
 
 export const greaterThanOrEqualToFn = (curr: number, target: number): boolean => {
 	if (typeof curr !== 'number' || typeof target !== 'number') {
@@ -16,15 +16,15 @@ export const greaterThanOrEqualToFn = (curr: number, target: number): boolean =>
 
 export function makeIsGreaterThanOrEqualTo<CallerType>(
 	caller: CallerType,
-	rule: TBRule,
-	mods: TBRuleModifiers
-): TBOpIsGreaterThanOrEqualTo<CallerType> {
+	rule: STRule,
+	mods: STRuleModifiers
+): STOpIsGreaterThanOrEqualTo<CallerType> {
 	return (target: number): CallerType => {
-		const fn: TBRuleFn = (curr: number) => {
+		const fn: STRuleFn = (curr: number) => {
 			return greaterThanOrEqualToFn(curr, target);
 		};
 
-		const node = new TBRuleNode('IS_GT_OR_EQT', TBRuleNodeType.CMP, fn, mods.invert);
+		const node = new STRuleNode('IS_GT_OR_EQT', STRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

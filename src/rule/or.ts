@@ -1,6 +1,6 @@
-import {TBRule} from './rule';
-import {TBRuleModifiers} from '../rule/modifiers';
+import {STRule} from './rule';
+import {STRuleModifiers} from '../rule/modifiers';
 
-export class TBRuleOr {
-	constructor(rule: TBRule, parentMods: TBRuleModifiers) {}
+export class STRuleOr {
+	constructor(rule: STRule, parentMods: STRuleModifiers) {}
 }

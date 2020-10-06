@@ -1,10 +1,10 @@
-import {TBRule} from '../rule/rule';
-import {TBRuleFn} from '../rule/fn';
-import {TBRuleModifiers} from '../rule/modifiers';
-import {TBRuleNode} from '../rule/node';
-import {TBRuleNodeType} from '../rule/node-type';
+import {STRule} from '../rule/rule';
+import {STRuleFn} from '../rule/fn';
+import {STRuleModifiers} from '../rule/modifiers';
+import {STRuleNode} from '../rule/node';
+import {STRuleNodeType} from '../rule/node-type';
 
-export type TBOpIsDouble<CallerType> = () => CallerType;
+export type STOpIsDouble<CallerType> = () => CallerType;
 
 export const isDouble = (curr: number): boolean => {
 	if (typeof curr !== 'number') {
@@ -20,15 +20,15 @@ export const isDouble = (curr: number): boolean => {
 
 export function makeIsDouble<CallerType>(
 	caller: CallerType,
-	rule: TBRule,
-	mods: TBRuleModifiers
-): TBOpIsDouble<CallerType> {
+	rule: STRule,
+	mods: STRuleModifiers
+): STOpIsDouble<CallerType> {
 	return (): CallerType => {
-		const fn: TBRuleFn = (curr: number): boolean => {
+		const fn: STRuleFn = (curr: number): boolean => {
 			return isDouble(curr);
 		};
 
-		const node = new TBRuleNode('IS_T_DOUBLE', TBRuleNodeType.CMP, fn, mods.invert);
+		const node = new STRuleNode('IS_T_DOUBLE', STRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

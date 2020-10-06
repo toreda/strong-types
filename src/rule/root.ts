@@ -1,5 +1,5 @@
-import {TBRuleMust} from './must';
+import {STRuleMust} from './must';
 
-export interface TBRuleRoot {
-	must: TBRuleMust;
+export interface STRuleRoot {
+	must: STRuleMust;
 }

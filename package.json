@@ -1,21 +1,21 @@
 {
-  "name": "@toreda/type-box",
+  "name": "@toreda/strong-types",
   "version": "0.7.0",
   "description": "Native TypeScript containers for generic values. Reliably store and retrieve values without writing validation or type checking code. Use predefined types & validators, or make your own.",
   "main": "./dist/index",
   "typings": "./dist/index.d.ts",
   "public": true,
   "scripts": {
-    "lint": "eslint ./src/** --quiet",
+    "lint": "yarn eslint ./src/** --quiet",
     "lint:nofix": "yarn lint",
-    "lint:fix": "eslint src/**/*.{js,ts,tsx} --quiet --fix",
+    "lint:fix": "yarn eslint src/**/*.{js,ts,tsx} --quiet --fix",
     "build:nolint": "yarn tsc",
     "build": "yarn gulp",
     "test": "yarn jest --coverage"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/toreda/type-box.git"
+    "url": "git+https://github.com/toreda/strong-types.git"
   },
   "keywords": [
     "key-value",
@@ -29,9 +29,9 @@
   "author": "Toreda, Inc.",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/toreda/type-box/issues"
+    "url": "https://github.com/toreda/strong-types/issues"
   },
-  "homepage": "https://github.com/toreda/type-box#readme",
+  "homepage": "https://github.com/toreda/strong-types#readme",
   "devDependencies": {
     "@armorjs/build": "^0.0.2",
     "@microsoft/tsdoc": "^0.12.21",
@@ -49,7 +49,7 @@
     "jest": "^26.4.2",
     "jest-sonar-reporter": "^2.0.0",
     "prettier": "^2.1.2",
-    "ts-jest": "^26.4.0",
+    "ts-jest": "^26.4.1",
     "ts-loader": "^8.0.4",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.3",

@@ -1,1 +1,1 @@
-export type TBTransformFNNB<T> = (value: T | null) => T | null;
+export type STTransformFNNB<T> = (value: T | null) => T | null;

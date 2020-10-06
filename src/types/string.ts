@@ -1,19 +1,19 @@
-import {TypeBox, TypeBoxNB, make, makeNB} from '../type-box';
+import {StrongType, StrongTypeNB, makeStrong, makeStrongNB} from '../strong-type';
 
-import {TBRules} from '../rules';
+import {STRules} from '../rules';
 
-export type TBString = TypeBox<string>;
+export type StrongString = StrongType<string>;
 
-export type TBStringNB = TypeBoxNB<string>;
+export type StrongStringNB = StrongTypeNB<string>;
 
-export function makeString(initial: string | null | undefined, fallback: string): TBString {
-	const rules = new TBRules();
+export function makeStrongString(initial: string | null | undefined, fallback: string): StrongString {
+	const rules = new STRules();
 	rules.add().must.match.type.string();
-	return make<string>(initial, fallback, rules);
+	return makeStrong<string>(initial, fallback, rules);
 }
 
-export function makeStringNB(initial: string | null | undefined, fallback: string): TBStringNB {
-	const rules = new TBRules();
+export function makeStrongStringNB(initial: string | null | undefined, fallback: string): StrongStringNB {
+	const rules = new STRules();
 	rules.add().must.match.type.string();
-	return makeNB<string>(initial, fallback, rules);
+	return makeStrongNB<string>(initial, fallback, rules);
 }

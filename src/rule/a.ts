@@ -1,1 +1,1 @@
-export class TBRuleA {}
+export class STRuleA {}

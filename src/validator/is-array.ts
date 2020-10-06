@@ -1,22 +1,22 @@
-import {TBRule} from '../rule/rule';
-import {TBRuleFn} from '../rule/fn';
-import {TBRuleModifiers} from '../rule/modifiers';
-import {TBRuleNode} from '../rule/node';
-import {TBRuleNodeType} from '../rule/node-type';
+import {STRule} from '../rule/rule';
+import {STRuleFn} from '../rule/fn';
+import {STRuleModifiers} from '../rule/modifiers';
+import {STRuleNode} from '../rule/node';
+import {STRuleNodeType} from '../rule/node-type';
 
-export type TBOpIsArray<CallerType> = () => CallerType;
+export type STOpIsArray<CallerType> = () => CallerType;
 
 export function makeIsArray<CallerType>(
 	caller: CallerType,
-	rule: TBRule,
-	mods: TBRuleModifiers
-): TBOpIsArray<CallerType> {
+	rule: STRule,
+	mods: STRuleModifiers
+): STOpIsArray<CallerType> {
 	return (): CallerType => {
-		const fn: TBRuleFn = (curr: any[]): boolean => {
+		const fn: STRuleFn = (curr: any[]): boolean => {
 			return Array.isArray(curr);
 		};
 
-		const node = new TBRuleNode('IS_T_ARRAY', TBRuleNodeType.CMP, fn, mods.invert);
+		const node = new STRuleNode('IS_T_ARRAY', STRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

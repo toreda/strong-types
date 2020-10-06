@@ -1,12 +1,12 @@
-import {TBOptions} from './options';
-import {TBRule} from './rule/rule';
-import {TBTransform} from './transform';
+import {STOptions} from './options';
+import {STRule} from './rule/rule';
+import {STTransform} from './transform';
 
-export class TBState<T> {
-	public readonly rules: TBRule[];
-	public readonly transforms: TBTransform<T>[];
+export class STState<T> {
+	public readonly rules: STRule[];
+	public readonly transforms: STTransform<T>[];
 
-	constructor(options?: TBOptions) {
+	constructor(options?: STOptions) {
 		this.transforms = [];
 		this.rules = [];
 	}

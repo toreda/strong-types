@@ -1,15 +1,15 @@
-import {TBRuleNode} from './node';
-import {TBRuleNodeType} from './node-type';
+import {STRuleNode} from './node';
+import {STRuleNodeType} from './node-type';
 
-export class TBRule {
-	public readonly nodes: TBRuleNode[];
+export class STRule {
+	public readonly nodes: STRuleNode[];
 
 	constructor() {
 		this.nodes = [];
 	}
 
-	public add(node: TBRuleNode): void {
-		if (node.type !== TBRuleNodeType.CMP) {
+	public add(node: STRuleNode): void {
+		if (node.type !== STRuleNodeType.CMP) {
 			return;
 		}
 

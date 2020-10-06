@@ -1,4 +1,4 @@
-export interface TBOptions {
+export interface STOptions {
 	nullable?: boolean;
 	transform?: null;
 }

@@ -1,4 +1,4 @@
-export interface TBStateTransform<T> {
+export interface STStateTransform<T> {
 	number: {
 		operation?: 'trunc' | 'ceil' | 'floor' | 'none';
 	};

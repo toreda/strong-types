@@ -1,4 +1,4 @@
-export const enum TBRuleNodeType {
+export const enum STRuleNodeType {
 	OP,
 	CMP
 }

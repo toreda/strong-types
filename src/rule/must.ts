@@ -1,33 +1,33 @@
-import {TBOpIsEqualTo, makeIsEqualTo} from '../validator/is-equal-to';
+import {STOpIsEqualTo, makeIsEqualTo} from '../validator/is-equal-to';
 
-import {TBRule} from './rule';
-import {TBRuleBe} from './be';
-import {TBRuleHave} from './have';
-import {TBRuleMatch} from './match';
-import {TBRuleModifiers} from '../rule/modifiers';
-import {TBRuleNot} from './not';
+import {STRule} from './rule';
+import {STRuleBe} from './be';
+import {STRuleHave} from './have';
+import {STRuleMatch} from './match';
+import {STRuleModifiers} from '../rule/modifiers';
+import {STRuleNot} from './not';
 
-export class TBRuleMust {
-	public readonly be: TBRuleBe;
-	public readonly have: TBRuleHave;
-	public readonly not: TBRuleNot;
-	public readonly equal: TBOpIsEqualTo<TBRuleMust>;
-	public readonly match: TBRuleMatch;
+export class STRuleMust {
+	public readonly be: STRuleBe;
+	public readonly have: STRuleHave;
+	public readonly not: STRuleNot;
+	public readonly equal: STOpIsEqualTo<STRuleMust>;
+	public readonly match: STRuleMatch;
 
-	constructor(rules: TBRule[], parentRule: TBRule | null) {
-		const rule = parentRule ? parentRule : new TBRule();
+	constructor(rules: STRule[], parentRule: STRule | null) {
+		const rule = parentRule ? parentRule : new STRule();
 		if (!parentRule) {
 			rules.push(rule);
 		}
 
-		const mods: TBRuleModifiers = {
+		const mods: STRuleModifiers = {
 			invert: false
 		};
 
-		this.be = new TBRuleBe(rule, mods);
-		this.have = new TBRuleHave(rule, mods);
-		this.not = new TBRuleNot(rule, mods);
-		this.equal = makeIsEqualTo<TBRuleMust>(this, rule, mods);
-		this.match = new TBRuleMatch(rule, mods);
+		this.be = new STRuleBe(rule, mods);
+		this.have = new STRuleHave(rule, mods);
+		this.not = new STRuleNot(rule, mods);
+		this.equal = makeIsEqualTo<STRuleMust>(this, rule, mods);
+		this.match = new STRuleMatch(rule, mods);
 	}
 }

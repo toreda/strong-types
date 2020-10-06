@@ -1,18 +1,18 @@
-import {TBOpIsEqualTo, makeIsEqualTo} from '../validator/is-equal-to';
+import {STOpIsEqualTo, makeIsEqualTo} from '../validator/is-equal-to';
 
-import {TBRule} from './rule';
-import {TBRuleBe} from './be';
-import {TBRuleModifiers} from './modifiers';
+import {STRule} from './rule';
+import {STRuleBe} from './be';
+import {STRuleModifiers} from './modifiers';
 
-export class TBRuleNot {
-	public readonly be: TBRuleBe;
-	public readonly equal: TBOpIsEqualTo<TBRuleNot>;
+export class STRuleNot {
+	public readonly be: STRuleBe;
+	public readonly equal: STOpIsEqualTo<STRuleNot>;
 
-	constructor(rule: TBRule, parentMods: TBRuleModifiers) {
-		const mods: TBRuleModifiers = {
+	constructor(rule: STRule, parentMods: STRuleModifiers) {
+		const mods: STRuleModifiers = {
 			invert: !parentMods.invert
 		};
-		this.be = new TBRuleBe(rule, mods);
-		this.equal = makeIsEqualTo<TBRuleNot>(this, rule, mods);
+		this.be = new STRuleBe(rule, mods);
+		this.equal = makeIsEqualTo<STRuleNot>(this, rule, mods);
 	}
 }

@@ -1,10 +1,10 @@
-import {TBRule} from '../rule/rule';
-import {TBRuleFn} from '../rule/fn';
-import {TBRuleModifiers} from '../rule/modifiers';
-import {TBRuleNode} from '../rule/node';
-import {TBRuleNodeType} from '../rule/node-type';
+import {STRule} from '../rule/rule';
+import {STRuleFn} from '../rule/fn';
+import {STRuleModifiers} from '../rule/modifiers';
+import {STRuleNode} from '../rule/node';
+import {STRuleNodeType} from '../rule/node-type';
 
-export type TBOpIsInteger<CallerType> = () => CallerType;
+export type STOpIsInteger<CallerType> = () => CallerType;
 
 export const isInteger = (curr: number): boolean => {
 	if (typeof curr !== 'number') {
@@ -16,15 +16,15 @@ export const isInteger = (curr: number): boolean => {
 
 export function makeIsInteger<CallerType>(
 	caller: CallerType,
-	rule: TBRule,
-	mods: TBRuleModifiers
-): TBOpIsInteger<CallerType> {
+	rule: STRule,
+	mods: STRuleModifiers
+): STOpIsInteger<CallerType> {
 	return (): CallerType => {
-		const fn: TBRuleFn = (curr: number): boolean => {
+		const fn: STRuleFn = (curr: number): boolean => {
 			return isInteger(curr);
 		};
 
-		const node = new TBRuleNode('IS_T_INT', TBRuleNodeType.CMP, fn, mods.invert);
+		const node = new STRuleNode('IS_T_INT', STRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

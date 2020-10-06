@@ -1,9 +1,9 @@
-import {TBTransform} from './transform';
-import {TBTransformNB} from './transform-nb';
+import {STTransform} from './transform';
+import {STTransformNB} from './transform-nb';
 
-export class TBTransforms<T> {
-	public readonly transforms: TBTransform<T>[];
-	public readonly transformsNB: TBTransformNB<T>[];
+export class STTransforms<T> {
+	public readonly transforms: STTransform<T>[];
+	public readonly transformsNB: STTransformNB<T>[];
 	public readonly fallbackDefault: T;
 
 	constructor(fallbackDefault: T) {
@@ -12,7 +12,7 @@ export class TBTransforms<T> {
 		this.fallbackDefault = fallbackDefault;
 	}
 
-	public addNB(transform: TBTransformNB<T>): boolean {
+	public addNB(transform: STTransformNB<T>): boolean {
 		if (!transform) {
 			return false;
 		}
@@ -21,7 +21,7 @@ export class TBTransforms<T> {
 		return true;
 	}
 
-	public add(transform: TBTransform<T>): boolean {
+	public add(transform: STTransform<T>): boolean {
 		if (!transform) {
 			return false;
 		}

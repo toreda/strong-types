@@ -1,10 +1,10 @@
-import {TBRule} from '../rule/rule';
-import {TBRuleFn} from '../rule/fn';
-import {TBRuleModifiers} from '../rule/modifiers';
-import {TBRuleNode} from '../rule/node';
-import {TBRuleNodeType} from '../rule/node-type';
+import {STRule} from '../rule/rule';
+import {STRuleFn} from '../rule/fn';
+import {STRuleModifiers} from '../rule/modifiers';
+import {STRuleNode} from '../rule/node';
+import {STRuleNodeType} from '../rule/node-type';
 
-export type TBOpIsEmpty<CallerType> = (a: any) => CallerType;
+export type STOpIsEmpty<CallerType> = (a: any) => CallerType;
 
 export const emptyFn = (curr: any[] | string): boolean => {
 	if (!Array.isArray(curr) && typeof curr !== 'string') {
@@ -20,15 +20,15 @@ export const emptyFn = (curr: any[] | string): boolean => {
 
 export function makeIsEmpty<CallerType>(
 	caller: CallerType,
-	rule: TBRule,
-	mods: TBRuleModifiers
-): TBOpIsEmpty<CallerType> {
+	rule: STRule,
+	mods: STRuleModifiers
+): STOpIsEmpty<CallerType> {
 	return (): CallerType => {
-		const fn: TBRuleFn = (curr: any[] | string): boolean => {
+		const fn: STRuleFn = (curr: any[] | string): boolean => {
 			return emptyFn(curr);
 		};
 
-		const node = new TBRuleNode('IS_EMPTY', TBRuleNodeType.CMP, fn, mods.invert);
+		const node = new STRuleNode('IS_EMPTY', STRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

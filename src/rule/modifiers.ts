@@ -1,3 +1,3 @@
-export interface TBRuleModifiers {
+export interface STRuleModifiers {
 	invert: boolean;
 }

@@ -1,10 +1,10 @@
-import {TBRule} from '../rule/rule';
-import {TBRuleFn} from '../rule/fn';
-import {TBRuleModifiers} from '../rule/modifiers';
-import {TBRuleNode} from '../rule/node';
-import {TBRuleNodeType} from '../rule/node-type';
+import {STRule} from '../rule/rule';
+import {STRuleFn} from '../rule/fn';
+import {STRuleModifiers} from '../rule/modifiers';
+import {STRuleNode} from '../rule/node';
+import {STRuleNodeType} from '../rule/node-type';
 
-export type TBOpIsLessThan<CallerType> = (a: number) => CallerType;
+export type STOpIsLessThan<CallerType> = (a: number) => CallerType;
 
 export const lessThanFn = (curr: number, target: number): boolean => {
 	if (typeof curr !== 'number') {
@@ -20,15 +20,15 @@ export const lessThanFn = (curr: number, target: number): boolean => {
 
 export function makeIsLessThan<CallerType>(
 	caller: CallerType,
-	rule: TBRule,
-	mods: TBRuleModifiers
-): TBOpIsLessThan<CallerType> {
+	rule: STRule,
+	mods: STRuleModifiers
+): STOpIsLessThan<CallerType> {
 	return (target: number): CallerType => {
-		const fn: TBRuleFn = (curr: number) => {
+		const fn: STRuleFn = (curr: number) => {
 			return lessThanFn(curr, target);
 		};
 
-		const node = new TBRuleNode('IS_LT', TBRuleNodeType.CMP, fn, mods.invert);
+		const node = new STRuleNode('IS_LT', STRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;
