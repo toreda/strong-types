@@ -8,7 +8,7 @@
   "scripts": {
     "lint": "yarn eslint ./src/** --quiet",
     "lint:nofix": "yarn lint",
-    "lint:fix": "yarn eslint src/**/*.{js,ts,tsx} --quiet --fix",
+    "lint:fix": "yarn eslint src/** --quiet --fix",
     "build:nolint": "yarn tsc",
     "build": "yarn gulp",
     "test": "yarn jest --coverage"

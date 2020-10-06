@@ -7,7 +7,7 @@ const eslint = require('gulp-eslint');
 const build: ArmorBuild = new ArmorBuild(new EventEmitter());
 
 function runLint() {
-    return src(['src/**.ts'])
+    return src(['src/**'])
         // eslint() attaches the lint output to the "eslint" property
         // of the file object so it can be used by other modules.
         .pipe(eslint())
