@@ -16,6 +16,15 @@ export {StrongInt, makeInt} from './types/int';
 export {StrongUInt, makeUInt} from './types/uint';
 export {StrongString, makeString} from './types/string';
 
+// Map
+export {StrongMap} from './map';
+export {StrongVec1} from './map/vec1';
+export {StrongVec2} from './map/vec2';
+export {StrongVec3} from './map/vec3';
+export {StrongVec4} from './map/vec4';
+export {StrongSize} from './map/size';
+export {StrongRange} from './map/range';
+
 // Validators
 export {STOpIsBoolean, makeIsBoolean} from './validator/is-boolean';
 export {STOpIsEmpty, makeIsEmpty} from './validator/is-empty';
