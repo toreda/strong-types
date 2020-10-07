@@ -9,6 +9,8 @@ export class DOMStylesFont extends StrongMap {
 	public readonly family: StrongType<string>;
 	public readonly weight: StrongType<string>;
 	public readonly lineHeight: StrongType<string>;
+	public readonly stretch: StrongType<string>;
+	public readonly variant: StrongType<string>;
 
 	constructor(enabled?: boolean) {
 		super();
@@ -20,5 +22,7 @@ export class DOMStylesFont extends StrongMap {
 		this.family = makeStrong<string>(null, 'sans-serif');
 		this.weight = makeStrong<string>(null, 'normal');
 		this.lineHeight = makeStrong<string>(null, 'normal');
+		this.stretch = makeStrong<string>(null, 'normal');
+		this.variant = makeStrong<string>(null, 'normal');
 	}
 }
