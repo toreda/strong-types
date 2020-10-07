@@ -8,7 +8,7 @@ export class STRuleNode {
 	public readonly type: STRuleNodeType;
 	public invertResult: boolean;
 
-	constructor(id: string, type: STRuleNodeType, fn: STRuleFn | null, invert: boolean = false) {
+	constructor(id: string, type: STRuleNodeType, fn: STRuleFn | null, invert = false) {
 		this.id = id;
 		this.children = [];
 		this.fn = fn;

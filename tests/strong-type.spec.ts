@@ -7,7 +7,7 @@ const MOCK_FALLBACK = 'roman bree';
 const MOCK_VALUE_UNDEFINED = undefined;
 const MOCK_VALUE_NULL = null;
 
-describe('TypeBox', () => {
+describe('StrongType', () => {
 	describe('make', () => {
 		describe('types', () => {
 			let st: StrongType<string>;

@@ -1,7 +1,3 @@
-
-
-
-
 # `@toreda/strong-types`
 
 ![CI](https://github.com/toreda/strong-types/workflows/CI/badge.svg?branch=master) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=toreda_strong-types&metric=coverage)](https://sonarcloud.io/dashboard?id=toreda_strong-types) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=toreda_strong-types&metric=alert_status)](https://sonarcloud.io/dashboard?id=toreda_strong-types)
@@ -11,9 +7,9 @@ Native TypeScript containers for generic value storage. Reliably store and retri
 
 What does it do?
 ```typescript
-import { STInt, makeInt } from '@toreda/strong-types';
+import {StrongInt, makeInt} from '@toreda/strong-types';
 //  int with initial value 10.
-const int = makeStrongInt(10, 0);
+const int = makeInt(10, 0);
 // Prints 10. It always return an int.
 console.log(int());
 
@@ -81,9 +77,8 @@ myValue.reset();
 * [`StrongBoolean`](#StrongBoolean), booleans (strict)
 * [`StrongDouble`](#StrongDouble), doubles
 * [`StrongInt`](#StrongInt), integers
-* [`STUInt`](#StrongUint), unsigned integers
+* [`StrongUInt`](#StrongUint), unsigned integers
 * [`StrongString`](#StrongString) - strings
-
 
 ## `StrongArray`
 
@@ -95,21 +90,21 @@ myValue.reset();
 
 #### Instantiation
 ```typescript
-import {STInt, makeStrongInt} from '@toreda/strong-types';
+import {StrongInt, makeInt} from '@toreda/strong-types';
 const initial = 11;
 const fallback = 55;
-const int = makeStrongInt(initial, fallback);
+const int = makeInt(initial, fallback);
 
 // Returns 11 - initial value was 11.
-const value = STInt();
+const value = StrongInt();
 ```
 
 #### Default Fallback
 ```typescript
-import {STInt, makeStrongInt} from '@toreda/strong-types';
+import {StrongInt, makeInt} from '@toreda/strong-types';
 const initial = null;
 const fallback = 101;
-const uint = makeStrongInt(initial, fallback);
+const uint = makeInt(initial, fallback);
 
 // Returns 101 - current value is null (no value set).
 const value = uint();
@@ -117,8 +112,8 @@ const value = uint();
 
 #### Fallback
 ```typescript
-import {STInt, makeStrongInt} from '@toreda/strong-types';
-const int = makeStrongInt(null, 201);
+import {StrongInt, makeInt} from '@toreda/strong-types';
+const int = makeInt(null, 201);
 
 // kvp.get(fallback) returns the fallback argument when the kvp instance
 // has no value set.
@@ -133,10 +128,10 @@ const value = int.get(fallback);
 ```
 
 #### Validation
-STInt will not update t's value called with a positive or negative integer.
+StrongInt will not update t's value called with a positive or negative integer.
 ```typescript
-import {STInt, makeStrongInt} from '@toreda/strong-types';
-const uint = makeStrongInt(50, 100);
+import {StrongInt, makeInt} from '@toreda/strong-types';
+const uint = makeInt(50, 100);
 
 // Attempting to set value to a negative integer.
 // Success will be false.
@@ -149,8 +144,8 @@ const value = uint();
 
 ##### Individual Fallbacks
 ```typescript
-import {STUInt, makeStrongUInt} from '@toreda/strong-types';
-const uint = makeStrongUInt(null, 30);
+import {StrongUInt, makeUInt} from '@toreda/strong-types';
+const uint = makeUInt(null, 30);
 
 // kvp.get(fallback) returns the fallback when the kvp
 // has no value set.
@@ -165,10 +160,10 @@ const value = uint.get(fallback);
 ```
 
 ##### Type Validation
-STUInt performs automatic input validation and will not update it's value unless the provided input is an unsigned integer.
+StrongUInt performs automatic input validation and will not update it's value unless the provided input is an unsigned integer.
 ```typescript
-import {STUInt, makeStrongUInt} from '@toreda/strong-types';
-const uint = makeStrongUInt(20, 40);
+import {StrongUInt, makeUInt} from '@toreda/strong-types';
+const uint = makeUInt(20, 40);
 
 // Attempting to set value to a negative integer.
 // Success will be false.
@@ -211,11 +206,11 @@ Accepts positive integer values only. Everything else will be rejected and will 
 
 ##### Instantiation
 ```typescript
-import {STUInt, makeStrongUInt} from '@toreda/strong-types';
+import {StrongUInt, makeUInt} from '@toreda/strong-types';
 // UInt starting value.
 const initial = 44;
 const fallbackDefault = 1;
-const uint = makeStrongUInt(initialValue, fallbackDefault);
+const uint = makeUInt(initialValue, fallbackDefault);
 
 // Get the current value 44.
 const uintValue = uint();
@@ -226,16 +221,15 @@ uint(14);
 
 ##### Using the Fallback Default
 ```typescript
-import {STUInt, makeStrongUInt} from '@toreda/strong-types';
+import {StrongUInt, makeUInt} from '@toreda/strong-types';
 const initialValue = null;
 const fallbackDefault = 27;
-const uint = makeStrongUInt(initialValue, fallbackDefault);
+const uint = makeUInt(initialValue, fallbackDefault);
 
 // Returns 27. Getting the current value with uint() guarantees a type-safe return value.
 // When the current value is null (not set), the default fallback is returned instead.
 const value = uint();
 ```
-
 
 # Install
 Install `@toreda/strong-types` directly from NPM or [clone the Github repo](https://github.com/toreda/strong-types).
