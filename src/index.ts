@@ -18,6 +18,8 @@ export {StrongString, makeString} from './types/string';
 
 // Map
 export {StrongMap} from './map';
+export {StrongMapParser} from './map/parser';
+export {StrongMapParserOptions} from './map/parser/options';
 export {StrongVec1} from './map/vec1';
 export {StrongVec2} from './map/vec2';
 export {StrongVec3} from './map/vec3';
