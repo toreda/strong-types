@@ -1,6 +1,7 @@
-import {STRules, StrongType, makeStrong} from '@toreda/strong-types';
+import {StrongType, makeStrong} from '../../strong-type';
 
-import {StrongMap} from '../map';
+import {STRules} from '../../rules';
+import {StrongMap} from '../../map';
 
 export class DOMStylesFont extends StrongMap {
 	public readonly color: StrongType<string>;

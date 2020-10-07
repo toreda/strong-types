@@ -4,9 +4,8 @@ import {StrongString, makeString} from '../types/string';
 
 import {DOMStylesFont} from './dom-styles/font';
 import {DOMStylesText} from './dom-styles/text';
-import {StrongMap} from '../map';
 
-export class StrongDOMStyles extends Map {
+export class DOMStyles extends Map {
 	public readonly zIndex: StrongInt;
 	public readonly opacity: StrongDouble;
 	public readonly width: StrongDouble;

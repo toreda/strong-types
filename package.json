@@ -1,6 +1,6 @@
 {
   "name": "@toreda/strong-types",
-  "version": "0.8.2",
+  "version": "0.9.0",
   "description": "Native TypeScript containers for generic values. Reliably store and retrieve values without writing validation or type checking code. Use predefined types & validators, or make your own.",
   "main": "./dist/index",
   "typings": "./dist/index.d.ts",
