@@ -5,7 +5,10 @@ const EXPECTED_STRONG_PROPERTIES = [
 	{name: 'color', expectedValueType: 'string', expectedValue: '#FFFFFF'},
 	{name: 'size', expectedValueType: 'string', expectedValue: '12px'},
 	{name: 'family', expectedValueType: 'string', expectedValue: 'sans-serif'},
-	{name: 'weight', expectedValueType: 'string', expectedValue: 'normal'}
+	{name: 'weight', expectedValueType: 'string', expectedValue: 'normal'},
+	{name: 'lineHeight', expectedValueType: 'string', expectedValue: 'normal'},
+	{name: 'stretch', expectedValueType: 'string', expectedValue: 'normal'},
+	{name: 'variant', expectedValueType: 'string', expectedValue: 'normal'}
 ];
 describe('DomStylesFont', () => {
 	let instance: DOMStylesFont;
