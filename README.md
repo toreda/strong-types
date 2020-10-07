@@ -31,6 +31,7 @@ console.log(int());
 
 * [**Basic Usage**](#basic-usage)
 *	[**Built-in Types**](#built-in-types)
+	  - [`StrongMap`](#StrongMap)
 	  -	[`StrongArray`](#StrongArray)
 	  - [`StrongBoolean`](#StrongBoolean)
 	  - [`StrongDouble`](#StrongDouble)
@@ -45,7 +46,7 @@ console.log(int());
 	-   [License](#license)
 
 
-# Basic Usage
+# Strong Type Basic Usage
 
 ## Set value
 ```typescript
@@ -72,6 +73,7 @@ myValue();
 myValue.reset();
 ```
 
+
 # Supported Types
 * [`StrongArray`](#StrongArray), arrays
 * [`StrongBoolean`](#StrongBoolean), booleans (strict)
@@ -79,6 +81,67 @@ myValue.reset();
 * [`StrongInt`](#StrongInt), integers
 * [`StrongUInt`](#StrongUint), unsigned integers
 * [`StrongString`](#StrongString) - strings
+
+# Strong Map Basic Usage
+
+Creating a `StrongMap`
+```typescript
+import {StrongMap, StringInt, StrongString, makeInt, makeString} from '@toreda/strong-types';
+
+
+export class SomeConfig extends StrongMap {
+	public readonly counter: StrongInt;
+	public readonly name: StrongString;
+
+	constructor(json: any) {
+		super();
+		this.counter = makeInt(0, 0);
+		this.name = makeString(null, 'TreeBeard');
+		this.parse(json);
+	}
+}
+
+
+// Use it
+const myConfig = new SomeConfig();
+
+// Prints '0'
+console.log(myConfig.counter());
+
+// Prints 'Treebeard'
+console.log(myConfig.name());
+```
+
+Creating a `StrongMap` and loading values from JSON
+```typescript
+import {StrongMap, StringInt, StrongString, makeInt, makeString} from '@toreda/strong-types';
+
+export class SomeConfig extends StrongMap {
+	public readonly counter: StrongInt;
+	public readonly name: StrongString;
+
+	constructor(json?: any) {
+		super();
+		this.counter = makeInt(0, 0);
+		this.name = makeString(null, 'TreeBeard');
+		this.parse(json);
+	}
+}
+
+const myJSON = {
+	'counter': 99,
+	'name': 'Sauron'
+};
+
+// Load the recursively parse a JSON object.
+const myConfig = new SomeConfig(myJSON);
+
+// Prints 99 - myJSON.counter was loaded into SomeConfig.counter at instantiation.
+console.log(myConfig.counter());
+
+// Prints 'Sauron' - myJSON.name was loaded into SomeConfig.name at instantiation.
+console.log(myConfig.name());
+```
 
 ## `StrongArray`
 
