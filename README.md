@@ -39,38 +39,145 @@ console.log(int());
 	  - [`StrongStrongring`](#StrongStrongring)
 	  - [`StrongUInt`](#StrongUInt)
 *	[**Custom Types**](#custom-types)
-	  - [Validators](#Validators)
-* 	[**Package**](#Package)
-	-	[Build](#Build)
+	  - [Validators](#validators)
+* 	[**Package**](#package)
+	-	[Build](#build)
 	-	[Testing](#testing)
 	-   [License](#license)
 
 
 # Using `StrongType`
 
-## Set value
+Each built-in type exports a type and make function. The below examples use StrongInt but work the same using: `StrongArray`, `StrongBoolean`, `StrongDouble`, `StrongInt`, `StrongString`, and `StrongUInt`.
+
+## Instantiate with initial value
 ```typescript
-// Set value to string 'trendy'
-myValue('trendy');
+import {StrongInt, makeInt} from '@toreda/strong-types';
+
+const initial = 11;
+const fallback = 55;
+const int = makeInt(initial, fallback);
+
+// Returns 11 - initial value was 11.
+const value = int();
 ```
 
-## Set value to null
+## Instantiate without initial value
+
+
+
 ```typescript
-// Set value to be null.
-myValue(null);
+import {StrongInt, makeInt} from '@toreda/strong-types';
+
+const fallback = 919;
+const int = makeInt(null, fallback);
+
+// value is 919 - initial value was null, so fallback was
+// returned instead to maintain the function's return type guarantee.
+const value = int();
 ```
 
-## Reset
-Reset will set value to null without using set functionality.
+## Get with Fallback
+* `get(fallback: T): T`
+Call `container.get(fallback)` when a per-call fallback is preferred instead of the container's default fallback.
 ```typescript
-// set kvp to hello
-myValue('hello');
+import {StrongInt, makeInt} from '@toreda/strong-types';
+const int = makeInt(null, 555);
 
-// Outputs hello
-myValue();
+const fallback = 331;
+// Prints 331 (fallback) instead of 555 (container default fallback).
+console.log(value.get(fallback));
+```
 
-// value will become null.
-myValue.reset();
+## GetNull
+* `getNull(): T | null`
+Call `container.getNull()` to the current value, even if null. Value will never be undefined and will always return either null, or a value of container's generic type T. 
+
+NOTE: `getNull` **DOES NOT** take a fallback argument and will not return the container's default fallback. It always returns value (`null` or `StrongType<T>`).
+
+```typescript
+import {StrongInt, makeInt} from '@toreda/strong-types';
+
+const fallback = 919;
+const int = makeInt(null, fallback);
+
+// Prints null. Default fallback is not used for `getNull` calls.
+console.log(int.getNull());
+```
+
+## Set Value
+```
+import {StrongInt, makeInt} from '@toreda/strong-types';
+
+const initial = 331;
+const fallback = 400;
+const int = makeInt(initial, fallback);
+
+// value is 331 - the int's initial value.
+const value = int();
+
+// Set int to a new value.
+int(555);
+
+// value is 555 - the value we updated int to.
+const value = int();
+
+```
+
+## Set `null`
+```typescript
+import {StrongInt, makeInt} from '@toreda/strong-types';
+
+const initial = 414;
+const fallback = 500;
+const int = makeInt(initial, fallback);
+
+// value is 414 - the int's initial value.
+const value = int();
+
+
+// Set value to null.
+int(null);
+
+// value is 500 - Fallback returned because value was null.
+const value = int();
+
+```
+
+## Reset Value
+
+Call `myContainer.reset()` to reset value without creating a new StrongType container. Default Fallback will not be reset. Useful for unit testing and serverless environments where the previous container value or state is unknown.
+
+```typescript
+import {StrongInt, makeInt} from '@toreda/strong-types';
+
+const initial = 515;
+const fallback = 600;
+const int = makeInt(initial, fallback);
+
+// value is 515 (the initial value).
+const value = int();
+
+// Reset container value
+int.reset();
+
+// Prints 600 (fallback). value was reset to null,
+// fallback was returned to maintain return type guarantee.
+console.log(int());
+
+```
+
+### Validation
+`StrongType` containers validate value inputs before setting. Bad values are ignored and will not cause a throw. Each built-in container type provides specific guarantees for which values are allowed.
+
+```typescript
+import {StrongInt, makeInt} from '@toreda/strong-types';
+const int = makeInt(50, 100);
+
+// success is false.
+// container.value is still it's initial value 50 because 1.5 is not an int.
+// StrongInt does not round or truncate non-integers. They are simply ignored.
+const success = int(1.5);
 ```
 
 
@@ -145,220 +252,102 @@ console.log(myConfig.name());
 
 ## `StrongArray`
 
+### Import
+
+```typescript
+import {StrongArray, makeArray} from '@toreda/strong-types';
+```
+
+### Accepted Values
+* Arrays holding any type (e.g. `T[]`)
+* Accepts empty arrays (e.g. `[]`)
+
+
 ## `StrongBoolean`
+
+### Import
+```typescript
+import {StrongBoolean, makeBoolean} from '@toreda/strong-types';
+```
+
+### Accepted Values
+* Strict booleans: `true` or `false` only.
+* No type coercion (e.g. `1` or `0` will be rejected).
 
 ## `StrongDouble`
 
-#### Instantiation
+### Import
 ```typescript
 import {StrongDouble, makeDouble} from '@toreda/strong-types';
-const initial = 11;
-const fallback = 55;
-const int = makeDouble(initial, fallback);
-
-// Returns 11 - initial value was 11.
-const value = double();
 ```
 
-#### Default Fallback
-```typescript
-import {StrongDouble, makeDouble} from '@toreda/strong-types';
-const initial = null;
-const fallback = 101;
-const double = makeDouble(initial, fallback);
-
-// Returns 101 - current value is null (no value set).
-const value = double();
-```
-
-#### Fallback
-```typescript
-import {StrongDouble, makeDouble} from '@toreda/strong-types';
-const int = makeDouble(null, 201);
-
-// kvp.get(fallback) returns the fallback argument when the kvp instance
-// has no value set.
-const fallback = 11;
-// Returns 11 - value is currently null.
-const value = int.get(fallback);
-
-// Set value to 500.
-int(500);
-// value is set to 500, because value is now a valid int with value 100.
-const value = int.get(fallback);
-```
-
-#### Validation
-StrongDouble will not update t's value called with a positive or negative integer.
-
-```typescript
-import {StrongDouble, makeDouble} from '@toreda/strong-types';
-const double = makeDouble(50, 100);
-
-// Attempting to set value to a negative integer.
-// Success will be false.
-const success = double(1.5);
-
-// value is still 50. 1.5 is not an integer.
-const value = double();
-```
-
+### Accepted Values
+* `number` values between and including Number.MIN_VALUE and Number.MAX_VALUE.
+* Rejects `NaN` values.
 
 ## `StrongInt`
 
-#### Instantiation
+### Import ###
 ```typescript
 import {StrongInt, makeInt} from '@toreda/strong-types';
-const initial = 11;
-const fallback = 55;
-const int = makeInt(initial, fallback);
-
-// Returns 11 - initial value was 11.
-const value = int();
 ```
+### Accepted Values ###
+* `number` values between and including Number.MIN_VALUE and Number.MAX_VALUE.
+* `NaN` values are rejected.
 
-#### Default Fallback
-```typescript
-import {StrongInt, makeInt} from '@toreda/strong-types';
-const initial = null;
-const fallback = 101;
-const int = makeInt(initial, fallback);
-
-// Returns 101 - current value is null (no value set).
-const value = int();
-```
-
-#### Fallback
-```typescript
-import {StrongInt, makeInt} from '@toreda/strong-types';
-const int = makeInt(null, 201);
-
-// kvp.get(fallback) returns the fallback argument when the kvp instance
-// has no value set.
-const fallback = 11;
-// Returns 11 - value is currently null.
-const value = int.get(fallback);
-
-// Set value to 500.
-int(500);
-// value is set to 500, because value is now a valid int with value 100.
-const value = int.get(fallback);
-```
-
-#### Validation
-StrongInt will not update t's value called with a positive or negative integer.
-```typescript
-import {StrongInt, makeInt} from '@toreda/strong-types';
-const int = makeInt(50, 100);
-
-// Attempting to set value to a negative integer.
-// Success will be false.
-const success = int(1.5);
-
-// value is still 50. 1.5 is not an integer.
-const value = int();
-```
-
-##### Individual Fallbacks
-```typescript
-import {StrongInt, makeInt} from '@toreda/strong-types';
-const int = makeInt(null, 30);
-
-// kvp.get(fallback) returns the fallback when the kvp
-// has no value set.
-const fallback = 25;
-// Returns 25 because value is currently null.
-const value = int.get(fallback);
-
-// Set value to 100.
-int(100);
-// value is set to 100, because value is now a valid int with value 100.
-const value = int.get(fallback);
-```
-
-##### Type Validation
-```typescript
-import {StrongInt, makeInt} from '@toreda/strong-types';
-const int = makeInt(20, 40);
-
-// Try to set int to a negative int.
-// Type validation blocks the operation.
-// success is false.
-const success = int(-10);
-
-// value is still initial value 20 because -10 above is not an
-// unsigned integer. No errors on thrown on invalid input.
-const value = int();
-```
-
-
-### Create value
-```typescript
-import {StrongType, makeStrong} from '@toreda/strong-types';
-const initial = 'hello';
-const fallbackDefault = 'goodbye';
-const myValue = makeStrong<string>(initial, fallbackDefault);
-```
-
-### Get value
-```typescript
-// Returns current value, or fallback when value is null.
-const value = myValue();
-```
-
-### Get value with custom fallback
-```typescript
-// value set to 'hello' as shown above.
-const fallback = 'goodbye again';
-// Returns value if set, or fallback otherwise.
-const value = myValue.get(fallback);
-```
 
 ## `StrongString`
+
+### Import
+```typescript
+import {StrongString, makeString} from '@toreda/strong-types';
+```
+### Accepted Values ###
+* `string` values of any valid length.
 
 
 ## `StrongUInt`
 
-### Instantiation
+### Import
 ```typescript
 import {StrongUInt, makeUInt} from '@toreda/strong-types';
-// UInt starting value.
-const initial = 44;
-const fallbackDefault = 1;
-const uint = makeUInt(initialValue, fallbackDefault);
-
-// Get the current value 44.
-const uintValue = uint();
-
-// Set value to 14.
-uint(14);
 ```
 
-### Using the Fallback Default
+### Accepted Values ###
+* Integers between and including 0 and `Number.MAX_SAFE_INTEGER`.
+* Rejects numbers which are non-integers (e.g. `1.5`)
+* Rejects `NaN`
+* Rejected negative integers (e.g. `-22`).
+
+# Custom Types
+Each built-in type like `StrongInt` and `StrongUInt` are helper functions wrapping `StrongType<T>`. They also apply validators which guarantee the `StrongType<T>` value behaves as expected. While built-ins are provided for convenience, you can create custom types with your own validators.
+
+## Instantiate `StrongType<T>`
+
 ```typescript
-import {StrongUInt, makeUInt} from '@toreda/strong-types';
-const initialValue = null;
-const fallbackDefault = 27;
-const uint = makeUInt(initialValue, fallbackDefault);
+import {StrongType, makeStrong} from '@toreda/strong-types';
 
-// Returns 27. Getting the current value with uint() guarantees a type-safe return value.
-// When the current value is null (not set), the default fallback is returned instead.
-const value = uint();
+export type MyOwnType = {
+	id: string | null;
+	name: string | null;
+};
+
+const initial: MyOwnType = {
+	id: 'hello',
+	name: 'my name is'
+};
+
+const fallback: MyOwnType = {
+	id: null,
+	name: null
+};
+
+const myObj = makeStrong<MyOwnType>(initial, fallback);
+
 ```
 
-### Get value
-```typescript
-// Returns current value, or default fallback when value is null.
-const value = uint();
-```
+## Validators
 
-### Get value with custom fallback
-```typescript
-// value set to 'hello' as shown above.
-const fallback = 'hello again';
-// Returns value if set, or fallback otherwise.
-const value = uint.get(fallback);
-```
 
 # Install
 Install `@toreda/strong-types` directly from NPM or [clone the Github repo](https://github.com/toreda/strong-types).

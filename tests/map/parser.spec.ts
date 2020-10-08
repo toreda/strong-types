@@ -1,10 +1,8 @@
-import {StrongInt, makeInt} from '../../src/types/int';
-
 import {StrongMap} from '../../src/map';
 import {StrongMapParser} from '../../src/map/parser';
 import {StrongMapParserState} from '../../src/map/parser/state';
-import {makeStrong} from '../../src/strong-type'
-;
+import {makeInt} from '../../src/types/int';
+import {makeStrong} from '../../src/strong-type';
 
 const MOCK_VALUE = 11091;
 
