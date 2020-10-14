@@ -6,7 +6,7 @@ export interface StrongType<ValueT> {
 	get: (fallback: ValueT) => ValueT;
 	getNull: () => ValueT | null;
 	reset: () => void;
-	typeId: string;
+	typeId: 'StrongType' | string;
 }
 
 export function makeStrong<ValueT>(
