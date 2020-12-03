@@ -1,11 +1,8 @@
 import {StrongString, makeString} from '../../src/types/string';
 
-import {isType} from '../../src/validator/is-type';
-
 const MOCK_INITIAL = 'hello';
 const MOCK_FALLBACK_DEFAULT = 'hello world';
 const MOCK_FALLBACK = 'world';
-const EMPTY_STRING = '';
 
 describe('StrongString', () => {
 	describe('Implementation', () => {
@@ -15,17 +12,25 @@ describe('StrongString', () => {
 			expect(result()).toBe(sampleInitial);
 		});
 
-		it('should return fallback default when value is null', () => {
-			const sampleFallback = 'cat';
-			const result = makeString(null, sampleFallback);
-			expect(result()).toBe(sampleFallback);
-		});
-
-		it('should set value when called with non-null value', () => {
+		it('should set value when called with a string', () => {
 			const result = makeString(null, MOCK_INITIAL);
 			const sampleValue = 'pig';
 			result(sampleValue);
 			expect(result()).toBe(sampleValue);
+		});
+
+		it('should set value when called with an empty string', () => {
+			const sampleFallback = 'cow';
+			const emptyString = '';
+			const result = makeString(null, sampleFallback);
+			result(emptyString);
+			expect(result()).toBe(emptyString);
+		});
+
+		it('should return fallback default when value is null', () => {
+			const sampleFallback = 'cat';
+			const result = makeString(null, sampleFallback);
+			expect(result()).toBe(sampleFallback);
 		});
 
 		it('should return fallback default when value is undefined', () => {
@@ -34,10 +39,20 @@ describe('StrongString', () => {
 			expect(result()).toBe(sampleFallback);
 		});
 
-		it('should return fallback default when value is an empty string', () => {
-			const sampleFallback = 'cow';
-			const result = makeString(EMPTY_STRING, sampleFallback);
-			expect(result()).toBe(EMPTY_STRING);
+		it('should not set value when called with a number', () => {
+			const sampleFallback = 'bird';
+			const numberedValue = 5 as any;
+			const result = makeString(null, sampleFallback);
+			result(numberedValue);
+			expect(result()).toBe(sampleFallback);
+		});
+
+		it('should not set value when called with a boolean value', () => {
+			const sampleFallback = 'hog';
+			const booleanValue = false as any;
+			const result = makeString(null, sampleFallback);
+			result(booleanValue);
+			expect(result()).toBe(sampleFallback);
 		});
 	});
 
