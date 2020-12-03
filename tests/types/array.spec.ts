@@ -12,22 +12,45 @@ describe('StrongArray', () => {
 			expect(result()).toBe(sampleInitial);
 		});
 
-		it('should return fallback default when value is null', () => {
-			const sampleFallback = ['fox'];
-			const result = makeArray(null, sampleFallback);
-			expect(result()).toBe(sampleFallback);
-		});
-
-		it('should set value when called with non-null value', () => {
+		it('should set value when called with an array', () => {
 			const result = makeArray(null, MOCK_INITIAL);
 			const sampleValue = ['hog'];
 			result(sampleValue);
 			expect(result()).toBe(sampleValue);
 		});
 
+		it('should set value when called with an empty array', () => {
+			const result = makeArray(null, MOCK_FALLBACK);
+			const sampleValue = [];
+			result(sampleValue);
+			expect(result()).toBe(sampleValue);
+		});
+
+		it('should return fallback default when value is null', () => {
+			const sampleFallback = ['fox'];
+			const result = makeArray(null, sampleFallback);
+			expect(result()).toBe(sampleFallback);
+		});
+
 		it('should return fallback default when value is undefined', () => {
 			const sampleFallback = ['koala', 7];
 			const result = makeArray(undefined, sampleFallback);
+			expect(result()).toBe(sampleFallback);
+		});
+
+		it('should not set value when called with a number', () => {
+			const sampleFallback = ['bird'];
+			const numberedValue = 5 as any;
+			const result = makeArray(null, sampleFallback);
+			result(numberedValue);
+			expect(result()).toBe(sampleFallback);
+		});
+
+		it('should not set value when called with a boolean value', () => {
+			const sampleFallback = ['hog'];
+			const booleanValue = false as any;
+			const result = makeArray(null, sampleFallback);
+			result(booleanValue);
 			expect(result()).toBe(sampleFallback);
 		});
 	});
