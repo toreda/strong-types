@@ -59,7 +59,7 @@ describe('StrongDouble', () => {
 			expect(result()).toBe(sampleValue);
 		});
 
-		it('should set value when called with a 0', () => {
+		it('should set value when called with a 0 value', () => {
 			const sampleValue = 0;
 			const result = makeDouble(null, MOCK_FALLBACK);
 			result(sampleValue);
