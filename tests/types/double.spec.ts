@@ -32,7 +32,7 @@ describe('StrongDouble', () => {
 		});
 
 		it('should set value when called with a negative value', () => {
-			const sampleValue = -15.25845566;
+			const sampleValue = -15566;
 			const result = makeDouble(null, MOCK_FALLBACK);
 			result(sampleValue);
 			expect(result()).toBe(sampleValue);
@@ -61,17 +61,25 @@ describe('StrongDouble', () => {
 
 		it('should not set value when called with an array', () => {
 			const sampleFallbackDefault = 3900001;
-			const arrayFallback = ['cat'] as any;
+			const arrayValue = ['cat'] as any;
 			const result = makeDouble(null, sampleFallbackDefault);
-			result(arrayFallback);
+			result(arrayValue);
 			expect(result()).toBe(sampleFallbackDefault);
 		});
 
 		it('should not set value when called with a boolean', () => {
 			const sampleFallbackDefault = -4512.25565;
-			const booleanFallback = false as any;
+			const booleanValue = false as any;
 			const result = makeDouble(null, sampleFallbackDefault);
-			result(booleanFallback);
+			result(booleanValue);
+			expect(result()).toBe(sampleFallbackDefault);
+		});
+
+		it('should not set value when called with a string', () => {
+			const sampleFallbackDefault = 3.55551;
+			const stringValue = 'dog' as any;
+			const result = makeDouble(null, sampleFallbackDefault);
+			result(stringValue);
 			expect(result()).toBe(sampleFallbackDefault);
 		});
 	});
@@ -86,7 +94,6 @@ describe('StrongDouble', () => {
 
 			it('should return value when value is set', () => {
 				const sampleInitial = -31.01;
-
 				const result = makeDouble(sampleInitial, MOCK_FALLBACK_DEFAULT);
 				expect(result.get(MOCK_FALLBACK)).toBe(sampleInitial);
 			});
