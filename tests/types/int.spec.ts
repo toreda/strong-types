@@ -37,6 +37,13 @@ describe('StrongInt', () => {
 			expect(result()).toBe(sampleValue);
 		});
 
+		it('should set value when called with a 0', () => {
+			const sampleValue = 0;
+			const result = makeInt(null, MOCK_FALLBACK);
+			result(sampleValue);
+			expect(result()).toBe(sampleValue);
+		});
+
 		it('should set value when called with a positive value', () => {
 			const sampleValue = 85646466526;
 			const result = makeInt(null, MOCK_INITIAL);
@@ -62,7 +69,7 @@ describe('StrongInt', () => {
 
 		it('should not set value when called with an array', () => {
 			const sampleFallbackDefault = 3001;
-			const arrayValue = ['monkey', 'tiger'] as any;
+			const arrayValue = [-5464] as any;
 			const result = makeInt(null, sampleFallbackDefault);
 			result(arrayValue);
 			expect(result()).toBe(sampleFallbackDefault);

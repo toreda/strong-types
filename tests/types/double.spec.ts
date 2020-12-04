@@ -59,9 +59,16 @@ describe('StrongDouble', () => {
 			expect(result()).toBe(sampleValue);
 		});
 
+		it('should set value when called with a 0', () => {
+			const sampleValue = 0;
+			const result = makeDouble(null, MOCK_FALLBACK);
+			result(sampleValue);
+			expect(result()).toBe(sampleValue);
+		});
+
 		it('should not set value when called with an array', () => {
 			const sampleFallbackDefault = 3900001;
-			const arrayValue = ['cat'] as any;
+			const arrayValue = [546151] as any;
 			const result = makeDouble(null, sampleFallbackDefault);
 			result(arrayValue);
 			expect(result()).toBe(sampleFallbackDefault);
