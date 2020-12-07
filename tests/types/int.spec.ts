@@ -85,7 +85,7 @@ describe('StrongInt', () => {
 
 		it('should not set value when called with a string', () => {
 			const sampleFallbackDefault = 51;
-			const stringValue = 'pets' as any;
+			const stringValue = '9' as any;
 			const result = makeInt(null, sampleFallbackDefault);
 			result(stringValue);
 			expect(result()).toBe(sampleFallbackDefault);

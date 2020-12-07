@@ -84,7 +84,7 @@ describe('StrongDouble', () => {
 
 		it('should not set value when called with a string', () => {
 			const sampleFallbackDefault = 3.55551;
-			const stringValue = 'dog' as any;
+			const stringValue = '6' as any;
 			const result = makeDouble(null, sampleFallbackDefault);
 			result(stringValue);
 			expect(result()).toBe(sampleFallbackDefault);
