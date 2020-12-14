@@ -6,6 +6,7 @@ import {
 	STOpIsGreaterThanOrEqualTo,
 	makeIsGreaterThanOrEqualTo
 } from '../validator/is-greater-than-or-equal-to';
+import {STOpIsHexColorCode, createIsHexColorCode} from '../validator/pattern/hex-color-code';
 import {STOpIsLessThan, makeIsLessThan} from '../validator/is-less-than';
 import {STOpIsLessThanOrEqualTo, makeIsLessThanOrEqualTo} from '../validator/is-less-than-or-equal-to';
 import {STOpIsNull, makeIsNull} from '../validator/is-null';
@@ -26,6 +27,7 @@ export class STRuleBe {
 	public readonly empty: STOpIsEmpty<STRuleBe>;
 	public readonly date: STOpIsDate<STRuleBe>;
 	public readonly time: STOpIsTime<STRuleBe>;
+	public readonly hexColorCode: STOpIsHexColorCode<STRuleBe>;
 
 	constructor(rule: STRule, mods: STRuleModifiers) {
 		this.greaterThan = makeIsGreaterThan<STRuleBe>(this, rule, mods);
@@ -38,5 +40,6 @@ export class STRuleBe {
 		this.empty = makeIsEmpty<STRuleBe>(this, rule, mods);
 		this.date = makeIsDate<STRuleBe>(this, rule, mods);
 		this.time = makeIsTime<STRuleBe>(this, rule, mods);
+		this.hexColorCode = createIsHexColorCode<STRuleBe>(this, rule, mods);
 	}
 }
