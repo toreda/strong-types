@@ -2,10 +2,12 @@ import {StrongType, makeStrong} from '../strong-type';
 
 import {STRules} from '../rules';
 
-export type StrongDateTime = StrongType<Date>;
+export type StrongDateTime = StrongType<string>;
 
-export function makeString(initial: Date | null | undefined, fallback: Date): StrongDateTime {
+export function makeString(initial: string | null | undefined, fallback: string): StrongDateTime {
 	const rules = new STRules();
 	rules.add().must.match.type.string();
-	return makeStrong<Date>(initial, fallback, rules);
+	rules.add().must.be.date();
+	rules.add().must.be.time();
+	return makeStrong<string>(initial, fallback, rules);
 }

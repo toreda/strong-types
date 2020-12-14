@@ -8,10 +8,17 @@ export type STOpIsDate<CallerType> = () => CallerType;
 
 const maxISODate = '([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))';
 const minISODate = '([12]\d{3}-(0[1-9]|1[0-2]))';
+const timeString = '([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]';
 
 function isDate(currValue: string): boolean {
 	if (currValue === maxISODate || minISODate) {
 		return true;
+	}
+	if (typeof currValue !== 'string') {
+		return false;
+	}
+	if (currValue === timeString) {
+		return false;
 	}
 	return false;
 }

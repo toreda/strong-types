@@ -8,12 +8,16 @@ export type STOpIsTime<CallerType> = () => CallerType;
 
 const maxTime = '([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]';
 const minTime = '([01]?[0-9]|2[0-3]):[0-5][0-9]';
-const ISODate = '([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))';
+const dateStr = '([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))T([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]';
 
 function isTime(currValue: string): boolean {
 	if (currValue === maxTime || minTime) {
 		return true;
-	} else if (currValue === ISODate) {
+	}
+	if (typeof currValue !== 'string') {
+		return false;
+	}
+	if (currValue === dateStr) {
 		return false;
 	}
 	return false;
