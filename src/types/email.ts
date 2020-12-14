@@ -1,3 +1,12 @@
-//accepts strings
-//valid email address format
-//^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$
+import {StrongType, makeStrong} from '../strong-type';
+
+import {STRules} from '../rules';
+
+export type StrongEmail = StrongType<string>;
+
+export function makeString(initial: string | null | undefined, fallback: string): StrongEmail {
+	const rules = new STRules();
+	rules.add().must.match.type.string();
+	rules.add().must.be.email();
+	return makeStrong<string>(initial, fallback, rules);
+}
