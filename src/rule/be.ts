@@ -13,6 +13,7 @@ import {STOpIsLessThanOrEqualTo, makeIsLessThanOrEqualTo} from '../validator/is-
 import {STOpIsNull, makeIsNull} from '../validator/is-null';
 import {STOpIsTime, makeIsTime} from '../validator/is-time';
 import {STOpIsUndefined, makeIsUndefined} from '../validator/is-undefined';
+import {STOpIsUrl, makeIsUrl} from '../validator/is-url';
 
 import {STRule} from './rule';
 import {STRuleModifiers} from '../rule/modifiers';
@@ -30,6 +31,7 @@ export class STRuleBe {
 	public readonly time: STOpIsTime<STRuleBe>;
 	public readonly hexColorCode: STOpIsHexColorCode<STRuleBe>;
 	public readonly email: STOpIsEmail<STRuleBe>;
+	public readonly url: STOpIsUrl<STRuleBe>;
 
 	constructor(rule: STRule, mods: STRuleModifiers) {
 		this.greaterThan = makeIsGreaterThan<STRuleBe>(this, rule, mods);
@@ -44,5 +46,6 @@ export class STRuleBe {
 		this.time = makeIsTime<STRuleBe>(this, rule, mods);
 		this.hexColorCode = createIsHexColorCode<STRuleBe>(this, rule, mods);
 		this.email = makeIsEmail<STRuleBe>(this, rule, mods);
+		this.url = makeIsUrl<STRuleBe>(this, rule, mods);
 	}
 }
