@@ -1,6 +1,6 @@
 import {STOpIsArray, makeIsArray} from '../validator/is-array';
 import {STOpIsBoolean, makeIsBoolean} from '../validator/is-boolean';
-import {STOpIsDate, makeIsDate} from '../validator/is-date'
+import {STOpIsDate, makeIsDate} from '../validator/is-date';
 import {STOpIsDouble, makeIsDouble} from '../validator/is-double';
 import {STOpIsInteger, makeIsInteger} from '../validator/is-integer';
 import {STOpIsNull, makeIsNull} from '../validator/is-null';
