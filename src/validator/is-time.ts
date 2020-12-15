@@ -21,7 +21,7 @@ function isTime(currValue: string): boolean {
 	if (currValue === dateStr) {
 		return false;
 	}
-	return false;
+	return true;
 }
 
 export function makeIsTime<CallerType>(

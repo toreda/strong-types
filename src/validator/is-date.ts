@@ -9,19 +9,21 @@ export type STOpIsDate<CallerType> = () => CallerType;
 // prettier-ignore
 const maxISODate = '([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))';
 const minISODate = '([12]d{3}-(0[1-9]|1[0-2]))';
-const timeString = '([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]';
+const timeStr = '([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]';
+// prettier-ignore
+const dateStr = '([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))T([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]';
 
-function isDate(currValue: string): boolean {
+export function isDate(currValue: string): boolean {
 	if (currValue === maxISODate || minISODate) {
 		return true;
 	}
 	if (typeof currValue !== 'string') {
 		return false;
 	}
-	if (currValue === timeString) {
+	if (currValue === timeStr || dateStr) {
 		return false;
 	}
-	return false;
+	return true;
 }
 
 export function makeIsDate<CallerType>(

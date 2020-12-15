@@ -16,7 +16,7 @@ function isEmail(currValue: string): boolean {
 	if (typeof currValue !== 'string') {
 		return false;
 	}
-	return false;
+	return true;
 }
 
 export function makeIsEmail<CallerType>(

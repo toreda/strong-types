@@ -16,7 +16,7 @@ function isUrl(currValue: string): boolean {
 	if (typeof currValue !== 'string') {
 		return false;
 	}
-	return false;
+	return true;
 }
 
 export function makeIsUrl<CallerType>(
