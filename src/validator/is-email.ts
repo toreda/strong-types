@@ -6,6 +6,7 @@ import {STRuleNodeType} from '../rule/node-type';
 
 export type STOpIsEmail<CallerType> = () => CallerType;
 
+// prettier-ignore
 const emailStr = '^[^\s@]+@[^\s@]+\.[^\s@]+$';
 
 function isEmail(currValue: string): boolean {

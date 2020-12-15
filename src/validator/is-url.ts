@@ -6,6 +6,7 @@ import {STRuleNodeType} from '../rule/node-type';
 
 export type STOpIsUrl<CallerType> = () => CallerType;
 
+// prettier-ignore
 const urlStr = '^((http[s]?|ftp):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$';
 
 function isUrl(currValue: string): boolean {

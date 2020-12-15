@@ -6,6 +6,7 @@ import {STRuleNodeType} from '../rule/node-type';
 
 export type STOpIsDate<CallerType> = () => CallerType;
 
+// prettier-ignore
 const maxISODate = '([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))';
 const minISODate = '([12]\d{3}-(0[1-9]|1[0-2]))';
 const timeString = '([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]';
