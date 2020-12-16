@@ -3,7 +3,6 @@ import {STRuleFn} from '../rule/fn';
 import {STRuleModifiers} from '../rule/modifiers';
 import {STRuleNode} from '../rule/node';
 import {STRuleNodeType} from '../rule/node-type';
-import {cpuUsage} from 'process';
 
 export type STOpIsDate<CallerType> = () => CallerType;
 
