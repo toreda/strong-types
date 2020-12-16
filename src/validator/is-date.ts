@@ -3,6 +3,7 @@ import {STRuleFn} from '../rule/fn';
 import {STRuleModifiers} from '../rule/modifiers';
 import {STRuleNode} from '../rule/node';
 import {STRuleNodeType} from '../rule/node-type';
+import {cpuUsage} from 'process';
 
 export type STOpIsDate<CallerType> = () => CallerType;
 
@@ -14,16 +15,13 @@ const timeStr = '([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]';
 const dateStr = '([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))T([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]';
 
 export function isDate(currValue: string): boolean {
+	if (typeof currValue !== 'string' || currValue === timeStr || currValue === dateStr) {
+		return false;
+	}
 	if (currValue === maxISODate || minISODate) {
 		return true;
 	}
-	if (typeof currValue !== 'string') {
-		return false;
-	}
-	if (currValue === timeStr || dateStr) {
-		return false;
-	}
-	return true;
+	return typeof currValue === 'string';
 }
 
 export function makeIsDate<CallerType>(

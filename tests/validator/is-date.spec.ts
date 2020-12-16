@@ -15,81 +15,35 @@ describe('IsDate', () => {
 		mods.invert = false;
 	});
 
-	describe('makeIsDate', () => {
-		it('should return a function', () => {
+	describe('Usage', () => {
+		it('should return true for a date string', () => {
 			const rule = new STRule();
+			// prettier-ignore
+			const value = '([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))';
 
 			const fn = makeIsDate<STRule>(rule, rule, mods);
-			expect(typeof fn).toBe('function');
+			fn();
+
+			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
 	});
 
-	describe('Usage', () => {
-		it('should return false when curr value is a number', () => {
+	describe('invalid inputs', () => {
+		it('should return false for a number', () => {
 			const rule = new STRule();
 
 			const fn = makeIsDate<STRule>(rule, rule, mods);
 			fn();
 
-			const int = 12;
-			expect(rule.nodes[0].execute(int)).toBe(false);
+			const value = 12;
+			expect(rule.nodes[0].execute(value)).toBe(false);
 		});
 
-		it('should return false when curr is a date time string', () => {
+		it('should return false for a date time string', () => {
 			const rule = new STRule();
 			// prettier-ignore
 			// eslint-disable-next-line
-			const dateStr = '([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))T([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]';
-
-			const fn = makeIsDate<STRule>(rule, rule, mods);
-			fn();
-
-			expect(rule.nodes[0].execute(dateStr)).toBe(false);
-		});
-
-		it('should return false when curr is an array', () => {
-			const rule = new STRule();
-			const arrCurr = [];
-
-			const fn = makeIsDate<STRule>(rule, rule, mods);
-			fn();
-
-			expect(rule.nodes[0].execute(arrCurr)).toBe(false);
-		});
-
-		it('should return false when curr is a boolean', () => {
-			const rule = new STRule();
-			const booleanCurr = false;
-
-			const fn = makeIsDate<STRule>(rule, rule, mods);
-			fn();
-
-			expect(rule.nodes[0].execute(booleanCurr)).toBe(false);
-		});
-
-		it('should return false when curr is a time string', () => {
-			const rule = new STRule();
-			const timeCurr = '([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]';
-
-			const fn = makeIsDate<STRule>(rule, rule, mods);
-			fn();
-
-			expect(rule.nodes[0].execute(timeCurr)).toBe(false);
-		});
-
-		it('should return false when curr is null', () => {
-			const rule = new STRule();
-			const nullCurr = null;
-
-			const fn = makeIsDate<STRule>(rule, rule, mods);
-			fn();
-
-			expect(rule.nodes[0].execute(nullCurr)).toBe(false);
-		});
-
-		it('should return false when curr is undefined', () => {
-			const rule = new STRule();
-			const value = undefined;
+			const value = '([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))T([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]';
 
 			const fn = makeIsDate<STRule>(rule, rule, mods);
 			fn();
@@ -97,15 +51,63 @@ describe('IsDate', () => {
 			expect(rule.nodes[0].execute(value)).toBe(false);
 		});
 
-		it('should return true when curr is a date string', () => {
+		it('should return false for an array', () => {
 			const rule = new STRule();
-			// prettier-ignore
-			const dateCurr = '([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))';
+			const value = [] as any;
 
 			const fn = makeIsDate<STRule>(rule, rule, mods);
 			fn();
 
-			expect(rule.nodes[0].execute(dateCurr)).toBe(true);
+			expect(rule.nodes[0].execute(value)).toBe(false);
+		});
+
+		it('should return false for a boolean', () => {
+			const rule = new STRule();
+			const value = false as any;
+
+			const fn = makeIsDate<STRule>(rule, rule, mods);
+			fn();
+
+			expect(rule.nodes[0].execute(value)).toBe(false);
+		});
+
+		it('should reject empty object input', () => {
+			const rule = new STRule();
+			const value = {} as any;
+
+			const fn = makeIsDate<STRule>(rule, rule, mods);
+			fn();
+			expect(rule.nodes[0].execute(value)).toBe(false);
+		});
+
+		it('should return false for a time string', () => {
+			const rule = new STRule();
+			const value = '([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]' as any;
+
+			const fn = makeIsDate<STRule>(rule, rule, mods);
+			fn();
+
+			expect(rule.nodes[0].execute(value)).toBe(false);
+		});
+
+		it('should return false when value is null', () => {
+			const rule = new STRule();
+			const value = null as any;
+
+			const fn = makeIsDate<STRule>(rule, rule, mods);
+			fn();
+
+			expect(rule.nodes[0].execute(value)).toBe(false);
+		});
+
+		it('should return false when value is undefined', () => {
+			const rule = new STRule();
+			const value = undefined as any;
+
+			const fn = makeIsDate<STRule>(rule, rule, mods);
+			fn();
+
+			expect(rule.nodes[0].execute(value)).toBe(false);
 		});
 	});
 });
