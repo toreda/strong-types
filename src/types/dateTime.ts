@@ -4,7 +4,7 @@ import {STRules} from '../rules';
 
 export type StrongDateTime = StrongType<string>;
 
-export function makeString(initial: string | null | undefined, fallback: string): StrongDateTime {
+export function makeDateTime(initial: string | null | undefined, fallback: string): StrongDateTime {
 	const rules = new STRules();
 	rules.add().must.match.type.string();
 	rules.add().must.be.date();
