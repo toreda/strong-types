@@ -7,21 +7,20 @@ import {STRuleNodeType} from '../rule/node-type';
 export type STOpIsDate<CallerType> = () => CallerType;
 
 // prettier-ignore
-const maxDate = '([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))';
+const maxDate = '^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$';
 // prettier-ignore
-const minDate = '([12]\d{3}-(0[1-9]|1[0-2]))';
+const minDate = '^([12]\d{3}-(0[1-9]|1[0-2]))$';
+// prettier-ignore
+const timeStr = '^([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$';
 // prettier-ignore
 // eslint-disable-next-line
-const dateTimeStr = '([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))T([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]';
-const timeStr = '([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]';
+const dateTimeStr = '^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))T([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$';
 
 export function isDate(currValue: string): boolean {
-	if (typeof currValue !== 'string') {
+	if (typeof currValue !== 'string' || currValue.match(dateTimeStr) || currValue.match(timeStr)) {
 		return false;
 	}
-	if (currValue.match(dateTimeStr) || currValue.match(timeStr)) {
-		return false;
-	}
+
 	if (currValue.match(maxDate) || currValue.match(minDate)) {
 		return true;
 	}

@@ -10,11 +10,11 @@ export type STOpIsUrl<CallerType> = () => CallerType;
 const urlStr = '/^((http|https|Http|Wss|HTTPS):\/\/)(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/';
 
 function isUrl(currValue: string): boolean {
-	if (currValue.match(urlStr)) {
-		return true;
-	}
 	if (typeof currValue !== 'string') {
 		return false;
+	}
+	if (currValue.match(urlStr)) {
+		return true;
 	}
 	return true;
 }

@@ -6,13 +6,13 @@ import {STRuleNodeType} from '../rule/node-type';
 
 export type STOpIsTime<CallerType> = () => CallerType;
 
-const maxTime = '([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]';
-const minTime = '([01]?[0-9]|2[0-3]):[0-5][0-9]';
+const maxTime = '^([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$';
+const minTime = '^([01]?[0-9]|2[0-3]):[0-5][0-9]$';
 // prettier-ignore
 // eslint-disable-next-line
-const dateTimeStr = '([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))T([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]';
+const dateTimeStr = '^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))T([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$';
 // prettier-ignore
-const dateStr = '([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))';
+const dateStr = '^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$';
 
 function isTime(currValue: string): boolean {
 	if (typeof currValue !== 'string' || currValue.match(dateTimeStr) || currValue.match(dateStr)) {
