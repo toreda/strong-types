@@ -25,6 +25,17 @@ describe('IsEmail', () => {
 	});
 
 	describe('invalid inputs', () => {
+		it('should return false for a string', () => {
+			const rule = new STRule();
+
+			const value = 'test';
+
+			const fn = makeIsEmail<STRule>(rule, rule, mods);
+			fn();
+
+			expect(rule.nodes[0].execute(value)).toBe(false);
+		});
+
 		it('should return false for a number', () => {
 			const rule = new STRule();
 

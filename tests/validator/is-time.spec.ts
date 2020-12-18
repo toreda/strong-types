@@ -1,8 +1,8 @@
 import {STRule} from '../../src/rule/rule';
 import {STRuleModifiers} from '../../src/rule/modifiers';
-import {makeIsDate} from '../../src/validator/is-date';
+import {makeIsTime} from '../../src/validator/is-time';
 
-describe('IsDate', () => {
+describe('IsTime', () => {
 	let mods: STRuleModifiers;
 
 	beforeAll(() => {
@@ -12,21 +12,12 @@ describe('IsDate', () => {
 	});
 
 	describe('Usage', () => {
-		it('should return true for a full date string', () => {
+		it('should return true for a time string', () => {
 			const rule = new STRule();
-			const value = '2020-12-24' as any;
 
-			const fn = makeIsDate<STRule>(rule, rule, mods);
-			fn();
+			const value = '18:42:56';
 
-			expect(rule.nodes[0].execute(value)).toBe(true);
-		});
-
-		it('should return true for a minimal date string', () => {
-			const rule = new STRule();
-			const value = '2015-08' as any;
-
-			const fn = makeIsDate<STRule>(rule, rule, mods);
+			const fn = makeIsTime<STRule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(value)).toBe(true);
@@ -34,33 +25,34 @@ describe('IsDate', () => {
 	});
 
 	describe('invalid inputs', () => {
+		it('should return false for a date string', () => {
+			const rule = new STRule();
+
+			const value = '2020-11-27';
+
+			const fn = makeIsTime<STRule>(rule, rule, mods);
+			fn();
+
+			expect(rule.nodes[0].execute(value)).toBe(false);
+		});
+
 		it('should return false for a date time string', () => {
 			const rule = new STRule();
-			const value = '1886-05-15T22:35:52' as any;
 
-			const fn = makeIsDate<STRule>(rule, rule, mods);
+			const value = '2020-11-27T14:52:26';
+
+			const fn = makeIsTime<STRule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(value)).toBe(false);
 		});
-
-		it('should return false for a time string', () => {
-			const rule = new STRule();
-			const value = '22:35:52';
-
-			const fn = makeIsDate<STRule>(rule, rule, mods);
-			fn();
-
-			expect(rule.nodes[0].execute(value)).toBe(false);
-		});
-
 		it('should return false for a number', () => {
 			const rule = new STRule();
 
-			const fn = makeIsDate<STRule>(rule, rule, mods);
+			const fn = makeIsTime<STRule>(rule, rule, mods);
 			fn();
 
-			const value = 12;
+			const value = 8;
 			expect(rule.nodes[0].execute(value)).toBe(false);
 		});
 
@@ -68,7 +60,7 @@ describe('IsDate', () => {
 			const rule = new STRule();
 			const value = [] as any;
 
-			const fn = makeIsDate<STRule>(rule, rule, mods);
+			const fn = makeIsTime<STRule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(value)).toBe(false);
@@ -78,7 +70,7 @@ describe('IsDate', () => {
 			const rule = new STRule();
 			const value = false as any;
 
-			const fn = makeIsDate<STRule>(rule, rule, mods);
+			const fn = makeIsTime<STRule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(value)).toBe(false);
@@ -88,7 +80,7 @@ describe('IsDate', () => {
 			const rule = new STRule();
 			const value = {} as any;
 
-			const fn = makeIsDate<STRule>(rule, rule, mods);
+			const fn = makeIsTime<STRule>(rule, rule, mods);
 			fn();
 			expect(rule.nodes[0].execute(value)).toBe(false);
 		});
@@ -97,7 +89,7 @@ describe('IsDate', () => {
 			const rule = new STRule();
 			const value = null as any;
 
-			const fn = makeIsDate<STRule>(rule, rule, mods);
+			const fn = makeIsTime<STRule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(value)).toBe(false);
@@ -107,7 +99,7 @@ describe('IsDate', () => {
 			const rule = new STRule();
 			const value = undefined as any;
 
-			const fn = makeIsDate<STRule>(rule, rule, mods);
+			const fn = makeIsTime<STRule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(value)).toBe(false);
