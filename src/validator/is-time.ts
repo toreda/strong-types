@@ -18,8 +18,11 @@ function isTime(currValue: string): boolean {
 	if (typeof currValue !== 'string' || currValue.match(dateTimeStr) || currValue.match(dateStr)) {
 		return false;
 	}
-	if (currValue.match(maxTime) || currValue.match(minTime)) {
-		return true;
+	if (typeof currValue === 'string') {
+		if (currValue.match(maxTime) || currValue.match(minTime)) {
+			return true;
+		}
+		return false;
 	}
 	return true;
 }
