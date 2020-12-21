@@ -13,8 +13,11 @@ function isEmail(currValue: string): boolean {
 	if (typeof currValue !== 'string') {
 		return false;
 	}
-	if (currValue.match(emailStr)) {
-		return true;
+	if (typeof currValue === 'string') {
+		if (currValue.match(emailStr)) {
+			return true;
+		}
+		return false;
 	}
 	return true;
 }

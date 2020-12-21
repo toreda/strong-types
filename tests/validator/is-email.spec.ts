@@ -28,7 +28,7 @@ describe('IsEmail', () => {
 		it('should return false for a string', () => {
 			const rule = new STRule();
 
-			const value = 'test';
+			const value = 'test.com';
 
 			const fn = makeIsEmail<STRule>(rule, rule, mods);
 			fn();

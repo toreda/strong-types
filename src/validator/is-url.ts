@@ -13,8 +13,11 @@ function isUrl(currValue: string): boolean {
 	if (typeof currValue !== 'string') {
 		return false;
 	}
-	if (currValue.match(urlStr)) {
-		return true;
+	if (typeof currValue === 'string') {
+		if (currValue.match(urlStr)) {
+			return true;
+		}
+		return false;
 	}
 	return true;
 }

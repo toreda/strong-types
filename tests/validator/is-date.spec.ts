@@ -14,7 +14,7 @@ describe('IsDate', () => {
 	describe('Usage', () => {
 		it('should return true for a full date string', () => {
 			const rule = new STRule();
-			const value = '2020-12-24' as any;
+			const value = '2020-12-24';
 
 			const fn = makeIsDate<STRule>(rule, rule, mods);
 			fn();
@@ -22,9 +22,19 @@ describe('IsDate', () => {
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
 
-		it('should return true for a minimal date string', () => {
+		it('should return true for a date string without the day', () => {
 			const rule = new STRule();
-			const value = '2015-08' as any;
+			const value = '2015-08';
+
+			const fn = makeIsDate<STRule>(rule, rule, mods);
+			fn();
+
+			expect(rule.nodes[0].execute(value)).toBe(true);
+		});
+
+		it('should return true for a date string without the day and month', () => {
+			const rule = new STRule();
+			const value = '2008';
 
 			const fn = makeIsDate<STRule>(rule, rule, mods);
 			fn();
@@ -36,7 +46,7 @@ describe('IsDate', () => {
 	describe('invalid inputs', () => {
 		it('should return false for a date time string', () => {
 			const rule = new STRule();
-			const value = '1886-05-15T22:35:52' as any;
+			const value = '1886-05-15T22:35:52';
 
 			const fn = makeIsDate<STRule>(rule, rule, mods);
 			fn();
@@ -56,7 +66,7 @@ describe('IsDate', () => {
 
 		it('should return false for a string', () => {
 			const rule = new STRule();
-			const value = 'date time';
+			const value = 'Feb 15th';
 
 			const fn = makeIsDate<STRule>(rule, rule, mods);
 			fn();

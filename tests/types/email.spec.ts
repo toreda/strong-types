@@ -14,7 +14,7 @@ describe('StrongEmail', () => {
 
 		it('should return fallback default when called with a string', () => {
 			const result = makeEmail(null, MOCK_INITIAL);
-			const sampleValue = 'pig';
+			const sampleValue = 'email';
 			result(sampleValue);
 			expect(result()).toBe(MOCK_FALLBACK);
 		});
@@ -24,7 +24,7 @@ describe('StrongEmail', () => {
 			const emptyString = '';
 			const result = makeEmail(null, sampleFallback);
 			result(emptyString);
-			expect(result()).toBe(emptyString);
+			expect(result()).toBe(sampleFallback);
 		});
 
 		it('should return fallback default when value is null', () => {
