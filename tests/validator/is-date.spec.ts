@@ -44,7 +44,7 @@ describe('IsDate', () => {
 	});
 
 	describe('invalid inputs', () => {
-		it('should return false for a date time string', () => {
+		it('should return false for a date string that includes time', () => {
 			const rule = new STRule();
 			const value = '1886-05-15T22:35:52';
 
