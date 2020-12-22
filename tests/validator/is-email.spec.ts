@@ -12,7 +12,7 @@ describe('IsEmail', () => {
 	});
 
 	describe('Usage', () => {
-		it('should return true for a email string', () => {
+		it('should return true for an email string', () => {
 			const rule = new STRule();
 
 			const value = 'test@test.com';
@@ -28,7 +28,7 @@ describe('IsEmail', () => {
 		it('should return false for a string', () => {
 			const rule = new STRule();
 
-			const value = 'test.com';
+			const value = 'test com';
 
 			const fn = makeIsEmail<STRule>(rule, rule, mods);
 			fn();
