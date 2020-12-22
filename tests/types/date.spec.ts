@@ -28,19 +28,19 @@ describe('StrongDate', () => {
 		});
 
 		it('should return fallback default when value is null', () => {
-			const sampleFallback = 'March 6th';
+			const sampleFallback = '1998';
 			const result = makeDate(null, sampleFallback);
 			expect(result()).toBe(sampleFallback);
 		});
 
 		it('should return fallback default when value is undefined', () => {
-			const sampleFallback = 'January 21st';
+			const sampleFallback = '1534-08';
 			const result = makeDate(undefined, sampleFallback);
 			expect(result()).toBe(sampleFallback);
 		});
 
 		it('should not set value when called with a number', () => {
-			const sampleFallback = 'December';
+			const sampleFallback = '2020-12';
 			const numberedValue = 5 as any;
 			const result = makeDate(null, sampleFallback);
 			result(numberedValue);
@@ -48,7 +48,7 @@ describe('StrongDate', () => {
 		});
 
 		it('should not set value when called with a boolean value', () => {
-			const sampleFallback = 'April 5th';
+			const sampleFallback = '2015';
 			const booleanValue = false as any;
 			const result = makeDate(null, sampleFallback);
 			result(booleanValue);
