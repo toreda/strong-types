@@ -7,7 +7,8 @@ import {STRuleNodeType} from '../rule/node-type';
 export type STOpIsUrl<CallerType> = () => CallerType;
 
 // prettier-ignore
-const urlStr = '/^((http|https|Http|Wss|HTTPS):\/\/)(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/';
+// eslint-disable-next-line
+const urlStr = /^((http|https|Http|Wss|HTTPS):\/\/)(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*:?[0-9]?[0-9]?[0-9]?[0-9]?$/;
 
 function isUrl(currValue: string): boolean {
 	if (typeof currValue !== 'string') {
@@ -19,7 +20,7 @@ function isUrl(currValue: string): boolean {
 		}
 		return false;
 	}
-	return true;
+	return typeof currValue === 'string';
 }
 
 export function makeIsUrl<CallerType>(
