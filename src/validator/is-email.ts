@@ -6,13 +6,14 @@ import {STRuleNodeType} from '../rule/node-type';
 
 export type STOpIsEmail<CallerType> = () => CallerType;
 
+// prettier-ignore
+const emailStr = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 function isEmail(currValue: string): boolean {
 	if (typeof currValue !== 'string') {
 		return false;
 	}
 	if (typeof currValue === 'string') {
-		// prettier-ignore
-		const emailStr = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 		if (currValue.match(emailStr)) {
 			return true;
 		}
