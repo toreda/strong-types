@@ -3,24 +3,22 @@ import {STRuleFn} from '../rule/fn';
 import {STRuleModifiers} from '../rule/modifiers';
 import {STRuleNode} from '../rule/node';
 import {STRuleNodeType} from '../rule/node-type';
+import {URL} from 'url';
 
 export type STOpIsUrl<CallerType> = () => CallerType;
-
-// prettier-ignore
-// eslint-disable-next-line
-const urlStr = /^((http|https|Http|Wss|HTTPS):\/\/)(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*:?[0-9]?[0-9]?[0-9]?[0-9]?$/;
 
 function isUrl(currValue: string): boolean {
 	if (typeof currValue !== 'string') {
 		return false;
 	}
-	if (typeof currValue === 'string') {
-		if (currValue.match(urlStr)) {
-			return true;
-		}
-		return false;
+	let result = false;
+	try {
+		const url = new URL(currValue);
+		result = true;
+	} catch (e) {
+		result = false;
 	}
-	return typeof currValue === 'string';
+	return result;
 }
 
 export function makeIsUrl<CallerType>(
