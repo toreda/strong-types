@@ -1,4 +1,5 @@
 import {STOpIsDate, makeIsDate} from '../validator/is-date';
+import {STOpIsDateTime, makeIsDateTime} from '../validator/is-dateTime';
 import {STOpIsEmail, makeIsEmail} from '../validator/is-email';
 import {STOpIsEmpty, makeIsEmpty} from '../validator/is-empty';
 import {STOpIsEqualTo, makeIsEqualTo} from '../validator/is-equal-to';
@@ -32,6 +33,7 @@ export class STRuleBe {
 	public readonly hexColorCode: STOpIsHexColorCode<STRuleBe>;
 	public readonly email: STOpIsEmail<STRuleBe>;
 	public readonly url: STOpIsUrl<STRuleBe>;
+	public readonly dateTime: STOpIsDateTime<STRuleBe>;
 
 	constructor(rule: STRule, mods: STRuleModifiers) {
 		this.greaterThan = makeIsGreaterThan<STRuleBe>(this, rule, mods);
@@ -47,5 +49,6 @@ export class STRuleBe {
 		this.hexColorCode = createIsHexColorCode<STRuleBe>(this, rule, mods);
 		this.email = makeIsEmail<STRuleBe>(this, rule, mods);
 		this.url = makeIsUrl<STRuleBe>(this, rule, mods);
+		this.dateTime = makeIsDateTime<STRuleBe>(this, rule, mods);
 	}
 }
