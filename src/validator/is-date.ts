@@ -15,9 +15,11 @@ function isDate(value: string): boolean {
 	if (isNaN(result) || typeof value !== 'string' || value.match(timeStr)) {
 		return false;
 	}
+
 	if (!isNaN(result)) {
 		return true;
 	}
+
 	return !isNaN(result);
 }
 
