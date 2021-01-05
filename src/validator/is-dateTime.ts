@@ -7,14 +7,31 @@ import {STRuleNodeType} from '../rule/node-type';
 export type STOpIsDateTime<CallerType> = () => CallerType;
 
 function isDateTime(value: string): boolean {
-	const result = Date.parse(value);
-	if (isNaN(result) || typeof value !== 'string') {
+	if (typeof value !== 'string') {
 		return false;
 	}
-	if (!isNaN(result)) {
-		return true;
+
+	if (!value.trim()) {
+		return false;
 	}
-	return !isNaN(result);
+
+	const pieces = value.split('T');
+	if (pieces.length !== 2) {
+		return false;
+	}
+
+	const date = pieces[0].split('-');
+	const time = pieces[1].split(':');
+
+	if (date.length !== 3) {
+		return false;
+	}
+
+	if (time.length !== 3) {
+		return false;
+	}
+
+	return true;
 }
 
 export function makeIsDateTime<CallerType>(

@@ -21,29 +21,19 @@ describe('IsDateTime', () => {
 
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
-
-		it('should return true for a date string without the day', () => {
-			const rule = new STRule();
-			const value = '2015-08';
-
-			const fn = makeIsDateTime<STRule>(rule, rule, mods);
-			fn();
-
-			expect(rule.nodes[0].execute(value)).toBe(true);
-		});
-
-		it('should return true for a date string without the day and month', () => {
-			const rule = new STRule();
-			const value = '2008';
-
-			const fn = makeIsDateTime<STRule>(rule, rule, mods);
-			fn();
-
-			expect(rule.nodes[0].execute(value)).toBe(true);
-		});
 	});
 
 	describe('invalid inputs', () => {
+		it('should return false for a date string without the time', () => {
+			const rule = new STRule();
+			const value = '2015-08-15';
+
+			const fn = makeIsDateTime<STRule>(rule, rule, mods);
+			fn();
+
+			expect(rule.nodes[0].execute(value)).toBe(false);
+		});
+
 		it('should return false for a time string', () => {
 			const rule = new STRule();
 			const value = '22:35:52';

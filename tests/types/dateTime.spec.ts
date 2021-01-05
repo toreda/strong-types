@@ -1,8 +1,8 @@
 import {StrongDateTime, makeDateTime} from '../../src/types/dateTime';
 
 const MOCK_INITIAL = '1886-05-30T18:45:36';
-const MOCK_FALLBACK_DEFAULT = '2020-12-25';
-const MOCK_FALLBACK = '2015-02';
+const MOCK_FALLBACK_DEFAULT = '2020-12-25T09:05:20';
+const MOCK_FALLBACK = '2015-02-24T03:21:52';
 
 describe('StrongDateTime', () => {
 	describe('Implementation', () => {
@@ -28,19 +28,19 @@ describe('StrongDateTime', () => {
 		});
 
 		it('should return fallback default when value is null', () => {
-			const sampleFallback = '1520-06-27';
+			const sampleFallback = '1520-06-27T21:25:23';
 			const result = makeDateTime(null, sampleFallback);
 			expect(result()).toBe(sampleFallback);
 		});
 
 		it('should return fallback default when value is undefined', () => {
-			const sampleFallback = '1886-12-25';
+			const sampleFallback = '1886-12-25T12:15:41';
 			const result = makeDateTime(undefined, sampleFallback);
 			expect(result()).toBe(sampleFallback);
 		});
 
 		it('should not set value when called with a number', () => {
-			const sampleFallback = '2020';
+			const sampleFallback = '2021-08-15';
 			const numberedValue = 5 as any;
 			const result = makeDateTime(null, sampleFallback);
 			result(numberedValue);
@@ -48,7 +48,7 @@ describe('StrongDateTime', () => {
 		});
 
 		it('should not set value when called with a boolean value', () => {
-			const sampleFallback = '2011-02-29';
+			const sampleFallback = '2011-02-29T21:51:52';
 			const booleanValue = false as any;
 			const result = makeDateTime(null, sampleFallback);
 			result(booleanValue);
@@ -65,7 +65,7 @@ describe('StrongDateTime', () => {
 			});
 
 			it('should return value when value is set', () => {
-				const sampleInitial = '1995-12-01';
+				const sampleInitial = '1995-12-01T02:36:52';
 				const string = makeDateTime(sampleInitial, MOCK_FALLBACK_DEFAULT);
 				expect(string.get(MOCK_FALLBACK)).toBe(sampleInitial);
 			});
