@@ -40,7 +40,7 @@ describe('StrongDateTime', () => {
 		});
 
 		it('should not set value when called with a number', () => {
-			const sampleFallback = '2021-08-15';
+			const sampleFallback = '2021-08-15T02:21:15';
 			const numberedValue = 5 as any;
 			const result = makeDateTime(null, sampleFallback);
 			result(numberedValue);
