@@ -8,16 +8,14 @@ import {lessThanFn} from './is-less-than';
 export type STOpHasLengthLessThan<CallerType> = (a: number) => CallerType;
 
 export const hasLengthLessThan = (curr: any, target: number): boolean => {
-	//curr length value less than target length value
-	//Check that object has a length property which is a number
-	//0 is a valid length
 	if (curr.length <= -1) {
 		return false;
-	} //No length property is a fail, return false
+	}
+
 	if (!curr.length) {
 		return false;
-	} //Use the the existing less than validator
-	//Call validator and pass in the length value to validate using existing code
+	}
+
 	return lessThanFn(curr.length, target);
 };
 
