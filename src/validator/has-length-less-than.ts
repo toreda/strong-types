@@ -31,7 +31,7 @@ export function makeHasLengthLessThan<CallerType>(
 			return hasLengthLessThan(curr, target);
 		};
 
-		const node = new STRuleNode('HAS_LENGTH_LESS_', STRuleNodeType.CMP, fn, mods.invert);
+		const node = new STRuleNode('HAS_LENGTH_LESS', STRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;
