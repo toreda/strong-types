@@ -3,39 +3,42 @@ import {STRuleFn} from '../rule/fn';
 import {STRuleModifiers} from '../rule/modifiers';
 import {STRuleNode} from '../rule/node';
 import {STRuleNodeType} from '../rule/node-type';
-import {isHexColorFn} from './pattern/hex-color-code';
 
 export type STOpIsIpv6Addr<CallerType> = () => CallerType;
 
-export const isIpv6Addr = (curr: string): boolean => {
-	if (typeof curr !== 'string') {
+export const isIpv6Addr = (current: string): boolean => {
+	if (typeof current != 'string') {
 		return false;
 	}
 
-	if (!curr.trim()) {
+	if (!current.trim()) {
 		return false;
 	}
 
-	const section = curr.split(':');
-	if (section.length >= 9) {
+	const section = current.split(':');
+
+	if (!section.length || (section.length >= 9 && !section.every(isValidSegment))) {
 		return false;
 	}
-
-	if (section[0].length != 4) {
-		return false;
-	}
-
-	//xxxx is hex value
-	//Each section must be a valid hex code.
-	//Fully formed explicit ipv6 addresses have exactly 7 semi-colons ( : ) and 8 sections.
-	//Example: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx
-
 	//Can include fewer than 8 sections if:
 	//There is exactly one double semi-colon ::
 	//6 semi-colons at most in address.
-	//Double semi-colon acts as an ellipse, filling any omitted sections with 0s:
+	const doubleSemiColon = /::/;
+	if (section.length < 8 && current.search(doubleSemiColon) && !section.every(isValidSegment)) {
+		return false;
+	}
 
-	return isHexColorFn(curr);
+	return true;
+};
+
+export const isValidSegment = (segment: any): boolean => {
+	const isHexValue = 0xfff;
+
+	if (!segment.length || segment.length > 4 || !segment.match(isHexValue)) {
+		return false;
+	}
+
+	return true;
 };
 
 export function makeIsIpv6Addr<CallerType>(

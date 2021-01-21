@@ -15,16 +15,16 @@ describe('IsIpv6Addr', () => {
 		describe('valid input', () => {
 			it('should return true for full valid ipv6 address', () => {
 				const rule = new STRule();
-				const currentValue = '74dc:a100:007a:34hd:0043:ab32:0000:ffff ';
+				const currentValue = '74dc:a100:007a:34hd:0043:ab32:0000:ffff';
 
 				const fn = makeIsIpv6Addr<STRule>(rule, rule, mods);
 				fn();
 				expect(rule.nodes[0].execute(currentValue)).toBe(true);
 			});
 
-			it('should return true for valid ipv6 address', () => {
+			it('should return true for valid ipv6 address containg one semicolon', () => {
 				const rule = new STRule();
-				const currentValue = '74dc:a100:007a::02ba ';
+				const currentValue = '74dc:a100:007a::02ba';
 
 				const fn = makeIsIpv6Addr<STRule>(rule, rule, mods);
 				fn();
@@ -36,15 +36,6 @@ describe('IsIpv6Addr', () => {
 			it('should return false for invalid ipv6 address containg more than one double semicolon', () => {
 				const rule = new STRule();
 				const currentValue = '74dc::a100::02ba';
-
-				const fn = makeIsIpv6Addr<STRule>(rule, rule, mods);
-				fn();
-				expect(rule.nodes[0].execute(currentValue)).toBe(false);
-			});
-
-			it('should return false for invalid ipv6 address containing string', () => {
-				const rule = new STRule();
-				const currentValue = '74dc:a100:007a:hello:02ba';
 
 				const fn = makeIsIpv6Addr<STRule>(rule, rule, mods);
 				fn();
