@@ -6,12 +6,12 @@ import {STRuleNodeType} from '../rule/node-type';
 
 export type STOpHasProperty<CallerType> = (propName: string) => CallerType;
 
-function hasProperty(curr: any, propName: string): boolean {
-	if (typeof curr === 'undefined' || curr === null) {
+function hasProperty(obj: any, propName: string): boolean {
+	if (typeof obj === 'undefined' || obj === null) {
 		return false;
 	}
 
-	const prop = curr[propName];
+	const prop = obj[propName];
 	return typeof prop !== 'undefined';
 }
 
@@ -21,8 +21,8 @@ export function makeHasProperty<CallerType>(
 	mods: STRuleModifiers
 ): STOpHasProperty<CallerType> {
 	return (propName: string): CallerType => {
-		const fn: STRuleFn = (curr: any) => {
-			return hasProperty(curr, propName);
+		const fn: STRuleFn = (obj: any) => {
+			return hasProperty(obj, propName);
 		};
 
 		const node = new STRuleNode('HAS_PROPERTY', STRuleNodeType.CMP, fn, mods.invert);
