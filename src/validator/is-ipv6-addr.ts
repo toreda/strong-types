@@ -16,26 +16,39 @@ export const isIpv6Addr = (current: string): boolean => {
 	}
 
 	const section = current.split(':');
+	const tooManyColons = current.split('::');
+	const doubleColon = '::';
 
-	if (!section.length || (section.length >= 9 && !section.every(isValidSegment))) {
+	if (!section.length) {
 		return false;
 	}
-	//Can include fewer than 8 sections if:
-	//There is exactly one double semi-colon ::
-	//6 semi-colons at most in address.
-	const doubleSemiColon = /::/;
-	if (section.length < 8 && current.search(doubleSemiColon) && !section.every(isValidSegment)) {
+
+	if (section.length >= 9) {
+		return false;
+	}
+
+	if (section.length === 8 && !section.every(isValidSegment) && current.includes(doubleColon)) {
+		return false;
+	}
+
+	if (section.length <= 7 && !section.every(isValidSegment) && tooManyColons.length >= 3) {
 		return false;
 	}
 
 	return true;
 };
 
-export const isValidSegment = (segment: any): boolean => {
-	const isHexValue = 0xfff;
+export const isValidSegment = (segment: string): boolean => {
+	const hex = '0123456789abcdefABCDEF';
 
-	if (!segment.length || segment.length > 4 || !segment.match(isHexValue)) {
+	if (!segment.length || segment.length != 4) {
 		return false;
+	}
+
+	for (const char of segment) {
+		if (!hex.includes(char)) {
+			return false;
+		}
 	}
 
 	return true;

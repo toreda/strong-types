@@ -15,14 +15,14 @@ describe('IsIpv6Addr', () => {
 		describe('valid input', () => {
 			it('should return true for full valid ipv6 address', () => {
 				const rule = new STRule();
-				const currentValue = '74dc:a100:007a:34hd:0043:ab32:0000:ffff';
+				const currentValue = '74dc:a100:007a:34Hd:0043:ab32:0000:ffff';
 
 				const fn = makeIsIpv6Addr<STRule>(rule, rule, mods);
 				fn();
 				expect(rule.nodes[0].execute(currentValue)).toBe(true);
 			});
 
-			it('should return true for valid ipv6 address containg one semicolon', () => {
+			it('should return true for valid ipv6 address containing one double colon', () => {
 				const rule = new STRule();
 				const currentValue = '74dc:a100:007a::02ba';
 
@@ -33,18 +33,18 @@ describe('IsIpv6Addr', () => {
 		});
 
 		describe('invalid inputs', () => {
-			it('should return false for invalid ipv6 address containg more than one double semicolon', () => {
+			it('should return false for ipv6 address containing one double colon', () => {
 				const rule = new STRule();
-				const currentValue = '74dc::a100::02ba';
+				const currentValue = '74dc:a100:007A::34hd:0043:ab32:0000:ffff';
 
 				const fn = makeIsIpv6Addr<STRule>(rule, rule, mods);
 				fn();
 				expect(rule.nodes[0].execute(currentValue)).toBe(false);
 			});
 
-			it('should return false for invalid string value', () => {
+			it('should return false for ipv6 address containing more than one double colon', () => {
 				const rule = new STRule();
-				const currentValue = '123';
+				const currentValue = '74dc::a100::02ba';
 
 				const fn = makeIsIpv6Addr<STRule>(rule, rule, mods);
 				fn();
