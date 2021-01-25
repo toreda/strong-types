@@ -14,12 +14,13 @@ describe('HasProperty', () => {
 	describe('Usage', () => {
 		it('should return true when input is an empty array', () => {
 			const rule = new STRule();
-			const curr = [];
-			const propName = 'hello';
+			const obj = {age: '50'};
+			const propName = 'age';
+			const typeName = 'string';
 
 			const fn = makeHasPropertyWithType<STRule>(rule, rule, mods);
 			fn(propName);
-			expect(rule.nodes[0].execute(curr)).toBe(true);
+			expect(rule.nodes[0].execute(obj)).toBe(true);
 		});
 	});
 });

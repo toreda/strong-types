@@ -23,9 +23,9 @@ export function makeHasPropertyWithType<CallerType>(
 	rule: STRule,
 	mods: STRuleModifiers
 ): STOpHasPropertyWithType<CallerType> {
-	return (propName: string): CallerType => {
-		const fn: STRuleFn = () => {
-			return hasPropertyWithType(o, propName, typeName);
+	return (): CallerType => {
+		const fn: STRuleFn = (obj: any) => {
+			return hasPropertyWithType(obj, propName, typeName)
 		};
 
 		const node = new STRuleNode('HAS_PROPERTY_W_TYPE', STRuleNodeType.CMP, fn, mods.invert);
