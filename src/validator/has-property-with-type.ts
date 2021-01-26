@@ -11,6 +11,10 @@ export function hasPropertyWithType(obj, propName, typeName): boolean {
 		return false;
 	}
 
+	if (typeof obj === 'undefined' || obj === null) {
+		return false;
+	}
+
 	if (!propName.trim() || !typeName.trim()) {
 		return false;
 	}
