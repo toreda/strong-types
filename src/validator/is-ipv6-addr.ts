@@ -16,7 +16,7 @@ export const isIpv6Addr = (current: string): boolean => {
 	}
 
 	const section = current.split(':');
-	const tooManyColons = current.split('::');
+	const doubleColonSegment = current.split('::');
 	const doubleColon = '::';
 
 	if (!section.length) {
@@ -31,7 +31,7 @@ export const isIpv6Addr = (current: string): boolean => {
 		return false;
 	}
 
-	if (section.length <= 7 && !section.every(isValidSegment) && tooManyColons.length >= 3) {
+	if (section.length <= 7 && !section.every(isValidSegment) && doubleColonSegment.length >= 3) {
 		return false;
 	}
 

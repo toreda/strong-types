@@ -4,7 +4,7 @@ import {STRuleModifiers} from '../rule/modifiers';
 import {STRuleNode} from '../rule/node';
 import {STRuleNodeType} from '../rule/node-type';
 
-export type STOpHasPropertyWithType<CallerType> = (propName: string) => CallerType;
+export type STOpHasPropertyWithType<CallerType> = (propName: string, typeName: string) => CallerType;
 
 export function hasPropertyWithType(obj, propName, typeName): boolean {
 	if (typeof propName !== 'string' || typeName !== 'string') {
@@ -23,9 +23,9 @@ export function makeHasPropertyWithType<CallerType>(
 	rule: STRule,
 	mods: STRuleModifiers
 ): STOpHasPropertyWithType<CallerType> {
-	return (): CallerType => {
-		const fn: STRuleFn = (obj: any) => {
-			return hasPropertyWithType(obj, propName, typeName)
+	return (propName, typeName): CallerType => {
+		const fn: STRuleFn = (obj) => {
+			return hasPropertyWithType(obj, propName, typeName);
 		};
 
 		const node = new STRuleNode('HAS_PROPERTY_W_TYPE', STRuleNodeType.CMP, fn, mods.invert);
