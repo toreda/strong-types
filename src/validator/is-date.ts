@@ -16,10 +16,6 @@ function isDate(value: string): boolean {
 		return false;
 	}
 
-	if (!isNaN(result)) {
-		return true;
-	}
-
 	return !isNaN(result);
 }
 
