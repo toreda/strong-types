@@ -35,6 +35,14 @@ function isEmail(currValue: string): boolean {
 		return false;
 	}
 
+	if (name.length > 64) {
+		return false;
+	}
+
+	if (name.length + domain.length + 1 > 254) {
+		return false;
+	}
+
 	return true;
 }
 
