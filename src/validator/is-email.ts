@@ -27,7 +27,7 @@ function isEmail(currValue: string): boolean {
 		return false;
 	}
 
-	if (domain.length > 63) {
+	if (domain.length > 252) {
 		return false;
 	}
 
