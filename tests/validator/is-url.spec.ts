@@ -45,7 +45,7 @@ describe('IsUrl', () => {
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
 
-		it('should return true for a string starting with ftp://', () => {
+		it('should return true for a url starting with ftp://', () => {
 			const rule = new STRule();
 
 			const value = 'ftp://somedomain.com:3000';
@@ -56,7 +56,7 @@ describe('IsUrl', () => {
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
 
-		it('should return true for a string starting with mailto://', () => {
+		it('should return true for a url starting with mailto://', () => {
 			const rule = new STRule();
 
 			const value = 'mailto://email@email.com';
@@ -67,7 +67,7 @@ describe('IsUrl', () => {
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
 
-		it('should return true for a string starting with telnet://', () => {
+		it('should return true for a url starting with telnet://', () => {
 			const rule = new STRule();
 
 			const value = 'telnet://somedomain.com:3000';
@@ -78,10 +78,54 @@ describe('IsUrl', () => {
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
 
-		it('should return true for a string starting with file://', () => {
+		it('should return true for a url starting with file://', () => {
 			const rule = new STRule();
 
 			const value = 'file://somedomain/data';
+
+			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			fn();
+
+			expect(rule.nodes[0].execute(value)).toBe(true);
+		});
+
+		it('should return true for the following url structure', () => {
+			const rule = new STRule();
+
+			const value = 'http://www.test.com:81/a/b/c.html?user=Alice&year=2008#p2';
+
+			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			fn();
+
+			expect(rule.nodes[0].execute(value)).toBe(true);
+		});
+
+		it('should return true for the following url structure', () => {
+			const rule = new STRule();
+
+			const value = 'http://www.test.com/showOrder.php?order=4621047';
+
+			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			fn();
+
+			expect(rule.nodes[0].execute(value)).toBe(true);
+		});
+
+		it('should return true for the following url structure', () => {
+			const rule = new STRule();
+
+			const value = 'http://host.test.com/companyInfo?name=C&H Sugar';
+
+			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			fn();
+
+			expect(rule.nodes[0].execute(value)).toBe(true);
+		});
+
+		it('should return true for the following url structure', () => {
+			const rule = new STRule();
+
+			const value = 'http://host.company.com/showCompanyInfo?name=C%26H%20Sugar';
 
 			const fn = makeIsUrl<STRule>(rule, rule, mods);
 			fn();
@@ -93,12 +137,12 @@ describe('IsUrl', () => {
 	describe('invalid inputs', () => {
 		const inputs = [
 			{
-				label: 'return false for a string which contains but does not start with https://',
+				label: 'return false for an invalid url which contains but does not start with https://',
 				value: 'test/https://domain.com',
 				expectedValue: false
 			},
 			{
-				label: 'return false for a string which contains but does not start with http://',
+				label: 'return false for an invalid url which contains but does not start with http://',
 				value: 'test/http://test.com',
 				expectedValue: false
 			},
