@@ -24,7 +24,7 @@ describe('IsDateTime', () => {
 
 		it('should return true for a full dateTime string without T', () => {
 			const rule = new STRule();
-			const value = '2020-12-24 21:52:45';
+			const value = '2020.12.24 21:52:45';
 
 			const fn = makeIsDateTime<STRule>(rule, rule, mods);
 			fn();
@@ -44,7 +44,17 @@ describe('IsDateTime', () => {
 
 		it('should return true for a dateTime string with the following timestamp', () => {
 			const rule = new STRule();
-			const value = '2020.02.24 11:48:43';
+			const value = '02.26.2016 11:48';
+
+			const fn = makeIsDateTime<STRule>(rule, rule, mods);
+			fn();
+
+			expect(rule.nodes[0].execute(value)).toBe(true);
+		});
+
+		it('should return true for a dateTime string with the following timestamp', () => {
+			const rule = new STRule();
+			const value = '02.26.2016 11:48:54.44';
 
 			const fn = makeIsDateTime<STRule>(rule, rule, mods);
 			fn();
@@ -74,7 +84,7 @@ describe('IsDateTime', () => {
 
 		it('should return true for the following timestamp', () => {
 			const rule = new STRule();
-			const value = 'THH:mm:ss.sss';
+			const value = '1898-06-30T20:34:32.023';
 
 			const fn = makeIsDateTime<STRule>(rule, rule, mods);
 			fn();
@@ -84,7 +94,7 @@ describe('IsDateTime', () => {
 
 		it('should return true for a the following timestamp', () => {
 			const rule = new STRule();
-			const value = 'THH:mm:ss';
+			const value = '2021-02-24T21:45:33';
 
 			const fn = makeIsDateTime<STRule>(rule, rule, mods);
 			fn();
@@ -94,7 +104,7 @@ describe('IsDateTime', () => {
 
 		it('should return true for the following timestamp', () => {
 			const rule = new STRule();
-			const value = 'THH:mm';
+			const value = '2005-02-15T08:34';
 
 			const fn = makeIsDateTime<STRule>(rule, rule, mods);
 			fn();
@@ -104,26 +114,6 @@ describe('IsDateTime', () => {
 	});
 
 	describe('invalid inputs', () => {
-		it('should return false for a date string without the time', () => {
-			const rule = new STRule();
-			const value = '2015-08-15';
-
-			const fn = makeIsDateTime<STRule>(rule, rule, mods);
-			fn();
-
-			expect(rule.nodes[0].execute(value)).toBe(false);
-		});
-
-		it('should return false for a time string', () => {
-			const rule = new STRule();
-			const value = '22:35:52';
-
-			const fn = makeIsDateTime<STRule>(rule, rule, mods);
-			fn();
-
-			expect(rule.nodes[0].execute(value)).toBe(false);
-		});
-
 		it('should return false for a string', () => {
 			const rule = new STRule();
 			const value = 'Feb 15th';
