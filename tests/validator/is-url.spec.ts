@@ -132,6 +132,127 @@ describe('IsUrl', () => {
 
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
+
+		it('should return true for a url string containing ftp', () => {
+			const rule = new STRule();
+
+			const value = 'ftp://test.com';
+
+			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			fn();
+
+			expect(rule.nodes[0].execute(value)).toBe(true);
+		});
+
+		it('should return true for a url string containing gopher', () => {
+			const rule = new STRule();
+
+			const value = 'gopher://test.com';
+
+			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			fn();
+
+			expect(rule.nodes[0].execute(value)).toBe(true);
+		});
+
+		it('should return true for a url string containing mailto', () => {
+			const rule = new STRule();
+
+			const value = 'mailto://test.com';
+
+			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			fn();
+
+			expect(rule.nodes[0].execute(value)).toBe(true);
+		});
+
+		it('should return true for a url string containing mid', () => {
+			const rule = new STRule();
+
+			const value = 'mid://test.com';
+
+			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			fn();
+
+			expect(rule.nodes[0].execute(value)).toBe(true);
+		});
+
+		it('should return true for a url string containing news', () => {
+			const rule = new STRule();
+
+			const value = 'news://test.com';
+
+			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			fn();
+
+			expect(rule.nodes[0].execute(value)).toBe(true);
+		});
+
+		it('should return true for a url string containing nntp', () => {
+			const rule = new STRule();
+
+			const value = 'nntp://test.com';
+
+			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			fn();
+
+			expect(rule.nodes[0].execute(value)).toBe(true);
+		});
+
+		it('should return true for a url string containing prospero', () => {
+			const rule = new STRule();
+
+			const value = 'prospero://test.com';
+
+			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			fn();
+
+			expect(rule.nodes[0].execute(value)).toBe(true);
+		});
+
+		it('should return true for a url string containing telnet', () => {
+			const rule = new STRule();
+
+			const value = 'telnet://test.com';
+
+			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			fn();
+
+			expect(rule.nodes[0].execute(value)).toBe(true);
+		});
+
+		it('should return true for a url string containing tn3270', () => {
+			const rule = new STRule();
+
+			const value = 'tn3270://test.com';
+
+			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			fn();
+
+			expect(rule.nodes[0].execute(value)).toBe(true);
+		});
+
+		it('should return true for a url string containing rlogin', () => {
+			const rule = new STRule();
+
+			const value = 'rlogin://test.com';
+
+			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			fn();
+
+			expect(rule.nodes[0].execute(value)).toBe(true);
+		});
+
+		it('should return true for a url string containing wais', () => {
+			const rule = new STRule();
+
+			const value = 'wais://test.com';
+
+			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			fn();
+
+			expect(rule.nodes[0].execute(value)).toBe(true);
+		});
 	});
 
 	describe('invalid inputs', () => {
