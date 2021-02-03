@@ -11,12 +11,17 @@ export type STOpIsDate<CallerType> = () => CallerType;
 const timeStr = 'T([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]';
 
 function isDate(value: string): boolean {
-	const result = Date.parse(value);
-	if (isNaN(result) || typeof value !== 'string' || value.match(timeStr)) {
+	if (typeof value !== 'string') {
 		return false;
 	}
 
-	return !isNaN(result);
+	const result = Date.parse(value);
+
+	if (isNaN(result) || value.match(timeStr)) {
+		return false;
+	}
+
+	return true;
 }
 
 export function makeIsDate<CallerType>(
