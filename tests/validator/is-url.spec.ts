@@ -268,6 +268,41 @@ describe('IsUrl', () => {
 				expectedValue: false
 			},
 			{
+				label: 'return false for an invalid url which contains but does not start with ftps://',
+				value: 'test/ftps://domain.com',
+				expectedValue: false
+			},
+			{
+				label: 'return false for an invalid url that starts with a symbol',
+				value: '@ftps://3/5/domain.com',
+				expectedValue: false
+			},
+			{
+				label: 'return false for an invalid url that starts with a number',
+				value: '8ftps://3/5/domain.com',
+				expectedValue: false
+			},
+			{
+				label: 'return false for an invalid url with a partial scheme',
+				value: '://3/5/domain.com',
+				expectedValue: false
+			},
+			{
+				label: 'return false for an invalid url missing the scheme',
+				value: 'domain.com',
+				expectedValue: false
+			},
+			{
+				label: 'return false for an invalid url missing a domain',
+				value: 'http://',
+				expectedValue: false
+			},
+			{
+				label: 'return false for an invalid url missing :// from the scheme',
+				value: 'httphost.company.com/showCompanyInfo?name=C%26H%20Sugar',
+				expectedValue: false
+			},
+			{
 				label: 'return false for a number',
 				value: 8,
 				expectedValue: false
