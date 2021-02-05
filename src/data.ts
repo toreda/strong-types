@@ -9,7 +9,7 @@ export class STData<ValueT> {
 	public readonly transforms: STTransforms<ValueT>;
 	public readonly rules: STRules<ValueT>;
 
-	constructor(initial: ValueT | null | undefined, fallbackDefault: ValueT, rules?: STRules<ValueT>) {
+	constructor(fallbackDefault: ValueT, initial: ValueT | null | undefined, rules?: STRules<ValueT>) {
 		this.value = null;
 		this.fallbackDefault = fallbackDefault;
 		this.state = new STState<ValueT>();
