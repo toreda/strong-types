@@ -5,7 +5,7 @@ export class StrongSize {
 	public readonly height: StrongDouble;
 
 	constructor(defaultWidth: number | null, defaultHeight: number | null) {
-		this.width = makeDouble(defaultWidth, 0);
-		this.height = makeDouble(defaultHeight, 0);
+		this.width = makeDouble(0, defaultWidth);
+		this.height = makeDouble(0, defaultHeight);
 	}
 }

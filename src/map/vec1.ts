@@ -4,6 +4,6 @@ export class StrongVec1 {
 	public x: StrongDouble;
 
 	constructor(x: number | null) {
-		this.x = makeDouble(x, 0);
+		this.x = makeDouble(0, x);
 	}
 }

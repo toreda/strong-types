@@ -8,7 +8,7 @@ export class StrongRange extends StrongMap {
 
 	constructor(defaultMin: number | null, defaultMax: number | null) {
 		super();
-		this.min = makeDouble(defaultMin, 0);
-		this.max = makeDouble(defaultMax, 0);
+		this.min = makeDouble(0, defaultMin);
+		this.max = makeDouble(0, defaultMax);
 	}
 }

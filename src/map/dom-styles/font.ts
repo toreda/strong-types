@@ -17,12 +17,12 @@ export class DOMStylesFont extends StrongMap {
 		this.enabled(enabled);
 		const colorRules: STRules<string> = new STRules();
 		colorRules.add().must.match.pattern.hexColor();
-		this.color = makeStrong<string>(null, '#FFFFFF', colorRules);
-		this.size = makeStrong<string>(null, '12px');
-		this.family = makeStrong<string>(null, 'sans-serif');
-		this.weight = makeStrong<string>(null, 'normal');
-		this.lineHeight = makeStrong<string>(null, 'normal');
-		this.stretch = makeStrong<string>(null, 'normal');
-		this.variant = makeStrong<string>(null, 'normal');
+		this.color = makeStrong<string>('#FFFFFF', null, colorRules);
+		this.size = makeStrong<string>('12px', null);
+		this.family = makeStrong<string>('sans-serif', null);
+		this.weight = makeStrong<string>('normal', null);
+		this.lineHeight = makeStrong<string>('normal', null);
+		this.stretch = makeStrong<string>('normal', null);
+		this.variant = makeStrong<string>('normal', null);
 	}
 }

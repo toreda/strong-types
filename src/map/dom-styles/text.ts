@@ -8,7 +8,7 @@ export class DOMStylesText extends StrongMap {
 
 	constructor(enabled: boolean = true) {
 		super(enabled);
-		this.decoration = makeString(null, 'none');
-		this.shadow = makeString(null, '0');
+		this.decoration = makeString('none', null);
+		this.shadow = makeString('0', null);
 	}
 }

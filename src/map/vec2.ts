@@ -5,7 +5,7 @@ export class StrongVec2 {
 	public y: StrongDouble;
 
 	constructor(x: number | null, y: number | null) {
-		this.x = makeDouble(x, 0);
-		this.y = makeDouble(y, 0);
+		this.x = makeDouble(0, x);
+		this.y = makeDouble(0, y);
 	}
 }
