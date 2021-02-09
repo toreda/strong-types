@@ -9,6 +9,8 @@ export type STOpIsDate<CallerType> = () => CallerType;
 // prettier-ignore
 // eslint-disable-next-line
 const timeStr = 'T([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]';
+const timeStr1 = 'T([01]?[0-9]|2[0-3]):[0-5][0-9]';
+const timeStr2 = 'T([01]?[0-9]|2[0-3])';
 
 function isDate(value: string): boolean {
 	if (typeof value !== 'string') {
@@ -17,7 +19,7 @@ function isDate(value: string): boolean {
 
 	const result = Date.parse(value);
 
-	if (isNaN(result) || value.match(timeStr)) {
+	if (isNaN(result) || value.match(timeStr) || value.match(timeStr1) || value.match(timeStr2)) {
 		return false;
 	}
 

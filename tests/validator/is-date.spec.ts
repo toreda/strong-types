@@ -134,6 +134,47 @@ describe('IsDate', () => {
 			expect(rule.nodes[0].execute(value)).toBe(false);
 		});
 
+		it('should return false for a date string that includes time', () => {
+			const rule = new STRule();
+			const value = '1886-05-15T22:35';
+
+			const fn = makeIsDate<STRule>(rule, rule, mods);
+			fn();
+
+			expect(rule.nodes[0].execute(value)).toBe(false);
+		});
+
+		it('should return false for a date string that includes time', () => {
+			const rule = new STRule();
+			const value = '1886-05-15T22:';
+
+			const fn = makeIsDate<STRule>(rule, rule, mods);
+			fn();
+
+			expect(rule.nodes[0].execute(value)).toBe(false);
+		});
+
+		it('should return false for a date string that includes time', () => {
+			const rule = new STRule();
+			const value = '1886-05-15T22';
+
+			const fn = makeIsDate<STRule>(rule, rule, mods);
+			fn();
+
+			expect(rule.nodes[0].execute(value)).toBe(false);
+		});
+
+		it('should return false for a date string that includes time', () => {
+			const rule = new STRule();
+			const value = '1886-05-15T';
+
+			const fn = makeIsDate<STRule>(rule, rule, mods);
+			fn();
+
+			expect(rule.nodes[0].execute(value)).toBe(false);
+		});
+
+
 		it('should return false for a time string', () => {
 			const rule = new STRule();
 			const value = '22:35:52';
