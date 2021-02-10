@@ -1,6 +1,6 @@
 import {STRule} from '../../src/rule/rule';
 import {STRuleModifiers} from '../../src/rule/modifiers';
-import {makeIsDateTime} from '../../src/validator/is-Date-Time';
+import {makeIsDateTime} from '../../src/validator/is-date-time';
 
 describe('IsDateTime', () => {
 	let mods: STRuleModifiers;
