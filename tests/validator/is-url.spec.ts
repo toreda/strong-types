@@ -253,6 +253,17 @@ describe('IsUrl', () => {
 
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
+
+		it('should return true for a url string containing wais', () => {
+			const rule = new STRule();
+
+			const value = 'http://username:password@example.com/';
+
+			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			fn();
+
+			expect(rule.nodes[0].execute(value)).toBe(true);
+		});
 	});
 
 	describe('invalid inputs', () => {
