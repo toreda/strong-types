@@ -1,4 +1,4 @@
-import {STOpIsHexColorCode, createIsHexColorCode} from './hex-color-code';
+import {STOpIsHexColorCode, createIsHexColorCode} from './is-hexColorCode';
 
 import {STRule} from '../../rule/rule';
 import {STRuleModifiers} from '../../rule/modifiers';

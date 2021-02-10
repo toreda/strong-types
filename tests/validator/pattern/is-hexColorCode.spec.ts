@@ -1,4 +1,4 @@
-import {createIsHexColorCode, isHexColorCodeStr} from '../../../src/validator/pattern/hex-color-code';
+import {createIsHexColorCode, isHexColorCodeStr} from '../../../src/validator/pattern/is-hexColorCode';
 
 import {STRule} from '../../../src/rule/rule';
 import {STRuleModifiers} from '../../../src/rule/modifiers';
@@ -128,27 +128,27 @@ const TEST_INPUTS = [
 	},
 	{
 		value: '#FFFFRR',
-		label: 'input is a 6 digit hex code with invlaid characters',
+		label: 'input is a 6 digit hex code with invalid characters',
 		expectedResult: false
 	},
 	{
 		value: '#FFFRR',
-		label: 'input is a 5 digit hex code with invlaid characters',
+		label: 'input is a 5 digit hex code with invalid characters',
 		expectedResult: false
 	},
 	{
 		value: '#FFRR',
-		label: 'input is a 4 digit hex code with invlaid characters',
+		label: 'input is a 4 digit hex code with invalid characters',
 		expectedResult: false
 	},
 	{
 		value: '#FRR',
-		label: 'input is a 3 digit hex code with invlaid characters',
+		label: 'input is a 3 digit hex code with invalid characters',
 		expectedResult: false
 	},
 	{
 		value: '#FR',
-		label: 'input is a 2 digit hex code with invlaid characters',
+		label: 'input is a 2 digit hex code with invalid characters',
 		expectedResult: false
 	},
 	{
