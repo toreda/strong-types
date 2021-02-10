@@ -1,4 +1,4 @@
-import {createIsHexColorCode, isHexColorCodeStr} from '../../../src/validator/pattern/is-hexColorCode';
+import {createIsHexColorCode, isHexColorCodeStr} from '../../../src/validator/pattern/is-hex-color-code';
 
 import {STRule} from '../../../src/rule/rule';
 import {STRuleModifiers} from '../../../src/rule/modifiers';
