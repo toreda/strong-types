@@ -1,4 +1,4 @@
-import {StrongDateTime, makeDateTime} from '../../src/types/dateTime';
+import {StrongDateTime, makeDateTime} from '../../src/types/Date-Time';
 
 const MOCK_INITIAL = '1886-05-30T18:45:36';
 const MOCK_FALLBACK_DEFAULT = '2020-12-25T09:05:20';
