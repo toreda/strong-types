@@ -1,5 +1,5 @@
 import {STOpIsDate, makeIsDate} from '../validator/is-date';
-import {STOpIsDateTime, makeIsDateTime} from '../validator/is-dateTime';
+import {STOpIsDateTime, makeIsDateTime} from '../validator/is-Date-Time';
 import {STOpIsEmail, makeIsEmail} from '../validator/is-email';
 import {STOpIsEmpty, makeIsEmpty} from '../validator/is-empty';
 import {STOpIsEqualTo, makeIsEqualTo} from '../validator/is-equal-to';
