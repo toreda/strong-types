@@ -8,7 +8,7 @@ import {
 	STOpIsGreaterThanOrEqualTo,
 	makeIsGreaterThanOrEqualTo
 } from '../validator/is-greater-than-or-equal-to';
-import {STOpIsHexColorCode, createIsHexColorCode} from '../validator/pattern/hex-color-code';
+import {STOpIsHexColorCode, createIsHexColorCode} from '../validator/pattern/is-hexColorCode';
 import {STOpIsLessThan, makeIsLessThan} from '../validator/is-less-than';
 import {STOpIsLessThanOrEqualTo, makeIsLessThanOrEqualTo} from '../validator/is-less-than-or-equal-to';
 import {STOpIsNull, makeIsNull} from '../validator/is-null';
