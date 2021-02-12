@@ -254,7 +254,7 @@ describe('IsUrl', () => {
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
 
-		it('should return true for a url string containing wais', () => {
+		it('should return true for a valid url string ', () => {
 			const rule = new STRule();
 
 			const value = 'http://username:password@example.com/';
@@ -311,6 +311,16 @@ describe('IsUrl', () => {
 			{
 				label: 'return false for an invalid url missing :// from the scheme',
 				value: 'httphost.company.com/showCompanyInfo?name=C%26H%20Sugar',
+				expectedValue: false
+			},
+			{
+				label: 'return false for an invalid url which contains but does not start with http://',
+				value: 'username:password@example.com/http://',
+				expectedValue: false
+			},
+			{
+				label: 'return false for an invalid url which contains but does not start with https://',
+				value: 'username:password@example.com/https://',
 				expectedValue: false
 			},
 			{

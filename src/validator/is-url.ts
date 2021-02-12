@@ -11,6 +11,14 @@ function isUrl(currValue: string): boolean {
 	if (typeof currValue !== 'string') {
 		return false;
 	}
+
+	const pieces = currValue.split('http://');
+	const segment = currValue.split('https://');
+
+	if (pieces[1] === '' || segment[1] === '') {
+		return false;
+	}
+
 	let result = false;
 	try {
 		const url = new URL(currValue);
@@ -18,6 +26,7 @@ function isUrl(currValue: string): boolean {
 	} catch (e) {
 		result = false;
 	}
+
 	return result;
 }
 
