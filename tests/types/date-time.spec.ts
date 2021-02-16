@@ -1,56 +1,56 @@
-import {StrongHexCode, makeHexCode} from '../../src/types/hexColorCode';
+import {StrongDateTime, makeDateTime} from '../../src/types/date-time';
 
-const MOCK_INITIAL = '#ffffff';
-const MOCK_FALLBACK_DEFAULT = 'FF5733';
-const MOCK_FALLBACK = '33B5FF';
+const MOCK_INITIAL = '1886-05-30T18:45:36';
+const MOCK_FALLBACK_DEFAULT = '2020-12-25T09:05:20';
+const MOCK_FALLBACK = '2015-02-24T03:21:52';
 
-describe('StrongHexCode', () => {
+describe('StrongDateTime', () => {
 	describe('Implementation', () => {
 		it('should set initial value to sampleInitial argument', () => {
-			const sampleInitial = '#33FF39';
-			const result = makeHexCode(sampleInitial, MOCK_FALLBACK_DEFAULT);
+			const sampleInitial = '2008-04-16T06:45:25';
+			const result = makeDateTime(sampleInitial, MOCK_INITIAL);
 			expect(result()).toBe(sampleInitial);
 		});
 
 		it('should not set value when called with a string', () => {
-			const result = makeHexCode(null, MOCK_INITIAL);
-			const sampleValue = 'white';
+			const result = makeDateTime(null, MOCK_INITIAL);
+			const sampleValue = 'Feb 5th';
 			result(sampleValue);
 			expect(result()).toBe(MOCK_INITIAL);
 		});
 
 		it('should not set value when called with an empty string', () => {
-			const sampleFallback = '33FFFC';
+			const sampleFallback = '2020-08-28T21:00:52';
 			const emptyString = '';
-			const result = makeHexCode(null, sampleFallback);
+			const result = makeDateTime(null, sampleFallback);
 			result(emptyString);
 			expect(result()).toBe(sampleFallback);
 		});
 
 		it('should return fallback default when value is null', () => {
-			const sampleFallback = 'FF33A8';
-			const result = makeHexCode(null, sampleFallback);
+			const sampleFallback = '1520-06-27T21:25:23';
+			const result = makeDateTime(null, sampleFallback);
 			expect(result()).toBe(sampleFallback);
 		});
 
 		it('should return fallback default when value is undefined', () => {
-			const sampleFallback = '#8D33FF';
-			const result = makeHexCode(undefined, sampleFallback);
+			const sampleFallback = '1886-12-25T12:15:41';
+			const result = makeDateTime(undefined, sampleFallback);
 			expect(result()).toBe(sampleFallback);
 		});
 
 		it('should not set value when called with a number', () => {
-			const sampleFallback = '000000';
+			const sampleFallback = '2021-08-15T02:21:15';
 			const numberedValue = 5 as any;
-			const result = makeHexCode(null, sampleFallback);
+			const result = makeDateTime(null, sampleFallback);
 			result(numberedValue);
 			expect(result()).toBe(sampleFallback);
 		});
 
 		it('should not set value when called with a boolean value', () => {
-			const sampleFallback = '#FF0000';
+			const sampleFallback = '2011-02-29T21:51:52';
 			const booleanValue = false as any;
-			const result = makeHexCode(null, sampleFallback);
+			const result = makeDateTime(null, sampleFallback);
 			result(booleanValue);
 			expect(result()).toBe(sampleFallback);
 		});
@@ -59,14 +59,14 @@ describe('StrongHexCode', () => {
 	describe('Methods', () => {
 		describe('get', () => {
 			it('should return fallback argument when value is null', () => {
-				const sampleFallback = '00ECFF';
-				const string = makeHexCode(null, MOCK_FALLBACK_DEFAULT);
+				const sampleFallback = '2020-12-25T08:30:52';
+				const string = makeDateTime(null, MOCK_FALLBACK_DEFAULT);
 				expect(string.get(sampleFallback)).toBe(sampleFallback);
 			});
 
 			it('should return value when value is set', () => {
-				const sampleInitial = 'F0FF00';
-				const string = makeHexCode(sampleInitial, MOCK_FALLBACK_DEFAULT);
+				const sampleInitial = '1995-12-01T02:36:52';
+				const string = makeDateTime(sampleInitial, MOCK_FALLBACK_DEFAULT);
 				expect(string.get(MOCK_FALLBACK)).toBe(sampleInitial);
 			});
 		});
