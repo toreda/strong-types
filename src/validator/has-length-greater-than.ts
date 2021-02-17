@@ -8,11 +8,11 @@ import {greaterThanFn} from './is-greater-than';
 export type STOpHasLengthGreaterThan<CallerType> = (a: number) => CallerType;
 
 export const hasLengthGreaterThan = (curr: any, target: number): boolean => {
-	if (curr.length <= -1) {
+	if (typeof curr.length !== 'number') {
 		return false;
 	}
 
-	if (!curr.length) {
+	if (curr.length < 0) {
 		return false;
 	}
 

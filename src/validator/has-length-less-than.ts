@@ -8,11 +8,11 @@ import {lessThanFn} from './is-less-than';
 export type STOpHasLengthLessThan<CallerType> = (a: number) => CallerType;
 
 export const hasLengthLessThan = (curr: any, target: number): boolean => {
-	if (curr.length <= -1) {
+	if (typeof curr.length !== 'number') {
 		return false;
 	}
 
-	if (!curr.length) {
+	if (curr.length < 0) {
 		return false;
 	}
 

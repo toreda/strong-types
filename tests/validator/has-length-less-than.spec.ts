@@ -29,6 +29,16 @@ describe('LengthLessThan', () => {
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
+
+		it('should return true when the current value is less than the target value', () => {
+			const rule = new STRule();
+			const target = 2;
+			const curr = [];
+
+			const fn = makeHasLengthLessThan<STRule>(rule, rule, mods);
+			fn(target);
+			expect(rule.nodes[0].execute(curr)).toBe(true);
+		});
 	});
 
 	describe('invalid ouputs', () => {
@@ -84,16 +94,6 @@ describe('LengthLessThan', () => {
 			const rule = new STRule();
 			const target = 2;
 			const curr = ['one', 'two', 'three'];
-
-			const fn = makeHasLengthLessThan<STRule>(rule, rule, mods);
-			fn(target);
-			expect(rule.nodes[0].execute(curr)).toBe(false);
-		});
-
-		it('should return false when the current value is an empty array', () => {
-			const rule = new STRule();
-			const target = 2;
-			const curr = [];
 
 			const fn = makeHasLengthLessThan<STRule>(rule, rule, mods);
 			fn(target);

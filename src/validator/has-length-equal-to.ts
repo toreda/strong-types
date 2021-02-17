@@ -8,11 +8,11 @@ import {equalToFn} from './is-equal-to';
 export type STOpHasLengthEqualTo<CallerType> = (a: number) => CallerType;
 
 export const hasLengthEqualTo = (curr: any, target: number): boolean => {
-	if (curr.length <= -1) {
+	if (typeof curr.length !== 'number') {
 		return false;
 	}
 
-	if (!curr.length) {
+	if (curr.length < 0) {
 		return false;
 	}
 

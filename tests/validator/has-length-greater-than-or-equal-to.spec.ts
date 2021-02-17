@@ -47,6 +47,16 @@ describe('LengthGreaterThanOrEqualTo', () => {
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
+
+		it('should return true when the current value is is greater than or equal to the target value', () => {
+			const rule = new STRule();
+			const target = 0;
+			const curr = '';
+
+			const fn = makeHasLengthGreaterThanOrEqualTo<STRule>(rule, rule, mods);
+			fn(target);
+			expect(rule.nodes[0].execute(curr)).toBe(true);
+		});
 	});
 
 	describe('invalid ouputs', () => {
@@ -54,16 +64,6 @@ describe('LengthGreaterThanOrEqualTo', () => {
 			const rule = new STRule();
 			const target = 10;
 			const curr = 'number';
-
-			const fn = makeHasLengthGreaterThanOrEqualTo<STRule>(rule, rule, mods);
-			fn(target);
-			expect(rule.nodes[0].execute(curr)).toBe(false);
-		});
-
-		it('should return false when the current value is an empty string', () => {
-			const rule = new STRule();
-			const target = 0;
-			const curr = '';
 
 			const fn = makeHasLengthGreaterThanOrEqualTo<STRule>(rule, rule, mods);
 			fn(target);

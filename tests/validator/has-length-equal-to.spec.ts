@@ -29,6 +29,26 @@ describe('LengthEqualTo', () => {
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
+
+		it('should return true when the current value and target value are equal', () => {
+			const rule = new STRule();
+			const target = 0;
+			const curr = '';
+
+			const fn = makeHasLengthEqualTo<STRule>(rule, rule, mods);
+			fn(target);
+			expect(rule.nodes[0].execute(curr)).toBe(true);
+		});
+
+		it('should return true when the target and the curr values are equal', () => {
+			const rule = new STRule();
+			const target = 0;
+			const curr = [];
+
+			const fn = makeHasLengthEqualTo<STRule>(rule, rule, mods);
+			fn(target);
+			expect(rule.nodes[0].execute(curr)).toBe(true);
+		});
 	});
 
 	describe('invalid ouputs', () => {
@@ -36,16 +56,6 @@ describe('LengthEqualTo', () => {
 			const rule = new STRule();
 			const target = 4;
 			const curr = 'number';
-
-			const fn = makeHasLengthEqualTo<STRule>(rule, rule, mods);
-			fn(target);
-			expect(rule.nodes[0].execute(curr)).toBe(false);
-		});
-
-		it('should return false when the current value is an empty string', () => {
-			const rule = new STRule();
-			const target = 0;
-			const curr = '';
 
 			const fn = makeHasLengthEqualTo<STRule>(rule, rule, mods);
 			fn(target);
