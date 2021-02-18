@@ -13,12 +13,10 @@ export const isIpv4Addr = (curr: string): boolean => {
 	}
 	//Is valid if it has whitespace which can be trimmed with .trim()
 	//Invalid if it contains any other whitespace which cannot be trimmed with .trim()
-	if (!curr.trim()) {
-		return false;
-	}
+	const trimmed = curr.trim();
 
 	//Always has exactly four quads, and 3 periods.
-	const pieces = curr.split('.');
+	const pieces = trimmed.split('.');
 	if (pieces.length !== 4) {
 		return false;
 	}
@@ -31,17 +29,17 @@ export const isIpv4Addr = (curr: string): boolean => {
 	//The first quad must be an integer between 1  and 255  (cannot be 0)
 	//All other quads must be an integer between 0 and 255
 	//Integers cannot have leading 0s
-	if (firstQuad <= 0 || firstQuad >= 256) {
+	if (firstQuad <= 0 || firstQuad > 255) {
 		return false;
 	}
 
 	if (
-		secondQuad <= -1 ||
-		secondQuad >= 256 ||
-		thirdQuad <= -1 ||
-		thirdQuad >= 256 ||
-		fourthQuad <= -1 ||
-		firstQuad >= 256
+		secondQuad < 0 ||
+		secondQuad > 255 ||
+		thirdQuad < 0 ||
+		thirdQuad > 255 ||
+		fourthQuad < 0 ||
+		firstQuad > 255
 	) {
 		return false;
 	}

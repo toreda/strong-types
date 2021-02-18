@@ -12,11 +12,11 @@ export const isPort = (curr: number): boolean => {
 		return false;
 	}
 
-	if (curr <= -1) {
+	if (curr < 0) {
 		return false;
 	}
 
-	if (curr >= 65354) {
+	if (curr > 65353) {
 		return false;
 	}
 

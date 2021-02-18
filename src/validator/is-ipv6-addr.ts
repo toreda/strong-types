@@ -11,7 +11,9 @@ export const isIpv6Addr = (current: string): boolean => {
 		return false;
 	}
 
-	if (!current.trim()) {
+	const trimmed = current.trim();
+
+	if (!trimmed) {
 		return false;
 	}
 
