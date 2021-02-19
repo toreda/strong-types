@@ -22,17 +22,12 @@ export function makeStrong<ValueT>(
 		(val?: ValueT | null): ValueT => {
 			if (typeof val !== 'undefined') {
 				instance.set(val);
-
-				if (val === null) {
-					return instance.fallbackDefault;
-				}
-				return val;
 			}
 
 			return instance.get(localFallback);
 		},
 		{
-			get: (fallback: ValueT): ValueT | ValueT => {
+			get: (fallback: ValueT): ValueT => {
 				return instance.get(fallback);
 			},
 			getNull: (): ValueT | null => {
