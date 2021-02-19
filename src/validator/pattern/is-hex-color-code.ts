@@ -30,8 +30,11 @@ export function isHexColorCodeStr(value: string): boolean {
 		return false;
 	}
 
-	// Remove first character when it's #, usually do to
-	// string values like #FF0000.
+	if (value.length >= 9) {
+		return false;
+	}
+
+	// Remove first character when it's #, usually do to string values like #FF0000.
 	const cleaned = trimmed[0] === '#' ? trimmed.substring(1) : trimmed;
 
 	let hexStr: string;
