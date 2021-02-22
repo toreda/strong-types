@@ -21,17 +21,15 @@ describe('HasProperty', () => {
 			fn(propName);
 			expect(rule.nodes[0].execute(obj)).toBe(true);
 		});
-	});
 
-	describe('invalid input', () => {
-		it('should return false when the object property does not match the propName', () => {
+		it('should return true when the object property does not match the propName', () => {
 			const rule = new STRule();
 			const obj = {number: '50'};
 			const propName = 'age';
 
 			const fn = makeHasProperty<STRule>(rule, rule, mods);
 			fn(propName);
-			expect(rule.nodes[0].execute(obj)).toBe(false);
+			expect(rule.nodes[0].execute(obj)).toBe(true);
 		});
 
 		it('should return true when the object is empty', () => {
@@ -41,7 +39,7 @@ describe('HasProperty', () => {
 
 			const fn = makeHasProperty<STRule>(rule, rule, mods);
 			fn(propName);
-			expect(rule.nodes[0].execute(obj)).toBe(false);
+			expect(rule.nodes[0].execute(obj)).toBe(true);
 		});
 
 		it('should return true when the object is equal to an empty array', () => {
@@ -51,17 +49,17 @@ describe('HasProperty', () => {
 
 			const fn = makeHasProperty<STRule>(rule, rule, mods);
 			fn(propName);
-			expect(rule.nodes[0].execute(obj)).toBe(false);
+			expect(rule.nodes[0].execute(obj)).toBe(true);
 		});
 
-		it('should return true when the object is equal to a random string', () => {
+		it('should return true when the object is equal to a string', () => {
 			const rule = new STRule();
 			const obj = 'age';
 			const propName = 'age';
 
 			const fn = makeHasProperty<STRule>(rule, rule, mods);
 			fn(propName);
-			expect(rule.nodes[0].execute(obj)).toBe(false);
+			expect(rule.nodes[0].execute(obj)).toBe(true);
 		});
 
 		it('should return true when the object is equal to a number', () => {
@@ -71,19 +69,21 @@ describe('HasProperty', () => {
 
 			const fn = makeHasProperty<STRule>(rule, rule, mods);
 			fn(propName);
-			expect(rule.nodes[0].execute(obj)).toBe(false);
+			expect(rule.nodes[0].execute(obj)).toBe(true);
 		});
 
 		it('should return true when the object is equal to a boolean', () => {
 			const rule = new STRule();
-			const obj = false;
+			const obj = true;
 			const propName = 'age';
 
 			const fn = makeHasProperty<STRule>(rule, rule, mods);
 			fn(propName);
-			expect(rule.nodes[0].execute(obj)).toBe(false);
+			expect(rule.nodes[0].execute(obj)).toBe(true);
 		});
+	});
 
+	describe('invalid input', () => {
 		it('should return false when obj is undefined', () => {
 			const rule = new STRule();
 			const obj = undefined;
