@@ -13,7 +13,7 @@ describe('StrongEmail', () => {
 		});
 
 		it('should not set value when called with a string', () => {
-			const result = makeEmail(null, MOCK_INITIAL);
+			const result = makeEmail(MOCK_INITIAL, null);
 			const sampleValue = 'test .com';
 			result(sampleValue);
 			expect(result()).toBe(MOCK_INITIAL);

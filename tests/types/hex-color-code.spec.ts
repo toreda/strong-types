@@ -13,7 +13,7 @@ describe('StrongHexColorCode', () => {
 		});
 
 		it('should not set value when called with a string', () => {
-			const result = makeHexColorCode(null, MOCK_INITIAL);
+			const result = makeHexColorCode(MOCK_INITIAL, null);
 			const sampleValue = 'white';
 			result(sampleValue);
 			expect(result()).toBe(MOCK_INITIAL);

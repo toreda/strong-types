@@ -8,12 +8,12 @@ describe('StrongDateTime', () => {
 	describe('Implementation', () => {
 		it('should set initial value to sampleInitial argument', () => {
 			const sampleInitial = '2008-04-16T06:45:25';
-			const result = makeDateTime(sampleInitial, MOCK_INITIAL);
+			const result = makeDateTime(MOCK_INITIAL, sampleInitial);
 			expect(result()).toBe(sampleInitial);
 		});
 
 		it('should not set value when called with a string', () => {
-			const result = makeDateTime(null, MOCK_INITIAL);
+			const result = makeDateTime(MOCK_INITIAL, null);
 			const sampleValue = 'Feb 5th';
 			result(sampleValue);
 			expect(result()).toBe(MOCK_INITIAL);

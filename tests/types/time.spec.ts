@@ -13,7 +13,7 @@ describe('StrongTime', () => {
 		});
 
 		it('should not set value when called with a string', () => {
-			const result = makeTime(null, MOCK_INITIAL);
+			const result = makeTime(MOCK_INITIAL, null);
 			const sampleValue = '5pm';
 			result(sampleValue);
 			expect(result()).toBe(MOCK_INITIAL);
