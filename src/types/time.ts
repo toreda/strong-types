@@ -4,9 +4,9 @@ import {STRules} from '../rules';
 
 export type StrongTime = StrongType<string>;
 
-export function makeTime(initial: string | null | undefined, fallback: string): StrongTime {
+export function makeTime(fallback: string, initial: string | null | undefined): StrongTime {
 	const rules = new STRules();
 	rules.add().must.match.type.string();
 	rules.add().must.be.time();
-	return makeStrong<string>(initial, fallback, rules);
+	return makeStrong<string>(fallback, initial, rules);
 }
