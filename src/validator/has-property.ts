@@ -12,6 +12,7 @@ function hasProperty(obj: any, propName: string): boolean {
 	}
 
 	const prop = obj.hasOwnProperty(propName);
+
 	return typeof prop !== 'undefined';
 }
 

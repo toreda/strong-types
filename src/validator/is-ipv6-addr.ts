@@ -17,7 +17,7 @@ export const isIpv6Addr = (current: string): boolean => {
 		return false;
 	}
 
-	const section = current.split(':');
+	const section = trimmed.split(':');
 	const doubleColonSegment = current.split('::');
 	const doubleColon = '::';
 
