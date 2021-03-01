@@ -17,23 +17,25 @@ export const isIpv6Addr = (current: string): boolean => {
 		return false;
 	}
 
-	const section = trimmed.split(':');
-	const doubleColonSegment = current.split('::');
+	const sections = trimmed.split(':');
+	const doubleColonSegment = trimmed.split('::');
 	const doubleColon = '::';
 
-	if (!section.length) {
+	if (!sections.length) {
 		return false;
 	}
 
-	if (section.length >= 9) {
+	if (sections.length >= 9) {
 		return false;
 	}
 
-	if (section.length === 8 && !section.every(isValidSegment) && current.includes(doubleColon)) {
+	const validatedSegment = sections.every(isValidSegment);
+
+	if (sections.length === 8 && !validatedSegment && current.includes(doubleColon)) {
 		return false;
 	}
 
-	if (section.length <= 7 && !section.every(isValidSegment) && doubleColonSegment.length >= 3) {
+	if (sections.length <= 7 && !validatedSegment && doubleColonSegment.length >= 3) {
 		return false;
 	}
 
@@ -41,19 +43,16 @@ export const isIpv6Addr = (current: string): boolean => {
 };
 
 export const isValidSegment = (segment: string): boolean => {
-	const hex = '0123456789abcdefABCDEF';
-
-	if (!segment.length || segment.length != 4) {
+	if (typeof segment !== 'string') {
 		return false;
 	}
 
-	for (const char of segment) {
-		if (!hex.includes(char)) {
-			return false;
-		}
-	}
+	const hex = parseInt(segment, 16);
 
-	return true;
+	if (isNaN(hex)) {
+		return false;
+	}
+	return hex >= 0x0 && hex <= 0xffff;
 };
 
 export function makeIsIpv6Addr<CallerType>(
