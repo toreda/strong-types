@@ -25,7 +25,7 @@ export const isIpv6Addr = (current: string): boolean => {
 		return false;
 	}
 
-	if (sections.length >= 9) {
+	if (sections.length > 8) {
 		return false;
 	}
 
