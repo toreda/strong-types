@@ -39,4 +39,15 @@ export function makeStrong<ValueT>(
 			typeId: 'StrongType'
 		}
 	);
+	function increment(val): number {
+		if (typeof val !== null) {
+			return val.add(1);
+		}
+
+		if (typeof val === null) {
+			return fallbackArg as any;
+		}
+
+		return val;
+	}
 }
