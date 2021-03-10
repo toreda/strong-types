@@ -24,7 +24,7 @@ describe('StrongType', () => {
 				expect(typeof st).toBe('function');
 			});
 
-			it('should return initial value when call with no arguments', () => {
+			it('should return initial value when called with no arguments', () => {
 				const sampleStr = '44198657635';
 				const custom = makeStrong<string>(MOCK_FALLBACK, sampleStr);
 				expect(custom()).toBe(sampleStr);
@@ -46,6 +46,12 @@ describe('StrongType', () => {
 				const st = makeStrong<string>(MOCK_FALLBACK, MOCK_STRING);
 				st(null);
 				expect(st()).toBe(MOCK_FALLBACK);
+			});
+
+			it('should return default value when called with no initial value', () => {
+				const initialStr = undefined;
+				const custom = makeStrong<string>(MOCK_FALLBACK, initialStr);
+				expect(custom()).toBe(MOCK_FALLBACK);
 			});
 
 			describe('get', () => {
