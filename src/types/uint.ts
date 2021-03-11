@@ -4,11 +4,11 @@ import {STRules} from '../rules';
 
 export type StrongUInt = StrongType<number>;
 
-export function makeUInt(initial: number | null | undefined, fallback: number): StrongUInt {
+export function makeUInt(fallback: number, initial: number | null | undefined): StrongUInt {
 	const rules = new STRules<number>();
 
 	rules.add().must.match.type.integer();
 	rules.add().must.be.greaterThanOrEqualTo(0);
 
-	return makeStrong<number>(initial, fallback, rules);
+	return makeStrong<number>(fallback, initial, rules);
 }

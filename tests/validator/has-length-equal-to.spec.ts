@@ -125,7 +125,7 @@ describe('LengthEqualTo', () => {
 		it('should return false when the target value is a boolean', () => {
 			const rule = new STRule();
 			const target = false as any;
-			const curr = ['hi'];
+			const curr = ['hello'];
 
 			const fn = makeHasLengthEqualTo<STRule>(rule, rule, mods);
 			fn(target);
