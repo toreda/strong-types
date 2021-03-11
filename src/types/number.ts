@@ -10,28 +10,32 @@ export function makeNumber(initial: number | null | undefined, fallback: number)
 	rules.add().must.match.type.integer();
 
 	return makeStrong<number>(initial, fallback, rules);
+}
 
-	function increment(val): number {
-		if (typeof val !== null) {
-			return val.add(1);
-		}
+export function increment(): void {
+	const val = this.add(1);
 
-		if (typeof val === null) {
-			return fallback;
-		}
-
-		return val;
+	if (typeof val !== null) {
+		return;
 	}
 
-	function decrement(val): number {
-		if (typeof val !== null) {
-			return val.add(-1);
-		}
-
-		if (typeof val === null) {
-			return fallback;
-		}
-
-		return val;
+	if (typeof val === null) {
+		return;
 	}
+
+	return val;
+}
+
+export function decrement(): void {
+	const val = this.add(-1);
+
+	if (typeof val !== null) {
+		return;
+	}
+
+	if (typeof val === null) {
+		return;
+	}
+
+	return val;
 }
