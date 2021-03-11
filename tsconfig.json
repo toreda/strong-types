@@ -30,6 +30,6 @@
 		"strictNullChecks": true,
 		"strictPropertyInitialization": true,
 		"target": "es6",
-		"traceResolution": false,
+		"traceResolution": false
 	}
 }
