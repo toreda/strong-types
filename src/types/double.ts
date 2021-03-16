@@ -1,5 +1,6 @@
 import {StrongType, makeStrong} from '../strong-type';
 
+import {STData} from '../data';
 import {STRules} from '../rules';
 import {StrongNumber} from '../strong-number';
 
@@ -11,8 +12,24 @@ export function makeDouble(initial: number | null | undefined, fallback: number)
 
 	const strong = makeStrong<number>(initial, fallback, rules);
 
+	const instance = new STData(initial, fallback, rules);
+
 	return Object.assign(strong, {
-		increment: () => {},
-		decrement: () => {}
+		increment: () => {
+			if (instance !== null) {
+				return instance.add(1);
+			}
+			if (instance === null) {
+				return fallback;
+			}
+		},
+		decrement: () => {
+			if (instance !== null) {
+				return instance.add(-1);
+			}
+			if (instance === null) {
+				return fallback;
+			}
+		}
 	});
 }
