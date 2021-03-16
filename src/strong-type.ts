@@ -7,6 +7,7 @@ export interface StrongType<ValueT> {
 	getNull: () => ValueT | null;
 	reset: () => void;
 	typeId: 'StrongType' | string;
+	_data: STData<ValueT>;
 }
 
 export function makeStrong<ValueT>(
@@ -36,7 +37,8 @@ export function makeStrong<ValueT>(
 			reset: (): void => {
 				instance.reset();
 			},
-			typeId: 'StrongType'
+			typeId: 'StrongType',
+			_data: instance
 		}
 	);
 }
