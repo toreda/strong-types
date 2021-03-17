@@ -1,8 +1,6 @@
-import {StrongMap} from 'src/map';
 import {StrongMapJsonifier as Jsonifier} from 'src/map/jsonifier';
 import {StrongMapJsonifierState as State} from 'src/map/jsonifier/state';
-import {StrongInt, makeInt} from 'src/types/int';
-import {StrongString, makeString} from 'src/types/string';
+import {makeString} from 'src/types/string';
 
 import {TestMap} from './test-map';
 
