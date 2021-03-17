@@ -38,6 +38,7 @@
     "@armorjs/build": "^0.0.2",
     "@microsoft/tsdoc": "^0.12.21",
     "@microsoft/tsdoc-config": "^0.13.6",
+    "@toreda/eslint-config": "^2.1.0",
     "@types/jest": "^26.0.16",
     "@types/node": "^14.11.5",
     "@types/yargs-parser": "^15.0.0",
