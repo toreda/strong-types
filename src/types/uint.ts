@@ -11,7 +11,6 @@ export function makeUInt(fallback: number, initial: number | null | undefined): 
 	rules.add().must.match.type.integer();
 	rules.add().must.be.greaterThanOrEqualTo(0);
 
-
 	const strong = makeStrong<number>(fallback, initial, rules);
 
 	return Object.assign(strong, {
@@ -26,5 +25,4 @@ export function makeUInt(fallback: number, initial: number | null | undefined): 
 			}
 		}
 	});
-
 }
