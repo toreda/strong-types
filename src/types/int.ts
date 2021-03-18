@@ -8,7 +8,7 @@ export type StrongInt = StrongNumber;
 export function makeInt(fallback: number, initial: number | null | undefined): StrongInt {
 	const rules = new STRules();
 	rules.add().must.match.type.integer();
-	
+
 	const strong = makeStrong<number>(fallback, initial, rules);
 
 	return Object.assign(strong, {
