@@ -8,11 +8,8 @@ export type StrongInt = StrongNumber;
 export function makeInt(fallback: number, initial: number | null | undefined): StrongInt {
 	const rules = new STRules();
 	rules.add().must.match.type.integer();
-<<<<<<< HEAD
-	return makeStrong<number>(fallback, initial, rules);
-=======
 	
-	const strong = makeStrong<number>(initial, fallback, rules);
+	const strong = makeStrong<number>(fallback, initial, rules);
 
 	return Object.assign(strong, {
 		increment: () => {
@@ -26,5 +23,4 @@ export function makeInt(fallback: number, initial: number | null | undefined): S
 			}
 		}
 	});
->>>>>>> feature/increment-decrement
 }
