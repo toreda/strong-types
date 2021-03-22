@@ -1,4 +1,4 @@
-import {JSONObject} from './aliases';
+import {json} from './aliases';
 import {StrongMapJsonifier} from './map/jsonifier';
 import {StrongMapJsonifierOptions} from './map/jsonifier/options';
 import {StrongMapParser} from './map/parser';
@@ -12,12 +12,12 @@ export class StrongMap {
 		this.enabled = makeStrong<boolean>(enabled, enabled);
 	}
 
-	public parse(json: JSONObject, options?: StrongMapParserOptions): void {
+	public parse(json: json, options?: StrongMapParserOptions): void {
 		const parser = new StrongMapParser();
 		parser.parse(this, json, options);
 	}
 
-	public jsonify(options: StrongMapJsonifierOptions): Record<string, unknown> {
+	public jsonify(options?: StrongMapJsonifierOptions): Record<string, unknown> {
 		const jsonifier = new StrongMapJsonifier();
 		return jsonifier.jsonify(this, options);
 	}
