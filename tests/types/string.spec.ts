@@ -35,7 +35,7 @@ describe('StrongString', () => {
 
 		it('should return fallback default when value is undefined', () => {
 			const sampleFallback = 'owl';
-			const result = makeString(sampleFallback, undefined);
+			const result = makeString(sampleFallback);
 			expect(result()).toBe(sampleFallback);
 		});
 

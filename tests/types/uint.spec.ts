@@ -18,6 +18,12 @@ describe('StrongUInt', () => {
 			expect(uint()).toBe(sampleFallback);
 		});
 
+		it('should return fallback default when value is undefined', () => {
+			const sampleFallback = 684257;
+			const result = makeUInt(sampleFallback);
+			expect(result()).toBe(sampleFallback);
+		});
+
 		it('should set value when called with non-null value', () => {
 			const uint = makeUInt(MOCK_FALLBACK_DEFAULT, null);
 			const sampleValue = 140781;
