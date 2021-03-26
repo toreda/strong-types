@@ -35,7 +35,7 @@ describe('StrongTime', () => {
 
 		it('should return fallback default when value is undefined', () => {
 			const sampleFallback = '03:01:52';
-			const result = makeTime(sampleFallback, undefined);
+			const result = makeTime(sampleFallback);
 			expect(result()).toBe(sampleFallback);
 		});
 

@@ -11,7 +11,7 @@ export interface StrongType<ValueT> {
 
 export function makeStrong<ValueT>(
 	fallbackArg: ValueT,
-	initial: ValueT | null | undefined,
+	initial?: ValueT | null,
 	rules?: STRules<ValueT>
 ): StrongType<ValueT> {
 	const instance = new STData<ValueT>(fallbackArg, initial, rules);
