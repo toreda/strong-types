@@ -35,7 +35,7 @@ describe('StrongDateTime', () => {
 
 		it('should return fallback default when value is undefined', () => {
 			const sampleFallback = '1886-12-25T12:15:41';
-			const result = makeDateTime(sampleFallback, undefined);
+			const result = makeDateTime(sampleFallback);
 			expect(result()).toBe(sampleFallback);
 		});
 

@@ -5,16 +5,14 @@ import {StrongNumber} from '../strong-number';
 
 export type StrongUInt = StrongNumber;
 
-export function makeUInt(fallback: number, initial: number | null | undefined): StrongUInt {
+export function makeUInt(fallback: number, initial?: number | null): StrongUInt {
 	const rules = new STRules<number>();
 
 	rules.add().must.match.type.integer();
 	rules.add().must.be.greaterThanOrEqualTo(0);
 
-<<<<<<< HEAD
-	return makeStrong<number>(fallback, initial, rules);
-=======
-	const strong = makeStrong<number>(initial, fallback, rules);
+
+	const strong = makeStrong<number>(fallback, initial, rules);
 
 	return Object.assign(strong, {
 		increment: () => {
@@ -28,5 +26,4 @@ export function makeUInt(fallback: number, initial: number | null | undefined): 
 			}
 		}
 	});
->>>>>>> feature/increment-decrement
 }

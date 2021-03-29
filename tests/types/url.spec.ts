@@ -35,7 +35,7 @@ describe('StrongUrl', () => {
 
 		it('should return fallback default when value is undefined', () => {
 			const sampleFallback = 'https://thebest.com';
-			const result = makeUrl(sampleFallback, undefined);
+			const result = makeUrl(sampleFallback);
 			expect(result()).toBe(sampleFallback);
 		});
 

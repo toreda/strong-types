@@ -5,15 +5,13 @@ import {StrongNumber} from '../strong-number';
 
 export type StrongDouble = StrongNumber;
 
-export function makeDouble(fallback: number, initial: number | null | undefined): StrongDouble {
+export function makeDouble(fallback: number, initial?: number | null): StrongDouble {
 	const rules = new STRules<number>();
 	
 	rules.add().must.match.type.double();
 
-<<<<<<< HEAD
-	return makeStrong<number>(fallback, initial, rules);
-=======
-	const strong = makeStrong<number>(initial, fallback, rules);
+
+	const strong = makeStrong<number>(fallback, initial, rules);
 
 	return Object.assign(strong, {
 		increment: () => {
@@ -27,5 +25,4 @@ export function makeDouble(fallback: number, initial: number | null | undefined)
 			}
 		}
 	});
->>>>>>> feature/increment-decrement
 }
