@@ -5,7 +5,7 @@ import {StrongNumber} from '../strong-number';
 
 export type StrongDouble = StrongNumber;
 
-export function makeDouble(fallback: number, initial: number | null | undefined): StrongDouble {
+export function makeDouble(fallback: number, initial?: number | null): StrongDouble {
 	const rules = new STRules<number>();
 
 	rules.add().must.match.type.double();

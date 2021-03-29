@@ -5,7 +5,7 @@ import {StrongNumber} from '../strong-number';
 
 export type StrongInt = StrongNumber;
 
-export function makeInt(fallback: number, initial: number | null | undefined): StrongInt {
+export function makeInt(fallback: number, initial?: number | null): StrongInt {
 	const rules = new STRules();
 	rules.add().must.match.type.integer();
 
