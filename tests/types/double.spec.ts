@@ -20,7 +20,7 @@ describe('StrongDouble', () => {
 
 		it('should return fallback default when value is undefined', () => {
 			const sampleFallback = 5.664546634;
-			const result = makeDouble(sampleFallback);
+			const result = makeDouble(sampleFallback, undefined);
 			expect(result()).toBe(sampleFallback);
 		});
 

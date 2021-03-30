@@ -35,7 +35,7 @@ describe('StrongDate', () => {
 
 		it('should return fallback default when value is undefined', () => {
 			const sampleFallback = '1534-08';
-			const result = makeDate(sampleFallback);
+			const result = makeDate(sampleFallback, undefined);
 			expect(result()).toBe(sampleFallback);
 		});
 

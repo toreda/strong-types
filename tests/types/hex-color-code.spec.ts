@@ -35,7 +35,7 @@ describe('StrongHexColorCode', () => {
 
 		it('should return fallback default when value is undefined', () => {
 			const sampleFallback = '#8D33FF';
-			const result = makeHexColorCode(sampleFallback);
+			const result = makeHexColorCode(sampleFallback, undefined);
 			expect(result()).toBe(sampleFallback);
 		});
 

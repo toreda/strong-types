@@ -34,7 +34,7 @@ describe('StrongArray', () => {
 
 		it('should return fallback default when value is undefined', () => {
 			const sampleFallback = [7, 'koala'];
-			const result = makeArray(sampleFallback);
+			const result = makeArray(sampleFallback, undefined);
 			expect(result()).toBe(sampleFallback);
 		});
 

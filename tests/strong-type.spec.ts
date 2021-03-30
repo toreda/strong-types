@@ -35,11 +35,6 @@ describe('StrongType', () => {
 				expect(custom()).toBe(MOCK_FALLBACK);
 			});
 
-			it('should return default fallback value argument is not provided and value is undefined', () => {
-				const custom = makeStrong<string>(MOCK_FALLBACK);
-				expect(custom()).toBe(MOCK_FALLBACK);
-			});
-
 			it('should set value when st is called with an argument', () => {
 				const sampleStr = '44810100929';
 				st(sampleStr);
