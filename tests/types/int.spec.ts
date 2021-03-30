@@ -17,9 +17,10 @@ describe('StrongInt', () => {
 			const result = makeInt(sampleFallback, null);
 			expect(result()).toBe(sampleFallback);
 		});
+
 		it('should return fallback default when value is undefined', () => {
 			const sampleFallback = -54546;
-			const result = makeInt(sampleFallback, undefined);
+			const result = makeInt(sampleFallback);
 			expect(result()).toBe(sampleFallback);
 		});
 

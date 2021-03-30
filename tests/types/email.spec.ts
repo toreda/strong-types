@@ -35,7 +35,7 @@ describe('StrongEmail', () => {
 
 		it('should return fallback default when value is undefined', () => {
 			const sampleFallback = 'horde@thebest.com';
-			const result = makeEmail(sampleFallback, undefined);
+			const result = makeEmail(sampleFallback);
 			expect(result()).toBe(sampleFallback);
 		});
 
