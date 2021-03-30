@@ -1,6 +1,5 @@
-import {StrongType, makeStrong} from '../strong-type';
-
 import {STRules} from '../rules';
+import {StrongType, makeStrong} from '../strong-type';
 
 export type StrongString = StrongType<string>;
 
