@@ -36,6 +36,20 @@ describe('numberMethods', () => {
 						expect(result).toBe(0);
 					});
 
+					it(`should return null when called with null value`, () => {
+						const result = testType.instance(null);
+						expect(result).toBeNull;
+					});
+
+					it(`should return undefined`, () => {
+						const result = testType.instance().increment;
+						expect(result).toBeUndefined;
+					});
+
+					it(`should call increment method`, () => {
+						testType.instance().increment;
+						expect(testType.instance).toHaveBeenCalled;
+					});
 				});
 
 				describe('decrement', () => {
