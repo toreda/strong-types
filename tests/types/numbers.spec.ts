@@ -45,6 +45,7 @@ describe('numberMethods', () => {
 						const value = null;
 						const result = testType.instance;
 						result(value);
+						result.increment();
 						expect(result()).toBe(0);
 					});
 				});
@@ -63,6 +64,7 @@ describe('numberMethods', () => {
 						const value = null;
 						const result = testType.instance;
 						result(value);
+						result.decrement();
 						expect(result()).toBe(0);
 					});
 				});
