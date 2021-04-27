@@ -2,8 +2,6 @@ import {StrongDouble, makeDouble} from '../../src/types/double';
 import {StrongInt, makeInt} from '../../src/types/int';
 import {StrongUInt, makeUInt} from '../../src/types/uint';
 
-import {StrongNumber} from '../../dist/strong-number';
-
 interface TestType {
 	name: string;
 	instance: any;
