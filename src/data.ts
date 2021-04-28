@@ -77,6 +77,6 @@ export class STData<ValueT> {
 
 		const setVal = val + amt;
 
-		this.set(setVal);
+		this.set(setVal as any);
 	}
 }
