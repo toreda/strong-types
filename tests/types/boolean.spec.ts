@@ -26,7 +26,7 @@ describe('StrongBoolean', () => {
 
 		it('should return fallback default when value is undefined', () => {
 			const sampleFallback = false;
-			const result = makeBoolean(sampleFallback, undefined);
+			const result = makeBoolean(sampleFallback);
 			expect(result()).toBe(sampleFallback);
 		});
 
