@@ -1,5 +1,6 @@
-import {STRules} from '../rules';
 import {StrongType, makeStrong} from '../strong-type';
+
+import {STRules} from '../rules';
 
 export type StrongDate = StrongType<string>;
 

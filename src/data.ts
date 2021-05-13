@@ -63,4 +63,20 @@ export class STData<ValueT> {
 	public reset(): void {
 		this.value = null;
 	}
+
+	public add(amt: number): void {
+		if (typeof amt !== 'number') {
+			return;
+		}
+
+		const val = this.getNull();
+
+		if (typeof val !== 'number') {
+			return;
+		}
+
+		const setVal = val + amt;
+
+		this.set(setVal as any);
+	}
 }
