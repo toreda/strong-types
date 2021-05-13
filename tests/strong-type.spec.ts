@@ -13,7 +13,7 @@ describe('StrongType', () => {
 			let st: StrongType<string>;
 
 			beforeAll(() => {
-				st = makeStrong<string>(MOCK_INITIAL, MOCK_FALLBACK);
+				st = makeStrong<string>(MOCK_FALLBACK, MOCK_INITIAL);
 			});
 
 			beforeEach(() => {
@@ -24,14 +24,19 @@ describe('StrongType', () => {
 				expect(typeof st).toBe('function');
 			});
 
-			it('should return initial value when call with no arguments', () => {
+			it('should return initial value when called with no arguments', () => {
 				const sampleStr = '44198657635';
-				const custom = makeStrong<string>(sampleStr, MOCK_FALLBACK);
+				const custom = makeStrong<string>(MOCK_FALLBACK, sampleStr);
 				expect(custom()).toBe(sampleStr);
 			});
 
 			it('should return default fallback value argument is not provided and value is null', () => {
-				const custom = makeStrong<string>(null, MOCK_FALLBACK);
+				const custom = makeStrong<string>(MOCK_FALLBACK, null);
+				expect(custom()).toBe(MOCK_FALLBACK);
+			});
+
+			it('should return default fallback value argument is not provided and value is undefined', () => {
+				const custom = makeStrong<string>(MOCK_FALLBACK);
 				expect(custom()).toBe(MOCK_FALLBACK);
 			});
 
@@ -43,9 +48,15 @@ describe('StrongType', () => {
 
 			it('should return fallback default when invoked with no arguments and value has been set to null', () => {
 				const sampleStr = '44810100929';
-				const st = makeStrong<string>(MOCK_STRING, MOCK_FALLBACK);
+				const st = makeStrong<string>(MOCK_FALLBACK, MOCK_STRING);
 				st(null);
 				expect(st()).toBe(MOCK_FALLBACK);
+			});
+
+			it('should return default value when called with no initial value', () => {
+				const initialStr = undefined;
+				const custom = makeStrong<string>(MOCK_FALLBACK, initialStr);
+				expect(custom()).toBe(MOCK_FALLBACK);
 			});
 
 			describe('get', () => {
@@ -56,7 +67,7 @@ describe('StrongType', () => {
 
 				it('should return the fallback default when value is null and provided fallback is not valid', () => {
 					const sampleStr = '4098211872';
-					const st = makeStrong<string>(MOCK_STRING, sampleStr);
+					const st = makeStrong<string>(sampleStr, MOCK_STRING);
 					st(null);
 					expect(st.get(undefined as any)).toBe(sampleStr);
 				});
@@ -65,7 +76,7 @@ describe('StrongType', () => {
 			describe('getNull', () => {
 				it('should return value when value is not null', () => {
 					const sampleStr = '6766199823';
-					const st = makeStrong<string>(sampleStr, MOCK_FALLBACK);
+					const st = makeStrong<string>(MOCK_FALLBACK, sampleStr);
 					expect(st.getNull()).toBe(sampleStr);
 				});
 
@@ -77,7 +88,7 @@ describe('StrongType', () => {
 
 			describe('reset', () => {
 				it('should set value to null when value is set by initial value', () => {
-					const st = makeStrong<string>(null, MOCK_FALLBACK);
+					const st = makeStrong<string>(MOCK_FALLBACK, null);
 					expect(st.getNull()).toBeNull();
 				});
 

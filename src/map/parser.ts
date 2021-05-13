@@ -6,12 +6,10 @@ import {StrongType} from '../strong-type';
 export class StrongMapParser {
 	public parse(map: StrongMap, json: any, options?: StrongMapParserOptions): boolean {
 		if (!map) {
-			console.error('Failed to parse map json - instance argument missing.');
 			return false;
 		}
 
 		if (!json) {
-			console.error('Failed to parse map json - json argument missing.');
 			return false;
 		}
 

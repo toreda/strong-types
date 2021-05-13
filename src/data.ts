@@ -9,7 +9,7 @@ export class STData<ValueT> {
 	public readonly transforms: STTransforms<ValueT>;
 	public readonly rules: STRules<ValueT>;
 
-	constructor(initial: ValueT | null | undefined, fallbackDefault: ValueT, rules?: STRules<ValueT>) {
+	constructor(fallbackDefault: ValueT, initial?: ValueT | null, rules?: STRules<ValueT>) {
 		this.value = null;
 		this.fallbackDefault = fallbackDefault;
 		this.state = new STState<ValueT>();
@@ -30,7 +30,7 @@ export class STData<ValueT> {
 		return this.value;
 	}
 
-	public set(value: ValueT | null | undefined): boolean {
+	public set(value?: ValueT | null): boolean {
 		if (typeof value === 'undefined') {
 			return false;
 		}
@@ -62,5 +62,21 @@ export class STData<ValueT> {
 
 	public reset(): void {
 		this.value = null;
+	}
+
+	public add(amt: number): void {
+		if (typeof amt !== 'number') {
+			return;
+		}
+
+		const val = this.getNull();
+
+		if (typeof val !== 'number') {
+			return;
+		}
+
+		const setVal = val + amt;
+
+		this.set(setVal as any);
 	}
 }

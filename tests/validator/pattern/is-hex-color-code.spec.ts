@@ -1,4 +1,4 @@
-import {createIsHexColorCode, isHexColorCodeStr} from '../../../src/validator/pattern/hex-color-code';
+import {createIsHexColorCode, isHexColorCodeStr} from '../../../src/validator/pattern/is-hex-color-code';
 
 import {STRule} from '../../../src/rule/rule';
 import {STRuleModifiers} from '../../../src/rule/modifiers';
@@ -128,27 +128,27 @@ const TEST_INPUTS = [
 	},
 	{
 		value: '#FFFFRR',
-		label: 'input is a 6 digit hex code with invlaid characters',
+		label: 'input is a 6 digit hex code with invalid characters',
 		expectedResult: false
 	},
 	{
 		value: '#FFFRR',
-		label: 'input is a 5 digit hex code with invlaid characters',
+		label: 'input is a 5 digit hex code with invalid characters',
 		expectedResult: false
 	},
 	{
 		value: '#FFRR',
-		label: 'input is a 4 digit hex code with invlaid characters',
+		label: 'input is a 4 digit hex code with invalid characters',
 		expectedResult: false
 	},
 	{
 		value: '#FRR',
-		label: 'input is a 3 digit hex code with invlaid characters',
+		label: 'input is a 3 digit hex code with invalid characters',
 		expectedResult: false
 	},
 	{
 		value: '#FR',
-		label: 'input is a 2 digit hex code with invlaid characters',
+		label: 'input is a 2 digit hex code with invalid characters',
 		expectedResult: false
 	},
 	{
@@ -244,6 +244,111 @@ const TEST_INPUTS = [
 	{
 		value: '0xFFFFFF',
 		label: `input is string literal '0xFFFFFF'`,
+		expectedResult: true
+	},
+	{
+		value: '33CCPPPP',
+		label: `input is string literal '33CCPPPP'`,
+		expectedResult: false
+	},
+	{
+		value: '#33CC111V',
+		label: `input is string literal '#33CC111V'`,
+		expectedResult: false
+	},
+	{
+		value: '0x99999W',
+		label: `input is string literal '0x99999W'`,
+		expectedResult: false
+	},
+	{
+		value: '0xW00000',
+		label: `input is string literal '0xW00000'`,
+		expectedResult: false
+	},
+	{
+		value: '0x',
+		label: `input is string literal '0x'`,
+		expectedResult: false
+	},
+	{
+		value: '#0x00000000000',
+		label: `input is string literal '#0x00000000000'`,
+		expectedResult: false
+	},
+	{
+		value: '#ffffff#',
+		label: `input is string literal '#ffffff#'`,
+		expectedResult: false
+	},
+	{
+		value: '#ffffff',
+		label: `input is string literal '#ffffff'`,
+		expectedResult: true
+	},
+	{
+		value: '#ff',
+		label: `input is string literal '#ff'`,
+		expectedResult: true
+	},
+	{
+		value: '0x0',
+		label: `input is string literal '0x0'`,
+		expectedResult: true
+	},
+	{
+		value: '0x00',
+		label: `input is string literal '0x00'`,
+		expectedResult: true
+	},
+	{
+		value: '0x000',
+		label: `input is string literal '0x000'`,
+		expectedResult: true
+	},
+	{
+		value: '0x0000',
+		label: `input is string literal '0x0000'`,
+		expectedResult: true
+	},
+	{
+		value: '0x00000',
+		label: `input is string literal '0x00000'`,
+		expectedResult: true
+	},
+	{
+		value: '0x000000',
+		label: `input is string literal '0x000000'`,
+		expectedResult: true
+	},
+	{
+		value: 'ffffff',
+		label: `input is string literal 'ffffff'`,
+		expectedResult: true
+	},
+	{
+		value: 'f',
+		label: `input is string literal 'f'`,
+		expectedResult: true
+	},
+	{
+		value: 'fff',
+		label: `input is string literal 'fff'`,
+		expectedResult: true
+	},
+	{
+		value: 'ffff',
+		label: `input is string literal 'ffff'`,
+		expectedResult: true
+	},
+	{
+		value: 'fffff',
+		label: `input is string literal 'fffff'`,
+		expectedResult: true
+	},
+	{
+		value: 'ffffff',
+		label: `input is string literal 'ffffff'`,
 		expectedResult: true
 	}
 ];

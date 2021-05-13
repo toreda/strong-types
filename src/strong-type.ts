@@ -7,14 +7,15 @@ export interface StrongType<ValueT> {
 	getNull: () => ValueT | null;
 	reset: () => void;
 	typeId: 'StrongType' | string;
+	_data: STData<ValueT>;
 }
 
 export function makeStrong<ValueT>(
-	initial: ValueT | null | undefined,
 	fallbackArg: ValueT,
+	initial?: ValueT | null,
 	rules?: STRules<ValueT>
 ): StrongType<ValueT> {
-	const instance = new STData<ValueT>(initial, fallbackArg, rules);
+	const instance = new STData<ValueT>(fallbackArg, initial, rules);
 
 	const localFallback = fallbackArg !== undefined ? fallbackArg : instance.fallbackDefault;
 
@@ -22,17 +23,12 @@ export function makeStrong<ValueT>(
 		(val?: ValueT | null): ValueT => {
 			if (typeof val !== 'undefined') {
 				instance.set(val);
-
-				if (val === null) {
-					return instance.fallbackDefault;
-				}
-				return val;
 			}
 
 			return instance.get(localFallback);
 		},
 		{
-			get: (fallback: ValueT): ValueT | ValueT => {
+			get: (fallback: ValueT): ValueT => {
 				return instance.get(fallback);
 			},
 			getNull: (): ValueT | null => {
@@ -41,7 +37,8 @@ export function makeStrong<ValueT>(
 			reset: (): void => {
 				instance.reset();
 			},
-			typeId: 'StrongType'
+			typeId: 'StrongType',
+			_data: instance
 		}
 	);
 }
