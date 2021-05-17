@@ -38,7 +38,7 @@ export class StrongMapJsonifier {
 		return result;
 	}
 
-	public jsonifyKey(key: unknown, state: State): unknown {
+	public jsonifyKey(key: unknown, _state: State): unknown {
 		if (key === undefined) {
 			return;
 		}

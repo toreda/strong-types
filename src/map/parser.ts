@@ -19,7 +19,7 @@ export class StrongMapParser {
 		return this.parseMap(map, json, state);
 	}
 
-	public parseKey(key: StrongType<unknown>, value: unknown, state: State): void {
+	public parseKey(key: StrongType<unknown>, value: unknown, _state: State): void {
 		if (!key) {
 			return;
 		}
