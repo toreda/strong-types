@@ -6,7 +6,7 @@ export {STData} from './data';
 export {STOptions} from './options';
 export {STState} from './state';
 
-export {isType} from './validator/is-type';
+export {isType, PrimitiveOrConstructor} from './validator/is-type';
 
 // Custom Types
 export {StrongArray, makeArray} from './types/array';

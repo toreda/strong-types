@@ -17,10 +17,6 @@ describe('StrongMap', () => {
 				new StrongMap();
 			}).not.toThrow();
 		});
-
-		it("should initialize property 'enabled' with default value true", () => {
-			expect(instance.enabled()).toBe(true);
-		});
 	});
 
 	describe('Expected Class Methods', () => {

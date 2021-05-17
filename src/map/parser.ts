@@ -1,11 +1,9 @@
 import {json} from '../aliases';
 import {StrongMap} from '../map';
 import {StrongType} from '../strong-type';
-import {StrongMapParserOptions} from './parser/options';
-import {StrongMapParserState} from './parser/state';
 
 export class StrongMapParser {
-	public parse(map: StrongMap, json: json, options?: StrongMapParserOptions): boolean {
+	public parse(map: StrongMap, json: json): void {
 		if (!map) {
 			return false;
 		}
@@ -18,30 +16,23 @@ export class StrongMapParser {
 		return this.parseMap(map, json, state);
 	}
 
-	public parseKey(key: StrongType<unknown>, value: unknown, state: StrongMapParserState): boolean {
+	public parseKey(key: StrongType<unknown>, value: unknown): void {
 		if (!key) {
-			return false;
+			return;
 		}
 
 		if (key.typeId !== 'StrongType') {
-			return false;
+			return;
 		}
 
 		key(value);
-		state.parsedKeys++;
-		return true;
 	}
 
-	public parseMap(map: StrongMap, json: json, state: StrongMapParserState): boolean {
-		if (!(map instanceof StrongMap)) {
-			return false;
-		}
-
+	public parseMap(map: StrongMap, json: json): void {
 		if (typeof json === 'undefined' || json === {}) {
-			return false;
+			return;
 		}
 
-		state.visited.add(map);
 		const keys: string[] = Object.keys(map);
 
 		for (const keyName of keys) {
@@ -53,13 +44,14 @@ export class StrongMapParser {
 					continue;
 				}
 
-				this.parseMap(child, jsonObj, state);
-				continue;
+				this.parseMap(child, jsonObj);
+			} else if (child?.typeId === 'StrongType') {
+				this.parseKey(child, jsonObj);
+			} else if (typeof child !== 'object') {
+				this.parseKey(child, jsonObj);
+			} else {
+				this.parseMap(child, jsonObj);
 			}
-
-			this.parseKey(child, jsonObj, state);
 		}
-
-		return true;
 	}
 }

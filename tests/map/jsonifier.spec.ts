@@ -1,7 +1,6 @@
 import {StrongMapJsonifier as Jsonifier} from 'src/map/jsonifier';
 import {StrongMapJsonifierState as State} from 'src/map/jsonifier/state';
 import {makeString} from 'src/types/string';
-
 import {TestMap} from './test-map';
 
 describe('Jsonifier', () => {
@@ -21,7 +20,7 @@ describe('Jsonifier', () => {
 
 			it('should return value of strong type', () => {
 				const expectedValue = 'random string 9385';
-				const key = makeString(expectedValue, expectedValue);
+				const key = makeString(expectedValue);
 
 				const result = instance.jsonifyKey(key, state);
 

@@ -17,8 +17,8 @@ export class TestMap extends StrongMap {
 
 		this.enabled(json.enabled);
 
-		if (json.intProp) this.intProp = makeInt(json.intProp, json.intProp);
-		if (json.stringProp) this.stringProp = makeString(json.stringProp, json.stringProp);
+		if (json.intProp) this.intProp = makeInt(json.intProp);
+		if (json.stringProp) this.stringProp = makeString(json.stringProp);
 
 		if (json.arrayProp) this.arrayProp = json.arrayProp;
 		if (json.objectProp) this.objectProp = json.objectProp;
