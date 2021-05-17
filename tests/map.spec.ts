@@ -25,9 +25,9 @@ describe('StrongMap', () => {
 				const map = new TestMap({});
 				const spy = jest.spyOn(StrongMapParser.prototype, 'parse');
 
-				map.parse(json);
+				map.parse(json, {});
 
-				expect(spy).toHaveBeenCalledWith(map, json);
+				expect(spy).toHaveBeenCalledWith(map, json, expect.anything());
 			});
 		});
 
@@ -36,9 +36,9 @@ describe('StrongMap', () => {
 				const map = new TestMap({});
 				const spy = jest.spyOn(StrongMapJsonifier.prototype, 'jsonify');
 
-				map.jsonify();
+				map.jsonify({});
 
-				expect(spy).toHaveBeenCalledWith(map);
+				expect(spy).toHaveBeenCalledWith(map, expect.anything());
 			});
 		});
 	});

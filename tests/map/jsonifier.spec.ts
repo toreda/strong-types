@@ -1,9 +1,11 @@
 import {StrongMapJsonifier as Jsonifier} from 'src/map/jsonifier';
+import {StrongMapJsonifierState as State} from 'src/map/jsonifier/state';
 import {makeString} from 'src/types/string';
 import {TestMap} from './test-map';
 
 describe('Jsonifier', () => {
 	const instance = new Jsonifier();
+	const state = new State();
 
 	describe('Implementation', () => {
 		describe('jsonifyKey', () => {
@@ -11,7 +13,7 @@ describe('Jsonifier', () => {
 				const expectedValue = undefined;
 				const key = undefined;
 
-				const result = instance.jsonifyKey(key);
+				const result = instance.jsonifyKey(key, state);
 
 				expect(result).toBe(expectedValue);
 			});
@@ -20,7 +22,7 @@ describe('Jsonifier', () => {
 				const expectedValue = 'random string 9385';
 				const key = makeString(expectedValue);
 
-				const result = instance.jsonifyKey(key);
+				const result = instance.jsonifyKey(key, state);
 
 				expect(result).toBe(expectedValue);
 			});
@@ -29,7 +31,7 @@ describe('Jsonifier', () => {
 				const expectedValue = 'random primitive key value';
 				const key = expectedValue;
 
-				const result = instance.jsonifyKey(key);
+				const result = instance.jsonifyKey(key, state);
 
 				expect(result).toBe(expectedValue);
 			});
@@ -39,7 +41,7 @@ describe('Jsonifier', () => {
 			it.each(falseyValue)('should return %p when key is %p', (key) => {
 				const expectedValue = key;
 
-				const result = instance.jsonifyKey(key);
+				const result = instance.jsonifyKey(key, state);
 
 				expect(result).toBe(expectedValue);
 			});
@@ -58,7 +60,7 @@ describe('Jsonifier', () => {
 				};
 				const map = new TestMap(expectedValue);
 
-				const result = instance.jsonifyMap(map);
+				const result = instance.jsonifyMap(map, state);
 
 				expect(result).toEqual(expectedValue);
 			});
@@ -78,7 +80,7 @@ describe('Jsonifier', () => {
 				const mapLayer2 = new TestMap({...expectedValue.strongMapProp, strongMapProp: mapLayer3});
 				const mapLayer1 = new TestMap({...expectedValue, strongMapProp: mapLayer2});
 
-				const result = instance.jsonifyMap(mapLayer1);
+				const result = instance.jsonifyMap(mapLayer1, state);
 
 				expect(result).toStrictEqual(expectedValue);
 			});
@@ -97,7 +99,7 @@ describe('Jsonifier', () => {
 
 				instance.jsonify(map);
 
-				expect(spy).toHaveBeenCalledWith(map);
+				expect(spy).toHaveBeenCalledWith(map, expect.anything());
 			});
 		});
 	});
