@@ -1,11 +1,11 @@
-import {JSON} from '../aliases';
+import {jsonType} from '../aliases';
 import {StrongMap} from '../map';
 import {StrongType} from '../strong-type';
 import {StrongMapParserOptions as Options} from './parser/options';
 import {StrongMapParserState as State} from './parser/state';
 
 export class StrongMapParser {
-	public parse(map: StrongMap, json: JSON, options?: Options): boolean {
+	public parse(map: StrongMap, json: jsonType, options?: Options): boolean {
 		if (!map) {
 			return false;
 		}
@@ -31,7 +31,7 @@ export class StrongMapParser {
 		key(value);
 	}
 
-	public parseMap(map: StrongMap, json: JSON, state: State): boolean {
+	public parseMap(map: StrongMap, json: jsonType, state: State): boolean {
 		if (!map) {
 			return false;
 		}
