@@ -17,12 +17,13 @@ export class DOMStyles extends Map {
 
 	constructor() {
 		super();
+
 		this.font = new DOMStylesFont();
 		this.opacity = makeDouble(1, 1);
 		this.zIndex = makeInt(0, 0);
 		this.width = makeDouble(1, 1);
 		this.height = makeDouble(1, 1);
-		this.text = new DOMStylesText(true);
+		this.text = new DOMStylesText();
 		this.lineHeight = makeString('', '');
 		this.background = makeString('', '');
 	}

@@ -1,9 +1,9 @@
-import {json} from './aliases';
+import {JSON} from './aliases';
 import {StrongMapJsonifier} from './map/jsonifier';
 import {StrongMapParser} from './map/parser';
 
 export class StrongMap {
-	public parse(json: json): void {
+	public parse(json: JSON): void {
 		const parser = new StrongMapParser();
 		parser.parse(this, json);
 	}

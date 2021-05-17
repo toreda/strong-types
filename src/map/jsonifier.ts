@@ -7,9 +7,7 @@ export class StrongMapJsonifier {
 			throw Error('Failed to jsonify map - map arg missing.');
 		}
 
-		const result = this.jsonifyMap(map);
-
-		return result;
+		return this.jsonifyMap(map);
 	}
 
 	public jsonifyMap(map: StrongMap): Record<string, unknown> {

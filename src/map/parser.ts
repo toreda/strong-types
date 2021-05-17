@@ -1,9 +1,9 @@
-import {json} from '../aliases';
+import {JSON} from '../aliases';
 import {StrongMap} from '../map';
 import {StrongType} from '../strong-type';
 
 export class StrongMapParser {
-	public parse(map: StrongMap, json: json): void {
+	public parse(map: StrongMap, json: JSON): boolean {
 		if (!map) {
 			return false;
 		}
@@ -12,8 +12,7 @@ export class StrongMapParser {
 			return false;
 		}
 
-		const state = new StrongMapParserState(options);
-		return this.parseMap(map, json, state);
+		return this.parseMap(map, json);
 	}
 
 	public parseKey(key: StrongType<unknown>, value: unknown): void {
@@ -28,9 +27,13 @@ export class StrongMapParser {
 		key(value);
 	}
 
-	public parseMap(map: StrongMap, json: json): void {
+	public parseMap(map: StrongMap, json: JSON): boolean {
+		if (!map) {
+			return false;
+		}
+
 		if (typeof json === 'undefined' || json === {}) {
-			return;
+			return false;
 		}
 
 		const keys: string[] = Object.keys(map);
@@ -53,5 +56,7 @@ export class StrongMapParser {
 				this.parseMap(child, jsonObj);
 			}
 		}
+
+		return true;
 	}
 }
