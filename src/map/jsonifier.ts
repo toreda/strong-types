@@ -40,7 +40,7 @@ export class StrongMapJsonifier {
 
 	public jsonifyKey(key: unknown, _state: State): unknown {
 		if (key === undefined) {
-			return;
+			return undefined;
 		}
 
 		const assumeKeyIsStrongType = key as StrongType<unknown>;
