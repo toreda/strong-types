@@ -69,3 +69,7 @@ export {STRuleNot} from './rule/not';
 export {STRuleOr} from './rule/or';
 export {STRuleRoot} from './rule/root';
 export {STRuleType} from './rule/type';
+
+// Mapped Types
+export {PrimitiveToStrong} from './mapped-types';
+export {RecordToStrong} from './mapped-types';

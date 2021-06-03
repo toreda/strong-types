@@ -94,7 +94,11 @@ describe('Parser', () => {
 				const json = {c1: 'cnd_014981', d81: 'abw_01094'};
 				const group = new StrongMap();
 				instance.parse(group, json);
-				expect(parseMapSpy).toHaveBeenCalledWith(expect.anything(), expect.anything(), expect.anything());
+				expect(parseMapSpy).toHaveBeenCalledWith(
+					expect.anything(),
+					expect.anything(),
+					expect.anything()
+				);
 				expect(parseMapSpy).toHaveBeenCalledTimes(1);
 			});
 		});
