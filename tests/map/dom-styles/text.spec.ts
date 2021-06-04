@@ -1,7 +1,6 @@
 import {DOMStylesText} from '../../../src/map/dom-styles/text';
 
 const EXPECTED_STRONG_PROPERTIES = [
-	{name: 'enabled', expectedValueType: 'boolean', expectedValue: true},
 	{name: 'decoration', expectedValueType: 'string', expectedValue: 'none'},
 	{name: 'shadow', expectedValueType: 'string', expectedValue: '0'}
 ];

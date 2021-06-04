@@ -1,25 +1,22 @@
-import {StrongMap} from '../../src/map';
-import {StrongMapParser} from '../../src/map/parser';
-import {StrongMapParserState} from '../../src/map/parser/state';
-import {makeInt} from '../../src/types/int';
-import {makeStrong} from '../../src/strong-type';
+import {StrongMap} from 'src/map';
+import {StrongMapParser} from 'src/map/parser';
+import {StrongMapParserState as State} from 'src/map/parser/state';
+import {makeStrong} from 'src/strong-type';
+import {makeInt} from 'src/types/int';
 
 const MOCK_VALUE = 11091;
 
 describe('Parser', () => {
 	let instance: StrongMapParser;
-	let state: StrongMapParserState;
+	const state = new State();
 
 	beforeAll(() => {
 		instance = new StrongMapParser();
-		state = new StrongMapParserState();
 	});
-
-	describe('Constructor', () => {});
 
 	describe('Implementation', () => {
 		describe('parse', () => {
-			let parseMapSpy;
+			let parseMapSpy: jest.SpyInstance;
 
 			beforeAll(() => {
 				parseMapSpy = jest.spyOn(instance, 'parseMap');
@@ -33,44 +30,42 @@ describe('Parser', () => {
 				parseMapSpy.mockRestore();
 			});
 
-			it('should not call parseMap when group arg is missing and no options arg provided', () => {
+			it('should not call parseMap when group arg is missing', () => {
 				expect(parseMapSpy).not.toHaveBeenCalled();
 				const json = {};
 				instance.parse(undefined as any, json);
 				expect(parseMapSpy).not.toHaveBeenCalled();
 			});
 
-			it('should return false when group arg is missing and no options arg provided', () => {
+			it('should return false when group arg is missing', () => {
 				expect(parseMapSpy).not.toHaveBeenCalled();
 				const json = {};
 				expect(instance.parse(undefined as any, json)).toBe(false);
 			});
 
-			it('should not call parseMap when group arg is missing and options arg provided', () => {
+			it('should not call parseMap when group arg is missing', () => {
 				expect(parseMapSpy).not.toHaveBeenCalled();
 				const json = {};
 				const options = {};
-				instance.parse(undefined as any, json, options);
+				instance.parse(undefined as any, json);
 				expect(parseMapSpy).not.toHaveBeenCalled();
 			});
 
-			it('should return false when group arg is missing and options arg provided', () => {
+			it('should return false when group arg is missing', () => {
 				expect(parseMapSpy).not.toHaveBeenCalled();
 				const json = {};
 				const options = {};
-				expect(instance.parse(undefined as any, json, options)).toBe(false);
+				expect(instance.parse(undefined as any, json)).toBe(false);
 			});
 
 			it('should return false when json arg is missing', () => {
 				expect(parseMapSpy).not.toHaveBeenCalled();
-				const options = {};
 				const group = new StrongMap();
 				expect(instance.parse(group, undefined as any)).toBe(false);
 			});
 
 			it('should not call parseMap when json arg is missing', () => {
 				expect(parseMapSpy).not.toHaveBeenCalled();
-				const options = {};
 				const group = new StrongMap();
 				instance.parse(group, undefined as any);
 				expect(parseMapSpy).not.toHaveBeenCalled();
@@ -78,7 +73,6 @@ describe('Parser', () => {
 
 			it('should call parseMap with provided group arg', () => {
 				expect(parseMapSpy).not.toHaveBeenCalled();
-				const options = {};
 				const json = {};
 				const group = new StrongMap();
 				instance.parse(group, json);
@@ -88,7 +82,6 @@ describe('Parser', () => {
 
 			it('should call parseMap with provided json arg', () => {
 				expect(parseMapSpy).not.toHaveBeenCalled();
-				const options = {};
 				const json = {a: 'aaaa', b: '130991'};
 				const group = new StrongMap();
 				instance.parse(group, json);
@@ -98,7 +91,6 @@ describe('Parser', () => {
 
 			it('should call parseMap with a new state object', () => {
 				expect(parseMapSpy).not.toHaveBeenCalled();
-				const options = {};
 				const json = {c1: 'cnd_014981', d81: 'abw_01094'};
 				const group = new StrongMap();
 				instance.parse(group, json);
@@ -138,7 +130,7 @@ describe('Parser', () => {
 				node['group_one'] = new StrongMap();
 				node['group_one']['key_one'] = makeInt(expectedValue, 1);
 
-				instance.parseMap(node, json, new StrongMapParserState());
+				instance.parseMap(node, json, state);
 				expect(node['group_one']['key_one']()).toEqual(expectedValue);
 			});
 
@@ -169,7 +161,7 @@ describe('Parser', () => {
 				node['group_three'] = new StrongMap();
 				node['group_three']['key_three'] = makeStrong<string>(expectedValue3, 'bad string here');
 
-				instance.parseMap(node, json, new StrongMapParserState());
+				instance.parseMap(node, json, state);
 
 				expect(node['group_one']['key_one']()).toEqual(expectedValue1);
 				expect(node['group_two']['key_two']()).toEqual(expectedValue2);
@@ -226,7 +218,7 @@ describe('Parser', () => {
 					'3 - three three'
 				);
 
-				instance.parseMap(node, json, new StrongMapParserState());
+				instance.parseMap(node, json, state);
 
 				expect(node['group_one']['key_one_one']()).toEqual(expectedValue1_1);
 				expect(node['group_one']['key_one_two']()).toEqual(expectedValue1_2);

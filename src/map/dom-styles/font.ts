@@ -12,9 +12,9 @@ export class DOMStylesFont extends StrongMap {
 	public readonly stretch: StrongType<string>;
 	public readonly variant: StrongType<string>;
 
-	constructor(enabled?: boolean) {
+	constructor() {
 		super();
-		this.enabled(enabled);
+
 		const colorRules: STRules<string> = new STRules();
 		colorRules.add().must.match.pattern.hexColor();
 		this.color = makeStrong<string>('#FFFFFF', null, colorRules);

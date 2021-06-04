@@ -1,10 +1,11 @@
+import {jsonType} from '../aliases';
 import {StrongMap} from '../map';
-import {StrongMapParserOptions} from './parser/options';
-import {StrongMapParserState} from './parser/state';
 import {StrongType} from '../strong-type';
+import {StrongMapParserOptions as Options} from './parser/options';
+import {StrongMapParserState as State} from './parser/state';
 
 export class StrongMapParser {
-	public parse(map: StrongMap, json: any, options?: StrongMapParserOptions): boolean {
+	public parse(map: StrongMap, json: jsonType, options?: Options): boolean {
 		if (!map) {
 			return false;
 		}
@@ -13,26 +14,25 @@ export class StrongMapParser {
 			return false;
 		}
 
-		const state = new StrongMapParserState(options);
+		const state = new State(options);
+
 		return this.parseMap(map, json, state);
 	}
 
-	public parseKey(key: StrongType<any>, value: any, state: StrongMapParserState): boolean {
+	public parseKey(key: StrongType<unknown>, value: unknown, _state: State): void {
 		if (!key) {
-			return false;
+			return;
 		}
 
 		if (key.typeId !== 'StrongType') {
-			return false;
+			return;
 		}
 
 		key(value);
-		state.parsedKeys++;
-		return true;
 	}
 
-	public parseMap(map: StrongMap, json: any, state: StrongMapParserState): boolean {
-		if (!(map instanceof StrongMap)) {
+	public parseMap(map: StrongMap, json: jsonType, state: State): boolean {
+		if (!map) {
 			return false;
 		}
 
@@ -40,17 +40,25 @@ export class StrongMapParser {
 			return false;
 		}
 
-		state.visited.add(map);
 		const keys: string[] = Object.keys(map);
 
 		for (const keyName of keys) {
 			const child = map[keyName];
-			if (child instanceof StrongMap) {
-				this.parseMap(child, json[keyName], state);
-				continue;
-			}
+			const jsonObj = json[keyName];
 
-			this.parseKey(child, json[keyName], state);
+			if (child instanceof StrongMap) {
+				if (Array.isArray(jsonObj) || typeof jsonObj !== 'object' || jsonObj == null) {
+					continue;
+				}
+
+				this.parseMap(child, jsonObj, state);
+			} else if (child?.typeId === 'StrongType') {
+				this.parseKey(child, jsonObj, state);
+			} else if (typeof child !== 'object') {
+				this.parseKey(child, jsonObj, state);
+			} else {
+				this.parseMap(child, jsonObj, state);
+			}
 		}
 
 		return true;

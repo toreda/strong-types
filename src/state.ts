@@ -6,7 +6,7 @@ export class STState<T> {
 	public readonly rules: STRule[];
 	public readonly transforms: STTransform<T>[];
 
-	constructor(options?: STOptions) {
+	constructor(_options?: STOptions) {
 		this.transforms = [];
 		this.rules = [];
 	}

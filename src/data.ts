@@ -1,3 +1,4 @@
+import {ANY} from './aliases';
 import {STRules} from './rules';
 import {STState} from './state';
 import {STTransforms} from './transforms';
@@ -77,6 +78,6 @@ export class STData<ValueT> {
 
 		const setVal = val + amt;
 
-		this.set(setVal as any);
+		this.set(setVal as ANY);
 	}
 }
