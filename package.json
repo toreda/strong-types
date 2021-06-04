@@ -41,7 +41,7 @@
 		"@toreda/build-tools": "^0.1.15",
 		"@toreda/eslint-config": "^2.1.0",
 		"@toreda/prettier-config": "^1.0.1",
-		"@toreda/types": "^0.0.1",
+		"@toreda/types": "^0.0.x",
 		"@types/jest": "^26.0.23",
 		"@types/node": "^15.0.3",
 		"@types/yargs-parser": "^15.0.0",
