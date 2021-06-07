@@ -1,4 +1,4 @@
-import {jsonType} from '../aliases';
+import {jsonType} from '@toreda/types';
 import {StrongMap} from '../map';
 import {StrongType} from '../strong-type';
 import {StrongMapParserOptions as Options} from './parser/options';

@@ -1,4 +1,4 @@
-import {AnyObj, Expand, LiteralToPrimitive, Primitive} from '@toreda/types';
+import {ANY, AnyObj, Expand, LiteralToPrimitive, Primitive} from '@toreda/types';
 import {StrongType} from './strong-type';
 
 export type PrimitiveToStrong<Literal> = StrongType<LiteralToPrimitive<Literal>>;
@@ -7,8 +7,8 @@ export type PrimitiveToStrong<Literal> = StrongType<LiteralToPrimitive<Literal>>
 type RecordToStrongRequired<Rec> = {
 	[Key in keyof Rec]: Rec[Key] extends Primitive
 		? PrimitiveToStrong<Rec[Key]>
-		: Rec[Key] extends AnyObj
-		? Expand<RecordToStrong<Required<Rec[Key]>>>
+		: Rec[Key] extends AnyObj<ANY>
+		? Expand<RecordToStrong<Rec[Key]>>
 		: Rec[Key];
 };
 

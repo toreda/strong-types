@@ -1,4 +1,4 @@
-import {ANY} from '../aliases';
+import {ANY} from '@toreda/types';
 // typeguard implementation by Ran Lottem
 // https://dev.to/krumpet/generic-type-guard-in-typescript-258l
 
