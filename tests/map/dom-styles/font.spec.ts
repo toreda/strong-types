@@ -1,7 +1,6 @@
 import {DOMStylesFont} from '../../../src/map/dom-styles/font';
 
 const EXPECTED_STRONG_PROPERTIES = [
-	{name: 'enabled', expectedValueType: 'boolean', expectedValue: true},
 	{name: 'color', expectedValueType: 'string', expectedValue: '#FFFFFF'},
 	{name: 'size', expectedValueType: 'string', expectedValue: '12px'},
 	{name: 'family', expectedValueType: 'string', expectedValue: 'sans-serif'},

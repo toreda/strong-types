@@ -250,6 +250,37 @@ console.log(myConfig.counter());
 console.log(myConfig.name());
 ```
 
+Converting a `StrongMap` to a json object
+```typescript
+import {StrongMap, StringInt, StrongString, makeInt, makeString} from '@toreda/strong-types';
+
+export class SomeConfig extends StrongMap {
+	public readonly counter: StrongInt;
+	public readonly name: StrongString;
+
+	constructor(json?: any) {
+		super();
+		this.counter = makeInt(0, 0);
+		this.name = makeString(null, 'TreeBeard');
+		this.parse(json);
+	}
+}
+
+const myJSON = {
+	'counter': 99,
+	'name': 'Sauron'
+};
+
+// Create the StrongMap with myJSON data
+const myConfig = new SomeConfig(myJSON);
+
+// Change a value in the StrongMap
+myConfig.name('Gandalf');
+
+// {counter: 99, name: 'Gandalf'}
+const configAsJSON = myConfig.jsonify();
+```
+
 ## `StrongArray`
 
 ### Import

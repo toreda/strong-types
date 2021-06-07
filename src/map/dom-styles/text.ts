@@ -6,8 +6,9 @@ export class DOMStylesText extends StrongMap {
 	public readonly decoration: StrongString;
 	public readonly shadow: StrongString;
 
-	constructor(enabled: boolean = true) {
-		super(enabled);
+	constructor() {
+		super();
+
 		this.decoration = makeString('none', null);
 		this.shadow = makeString('0', null);
 	}

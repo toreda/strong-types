@@ -6,7 +6,7 @@ export {STData} from './data';
 export {STOptions} from './options';
 export {STState} from './state';
 
-export {isType} from './validator/is-type';
+export {isType, PrimitiveOrConstructor} from './validator/is-type';
 
 // Custom Types
 export {StrongArray, makeArray} from './types/array';
@@ -18,14 +18,14 @@ export {StrongString, makeString} from './types/string';
 
 // Map
 export {StrongMap} from './map';
+export {StrongMapJsonifier} from './map/jsonifier';
 export {StrongMapParser} from './map/parser';
-export {StrongMapParserOptions} from './map/parser/options';
+export {StrongRange} from './map/range';
+export {StrongSize} from './map/size';
 export {StrongVec1} from './map/vec1';
 export {StrongVec2} from './map/vec2';
 export {StrongVec3} from './map/vec3';
 export {StrongVec4} from './map/vec4';
-export {StrongSize} from './map/size';
-export {StrongRange} from './map/range';
 
 // Validators
 export {STOpIsBoolean, makeIsBoolean} from './validator/is-boolean';
@@ -69,3 +69,7 @@ export {STRuleNot} from './rule/not';
 export {STRuleOr} from './rule/or';
 export {STRuleRoot} from './rule/root';
 export {STRuleType} from './rule/type';
+
+// Mapped Types
+export {PrimitiveToStrong} from './mapped-types';
+export {RecordToStrong} from './mapped-types';

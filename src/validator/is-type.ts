@@ -1,3 +1,4 @@
+import {ANY} from '../aliases';
 // typeguard implementation by Ran Lottem
 // https://dev.to/krumpet/generic-type-guard-in-typescript-258l
 
@@ -8,20 +9,19 @@ export interface TypeMap {
 	boolean: boolean;
 }
 
-/* eslint-disable */
 // 'string' | 'number' | 'boolean' | constructor
-export type PrimitiveOrConstructor = {new (...args: any[]): any} | keyof TypeMap;
+export type PrimitiveOrConstructor = {new (...args: ANY[]): ANY} | keyof TypeMap;
 
 // infer the guarded type from a specific case of PrimitiveOrConstructor
 export type GuardedType<T extends PrimitiveOrConstructor> = T extends {
-	new (...args: any[]): infer U;
+	new (...args: ANY[]): infer U;
 }
 	? U
 	: T extends keyof TypeMap
 	? TypeMap[T]
 	: never;
 
-export function isType<T extends PrimitiveOrConstructor>(o: any, className: T): o is GuardedType<T> {
+export function isType<T extends PrimitiveOrConstructor>(o: ANY, className: T): o is GuardedType<T> {
 	const localPrimitiveOrConstructor: PrimitiveOrConstructor = className;
 
 	if (typeof localPrimitiveOrConstructor === 'string') {
@@ -30,4 +30,3 @@ export function isType<T extends PrimitiveOrConstructor>(o: any, className: T): 
 
 	return o instanceof localPrimitiveOrConstructor;
 }
-/* eslint-enable */
