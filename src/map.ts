@@ -1,4 +1,4 @@
-import {jsonType} from './aliases';
+import {jsonType} from '@toreda/types';
 import {StrongMapJsonifier} from './map/jsonifier';
 import {StrongMapParser} from './map/parser';
 import {StrongMapJsonifierOptions} from './map/jsonifier/options';
