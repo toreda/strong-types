@@ -2,6 +2,8 @@ import {STRule} from '../../src/rule/rule';
 import {STRuleModifiers} from '../../src/rule/modifiers';
 import {makeIsEqualTo} from '../../src/validator/is-equal-to';
 
+const EMPTY_ARRAY: string[] = [];
+
 describe('EqualTo', () => {
 	let mods: STRuleModifiers;
 
@@ -63,12 +65,11 @@ describe('EqualTo', () => {
 		describe('arrays', () => {
 			it('should return true when comparing two empty arrays', () => {
 				const rule = new STRule();
-				const current = [];
-				const target = [];
+				const target: string[] = [];
 
 				const fn = makeIsEqualTo<STRule>(rule, rule, mods);
 				fn(target);
-				expect(rule.nodes[0].execute(current)).toBe(true);
+				expect(rule.nodes[0].execute(EMPTY_ARRAY)).toBe(true);
 			});
 
 			it('should return true when comparing two arrays each with 1 identical element', () => {

@@ -32,11 +32,11 @@ export function makeIsDate<CallerType>(
 	mods: STRuleModifiers
 ): STOpIsDate<CallerType> {
 	return (): CallerType => {
-		const fn: STRuleFn = (curr: string): boolean => {
+		const fn: STRuleFn<string> = (curr: string): boolean => {
 			return isDate(curr);
 		};
 
-		const node = new STRuleNode('IS_DATE', STRuleNodeType.CMP, fn, mods.invert);
+		const node = new STRuleNode<string>('IS_DATE', STRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

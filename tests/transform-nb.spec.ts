@@ -1,3 +1,4 @@
+import {STTransformFNNB} from '../src/transform-fn-nb';
 import {STTransformNB} from '../src/transform-nb';
 
 describe('STTransformNB', () => {
@@ -9,7 +10,7 @@ describe('STTransformNB', () => {
 		});
 
 		it('should set id when provided in options argument', () => {
-			const fn = (value: string): string => {
+			const fn: STTransformFNNB<string> = (value: string | null): string | null => {
 				return value;
 			};
 			const sampleId = 'AAA_@@@@@33321__334';

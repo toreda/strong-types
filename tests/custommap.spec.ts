@@ -1,6 +1,7 @@
-import {StrongMap} from 'src/map';
-import {StrongInt, makeInt} from 'src/types/int';
 import {StrongArray, makeArray} from '../src/types/array';
+import {StrongInt, makeInt} from '../src/types/int';
+
+import {StrongMap} from '../src/map';
 
 class CustomObj {
 	prop1: string = 'prop_1';

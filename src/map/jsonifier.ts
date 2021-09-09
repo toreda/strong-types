@@ -1,8 +1,11 @@
-import {StrongMap} from '../map';
-import {StrongType} from '../strong-type';
 import {StrongMapJsonifierOptions as Options} from './jsonifier/options';
 import {StrongMapJsonifierState as State} from './jsonifier/state';
+import {StrongMap} from '../map';
+import {StrongType} from '../strong-type';
 
+/**
+ * @category Strong Map
+ */
 export class StrongMapJsonifier {
 	public jsonify(map: StrongMap, options?: Options): Record<string, unknown> {
 		if (!map) {
@@ -14,17 +17,23 @@ export class StrongMapJsonifier {
 		return this.jsonifyMap(map, state);
 	}
 
-	public jsonifyMap(map: StrongMap, state: State): Record<string, unknown> {
-		const result = {};
+	public jsonifyMap(map: unknown, state: State): Record<string, unknown> {
+		const result: Record<string, unknown> = {};
 
-		const keys = Object.keys(map);
+		const keys = Object.keys(map as Record<string, unknown>);
 
 		for (const keyName of keys) {
-			const child = map[keyName];
+			const child: unknown = (map as Record<string, unknown>)[keyName];
 
-			if (child instanceof StrongMap) {
+			if (child === undefined) {
+				continue;
+			}
+
+			if (child === null) {
+				result[keyName] = null;
+			} else if (child instanceof StrongMap) {
 				result[keyName] = this.jsonifyMap(child, state);
-			} else if (child?.typeId === 'StrongType') {
+			} else if ((child as StrongType<unknown>).typeId === 'StrongType') {
 				result[keyName] = this.jsonifyKey(child, state);
 			} else if (typeof child !== 'object') {
 				result[keyName] = this.jsonifyKey(child, state);
@@ -41,6 +50,10 @@ export class StrongMapJsonifier {
 	public jsonifyKey(key: unknown, _state: State): unknown {
 		if (key === undefined) {
 			return undefined;
+		}
+
+		if (key === null) {
+			return null;
 		}
 
 		const assumeKeyIsStrongType = key as StrongType<unknown>;

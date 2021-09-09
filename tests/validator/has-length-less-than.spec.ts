@@ -24,7 +24,7 @@ describe('LengthLessThan', () => {
 		it('should return true when the current length is less than the target length when the current value is an array', () => {
 			const rule = new STRule();
 			const target = 10;
-			const curr = ['dog', 'cat'];
+			const curr: string[] = ['dog', 'cat'];
 			const fn = makeHasLengthLessThan<STRule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
@@ -33,7 +33,7 @@ describe('LengthLessThan', () => {
 		it('should return true when the current value is less than the target value', () => {
 			const rule = new STRule();
 			const target = 2;
-			const curr = [];
+			const curr: string[] = [];
 
 			const fn = makeHasLengthLessThan<STRule>(rule, rule, mods);
 			fn(target);
@@ -84,7 +84,7 @@ describe('LengthLessThan', () => {
 		it('should return true when the target length is equal to the current length when the current value is an array', () => {
 			const rule = new STRule();
 			const target = 2;
-			const curr = ['dog', 'cat'];
+			const curr: string[] = ['dog', 'cat'];
 			const fn = makeHasLengthLessThan<STRule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
@@ -93,7 +93,7 @@ describe('LengthLessThan', () => {
 		it('should return false when the target length is less than the current length when the current value is an array', () => {
 			const rule = new STRule();
 			const target = 2;
-			const curr = ['one', 'two', 'three'];
+			const curr: string[] = ['one', 'two', 'three'];
 
 			const fn = makeHasLengthLessThan<STRule>(rule, rule, mods);
 			fn(target);
@@ -102,11 +102,11 @@ describe('LengthLessThan', () => {
 
 		it('should return false when the target value is an empty array', () => {
 			const rule = new STRule();
-			const target = [] as any;
+			const target: string[] = [];
 			const curr = [6];
 
 			const fn = makeHasLengthLessThan<STRule>(rule, rule, mods);
-			fn(target);
+			fn(target as any);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
 
@@ -133,7 +133,7 @@ describe('LengthLessThan', () => {
 		it('should return false when the target value is a boolean', () => {
 			const rule = new STRule();
 			const target = false as any;
-			const curr = ['hi'];
+			const curr: string[] = ['hi'];
 
 			const fn = makeHasLengthLessThan<STRule>(rule, rule, mods);
 			fn(target);

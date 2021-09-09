@@ -6,7 +6,7 @@ import {STRuleNodeType} from '../rule/node-type';
 
 export type STOpHasPropertyWithType<CallerType> = (propName: string, typeName: string) => CallerType;
 
-export function hasPropertyWithType(obj, propName, typeName): boolean {
+export function hasPropertyWithType(obj: unknown, propName: string, typeName: string): boolean {
 	if (typeof propName !== 'string' || typeName !== 'string') {
 		return false;
 	}
@@ -28,7 +28,7 @@ export function makeHasPropertyWithType<CallerType>(
 	mods: STRuleModifiers
 ): STOpHasPropertyWithType<CallerType> {
 	return (propName, typeName): CallerType => {
-		const fn: STRuleFn = (obj) => {
+		const fn: STRuleFn<unknown> = (obj: unknown) => {
 			return hasPropertyWithType(obj, propName, typeName);
 		};
 

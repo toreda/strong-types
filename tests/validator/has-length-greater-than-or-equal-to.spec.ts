@@ -93,7 +93,7 @@ describe('LengthGreaterThanOrEqualTo', () => {
 		it('should return false when the current value is an empty array', () => {
 			const rule = new STRule();
 			const target = 2;
-			const curr = [];
+			const curr: string[] = [];
 
 			const fn = makeHasLengthGreaterThanOrEqualTo<STRule>(rule, rule, mods);
 			fn(target);

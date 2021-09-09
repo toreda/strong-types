@@ -4,9 +4,9 @@ import {STRuleModifiers} from '../rule/modifiers';
 import {STRuleNode} from '../rule/node';
 import {STRuleNodeType} from '../rule/node-type';
 
-export type STOpIsEmpty<CallerType> = (a: any) => CallerType;
+export type STOpIsEmpty<CallerType> = (a: unknown) => CallerType;
 
-export const emptyFn = (curr: any[] | string): boolean => {
+export const emptyFn = (curr: unknown[] | string): boolean => {
 	if (!Array.isArray(curr) && typeof curr !== 'string') {
 		return false;
 	}
@@ -24,7 +24,7 @@ export function makeIsEmpty<CallerType>(
 	mods: STRuleModifiers
 ): STOpIsEmpty<CallerType> {
 	return (): CallerType => {
-		const fn: STRuleFn = (curr: any[] | string): boolean => {
+		const fn: STRuleFn<unknown[] | string> = (curr: unknown[] | string): boolean => {
 			return emptyFn(curr);
 		};
 

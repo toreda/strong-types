@@ -21,11 +21,11 @@ export function makeHasProperty<CallerType>(
 	mods: STRuleModifiers
 ): STOpIsProperty<CallerType> {
 	return (propName: string): CallerType => {
-		const fn: STRuleFn = (curr: any) => {
+		const fn: STRuleFn<unknown> = (curr: unknown) => {
 			return hasProperty(curr, propName);
 		};
 
-		const node = new STRuleNode('IS_PROPERTY', STRuleNodeType.CMP, fn, mods.invert);
+		const node = new STRuleNode<unknown>('IS_PROPERTY', STRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

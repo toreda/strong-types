@@ -61,11 +61,11 @@ export function makeIsIpv6Addr<CallerType>(
 	mods: STRuleModifiers
 ): STOpIsIpv6Addr<CallerType> {
 	return (): CallerType => {
-		const fn: STRuleFn = (curr: string): boolean => {
+		const fn: STRuleFn<string> = (curr: string): boolean => {
 			return isIpv6Addr(curr);
 		};
 
-		const node = new STRuleNode('IS_IP6_ADDR', STRuleNodeType.CMP, fn, mods.invert);
+		const node = new STRuleNode<string>('IS_IP6_ADDR', STRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

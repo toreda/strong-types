@@ -1,8 +1,9 @@
-import {StrongMap} from '../map';
 import {StrongDouble, makeDouble} from '../types/double';
 
+import {StrongMap} from '../map';
+
 export class StrongVec1 extends StrongMap {
-	public x: StrongDouble;
+	public readonly x: StrongDouble;
 
 	constructor(x: number | null) {
 		super();

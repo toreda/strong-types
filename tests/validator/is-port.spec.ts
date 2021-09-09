@@ -2,6 +2,8 @@ import {STRule} from '../../src/rule/rule';
 import {STRuleModifiers} from '../../src/rule/modifiers';
 import {makeIsPort} from '../../src/validator/is-port';
 
+const EMPTY_ARRAY: string[] = [];
+
 describe('IsPort', () => {
 	let mods: STRuleModifiers;
 
@@ -94,12 +96,11 @@ describe('IsPort', () => {
 
 		it('should return false when curr is an empty array', () => {
 			const rule = new STRule();
-			const curr = [];
 
 			const fn = makeIsPort<STRule>(rule, rule, mods);
 			fn();
 
-			expect(rule.nodes[0].execute(curr)).toBe(false);
+			expect(rule.nodes[0].execute(EMPTY_ARRAY)).toBe(false);
 		});
 	});
 });

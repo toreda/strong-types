@@ -74,7 +74,7 @@ describe('LengthGreaterThan', () => {
 		it('should return true when the target length is equal to the current length when the current value is an array', () => {
 			const rule = new STRule();
 			const target = 2;
-			const curr = ['dog', 'cat'];
+			const curr: string[] = ['dog', 'cat'];
 			const fn = makeHasLengthGreaterThan<STRule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
@@ -83,7 +83,7 @@ describe('LengthGreaterThan', () => {
 		it('should return false when the target length is greater than the current length when the current value is an array', () => {
 			const rule = new STRule();
 			const target = 8;
-			const curr = ['one', 'two', 'three'];
+			const curr: string[] = ['one', 'two', 'three'];
 
 			const fn = makeHasLengthGreaterThan<STRule>(rule, rule, mods);
 			fn(target);
@@ -93,7 +93,7 @@ describe('LengthGreaterThan', () => {
 		it('should return false when the current value is an empty array', () => {
 			const rule = new STRule();
 			const target = 2;
-			const curr = [];
+			const curr: string[] = [];
 
 			const fn = makeHasLengthGreaterThan<STRule>(rule, rule, mods);
 			fn(target);

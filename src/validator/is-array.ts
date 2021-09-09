@@ -12,11 +12,11 @@ export function makeIsArray<CallerType>(
 	mods: STRuleModifiers
 ): STOpIsArray<CallerType> {
 	return (): CallerType => {
-		const fn: STRuleFn = (curr: any[]): boolean => {
+		const fn: STRuleFn<unknown[]> = (curr: unknown[]): boolean => {
 			return Array.isArray(curr);
 		};
 
-		const node = new STRuleNode('IS_T_ARRAY', STRuleNodeType.CMP, fn, mods.invert);
+		const node = new STRuleNode<unknown[]>('IS_T_ARRAY', STRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

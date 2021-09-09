@@ -24,11 +24,11 @@ export function makeIsDouble<CallerType>(
 	mods: STRuleModifiers
 ): STOpIsDouble<CallerType> {
 	return (): CallerType => {
-		const fn: STRuleFn = (curr: number): boolean => {
+		const fn: STRuleFn<number> = (curr: number): boolean => {
 			return isDouble(curr);
 		};
 
-		const node = new STRuleNode('IS_T_DOUBLE', STRuleNodeType.CMP, fn, mods.invert);
+		const node = new STRuleNode<number>('IS_T_DOUBLE', STRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

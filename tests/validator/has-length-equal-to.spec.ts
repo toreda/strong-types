@@ -24,7 +24,7 @@ describe('LengthEqualTo', () => {
 		it('should return true when the target length is equal to the current length when the current value is an array', () => {
 			const rule = new STRule();
 			const target = 2;
-			const curr = ['dog', 'cat'];
+			const curr: string[] = ['dog', 'cat'];
 			const fn = makeHasLengthEqualTo<STRule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
@@ -43,7 +43,7 @@ describe('LengthEqualTo', () => {
 		it('should return true when the target and the curr values are equal', () => {
 			const rule = new STRule();
 			const target = 0;
-			const curr = [];
+			const curr: string[] = [];
 
 			const fn = makeHasLengthEqualTo<STRule>(rule, rule, mods);
 			fn(target);
@@ -85,7 +85,7 @@ describe('LengthEqualTo', () => {
 		it('should return false when the current value is an empty array', () => {
 			const rule = new STRule();
 			const target = 2;
-			const curr = [];
+			const curr: string[] = [];
 
 			const fn = makeHasLengthEqualTo<STRule>(rule, rule, mods);
 			fn(target);

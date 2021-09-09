@@ -3,6 +3,8 @@ import {STOpIsEmpty, makeIsEmpty} from '../../src/validator/is-empty';
 import {STRule} from '../../src/rule/rule';
 import {STRuleModifiers} from '../../src/rule/modifiers';
 
+const EMPTY_ARRAY: string[] = [];
+
 describe('empty', () => {
 	let mods: STRuleModifiers;
 
@@ -28,8 +30,9 @@ describe('empty', () => {
 
 		it('should return false when input is an empty array and mods.invert is true', () => {
 			const rule = new STRule();
-			const value = [];
+			const value: string[] = [];
 			mods.invert = true;
+
 			const fn = makeIsEmpty<STRule>(rule, rule, mods);
 			fn(value);
 			expect(rule.nodes[0].execute(value)).toBe(false);
@@ -73,16 +76,15 @@ describe('empty', () => {
 
 		it('should return true when input is an empty array', () => {
 			const rule = new STRule();
-			const value = [];
 
 			const fn = makeIsEmpty<STRule>(rule, rule, mods);
-			fn(value);
-			expect(rule.nodes[0].execute(value)).toBe(true);
+			fn(EMPTY_ARRAY);
+			expect(rule.nodes[0].execute(EMPTY_ARRAY)).toBe(true);
 		});
 
 		it('should return false when input is a non-empty arrya', () => {
 			const rule = new STRule();
-			const value = ['a', 'b', 'c'];
+			const value: string[] = ['a', 'b', 'c'];
 
 			const fn = makeIsEmpty<STRule>(rule, rule, mods);
 			fn(value);

@@ -24,11 +24,11 @@ export function makeIsLessThan<CallerType>(
 	mods: STRuleModifiers
 ): STOpIsLessThan<CallerType> {
 	return (target: number): CallerType => {
-		const fn: STRuleFn = (curr: number) => {
+		const fn: STRuleFn<number> = (curr: number) => {
 			return lessThanFn(curr, target);
 		};
 
-		const node = new STRuleNode('IS_LT', STRuleNodeType.CMP, fn, mods.invert);
+		const node = new STRuleNode<number>('IS_LT', STRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

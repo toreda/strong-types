@@ -35,11 +35,11 @@ export function makeIsTime<CallerType>(
 	mods: STRuleModifiers
 ): STOpIsTime<CallerType> {
 	return (): CallerType => {
-		const fn: STRuleFn = (curr: string): boolean => {
+		const fn: STRuleFn<string> = (curr: string): boolean => {
 			return isTime(curr);
 		};
 
-		const node = new STRuleNode('IS_TIME', STRuleNodeType.CMP, fn, mods.invert);
+		const node = new STRuleNode<string>('IS_TIME', STRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

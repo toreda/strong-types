@@ -1,17 +1,16 @@
 import {STRuleNode} from '../../src/rule/node';
 import {STRuleNodeType} from '../../src/rule/node-type';
 
-const EMPTY_ARRAY = [];
 const MOCK_ID = 'AA410912CC_11';
 const MOCK_VALUE_STR = 'random-sample-str';
 const MOCK_FN_UNDEFINED = undefined;
 const MOCK_FN_NULL = null;
 
 describe('STRuleNode', () => {
-	let instance: STRuleNode;
+	let instance: STRuleNode<string>;
 
 	beforeAll(() => {
-		instance = new STRuleNode(MOCK_ID, STRuleNodeType.OP, null);
+		instance = new STRuleNode(MOCK_ID, STRuleNodeType.OP, null as any);
 	});
 
 	beforeEach(() => {
@@ -21,22 +20,22 @@ describe('STRuleNode', () => {
 	describe('Constructor', () => {
 		it('should initialize id property using id argument', () => {
 			const sampleId = '22220AAA';
-			const custom = new STRuleNode(sampleId, STRuleNodeType.OP, null);
+			const custom = new STRuleNode<string>(sampleId, STRuleNodeType.OP, null as any);
 			expect(custom.id).toBe(sampleId);
 		});
 
 		it('should initialize children property to empty array', () => {
-			const custom = new STRuleNode(MOCK_ID, STRuleNodeType.OP, null);
+			const custom = new STRuleNode<string>(MOCK_ID, STRuleNodeType.OP, null as any);
 			expect(custom.children).toEqual([]);
 		});
 
 		it('should initialize fn property to null when fn argument is null', () => {
-			const custom = new STRuleNode(MOCK_ID, STRuleNodeType.OP, MOCK_FN_NULL);
+			const custom = new STRuleNode<string>(MOCK_ID, STRuleNodeType.OP, MOCK_FN_NULL as any);
 			expect(custom.fn).toBeNull();
 		});
 
 		it('should initialize invertResult property to false', () => {
-			const custom = new STRuleNode(MOCK_ID, STRuleNodeType.OP, MOCK_FN_NULL);
+			const custom = new STRuleNode<string>(MOCK_ID, STRuleNodeType.OP, MOCK_FN_NULL as any);
 			expect(custom.invertResult).toBe(false);
 		});
 	});
@@ -45,25 +44,25 @@ describe('STRuleNode', () => {
 		describe('execute', () => {
 			it('should not throw when no fn is set and node type is CMP', () => {
 				expect(() => {
-					const custom = new STRuleNode(MOCK_ID, STRuleNodeType.CMP, null);
+					const custom = new STRuleNode<string>(MOCK_ID, STRuleNodeType.CMP, null as any);
 					custom.execute('random_value1');
 				}).not.toThrow();
 			});
 
 			it('should return false when no fn is set and node type is CMP', () => {
-				const custom = new STRuleNode(MOCK_ID, STRuleNodeType.CMP, null);
+				const custom = new STRuleNode<string>(MOCK_ID, STRuleNodeType.CMP, null as any);
 				expect(custom.execute('random_value1')).toBe(false);
 			});
 
 			it('should not throw when no fn is set and node type is OP', () => {
 				expect(() => {
-					const custom = new STRuleNode(MOCK_ID, STRuleNodeType.OP, null);
+					const custom = new STRuleNode<string>(MOCK_ID, STRuleNodeType.OP, null as any);
 					custom.execute(MOCK_VALUE_STR);
 				}).not.toThrow();
 			});
 
 			it('should return false when no fn is set and node type is OP', () => {
-				const custom = new STRuleNode(MOCK_ID, STRuleNodeType.OP, null);
+				const custom = new STRuleNode<string>(MOCK_ID, STRuleNodeType.OP, null as any);
 				expect(custom.execute(MOCK_VALUE_STR)).toBe(false);
 			});
 
@@ -78,7 +77,7 @@ describe('STRuleNode', () => {
 					return true;
 				});
 
-				const custom = new STRuleNode(MOCK_ID, STRuleNodeType.OP, fn);
+				const custom = new STRuleNode<string>(MOCK_ID, STRuleNodeType.OP, fn);
 				expect(custom.execute(MOCK_VALUE_STR)).toBe(true);
 			});
 
@@ -88,7 +87,7 @@ describe('STRuleNode', () => {
 					return true;
 				});
 
-				const custom = new STRuleNode(MOCK_ID, STRuleNodeType.OP, fn);
+				const custom = new STRuleNode<string>(MOCK_ID, STRuleNodeType.OP, fn);
 				custom.invertResult = true;
 				expect(custom.execute(MOCK_VALUE_STR)).toBe(false);
 			});
@@ -99,7 +98,7 @@ describe('STRuleNode', () => {
 					return false;
 				});
 
-				const custom = new STRuleNode(MOCK_ID, STRuleNodeType.OP, fn);
+				const custom = new STRuleNode<string>(MOCK_ID, STRuleNodeType.OP, fn);
 				expect(custom.execute(MOCK_VALUE_STR)).toBe(false);
 			});
 

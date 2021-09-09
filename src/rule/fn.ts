@@ -1,1 +1,1 @@
-export type STRuleFn = (curr: any) => boolean;
+export type STRuleFn<T> = (curr: T) => boolean;

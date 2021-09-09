@@ -1,7 +1,7 @@
-import {StrongMapJsonifier as Jsonifier} from 'src/map/jsonifier';
-import {StrongMapJsonifierState as State} from 'src/map/jsonifier/state';
-import {makeString} from 'src/types/string';
+import {StrongMapJsonifier as Jsonifier} from '../../src/map/jsonifier';
+import {StrongMapJsonifierState as State} from '../../src/map/jsonifier/state';
 import {TestMap} from './test-map';
+import {makeString} from '../../src/types/string';
 
 describe('Jsonifier', () => {
 	const instance = new Jsonifier();

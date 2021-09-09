@@ -49,7 +49,7 @@ describe('HasPropertyWithType', () => {
 
 		it('should return true when the object is equal to an empty array', () => {
 			const rule = new STRule();
-			const obj = [];
+			const obj: string[] = [];
 			const propName = 'age';
 			const typeName = 'string';
 

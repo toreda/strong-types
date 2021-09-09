@@ -27,7 +27,7 @@ describe('STBoolean', () => {
 
 		it('should return true when input is an empty array and mods.invert is true', () => {
 			const rule = new STRule();
-			const value = [];
+			const value: boolean[] = [];
 			mods.invert = true;
 			const fn = makeIsBoolean<STRule>(rule, rule, mods);
 			fn();
@@ -36,7 +36,7 @@ describe('STBoolean', () => {
 
 		it('should return false when input is a non-empty string', () => {
 			const rule = new STRule();
-			const value = 'aaaaaaaaa';
+			const value: string = 'aaaaaaaaa';
 
 			const fn = makeIsBoolean<STRule>(rule, rule, mods);
 			fn();
@@ -45,7 +45,7 @@ describe('STBoolean', () => {
 
 		it('should return true when input is a boolean (false)', () => {
 			const rule = new STRule();
-			const value = false;
+			const value: boolean = false;
 
 			const fn = makeIsBoolean<STRule>(rule, rule, mods);
 			fn();
@@ -54,7 +54,7 @@ describe('STBoolean', () => {
 
 		it('should return false when input is a boolean (false) and invert flag is active', () => {
 			const rule = new STRule();
-			const value = false;
+			const value: boolean = false;
 			mods.invert = true;
 
 			const fn = makeIsBoolean<STRule>(rule, rule, mods);
@@ -92,7 +92,7 @@ describe('STBoolean', () => {
 
 		it('should return false when input is an empty array', () => {
 			const rule = new STRule();
-			const value = [];
+			const value: string[] = [];
 
 			const fn = makeIsBoolean<STRule>(rule, rule, mods);
 			fn();

@@ -34,11 +34,11 @@ export function makeIsPort<CallerType>(
 	mods: STRuleModifiers
 ): STOpIsPort<CallerType> {
 	return (): CallerType => {
-		const fn: STRuleFn = (curr: number): boolean => {
+		const fn: STRuleFn<number> = (curr: number): boolean => {
 			return isPort(curr);
 		};
 
-		const node = new STRuleNode('IS_PORT', STRuleNodeType.CMP, fn, mods.invert);
+		const node = new STRuleNode<number>('IS_PORT', STRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

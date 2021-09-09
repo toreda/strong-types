@@ -20,11 +20,11 @@ export function makeIsGreaterThanOrEqualTo<CallerType>(
 	mods: STRuleModifiers
 ): STOpIsGreaterThanOrEqualTo<CallerType> {
 	return (target: number): CallerType => {
-		const fn: STRuleFn = (curr: number) => {
+		const fn: STRuleFn<number> = (curr: number) => {
 			return greaterThanOrEqualToFn(curr, target);
 		};
 
-		const node = new STRuleNode('IS_GT_OR_EQT', STRuleNodeType.CMP, fn, mods.invert);
+		const node = new STRuleNode<number>('IS_GT_OR_EQT', STRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

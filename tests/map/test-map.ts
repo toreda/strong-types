@@ -1,15 +1,16 @@
-import {StrongMap} from 'src/map';
-import {StrongInt, makeInt} from 'src/types/int';
-import {StrongString, makeString} from 'src/types/string';
+import {StrongInt, makeInt} from '../../src/types/int';
+import {StrongString, makeString} from '../../src/types/string';
+
+import {StrongMap} from '../../src/map';
 
 export class TestMap extends StrongMap {
 	intProp?: StrongInt;
 	stringProp?: StrongString;
-	arrayProp?: any[];
-	objectProp?: Record<string, any>;
+	arrayProp?: unknown[];
+	objectProp?: Record<string, unknown>;
 	strongMapProp?: TestMap;
 
-	constructor(json: any) {
+	constructor(json: unknown) {
 		super();
 
 		if (json.intProp) this.intProp = makeInt(json.intProp);

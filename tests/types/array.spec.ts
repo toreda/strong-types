@@ -13,22 +13,23 @@ describe('StrongArray', () => {
 		});
 
 		it('should set value when called with an array', () => {
-			const result = makeArray(MOCK_INITIAL, null);
-			const sampleValue = ['hog'];
+			const initial = ['aa', 'bb', '1491741'];
+			const result = makeArray<string>(initial, null);
+			const sampleValue: string[] = ['hog'];
 			result(sampleValue);
 			expect(result()).toBe(sampleValue);
 		});
 
 		it('should set value when called with an empty array', () => {
-			const result = makeArray(MOCK_FALLBACK, null);
-			const sampleValue = [];
+			const result = makeArray<number>(MOCK_FALLBACK, null);
+			const sampleValue: number[] = [];
 			result(sampleValue);
 			expect(result()).toBe(sampleValue);
 		});
 
 		it('should return fallback default when value is null', () => {
-			const sampleFallback = ['fox'];
-			const result = makeArray(sampleFallback, null);
+			const sampleFallback: string[] = ['fox'];
+			const result = makeArray<string>(sampleFallback, null);
 			expect(result()).toBe(sampleFallback);
 		});
 

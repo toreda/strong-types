@@ -2,18 +2,18 @@ import {STRuleNode} from './node';
 import {STRuleNodeType} from './node-type';
 
 export class STRule {
-	public readonly nodes: STRuleNode[];
+	public readonly nodes: STRuleNode<unknown>[];
 
 	constructor() {
 		this.nodes = [];
 	}
 
-	public add(node: STRuleNode): void {
+	public add<NodeT>(node: STRuleNode<NodeT>): void {
 		if (node.type !== STRuleNodeType.CMP) {
 			return;
 		}
 
-		this.nodes.push(node);
+		this.nodes.push(node as STRuleNode<unknown>);
 	}
 
 	public run(value: any | null): boolean {

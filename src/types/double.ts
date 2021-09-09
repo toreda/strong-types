@@ -1,7 +1,6 @@
-import {StrongType, makeStrong} from '../strong-type';
-
 import {STRules} from '../rules';
 import {StrongNumber} from '../strong-number';
+import {makeStrong} from '../strong-type';
 
 export type StrongDouble = StrongNumber;
 

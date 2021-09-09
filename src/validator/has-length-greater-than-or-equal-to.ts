@@ -7,7 +7,7 @@ import {greaterThanOrEqualToFn} from './is-greater-than-or-equal-to';
 
 export type STOpHasLengthGreaterThanOrEqualTo<CallerType> = (a: number) => CallerType;
 
-export const hasLengthGreaterThanOrEqualTo = (curr: any, target: number): boolean => {
+export const hasLengthGreaterThanOrEqualTo = (curr: unknown[] | string, target: number): boolean => {
 	if (typeof curr.length !== 'number') {
 		return false;
 	}
@@ -25,11 +25,16 @@ export function makeHasLengthGreaterThanOrEqualTo<CallerType>(
 	mods: STRuleModifiers
 ): STOpHasLengthGreaterThanOrEqualTo<CallerType> {
 	return (target: number): CallerType => {
-		const fn: STRuleFn = (curr: any) => {
+		const fn: STRuleFn<unknown[] | string> = (curr: unknown[] | string) => {
 			return hasLengthGreaterThanOrEqualTo(curr, target);
 		};
 
-		const node = new STRuleNode('HAS_LENGTH_GRT_OR_EQL', STRuleNodeType.CMP, fn, mods.invert);
+		const node = new STRuleNode<unknown[] | string>(
+			'HAS_LENGTH_GRT_OR_EQL',
+			STRuleNodeType.CMP,
+			fn,
+			mods.invert
+		);
 		rule.add(node);
 
 		return caller;

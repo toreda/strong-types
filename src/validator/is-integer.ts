@@ -20,11 +20,11 @@ export function makeIsInteger<CallerType>(
 	mods: STRuleModifiers
 ): STOpIsInteger<CallerType> {
 	return (): CallerType => {
-		const fn: STRuleFn = (curr: number): boolean => {
+		const fn: STRuleFn<number> = (curr: number): boolean => {
 			return isInteger(curr);
 		};
 
-		const node = new STRuleNode('IS_T_INT', STRuleNodeType.CMP, fn, mods.invert);
+		const node = new STRuleNode<number>('IS_T_INT', STRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

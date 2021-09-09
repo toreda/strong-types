@@ -1,5 +1,5 @@
-import {StrongMap} from 'src/map';
-import {StrongVec1} from 'src/map/vec1';
+import {StrongMap} from '../../src/map';
+import {StrongVec1} from '../../src/map/vec1';
 
 describe('StrongVec1', () => {
 	describe('Constructor', () => {

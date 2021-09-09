@@ -7,7 +7,7 @@ import {lessThanOrEqualToFn} from './is-less-than-or-equal-to';
 
 export type STOpHasLengthLessThanOrEqualTo<CallerType> = (a: number) => CallerType;
 
-export const hasLengthLessThanOrEqualTo = (curr: any, target: number): boolean => {
+export const hasLengthLessThanOrEqualTo = (curr: unknown[] | string, target: number): boolean => {
 	if (typeof curr.length !== 'number') {
 		return false;
 	}
@@ -25,11 +25,16 @@ export function makeHasLengthLessThanOrEqualTo<CallerType>(
 	mods: STRuleModifiers
 ): STOpHasLengthLessThanOrEqualTo<CallerType> {
 	return (target: number): CallerType => {
-		const fn: STRuleFn = (curr: any) => {
+		const fn: STRuleFn<unknown[] | string> = (curr: unknown[] | string) => {
 			return hasLengthLessThanOrEqualTo(curr, target);
 		};
 
-		const node = new STRuleNode('HAS_LENGTH_LESS_OR_EQL', STRuleNodeType.CMP, fn, mods.invert);
+		const node = new STRuleNode<unknown[] | string>(
+			'HAS_LENGTH_LESS_OR_EQL',
+			STRuleNodeType.CMP,
+			fn,
+			mods.invert
+		);
 		rule.add(node);
 
 		return caller;

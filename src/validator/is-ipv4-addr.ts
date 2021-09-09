@@ -53,7 +53,7 @@ export function makeIsIpv4Addr<CallerType>(
 	mods: STRuleModifiers
 ): STOpIsIpv4Addr<CallerType> {
 	return (): CallerType => {
-		const fn: STRuleFn = (curr: string): boolean => {
+		const fn: STRuleFn<string> = (curr: string): boolean => {
 			return isIpv4Addr(curr);
 		};
 

@@ -61,7 +61,7 @@ describe('LengthLessThanOrEqualTo', () => {
 		it('should return true when the current value is is less than or equal to the target value', () => {
 			const rule = new STRule();
 			const target = 2;
-			const curr = [];
+			const curr: string[] = [];
 
 			const fn = makeHasLengthLessThanOrEqualTo<STRule>(rule, rule, mods);
 			fn(target);

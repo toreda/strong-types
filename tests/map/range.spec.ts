@@ -1,5 +1,5 @@
-import {StrongMap} from 'src/map';
-import {StrongRange} from 'src/map/range';
+import {StrongMap} from '../../src/map';
+import {StrongRange} from '../../src/map/range';
 
 describe('StrongRange', () => {
 	describe('Constructor', () => {

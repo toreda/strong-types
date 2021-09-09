@@ -16,7 +16,7 @@ export function makeIsBoolean<CallerType>(
 	mods: STRuleModifiers
 ): STOpIsBoolean<CallerType> {
 	return (): CallerType => {
-		const fn: STRuleFn = (curr: null | boolean): boolean => {
+		const fn: STRuleFn<boolean | null> = (curr: boolean | null): boolean => {
 			return isBooleanFn(curr);
 		};
 

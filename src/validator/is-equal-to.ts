@@ -35,8 +35,8 @@ export function makeIsEqualTo<CallerType>(
 	rule: STRule,
 	mods: STRuleModifiers
 ): STOpIsEqualTo<CallerType> {
-	return (target: any): CallerType => {
-		const fn: STRuleFn = (curr: any): boolean => {
+	return (target: unknown): CallerType => {
+		const fn: STRuleFn<unknown> = (curr: unknown): boolean => {
 			return equalToFn(curr, target);
 		};
 		const node = new STRuleNode('IS_EQ', STRuleNodeType.CMP, fn, mods.invert);

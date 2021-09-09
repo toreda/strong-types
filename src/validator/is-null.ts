@@ -12,11 +12,11 @@ export function makeIsNull<CallerType>(
 	mods: STRuleModifiers
 ): STOpIsNull<CallerType> {
 	return (): CallerType => {
-		const fn: STRuleFn = (curr: any): boolean => {
+		const fn: STRuleFn<unknown | null> = (curr?: unknown | null): boolean => {
 			return curr === null;
 		};
 
-		const node = new STRuleNode('IS_NULL', STRuleNodeType.CMP, fn, mods.invert);
+		const node = new STRuleNode<unknown | null>('IS_NULL', STRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

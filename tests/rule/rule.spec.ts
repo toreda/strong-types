@@ -2,7 +2,7 @@ import {STRule} from '../../src/rule/rule';
 import {STRuleNode} from '../../src/rule/node';
 import {STRuleNodeType} from '../../src/rule/node-type';
 
-const EMPTY_ARRAY = [];
+const EMPTY_ARRAY: unknown[] = [];
 
 describe('STRule', () => {
 	describe('Constructor', () => {

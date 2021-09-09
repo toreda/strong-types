@@ -80,11 +80,11 @@ export function makeIsDateTime<CallerType>(
 	mods: STRuleModifiers
 ): STOpIsDateTime<CallerType> {
 	return (): CallerType => {
-		const fn: STRuleFn = (curr: string): boolean => {
+		const fn: STRuleFn<string> = (curr: string): boolean => {
 			return isDateTime(curr);
 		};
 
-		const node = new STRuleNode('IS_DATE_TIME', STRuleNodeType.CMP, fn, mods.invert);
+		const node = new STRuleNode<string>('IS_DATE_TIME', STRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

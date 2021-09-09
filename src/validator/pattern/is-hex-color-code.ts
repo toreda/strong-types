@@ -65,11 +65,11 @@ export function createIsHexColorCode<CallerType>(
 	mods: STRuleModifiers
 ): STOpIsHexColorCode<CallerType> {
 	return (): CallerType => {
-		const fn: STRuleFn = (curr: string): boolean => {
+		const fn: STRuleFn<string> = (curr: string): boolean => {
 			return isHexColorFn(curr);
 		};
 
-		const node = new STRuleNode('IS_HEX_COLOR_CODE', STRuleNodeType.CMP, fn, mods.invert);
+		const node = new STRuleNode<string>('IS_HEX_COLOR_CODE', STRuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

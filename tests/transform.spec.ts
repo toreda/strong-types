@@ -1,4 +1,5 @@
 import {STTransform} from '../src/transform';
+import {STTransformFN} from '../src/transform-fn';
 
 describe('STTransform', () => {
 	describe('Constructor', () => {
@@ -9,9 +10,14 @@ describe('STTransform', () => {
 		});
 
 		it('should set id when provided in options argument', () => {
-			const fn = (value: string): string => {
+			const fn: STTransformFN<string> = (value: string | null): string => {
+				if (value === null) {
+					return '';
+				}
+
 				return value;
 			};
+
 			const sampleId = 'AAA_@@@@@33321__334';
 			const custom = new STTransform<string>(fn, {
 				id: sampleId

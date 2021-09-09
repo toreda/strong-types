@@ -7,7 +7,7 @@ import {equalToFn} from './is-equal-to';
 
 export type STOpHasLengthEqualTo<CallerType> = (a: number) => CallerType;
 
-export const hasLengthEqualTo = (curr: any, target: number): boolean => {
+export const hasLengthEqualTo = (curr: unknown[] | string, target: number): boolean => {
 	if (typeof curr.length !== 'number') {
 		return false;
 	}
@@ -25,11 +25,16 @@ export function makeHasLengthEqualTo<CallerType>(
 	mods: STRuleModifiers
 ): STOpHasLengthEqualTo<CallerType> {
 	return (target: number): CallerType => {
-		const fn: STRuleFn = (curr: any) => {
+		const fn: STRuleFn<unknown[] | string> = (curr: unknown[] | string) => {
 			return hasLengthEqualTo(curr, target);
 		};
 
-		const node = new STRuleNode('HAS_LENGTH_EQL', STRuleNodeType.CMP, fn, mods.invert);
+		const node = new STRuleNode<unknown[] | string>(
+			'HAS_LENGTH_EQL',
+			STRuleNodeType.CMP,
+			fn,
+			mods.invert
+		);
 		rule.add(node);
 
 		return caller;

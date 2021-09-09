@@ -6,7 +6,7 @@ import {STRuleNodeType} from '../rule/node-type';
 
 export type STOpIsLength<CallerType> = (a: number) => CallerType;
 
-export const isLengthFn = (curr: any, expectedLength: number): boolean => {
+export const isLengthFn = (curr: unknown[] | string, expectedLength: number): boolean => {
 	if (!Array.isArray(curr) && typeof curr !== 'number' && typeof curr !== 'string') {
 		return false;
 	}
@@ -28,7 +28,7 @@ export function makeIsLength<CallerType>(
 	mods: STRuleModifiers
 ): STOpIsLength<CallerType> {
 	return (expectedLength: number): CallerType => {
-		const fn: STRuleFn = (curr: any): boolean => {
+		const fn: STRuleFn<unknown[] | string> = (curr: unknown[] | string): boolean => {
 			return isLengthFn(curr, expectedLength);
 		};
 

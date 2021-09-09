@@ -118,7 +118,7 @@ describe('Double', () => {
 
 		it('should return false when curr is an empty array (non-number)', () => {
 			const rule = new STRule();
-			const curr = [];
+			const curr: string[] = [];
 
 			const fn = makeIsDouble<STRule>(rule, rule, mods);
 			fn();

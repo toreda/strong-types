@@ -11,9 +11,10 @@ module.exports = {
 	],
 	moduleFileExtensions: ['ts', 'js', 'json'],
 	moduleNameMapper: {'^src/(.*)': '<rootDir>/src/$1'},
-	testEnvironment: 'node',
+	testEnvironment: 'jsdom',
 	testPathIgnorePatterns: ['/node_modules/'],
 	testRegex: '(/__tests__/.*|(\\.|/)(spec))\\.ts$',
 	testResultsProcessor: 'jest-sonar-reporter',
-	transform: {'^.+\\.tsx?$': 'ts-jest'}
+	transform: {'^.+\\.tsx?$': 'ts-jest', '^.+\\.jsx?$': 'babel-jest'},
+	transformIgnorePatterns: ['node_modules/(?!@ngrx|(?!deck.gl)|ng-dynamic)']
 };

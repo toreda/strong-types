@@ -20,7 +20,7 @@ export function makeIsLessThanOrEqualTo<CallerType>(
 	mods: STRuleModifiers
 ): STOpIsLessThanOrEqualTo<CallerType> {
 	return (target: number): CallerType => {
-		const ruleFn: STRuleFn = (curr: number) => {
+		const ruleFn: STRuleFn<number> = (curr: number) => {
 			return lessThanOrEqualToFn(curr, target);
 		};
 

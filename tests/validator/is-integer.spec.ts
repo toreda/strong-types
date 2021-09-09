@@ -2,6 +2,8 @@ import {STRule} from '../../src/rule/rule';
 import {STRuleModifiers} from '../../src/rule/modifiers';
 import {makeIsInteger} from '../../src/validator/is-integer';
 
+const EMPTY_ARRAY: string[] = [];
+
 describe('Integer', () => {
 	let mods: STRuleModifiers;
 
@@ -108,12 +110,11 @@ describe('Integer', () => {
 
 		it('should return false when curr is an empty array (non-number)', () => {
 			const rule = new STRule();
-			const curr = [];
 
 			const fn = makeIsInteger<STRule>(rule, rule, mods);
 			fn();
 
-			expect(rule.nodes[0].execute(curr)).toBe(false);
+			expect(rule.nodes[0].execute(EMPTY_ARRAY)).toBe(false);
 		});
 	});
 });

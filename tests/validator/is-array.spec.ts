@@ -18,7 +18,7 @@ describe('IsArray', () => {
 	describe('Usage', () => {
 		it('should return true when input is an empty array', () => {
 			const rule = new STRule();
-			const value = [];
+			const value: string[] = [];
 
 			const fn = makeIsArray<STRule>(rule, rule, mods);
 			fn();
@@ -27,7 +27,7 @@ describe('IsArray', () => {
 
 		it('should return true when input is a non-empty array', () => {
 			const rule = new STRule();
-			const value = ['a', 'b', 'c'];
+			const value: string[] = ['a', 'b', 'c'];
 
 			const fn = makeIsArray<STRule>(rule, rule, mods);
 			fn();
@@ -36,7 +36,7 @@ describe('IsArray', () => {
 
 		it('should return false when input is an empty array and invert flag is active', () => {
 			const rule = new STRule();
-			const value = [];
+			const value: string[] = [];
 			mods.invert = true;
 
 			const fn = makeIsArray<STRule>(rule, rule, mods);

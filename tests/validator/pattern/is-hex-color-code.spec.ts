@@ -4,7 +4,7 @@ import {STRule} from '../../../src/rule/rule';
 import {STRuleModifiers} from '../../../src/rule/modifiers';
 
 const EMPTY_STRING = '';
-const EMPTY_ARRAY = [];
+const EMPTY_ARRAY: string[] = [];
 const EMPTY_OBJECT = {};
 
 const TEST_INPUTS = [

@@ -1,7 +1,5 @@
 export {StrongType, makeStrong} from './strong-type';
 
-// Type Box Components
-export {STConfig} from './config';
 export {STData} from './data';
 export {STOptions} from './options';
 export {STState} from './state';

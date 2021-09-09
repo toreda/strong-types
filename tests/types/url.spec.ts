@@ -1,4 +1,4 @@
-import {StrongUrl, makeUrl} from '../../src/types/url';
+import {makeUrl} from '../../src/types/url';
 
 const MOCK_FALLBACK_DEFAULT = 'Http://somedomain.com';
 const MOCK_FALLBACK = 'Wss://somedomain.com:8080';

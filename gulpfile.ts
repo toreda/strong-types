@@ -1,10 +1,18 @@
 import {series, src} from 'gulp';
 
-import {BuildTools} from '@toreda/build-tools';
+import {Build} from '@toreda/build-tools';
 import {EventEmitter} from 'events';
+import {Log} from '@toreda/log';
+
 const eslint = require('gulp-eslint');
 
-const build: BuildTools = new BuildTools(new EventEmitter());
+const events = new EventEmitter();
+const log = new Log();
+
+const build: Build = new Build({
+	log: log,
+	events: events
+});
 
 function runLint() {
 	return (
@@ -22,11 +30,11 @@ function runLint() {
 }
 
 function createDist() {
-	return build.steps.createDir('./dist');
+	return build.gulpSteps.createDir('./dist', true);
 }
 
 function cleanDist() {
-	return build.steps.cleaner.dir('./dist');
+	return build.gulpSteps.cleanDir('./dist', true);
 }
 
 function buildSrc() {
