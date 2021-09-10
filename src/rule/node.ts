@@ -22,10 +22,6 @@ export class STRuleNode<T> {
 	}
 
 	public execute(value: T): boolean {
-		if (!this.fn) {
-			return false;
-		}
-
 		const result = this.fn(value);
 		if (!this.invertResult) {
 			return result;

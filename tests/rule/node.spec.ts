@@ -1,3 +1,4 @@
+import {STRuleFn} from '../../src/rule/fn';
 import {STRuleNode} from '../../src/rule/node';
 import {STRuleNodeType} from '../../src/rule/node-type';
 
@@ -8,9 +9,13 @@ const MOCK_FN_NULL = null;
 
 describe('STRuleNode', () => {
 	let instance: STRuleNode<string>;
+	let sampleFn: jest.MockedFunction<STRuleFn<string>>;
 
 	beforeAll(() => {
-		instance = new STRuleNode(MOCK_ID, STRuleNodeType.OP, null as any);
+		sampleFn = jest.fn().mockImplementation((curr: string): string => {
+			return curr;
+		});
+		instance = new STRuleNode<string>(MOCK_ID, STRuleNodeType.OP, sampleFn);
 	});
 
 	beforeEach(() => {
@@ -18,59 +23,46 @@ describe('STRuleNode', () => {
 	});
 
 	describe('Constructor', () => {
+		let ctorInstance: STRuleNode<string>;
+		let ctorId: string;
+
+		beforeAll(() => {
+			ctorId = '22220AAA';
+			ctorInstance = new STRuleNode<string>(ctorId, STRuleNodeType.CMP, sampleFn);
+		});
+
 		it('should initialize id property using id argument', () => {
-			const sampleId = '22220AAA';
-			const custom = new STRuleNode<string>(sampleId, STRuleNodeType.OP, null as any);
-			expect(custom.id).toBe(sampleId);
+			expect(ctorInstance.id).toBe(ctorId);
 		});
 
 		it('should initialize children property to empty array', () => {
-			const custom = new STRuleNode<string>(MOCK_ID, STRuleNodeType.OP, null as any);
-			expect(custom.children).toEqual([]);
+			expect(ctorInstance.children).toEqual([]);
 		});
 
-		it('should initialize fn property to null when fn argument is null', () => {
-			const custom = new STRuleNode<string>(MOCK_ID, STRuleNodeType.OP, MOCK_FN_NULL as any);
-			expect(custom.fn).toBeNull();
+		it('should throw when fn property is null', () => {
+			expect(() => {
+				const custom = new STRuleNode<string>(MOCK_ID, STRuleNodeType.OP, null as any);
+			}).toThrow(`Bad rule init - fn arg is not a function.`);
 		});
 
-		it('should initialize invertResult property to false', () => {
-			const custom = new STRuleNode<string>(MOCK_ID, STRuleNodeType.OP, MOCK_FN_NULL as any);
+		it('should initialize invertResult property to false when not set', () => {
+			const custom = new STRuleNode<string>(MOCK_ID, STRuleNodeType.OP, sampleFn);
 			expect(custom.invertResult).toBe(false);
+		});
+
+		it('should initialize invertResult property to false when invert arg is false', () => {
+			const custom = new STRuleNode<string>(MOCK_ID, STRuleNodeType.OP, sampleFn, false);
+			expect(custom.invertResult).toBe(false);
+		});
+
+		it('should initialize invertResult property to true when invert arg is true', () => {
+			const custom = new STRuleNode<string>(MOCK_ID, STRuleNodeType.OP, sampleFn, true);
+			expect(custom.invertResult).toBe(true);
 		});
 	});
 
 	describe('Class Methods', () => {
 		describe('execute', () => {
-			it('should not throw when no fn is set and node type is CMP', () => {
-				expect(() => {
-					const custom = new STRuleNode<string>(MOCK_ID, STRuleNodeType.CMP, null as any);
-					custom.execute('random_value1');
-				}).not.toThrow();
-			});
-
-			it('should return false when no fn is set and node type is CMP', () => {
-				const custom = new STRuleNode<string>(MOCK_ID, STRuleNodeType.CMP, null as any);
-				expect(custom.execute('random_value1')).toBe(false);
-			});
-
-			it('should not throw when no fn is set and node type is OP', () => {
-				expect(() => {
-					const custom = new STRuleNode<string>(MOCK_ID, STRuleNodeType.OP, null as any);
-					custom.execute(MOCK_VALUE_STR);
-				}).not.toThrow();
-			});
-
-			it('should return false when no fn is set and node type is OP', () => {
-				const custom = new STRuleNode<string>(MOCK_ID, STRuleNodeType.OP, null as any);
-				expect(custom.execute(MOCK_VALUE_STR)).toBe(false);
-			});
-
-			it("should return true when node's fn property is undefined", () => {
-				const custom = new STRuleNode(MOCK_ID, STRuleNodeType.OP, MOCK_FN_UNDEFINED as any);
-				expect(custom.execute(MOCK_VALUE_STR)).toBe(false);
-			});
-
 			it('should return true when node fn returns true', () => {
 				const fn = jest.fn();
 				fn.mockImplementation(() => {
@@ -102,13 +94,13 @@ describe('STRuleNode', () => {
 				expect(custom.execute(MOCK_VALUE_STR)).toBe(false);
 			});
 
-			it("should return true when node fn returns false and the node's invert flag is active", () => {
+			it("should return true when node fn returns false and with invert flag 'true'", () => {
 				const fn = jest.fn();
 				fn.mockImplementation(() => {
 					return false;
 				});
 
-				const custom = new STRuleNode(MOCK_ID, STRuleNodeType.OP, fn);
+				const custom = new STRuleNode<string>(MOCK_ID, STRuleNodeType.OP, fn);
 				custom.invertResult = true;
 				expect(custom.execute(MOCK_VALUE_STR)).toBe(true);
 			});

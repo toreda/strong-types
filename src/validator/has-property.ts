@@ -6,18 +6,18 @@ import {STRuleNodeType} from '../rule/node-type';
 
 export type STOpHasProperty<CallerType> = (propName: string) => CallerType;
 
-function hasProperty(obj: unknown, propName: string): boolean {
-	if (typeof obj === 'undefined' || obj === null) {
+function hasProperty(o: unknown, propName: string): boolean {
+	if (typeof o === 'undefined' || o === null) {
 		return false;
 	}
 
-	if (typeof obj.hasOwnProperty !== 'function') {
+	if (!o.hasOwnProperty || typeof o.hasOwnProperty !== 'function') {
 		return false;
 	}
 
-	const prop = obj.hasOwnProperty(propName);
+	const prop = o.hasOwnProperty(propName);
 
-	return typeof prop !== 'undefined';
+	return prop === true;
 }
 
 export function makeHasProperty<CallerType>(

@@ -64,7 +64,7 @@ describe('IsUndefined', () => {
 
 		it('should return false when value argument is an empty array', () => {
 			const rule = new STRule();
-			const val = [];
+			const val: string[] = [];
 
 			const fn = makeIsUndefined<STRule>(rule, rule, mods);
 			fn();

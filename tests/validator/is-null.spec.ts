@@ -83,7 +83,7 @@ describe('IsNull', () => {
 
 		it('should return false when input is an empty array', () => {
 			const rule = new STRule();
-			const value = [];
+			const value: string[] = [];
 
 			const fn = makeIsNull<STRule>(rule, rule, mods);
 			fn();

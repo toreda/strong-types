@@ -53,6 +53,7 @@
 		"@types/jest": "^27.0.1",
 		"@types/node": "^16.9.1",
 		"@typescript-eslint/eslint-plugin": "^4.31.0",
+		"@typescript-eslint/experimental-utils": "^4.31.0",
 		"@typescript-eslint/parser": "^4.31.0",
 		"@typescript-eslint/typescript-estree": "^4.31.0",
 		"babel-jest": "^27.1.1",
@@ -92,5 +93,7 @@
 		"path": false,
 		"inspector": false
 	},
-	"resolutions": {}
+	"resolutions": {
+		"eslint": "^7.32.0"
+	}
 }

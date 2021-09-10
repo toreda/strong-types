@@ -6,17 +6,28 @@ import {makeInt} from '../../src/types/int';
 import {makeStrong} from '../../src/strong-type';
 
 const MOCK_VALUE = 11091;
+const MOCK_KEY_NAME = 'keyname-119714971';
 
-interface SampleMap extends StrongMap {
-	groupOne: StrongMap;
-	groupTwo: StrongMap;
+
+
+class SampleMap extends StrongMap {
+	public groupOne: StrongMap;
+	public groupTwo: StrongMap;
+
+	constructor() {
+		super();
+		this.groupTwo = new StrongMap();
+		this.groupTwo = new StrongMap();
+	}
 }
 
 describe('Parser', () => {
+	let sampleMap: StrongMap;
 	let instance: StrongMapParser;
 	const state = new State();
 
 	beforeAll(() => {
+		sampleMap = new StrongMap();
 		instance = new StrongMapParser();
 	});
 
@@ -241,13 +252,21 @@ describe('Parser', () => {
 		});
 
 		describe('parseKey', () => {
+			it(`should not throw when keyName arg is missing`, () => {
+				expect(() => {
+					instance.parseKey(sampleMap, undefined as any, MOCK_VALUE);
+				}).not.toThrow();
+			});
+		});
+
+		describe('parseStrongKey', () => {
 			it('should not throw when key arg is missing', () => {
 				expect(() => {
-					instance.parseKey(undefined as any, MOCK_VALUE, state);
+					instance.parseStrongKey(undefined as any, MOCK_VALUE, state);
 				}).not.toThrow();
 
 				expect(() => {
-					instance.parseKey(null as any, MOCK_VALUE, state);
+					instance.parseStrongKey(null as any, MOCK_VALUE, state);
 				}).not.toThrow();
 			});
 
@@ -260,7 +279,7 @@ describe('Parser', () => {
 
 			it('should not throw when key arg is not a KVP', () => {
 				expect(() => {
-					instance.parseKey({} as any, MOCK_VALUE, state);
+					instance.parseStrongKey({} as any, MOCK_VALUE, state);
 				}).not.toThrow();
 			});
 		});

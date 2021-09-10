@@ -37,7 +37,7 @@ describe('IsUndefined', () => {
 		describe('array input', () => {
 			it('should return true when expected length is 0 and current value is an empty array', () => {
 				const rule = new STRule();
-				const currentValue = [];
+				const currentValue: string[] = [];
 				const expectedLength = 0;
 
 				const fn = makeIsLength<STRule>(rule, rule, mods);
@@ -47,7 +47,7 @@ describe('IsUndefined', () => {
 
 			it('should return true when expected length is 0 and current value is an array with 1 element', () => {
 				const rule = new STRule();
-				const currentValue = ['a'];
+				const currentValue: string[] = ['a'];
 				const expectedLength = 1;
 
 				const fn = makeIsLength<STRule>(rule, rule, mods);

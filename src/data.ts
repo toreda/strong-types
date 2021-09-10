@@ -1,4 +1,4 @@
-import {ANY} from '@toreda/types';
+import type {ANY} from '@toreda/types';
 import {STRules} from './rules';
 import {STState} from './state';
 import {STTransforms} from './transforms';

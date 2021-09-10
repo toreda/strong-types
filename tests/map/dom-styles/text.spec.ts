@@ -21,8 +21,10 @@ describe('DOMStylesText', () => {
 				});
 
 				it(`should have initial value '${prop.expectedValue}'`, () => {
-					expect(typeof instance[prop.name]()).toBe(prop.expectedValueType);
-					expect(instance[prop.name]()).toBe(prop.expectedValue);
+					const strongType = instance[prop.name] as StrongType<unknown>;
+					const result = strongType();
+					expect(typeof result).toBe(prop.expectedValueType);
+					expect(result).toBe(prop.expectedValue);
 				});
 			});
 		}
