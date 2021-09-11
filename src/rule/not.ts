@@ -1,18 +1,18 @@
-import {STOpIsEqualTo, makeIsEqualTo} from '../validator/is-equal-to';
+import {IsEqualTo, makeIsEqualTo} from '../is/equal-to';
 
-import {STRule} from './rule';
-import {STRuleBe} from './be';
-import {STRuleModifiers} from './modifiers';
+import {Rule} from '../rule';
+import {RuleBe} from './be';
+import {RuleMods} from './mods';
 
-export class STRuleNot {
-	public readonly be: STRuleBe;
-	public readonly equal: STOpIsEqualTo<STRuleNot>;
+export class RuleNot {
+	public readonly be: RuleBe;
+	public readonly equal: IsEqualTo<RuleNot>;
 
-	constructor(rule: STRule, parentMods: STRuleModifiers) {
-		const mods: STRuleModifiers = {
+	constructor(rule: Rule, parentMods: RuleMods) {
+		const mods: RuleMods = {
 			invert: !parentMods.invert
 		};
-		this.be = new STRuleBe(rule, mods);
-		this.equal = makeIsEqualTo<STRuleNot>(this, rule, mods);
+		this.be = new RuleBe(rule, mods);
+		this.equal = makeIsEqualTo<RuleNot>(this, rule, mods);
 	}
 }

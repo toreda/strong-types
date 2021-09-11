@@ -1,15 +1,15 @@
+import {Range} from '../../src/map/range';
 import {StrongMap} from '../../src/map';
-import {StrongRange} from '../../src/map/range';
 
 describe('StrongRange', () => {
 	describe('Constructor', () => {
 		const expectedMin = 19384;
 		const expectedMax = 91278;
-		const instance = new StrongRange(expectedMin, expectedMax);
+		const instance = new Range(expectedMin, expectedMax);
 
 		it('should not throw when args are null', () => {
 			expect(() => {
-				new StrongRange(null, null);
+				new Range(null, null);
 			}).not.toThrow();
 		});
 

@@ -1,1 +1,1 @@
-export interface StrongMapParserOptions {}
+export interface MapParserOptions {}

@@ -1,27 +1,27 @@
-import {STOpIsArray, makeIsArray} from '../validator/is-array';
-import {STOpIsBoolean, makeIsBoolean} from '../validator/is-boolean';
-import {STOpIsDouble, makeIsDouble} from '../validator/is-double';
-import {STOpIsInteger, makeIsInteger} from '../validator/is-integer';
-import {STOpIsNull, makeIsNull} from '../validator/is-null';
-import {STOpIsString, makeIsString} from '../validator/is-string';
+import {IsArray, makeIsArray} from '../is/array';
+import {IsBoolean, makeIsBoolean} from '../is/boolean';
+import {IsDouble, makeIsDouble} from '../is/double';
+import {IsInteger, makeIsInteger} from '../is/integer';
+import {IsNull, makeIsNull} from '../is/null';
+import {IsString, makeIsString} from '../is/string';
 
-import {STRule} from '../rule/rule';
-import {STRuleModifiers} from '../rule/modifiers';
+import {Rule} from '../rule';
+import {RuleMods} from './mods';
 
-export class STRuleType {
-	public readonly integer: STOpIsInteger<STRuleType>;
-	public readonly double: STOpIsDouble<STRuleType>;
-	public readonly boolean: STOpIsBoolean<STRuleType>;
-	public readonly array: STOpIsArray<STRuleType>;
-	public readonly string: STOpIsString<STRuleType>;
-	public readonly null: STOpIsNull<STRuleType>;
+export class RuleType {
+	public readonly integer: IsInteger<RuleType>;
+	public readonly double: IsDouble<RuleType>;
+	public readonly boolean: IsBoolean<RuleType>;
+	public readonly array: IsArray<RuleType>;
+	public readonly string: IsString<RuleType>;
+	public readonly null: IsNull<RuleType>;
 
-	constructor(rule: STRule, mods: STRuleModifiers) {
-		this.array = makeIsArray<STRuleType>(this, rule, mods);
-		this.boolean = makeIsBoolean<STRuleType>(this, rule, mods);
-		this.double = makeIsDouble<STRuleType>(this, rule, mods);
-		this.integer = makeIsInteger<STRuleType>(this, rule, mods);
-		this.string = makeIsString<STRuleType>(this, rule, mods);
-		this.null = makeIsNull<STRuleType>(this, rule, mods);
+	constructor(rule: Rule, mods: RuleMods) {
+		this.array = makeIsArray<RuleType>(this, rule, mods);
+		this.boolean = makeIsBoolean<RuleType>(this, rule, mods);
+		this.double = makeIsDouble<RuleType>(this, rule, mods);
+		this.integer = makeIsInteger<RuleType>(this, rule, mods);
+		this.string = makeIsString<RuleType>(this, rule, mods);
+		this.null = makeIsNull<RuleType>(this, rule, mods);
 	}
 }

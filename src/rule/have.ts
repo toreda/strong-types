@@ -1,15 +1,15 @@
-import {STOpIsLength, makeIsLength} from '../validator/is-length';
-import {STOpIsProperty, makeHasProperty} from '../validator/is-property';
+import {IsLength, makeIsLength} from '../is/length';
+import {IsProperty, makeHasProperty} from '../is/property';
 
-import {STRule} from './rule';
-import {STRuleModifiers} from './modifiers';
+import {Rule} from '../rule';
+import {RuleMods} from './mods';
 
-export class STRuleHave {
-	public readonly length: STOpIsLength<STRuleHave>;
-	public readonly property: STOpIsProperty<STRuleHave>;
+export class RuleHave {
+	public readonly length: IsLength<RuleHave>;
+	public readonly property: IsProperty<RuleHave>;
 
-	constructor(rule: STRule, mods: STRuleModifiers) {
-		this.length = makeIsLength<STRuleHave>(this, rule, mods);
-		this.property = makeHasProperty<STRuleHave>(this, rule, mods);
+	constructor(rule: Rule, mods: RuleMods) {
+		this.length = makeIsLength<RuleHave>(this, rule, mods);
+		this.property = makeHasProperty<RuleHave>(this, rule, mods);
 	}
 }

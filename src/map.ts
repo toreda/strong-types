@@ -1,19 +1,19 @@
-import {StrongMapJsonifier} from './map/jsonifier';
-import {StrongMapJsonifierOptions} from './map/jsonifier/options';
-import {StrongMapParser} from './map/parser';
-import {StrongMapParserOptions} from './map/parser/options';
+import {MapJsonifier} from './map/jsonifier';
+import {MapJsonifierOptions} from './map/jsonifier/options';
+import {MapParser} from './map/parser';
+import {MapParserOptions} from './map/parser/options';
 import {jsonType} from '@toreda/types';
 
 export class StrongMap {
 	[index: string]: unknown;
 
-	public parse(json: jsonType, options?: StrongMapParserOptions): void {
-		const parser = new StrongMapParser();
+	public parse(json: jsonType, options?: MapParserOptions): void {
+		const parser = new MapParser();
 		parser.parse(this, json, options);
 	}
 
-	public jsonify(options?: StrongMapJsonifierOptions): Record<string, unknown> {
-		const jsonifier = new StrongMapJsonifier();
+	public jsonify(options?: MapJsonifierOptions): Record<string, unknown> {
+		const jsonifier = new MapJsonifier();
 		return jsonifier.jsonify(this, options);
 	}
 }

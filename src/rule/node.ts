@@ -1,14 +1,14 @@
-import {STRuleFn} from './fn';
-import {STRuleNodeType} from './node-type';
+import {RuleFn} from './fn';
+import {RuleNodeType} from './node/type';
 
-export class STRuleNode<T> {
+export class RuleNode<T> {
 	public readonly id: string;
-	public readonly children: STRuleNode<unknown>[];
-	public readonly fn: STRuleFn<T>;
-	public readonly type: STRuleNodeType;
+	public readonly children: RuleNode<unknown>[];
+	public readonly fn: RuleFn<T>;
+	public readonly type: RuleNodeType;
 	public invertResult: boolean;
 
-	constructor(id: string, type: STRuleNodeType, fn: STRuleFn<T>, invert = false) {
+	constructor(id: string, type: RuleNodeType, fn: RuleFn<T>, invert = false) {
 		this.id = id;
 
 		if (typeof fn !== 'function') {

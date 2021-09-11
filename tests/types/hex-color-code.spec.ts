@@ -1,4 +1,4 @@
-import {StrongHexColorCode, makeHexColorCode} from '../../src/types/hex-color-code';
+import {makeHexColorCode} from '../../src/hex/color/code';
 
 const MOCK_FALLBACK_DEFAULT = 'FF5733';
 const MOCK_FALLBACK = '33B5FF';

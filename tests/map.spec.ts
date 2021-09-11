@@ -1,6 +1,6 @@
+import {MapJsonifier} from '../src/map/jsonifier';
+import {MapParser} from '../src/map/parser';
 import {StrongMap} from '../src/map';
-import {StrongMapJsonifier} from '../src/map/jsonifier';
-import {StrongMapParser} from '../src/map/parser';
 import {TestMap} from './map/test-map';
 
 describe('StrongMap', () => {
@@ -23,7 +23,7 @@ describe('StrongMap', () => {
 			it('should call parse with args (map, json, options)', () => {
 				const json = {};
 				const map = new TestMap({});
-				const spy = jest.spyOn(StrongMapParser.prototype, 'parse');
+				const spy = jest.spyOn(MapParser.prototype, 'parse');
 
 				map.parse(json, {});
 
@@ -34,7 +34,7 @@ describe('StrongMap', () => {
 		describe('jsonify', () => {
 			it('should call jsonify with args (map, options)', () => {
 				const map = new TestMap({});
-				const spy = jest.spyOn(StrongMapJsonifier.prototype, 'jsonify');
+				const spy = jest.spyOn(MapJsonifier.prototype, 'jsonify');
 
 				map.jsonify({});
 

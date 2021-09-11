@@ -1,12 +1,12 @@
-import {STTransformFN} from './transform-fn';
-import {STTransformOptions} from './transform-options';
+import {TransformFN} from './transform/fn';
+import {TransformOptions} from './transform/options';
 
-export class STTransform<T> {
+export class Transform<T> {
 	public readonly id: string;
 	public readonly label: string;
-	public readonly fn: STTransformFN<T>;
+	public readonly fn: TransformFN<T>;
 
-	constructor(fn: STTransformFN<T>, options?: STTransformOptions) {
+	constructor(fn: TransformFN<T>, options?: TransformOptions) {
 		if (!fn) {
 			throw new Error('STTransform init failed - fn argument missing.');
 		}

@@ -1,12 +1,27 @@
-import {StrongType, makeStrong} from '../strong-type';
+import {Strong, makeStrong} from '../strong';
 
-import {STRules} from '../rules';
-import {StrongNumber} from '../strong-number';
+import {Rules} from '../rules';
 
-export type StrongUInt = StrongNumber;
+/** Strong Unsigned Integer type.
+ *
+ * @category Types - Numbers
+ */
+export type UInt = Strong<number>;
+/** UInt alias added for temporary backwards compat.
+ *
+ * @category Types - Numbers
+ */
 
-export function makeUInt(fallback: number, initial?: number | null): StrongUInt {
-	const rules = new STRules<number>();
+export type StrongUInt = UInt;
+
+/**
+ * Create new strong unsigned integer.
+ * @param fallback
+ * @param initial
+ * @returns
+ */
+export function makeUInt(fallback: number, initial?: number | null): UInt {
+	const rules = new Rules<number>();
 
 	rules.add().must.match.type.integer();
 	rules.add().must.be.greaterThanOrEqualTo(0);

@@ -1,7 +1,8 @@
 import {ANY, AnyObj, Expand, LiteralToPrimitive, Primitive} from '@toreda/types';
-import {StrongType} from './strong-type';
 
-export type PrimitiveToStrong<Literal> = StrongType<LiteralToPrimitive<Literal>>;
+import {Strong} from './strong';
+
+export type PrimitiveToStrong<Literal> = Strong<LiteralToPrimitive<Literal>>;
 
 // Do not export, this is a helper type and has unexpected results if not used correctly
 type RecordToStrongRequired<Rec> = {

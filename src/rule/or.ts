@@ -1,11 +1,11 @@
-import {STRule} from './rule';
-import {STRuleModifiers} from '../rule/modifiers';
-import {STRuleType} from './type';
+import {Rule} from '../rule';
+import {RuleMods} from './mods';
+import {RuleType} from './type';
 
-export class STRuleOr {
-	public type: STRuleType;
+export class RuleOr {
+	public type: RuleType;
 
-	constructor(rule: STRule, parentMods: STRuleModifiers) {
-		this.type = new STRuleType(rule, parentMods);
+	constructor(rule: Rule, parentMods: RuleMods) {
+		this.type = new RuleType(rule, parentMods);
 	}
 }

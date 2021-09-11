@@ -1,11 +1,12 @@
-import {STRules} from '../rules';
-import {StrongNumber} from '../strong-number';
-import {makeStrong} from '../strong-type';
+import {Strong, makeStrong} from '../strong';
 
-export type StrongDouble = StrongNumber;
+import {Rules} from '../rules';
 
-export function makeDouble(fallback: number, initial?: number | null): StrongDouble {
-	const rules = new STRules<number>();
+export type Double = Strong<number>;
+export type StrongDouble = Double;
+
+export function makeDouble(fallback: number, initial?: number | null): Double {
+	const rules = new Rules<number>();
 
 	rules.add().must.match.type.double();
 

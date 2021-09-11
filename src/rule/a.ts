@@ -1,1 +1,1 @@
-export class STRuleA {}
+export class RuleA {}

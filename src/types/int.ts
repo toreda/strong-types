@@ -1,11 +1,12 @@
-import {STRules} from '../rules';
-import {StrongNumber} from '../strong-number';
-import {makeStrong} from '../strong-type';
+import {Strong, makeStrong} from '../strong';
 
-export type StrongInt = StrongNumber;
+import {Rules} from '../rules';
 
-export function makeInt(fallback: number, initial?: number | null): StrongInt {
-	const rules = new STRules();
+export type Int = Strong<number>;
+export type StrongInt = Int;
+
+export function makeInt(fallback: number, initial?: number | null): Int {
+	const rules = new Rules();
 	rules.add().must.match.type.integer();
 
 	const strong = makeStrong<number>(fallback, initial, rules);

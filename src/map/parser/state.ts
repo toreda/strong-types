@@ -1,6 +1,6 @@
-import {StrongMapParserOptions as Options} from './options';
+import {MapParserOptions as Options} from './options';
 
-export class StrongMapParserState {
+export class MapParserState {
 	constructor(_options?: Options) {
 		// empty constructor
 	}

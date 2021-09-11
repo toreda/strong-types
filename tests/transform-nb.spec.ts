@@ -1,20 +1,20 @@
-import {STTransformFNNB} from '../src/transform-fn-nb';
-import {STTransformNB} from '../src/transform-nb';
+import {TransformFNNB} from '../src/transform/fn/nb';
+import {TransformNB} from '../src/transform/nb';
 
 describe('STTransformNB', () => {
 	describe('Constructor', () => {
 		it('should throw when fn argument is not provided', () => {
 			expect(() => {
-				const custom = new STTransformNB<string>(undefined as any);
+				const custom = new TransformNB<string>(undefined as any);
 			}).toThrow('STTransformNB init failed - fn argument missing.');
 		});
 
 		it('should set id when provided in options argument', () => {
-			const fn: STTransformFNNB<string> = (value: string | null): string | null => {
+			const fn: TransformFNNB<string> = (value: string | null): string | null => {
 				return value;
 			};
 			const sampleId = 'AAA_@@@@@33321__334';
-			const custom = new STTransformNB<string>(fn, {
+			const custom = new TransformNB<string>(fn, {
 				id: sampleId
 			});
 
@@ -32,7 +32,7 @@ describe('STTransformNB', () => {
 
 				expect(() => {
 					const sampleVal = 'hello225425';
-					const custom = new STTransformNB<string>(fn, {});
+					const custom = new TransformNB<string>(fn, {});
 					custom.run(sampleVal);
 				}).not.toThrow();
 			});
@@ -43,7 +43,7 @@ describe('STTransformNB', () => {
 					throw new Error('woop woop');
 				});
 				const sampleVal = 'hi_30091';
-				const custom = new STTransformNB<string>(fn, {});
+				const custom = new TransformNB<string>(fn, {});
 
 				expect(custom.run(sampleVal)).toBe(sampleVal);
 			});
@@ -54,7 +54,7 @@ describe('STTransformNB', () => {
 					return null;
 				});
 				const sampleVal = 'hi_223134';
-				const custom = new STTransformNB<string>(fn, {});
+				const custom = new TransformNB<string>(fn, {});
 
 				expect(custom.run(sampleVal)).toBeNull();
 			});
@@ -65,7 +65,7 @@ describe('STTransformNB', () => {
 					return null;
 				});
 				const sampleVal = 'hi_223134';
-				const custom = new STTransformNB<string>(fn, {});
+				const custom = new TransformNB<string>(fn, {});
 				expect(() => {
 					custom.run(null);
 				}).not.toThrow();
@@ -76,7 +76,7 @@ describe('STTransformNB', () => {
 				fn.mockImplementation(() => {
 					return null;
 				});
-				const custom = new STTransformNB<string>(fn, {});
+				const custom = new TransformNB<string>(fn, {});
 				custom.run(null);
 				expect(fn).toHaveBeenCalledTimes(1);
 				expect(fn).toHaveBeenCalledWith(null);

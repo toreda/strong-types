@@ -1,14 +1,14 @@
-import {STTransform} from '../src/transform';
-import {STTransformNB} from '../src/transform-nb';
-import {STTransforms} from '../src/transforms';
+import {Transform} from '../src/transform';
+import {TransformNB} from '../src/transform/nb';
+import {Transforms} from '../src/transforms';
 
 const MOCK_STRING = 'oneoneone';
 
 describe('STTransforms', () => {
-	let instance: STTransforms<string>;
+	let instance: Transforms<string>;
 
 	beforeAll(() => {
-		instance = new STTransforms<string>(MOCK_STRING);
+		instance = new Transforms<string>(MOCK_STRING);
 	});
 
 	describe('Constructor', () => {
@@ -17,11 +17,11 @@ describe('STTransforms', () => {
 
 	describe('Implementation', () => {
 		describe('add', () => {
-			let custom: STTransforms<string>;
+			let custom: Transforms<string>;
 			const MOCK_FALLBACK1 = '22222233333___11';
 
 			beforeEach(() => {
-				custom = new STTransforms<string>(MOCK_FALLBACK1);
+				custom = new Transforms<string>(MOCK_FALLBACK1);
 			});
 
 			it('should return false when transform argument is null', () => {
@@ -34,11 +34,11 @@ describe('STTransforms', () => {
 		});
 
 		describe('addNB', () => {
-			let custom: STTransforms<string>;
+			let custom: Transforms<string>;
 			const MOCK_FALLBACK1 = '22222233333___11';
 
 			beforeEach(() => {
-				custom = new STTransforms<string>(MOCK_FALLBACK1);
+				custom = new Transforms<string>(MOCK_FALLBACK1);
 			});
 
 			it('should return false when transform argument is null', () => {
@@ -51,7 +51,7 @@ describe('STTransforms', () => {
 
 			it('should add exactly 1 element to transformsNB when argument is a transform', () => {
 				const fn = jest.fn();
-				const transformNB = new STTransform<string>(fn);
+				const transformNB = new Transform<string>(fn);
 				expect(custom.transformsNB).toHaveLength(0);
 				custom.addNB(transformNB);
 				expect(custom.transformsNB).toHaveLength(1);
@@ -59,10 +59,10 @@ describe('STTransforms', () => {
 		});
 
 		describe('run', () => {
-			let custom: STTransforms<string>;
+			let custom: Transforms<string>;
 			const MOCK_FALLBACK1 = '22222233333___11';
 			beforeEach(() => {
-				custom = new STTransforms<string>(MOCK_FALLBACK1);
+				custom = new Transforms<string>(MOCK_FALLBACK1);
 			});
 
 			it('should return fallback default when value argument is null', () => {
@@ -84,18 +84,18 @@ describe('STTransforms', () => {
 				tf1.mockImplementation((val: string) => {
 					return val;
 				});
-				const transform1 = new STTransform(tf1);
+				const transform1 = new Transform(tf1);
 
 				const tf2 = jest.fn();
 				tf1.mockImplementation((val: string) => {
 					return val;
 				});
-				const transform2 = new STTransform(tf2);
+				const transform2 = new Transform(tf2);
 				const tf3 = jest.fn();
 				tf3.mockImplementation((val: string) => {
 					return val;
 				});
-				const transform3 = new STTransform(tf3);
+				const transform3 = new Transform(tf3);
 
 				custom.add(transform1);
 				custom.add(transform2);
@@ -115,11 +115,11 @@ describe('STTransforms', () => {
 		});
 
 		describe('runNB', () => {
-			let custom: STTransforms<string>;
+			let custom: Transforms<string>;
 			const MOCK_FALLBACK1 = '22222233333___11';
 
 			beforeEach(() => {
-				custom = new STTransforms<string>(MOCK_FALLBACK1);
+				custom = new Transforms<string>(MOCK_FALLBACK1);
 			});
 
 			it('should return null when value argument is null', () => {
@@ -149,10 +149,10 @@ describe('STTransforms', () => {
 				fn3.mockImplementation((a: number): number => {
 					return a * 10;
 				});
-				const ST = new STTransforms<number>(0);
-				const nbt1 = new STTransformNB<number>(fn1);
-				const nbt2 = new STTransformNB<number>(fn2);
-				const nbt3 = new STTransformNB<number>(fn3);
+				const ST = new Transforms<number>(0);
+				const nbt1 = new TransformNB<number>(fn1);
+				const nbt2 = new TransformNB<number>(fn2);
+				const nbt3 = new TransformNB<number>(fn3);
 				ST.addNB(nbt1);
 				ST.addNB(nbt2);
 				ST.addNB(nbt3);

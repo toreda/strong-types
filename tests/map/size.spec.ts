@@ -1,15 +1,15 @@
+import {Size} from '../../src/map/size';
 import {StrongMap} from '../../src/map';
-import {StrongSize} from '../../src/map/size';
 
 describe('StrongSize', () => {
 	describe('Constructor', () => {
 		const expectedWidth = 456;
 		const expectedHeight = 789;
-		const instance = new StrongSize(expectedWidth, expectedHeight);
+		const instance = new Size(expectedWidth, expectedHeight);
 
 		it('should not throw when args are null', () => {
 			expect(() => {
-				new StrongSize(null, null);
+				new Size(null, null);
 			}).not.toThrow();
 		});
 

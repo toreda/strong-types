@@ -1,4 +1,4 @@
-export interface STStateTransform<T> {
+export interface StateTransform<T> {
 	number: {
 		operation?: 'trunc' | 'ceil' | 'floor' | 'none';
 	};

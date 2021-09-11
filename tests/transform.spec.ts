@@ -1,16 +1,16 @@
-import {STTransform} from '../src/transform';
-import {STTransformFN} from '../src/transform-fn';
+import {Transform} from '../src/transform';
+import {TransformFN} from '../src/transform/fn';
 
 describe('STTransform', () => {
 	describe('Constructor', () => {
 		it('should throw when fn argument is not provided', () => {
 			expect(() => {
-				const custom = new STTransform<string>(undefined as any);
+				const custom = new Transform<string>(undefined as any);
 			}).toThrow('STTransform init failed - fn argument missing.');
 		});
 
 		it('should set id when provided in options argument', () => {
-			const fn: STTransformFN<string> = (value: string | null): string => {
+			const fn: TransformFN<string> = (value: string | null): string => {
 				if (value === null) {
 					return '';
 				}
@@ -19,7 +19,7 @@ describe('STTransform', () => {
 			};
 
 			const sampleId = 'AAA_@@@@@33321__334';
-			const custom = new STTransform<string>(fn, {
+			const custom = new Transform<string>(fn, {
 				id: sampleId
 			});
 
@@ -37,7 +37,7 @@ describe('STTransform', () => {
 
 				expect(() => {
 					const sampleVal = 'hello225425';
-					const custom = new STTransform<string>(fn, {});
+					const custom = new Transform<string>(fn, {});
 					custom.run(sampleVal);
 				}).not.toThrow();
 			});
@@ -48,7 +48,7 @@ describe('STTransform', () => {
 					throw new Error('woop woop');
 				});
 				const sampleVal = 'hi441091';
-				const custom = new STTransform<string>(fn, {});
+				const custom = new Transform<string>(fn, {});
 
 				expect(custom.run(sampleVal)).toBe(sampleVal);
 			});

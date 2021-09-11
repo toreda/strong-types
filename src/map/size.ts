@@ -1,7 +1,8 @@
-import {StrongMap} from '../map';
 import {StrongDouble, makeDouble} from '../types/double';
 
-export class StrongSize extends StrongMap {
+import {StrongMap} from '../map';
+
+export class Size extends StrongMap {
 	public readonly width: StrongDouble;
 	public readonly height: StrongDouble;
 
@@ -12,3 +13,5 @@ export class StrongSize extends StrongMap {
 		this.height = makeDouble(0, defaultHeight);
 	}
 }
+
+export type StrongSize = Size;

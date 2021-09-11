@@ -1,6 +1,6 @@
-import {StrongType} from './strong-type';
+import {Strong} from './strong';
 
-export interface StrongNumber extends StrongType<number> {
+export interface StrongNumber extends Strong<number> {
 	increment: () => void;
 	decrement: () => void;
 }

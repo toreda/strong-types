@@ -1,1 +1,1 @@
-export interface StrongMapJsonifierOptions {}
+export interface MapJsonifierOptions {}

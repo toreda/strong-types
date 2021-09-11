@@ -1,4 +1,5 @@
 import {DOMStylesText} from '../../../src/map/dom-styles/text';
+import {Strong} from '../../../src/strong';
 
 const EXPECTED_STRONG_PROPERTIES = [
 	{name: 'decoration', expectedValueType: 'string', expectedValue: 'none'},
@@ -21,7 +22,7 @@ describe('DOMStylesText', () => {
 				});
 
 				it(`should have initial value '${prop.expectedValue}'`, () => {
-					const strongType = instance[prop.name] as StrongType<unknown>;
+					const strongType = instance[prop.name] as Strong<unknown>;
 					const result = strongType();
 					expect(typeof result).toBe(prop.expectedValueType);
 					expect(result).toBe(prop.expectedValue);

@@ -1,16 +1,16 @@
 import {StrongMap} from '../../src/map';
-import {StrongVec3} from '../../src/map/vec3';
+import {Vec3} from '../../src/map/vec3';
 
 describe('StrongVec3', () => {
 	describe('Constructor', () => {
 		const expectedX = 159;
 		const expectedY = 134;
 		const expectedZ = 248;
-		const instance = new StrongVec3(expectedX, expectedY, expectedZ);
+		const instance = new Vec3(expectedX, expectedY, expectedZ);
 
 		it('should not throw when args are null', () => {
 			expect(() => {
-				new StrongVec3(null, null, null);
+				new Vec3(null, null, null);
 			}).not.toThrow();
 		});
 

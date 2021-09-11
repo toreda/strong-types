@@ -1,7 +1,8 @@
-import {StrongMap} from '../map';
 import {StrongDouble, makeDouble} from '../types/double';
 
-export class StrongVec4 extends StrongMap {
+import {StrongMap} from '../map';
+
+export class Vec4 extends StrongMap {
 	public readonly x: StrongDouble;
 	public readonly y: StrongDouble;
 	public readonly z: StrongDouble;
@@ -16,3 +17,5 @@ export class StrongVec4 extends StrongMap {
 		this.w = makeDouble(0, w);
 	}
 }
+
+export type StrongVec4 = Vec4;

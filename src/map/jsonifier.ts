@@ -1,12 +1,12 @@
-import {StrongMapJsonifierOptions as Options} from './jsonifier/options';
-import {StrongMapJsonifierState as State} from './jsonifier/state';
+import {MapJsonifierOptions as Options} from './jsonifier/options';
+import {MapJsonifierState as State} from './jsonifier/state';
+import {Strong} from '../strong';
 import {StrongMap} from '../map';
-import {StrongType} from '../strong-type';
 
 /**
  * @category Strong Map
  */
-export class StrongMapJsonifier {
+export class MapJsonifier {
 	public jsonify(map: StrongMap, options?: Options): Record<string, unknown> {
 		if (!map) {
 			throw Error('Failed to jsonify map - map arg missing.');
@@ -33,7 +33,7 @@ export class StrongMapJsonifier {
 				result[keyName] = null;
 			} else if (child instanceof StrongMap) {
 				result[keyName] = this.jsonifyMap(child, state);
-			} else if ((child as StrongType<unknown>).typeId === 'StrongType') {
+			} else if ((child as Strong<unknown>).typeId === 'StrongType') {
 				result[keyName] = this.jsonifyKey(child, state);
 			} else if (typeof child !== 'object') {
 				result[keyName] = this.jsonifyKey(child, state);
@@ -56,7 +56,7 @@ export class StrongMapJsonifier {
 			return null;
 		}
 
-		const assumeKeyIsStrongType = key as StrongType<unknown>;
+		const assumeKeyIsStrongType = key as Strong<unknown>;
 
 		if (assumeKeyIsStrongType?.typeId === 'StrongType') {
 			return assumeKeyIsStrongType();

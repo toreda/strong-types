@@ -1,9 +1,9 @@
-import {STRule} from '../../src/rule/rule';
-import {STRuleModifiers} from '../../src/rule/modifiers';
-import {makeIsUrl} from '../../src/validator/is-url';
+import {Rule} from '../../src/rule';
+import {RuleMods} from '../../src/rule/mods';
+import {makeIsUrl} from '../../src/is/url';
 
 describe('IsUrl', () => {
-	let mods: STRuleModifiers;
+	let mods: RuleMods;
 
 	beforeAll(() => {
 		mods = {
@@ -13,253 +13,253 @@ describe('IsUrl', () => {
 
 	describe('valid inputs', () => {
 		it('should return true for a url string containing http', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 
 			const value = 'http://test.com';
 
-			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			const fn = makeIsUrl<Rule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
 
 		it('should return true for a url string containing Http', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 
 			const value = 'Http://somedomain.com';
 
-			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			const fn = makeIsUrl<Rule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
 
 		it('should return true for a url string containing Wss', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 
 			const value = 'Wss://somedomain.com:8080';
 
-			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			const fn = makeIsUrl<Rule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
 
 		it('should return true for a url starting with ftp://', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 
 			const value = 'ftp://somedomain.com:3000';
 
-			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			const fn = makeIsUrl<Rule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
 
 		it('should return true for a url starting with mailto://', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 
 			const value = 'mailto://email@email.com';
 
-			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			const fn = makeIsUrl<Rule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
 
 		it('should return true for a url starting with telnet://', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 
 			const value = 'telnet://somedomain.com:3000';
 
-			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			const fn = makeIsUrl<Rule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
 
 		it('should return true for a url starting with file://', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 
 			const value = 'file://somedomain/data';
 
-			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			const fn = makeIsUrl<Rule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
 
 		it('should return true for the following url structure', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 
 			const value = 'http://www.test.com:81/a/b/c.html?user=Alice&year=2008#p2';
 
-			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			const fn = makeIsUrl<Rule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
 
 		it('should return true for the following url structure', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 
 			const value = 'http://www.test.com/showOrder.php?order=4621047';
 
-			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			const fn = makeIsUrl<Rule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
 
 		it('should return true for the following url structure', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 
 			const value = 'http://host.test.com/companyInfo?name=C&H Sugar';
 
-			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			const fn = makeIsUrl<Rule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
 
 		it('should return true for the following url structure', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 
 			const value = 'http://host.company.com/showCompanyInfo?name=C%26H%20Sugar';
 
-			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			const fn = makeIsUrl<Rule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
 
 		it('should return true for a url string containing ftp', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 
 			const value = 'ftp://test.com';
 
-			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			const fn = makeIsUrl<Rule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
 
 		it('should return true for a url string containing gopher', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 
 			const value = 'gopher://test.com';
 
-			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			const fn = makeIsUrl<Rule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
 
 		it('should return true for a url string containing mailto', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 
 			const value = 'mailto://test.com';
 
-			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			const fn = makeIsUrl<Rule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
 
 		it('should return true for a url string containing mid', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 
 			const value = 'mid://test.com';
 
-			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			const fn = makeIsUrl<Rule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
 
 		it('should return true for a url string containing news', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 
 			const value = 'news://test.com';
 
-			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			const fn = makeIsUrl<Rule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
 
 		it('should return true for a url string containing nntp', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 
 			const value = 'nntp://test.com';
 
-			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			const fn = makeIsUrl<Rule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
 
 		it('should return true for a url string containing prospero', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 
 			const value = 'prospero://test.com';
 
-			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			const fn = makeIsUrl<Rule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
 
 		it('should return true for a url string containing telnet', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 
 			const value = 'telnet://test.com';
 
-			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			const fn = makeIsUrl<Rule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
 
 		it('should return true for a url string containing tn3270', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 
 			const value = 'tn3270://test.com';
 
-			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			const fn = makeIsUrl<Rule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
 
 		it('should return true for a url string containing rlogin', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 
 			const value = 'rlogin://test.com';
 
-			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			const fn = makeIsUrl<Rule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
 
 		it('should return true for a url string containing wais', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 
 			const value = 'wais://test.com';
 
-			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			const fn = makeIsUrl<Rule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
 
 		it('should return true for a valid url string ', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 
 			const value = 'http://username:password@example.com/';
 
-			const fn = makeIsUrl<STRule>(rule, rule, mods);
+			const fn = makeIsUrl<Rule>(rule, rule, mods);
 			fn();
 
 			expect(rule.nodes[0].execute(value)).toBe(true);
@@ -367,8 +367,8 @@ describe('IsUrl', () => {
 
 		for (const input of inputs) {
 			it(`should ${input.label}`, () => {
-				const rule = new STRule();
-				const fn = makeIsUrl<STRule>(rule, rule, mods);
+				const rule = new Rule();
+				const fn = makeIsUrl<Rule>(rule, rule, mods);
 				fn();
 
 				expect(rule.nodes[0].execute(input.value)).toBe(input.expectedValue);

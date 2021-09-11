@@ -1,5 +1,5 @@
-import {StrongMapJsonifier as Jsonifier} from '../../src/map/jsonifier';
-import {StrongMapJsonifierState as State} from '../../src/map/jsonifier/state';
+import {MapJsonifier as Jsonifier} from '../../src/map/jsonifier';
+import {MapJsonifierState as State} from '../../src/map/jsonifier/state';
 import {TestMap} from './test-map';
 import {makeString} from '../../src/types/string';
 

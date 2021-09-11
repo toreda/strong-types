@@ -1,5 +1,5 @@
 import {StrongMap} from '../../src/map';
-import {StrongVec4} from '../../src/map/vec4';
+import {Vec4} from '../../src/map/vec4';
 
 describe('StrongVec4', () => {
 	describe('Constructor', () => {
@@ -7,11 +7,11 @@ describe('StrongVec4', () => {
 		const expectedY = 531;
 		const expectedZ = 953;
 		const expectedW = 751;
-		const instance = new StrongVec4(expectedX, expectedY, expectedZ, expectedW);
+		const instance = new Vec4(expectedX, expectedY, expectedZ, expectedW);
 
 		it('should not throw when args are null', () => {
 			expect(() => {
-				new StrongVec4(null, null, null, null);
+				new Vec4(null, null, null, null);
 			}).not.toThrow();
 		});
 

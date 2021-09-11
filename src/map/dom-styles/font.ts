@@ -1,21 +1,21 @@
-import {StrongType, makeStrong} from '../../strong-type';
+import {Strong, makeStrong} from '../../strong';
 
-import {STRules} from '../../rules';
+import {Rules} from '../../rules';
 import {StrongMap} from '../../map';
 
 export class DOMStylesFont extends StrongMap {
-	public readonly color: StrongType<string>;
-	public readonly size: StrongType<string>;
-	public readonly family: StrongType<string>;
-	public readonly weight: StrongType<string>;
-	public readonly lineHeight: StrongType<string>;
-	public readonly stretch: StrongType<string>;
-	public readonly variant: StrongType<string>;
+	public readonly color: Strong<string>;
+	public readonly size: Strong<string>;
+	public readonly family: Strong<string>;
+	public readonly weight: Strong<string>;
+	public readonly lineHeight: Strong<string>;
+	public readonly stretch: Strong<string>;
+	public readonly variant: Strong<string>;
 
 	constructor() {
 		super();
 
-		const colorRules: STRules<string> = new STRules();
+		const colorRules: Rules<string> = new Rules();
 		colorRules.add().must.match.pattern.hexColor();
 		this.color = makeStrong<string>('#FFFFFF', null, colorRules);
 		this.size = makeStrong<string>('12px', null);

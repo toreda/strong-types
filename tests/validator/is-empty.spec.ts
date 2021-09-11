@@ -1,12 +1,12 @@
-import {STOpIsEmpty, makeIsEmpty} from '../../src/validator/is-empty';
+import {IsEmpty, makeIsEmpty} from '../../src/is/empty';
 
-import {STRule} from '../../src/rule/rule';
-import {STRuleModifiers} from '../../src/rule/modifiers';
+import {Rule} from '../../src/rule';
+import {RuleMods} from '../../src/rule/mods';
 
 const EMPTY_ARRAY: string[] = [];
 
 describe('empty', () => {
-	let mods: STRuleModifiers;
+	let mods: RuleMods;
 
 	beforeAll(() => {
 		mods = {
@@ -20,73 +20,73 @@ describe('empty', () => {
 
 	describe('Usage', () => {
 		it('should return true when input is a non-empty string and mods.invert is true', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 			const value = 'aaaaaaaaa';
 			mods.invert = true;
-			const fn = makeIsEmpty<STRule>(rule, rule, mods);
+			const fn = makeIsEmpty<Rule>(rule, rule, mods);
 			fn(value);
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
 
 		it('should return false when input is an empty array and mods.invert is true', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 			const value: string[] = [];
 			mods.invert = true;
 
-			const fn = makeIsEmpty<STRule>(rule, rule, mods);
+			const fn = makeIsEmpty<Rule>(rule, rule, mods);
 			fn(value);
 			expect(rule.nodes[0].execute(value)).toBe(false);
 		});
 
 		it('should return false when input is a non-empty string', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 			const value = 'aaaaaaaaa';
 
-			const fn = makeIsEmpty<STRule>(rule, rule, mods);
+			const fn = makeIsEmpty<Rule>(rule, rule, mods);
 			fn(value);
 			expect(rule.nodes[0].execute(value)).toBe(false);
 		});
 
 		it('should return false when input is a boolean (false)', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 			const value = false;
 
-			const fn = makeIsEmpty<STRule>(rule, rule, mods);
+			const fn = makeIsEmpty<Rule>(rule, rule, mods);
 			fn(value);
 			expect(rule.nodes[0].execute(value)).toBe(false);
 		});
 
 		it('should return false when input is a boolean (true)', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 			const value = true;
 
-			const fn = makeIsEmpty<STRule>(rule, rule, mods);
+			const fn = makeIsEmpty<Rule>(rule, rule, mods);
 			fn(value);
 			expect(rule.nodes[0].execute(value)).toBe(false);
 		});
 
 		it('should return false when input is a number', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 			const value = 101;
 
-			const fn = makeIsEmpty<STRule>(rule, rule, mods);
+			const fn = makeIsEmpty<Rule>(rule, rule, mods);
 			fn(value);
 			expect(rule.nodes[0].execute(value)).toBe(false);
 		});
 
 		it('should return true when input is an empty array', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 
-			const fn = makeIsEmpty<STRule>(rule, rule, mods);
+			const fn = makeIsEmpty<Rule>(rule, rule, mods);
 			fn(EMPTY_ARRAY);
 			expect(rule.nodes[0].execute(EMPTY_ARRAY)).toBe(true);
 		});
 
 		it('should return false when input is a non-empty arrya', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 			const value: string[] = ['a', 'b', 'c'];
 
-			const fn = makeIsEmpty<STRule>(rule, rule, mods);
+			const fn = makeIsEmpty<Rule>(rule, rule, mods);
 			fn(value);
 			expect(rule.nodes[0].execute(value)).toBe(false);
 		});

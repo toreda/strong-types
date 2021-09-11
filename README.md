@@ -91,7 +91,7 @@ console.log(value.get(fallback));
 
 ## GetNull
 * `getNull(): T | null`
-Call `container.getNull()` to the current value, even if null. Value will never be undefined and will always return either null, or a value of container's generic type T. 
+Call `container.getNull()` to the current value, even if null. Value will never be undefined and will always return either null, or a value of container's generic type T.
 
 NOTE: `getNull` **DOES NOT** take a fallback argument and will not return the container's default fallback. It always returns value (`null` or `StrongType<T>`).
 
@@ -351,12 +351,12 @@ import {StrongUInt, makeUInt} from '@toreda/strong-types';
 * Rejected negative integers (e.g. `-22`).
 
 # Custom Types
-Each built-in type like `StrongInt` and `StrongUInt` are helper functions wrapping `StrongType<T>`. They also apply validators which guarantee the `StrongType<T>` value behaves as expected. While built-ins are provided for convenience, you can create custom types with your own validators.
+Each built-in type like `StrongInt` and `StrongUInt` are helper functions wrapping `Strong<T>`. They also apply validators which guarantee the `Strong<T>` value behaves as expected. While built-ins are provided for convenience, you can create custom types with your own validators.
 
-## Instantiate `StrongType<T>`
+## Instantiate `Strong<T>`
 
 ```typescript
-import {StrongType, makeStrong} from '@toreda/strong-types';
+import {Strong, makeStrong} from '@toreda/strong-types';
 
 export type MyOwnType = {
 	id: string | null;

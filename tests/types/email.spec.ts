@@ -1,10 +1,10 @@
-import {StrongEmail, makeEmail} from '../../src/types/email';
+import {makeEmail} from '../../src/email';
 
 const MOCK_FALLBACK_DEFAULT = 'dog@cat.com';
 const MOCK_FALLBACK = 'toy@undertree,com';
 const MOCK_INITIAL = 'test@test.com';
 
-describe('StrongEmail', () => {
+describe('Email', () => {
 	describe('Implementation', () => {
 		it('should set initial value to sampleInitial argument', () => {
 			const sampleInitial = 'fall@leaves.com';

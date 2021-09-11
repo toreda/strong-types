@@ -1,7 +1,7 @@
-import {createIsHexColorCode, isHexColorCodeStr} from '../../../src/validator/pattern/is-hex-color-code';
+import {isHexColorCodeStr, makeIsHexColorCode} from '../../../src/is/hex-color-code';
 
-import {STRule} from '../../../src/rule/rule';
-import {STRuleModifiers} from '../../../src/rule/modifiers';
+import {Rule} from '../../../src/rule';
+import {RuleMods} from '../../../src/rule/mods';
 
 const EMPTY_STRING = '';
 const EMPTY_ARRAY: string[] = [];
@@ -354,11 +354,11 @@ const TEST_INPUTS = [
 ];
 
 describe('HexColorCode', () => {
-	let mods: STRuleModifiers;
-	let rule: STRule;
+	let mods: RuleMods;
+	let rule: Rule;
 
 	beforeAll(() => {
-		rule = new STRule();
+		rule = new Rule();
 		mods = {
 			invert: false
 		};
@@ -372,7 +372,7 @@ describe('HexColorCode', () => {
 	describe('Usage', () => {
 		for (const input of TEST_INPUTS) {
 			it(`should return ${input.expectedResult} when ${input.label}`, () => {
-				const fn = createIsHexColorCode(rule, rule, mods);
+				const fn = makeIsHexColorCode(rule, rule, mods);
 				fn();
 				expect(rule.nodes[0].execute(input.value)).toBe(input.expectedResult);
 			});

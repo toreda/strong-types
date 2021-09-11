@@ -1,34 +1,77 @@
-import {StrongMapParserState as State} from '../../src/map/parser/state';
+import {StrongBoolean, makeBoolean} from '../../src/types/boolean';
+import {StrongString, makeString} from '../../src/types/string';
+
+import {MapParser} from '../../src/map/parser';
+import {MapParserState} from '../../src/map/parser/state';
 import {StrongInt} from '../../src/types/int';
 import {StrongMap} from '../../src/map';
-import {StrongMapParser} from '../../src/map/parser';
 import {makeInt} from '../../src/types/int';
-import {makeStrong} from '../../src/strong-type';
 
 const MOCK_VALUE = 11091;
 const MOCK_KEY_NAME = 'keyname-119714971';
 
-
-
-class SampleMap extends StrongMap {
-	public groupOne: StrongMap;
-	public groupTwo: StrongMap;
+class SampleGroupOne extends StrongMap {
+	public key_one_one: StrongInt;
+	public key_one_two: StrongString;
+	public key_one_three: StrongString;
 
 	constructor() {
 		super();
-		this.groupTwo = new StrongMap();
-		this.groupTwo = new StrongMap();
+		this.key_one_one = makeInt(0);
+		this.key_one_two = makeString('');
+		this.key_one_three = makeString('');
+	}
+}
+
+class SampleGroupTwo extends StrongMap {
+	public key_two_one: StrongBoolean;
+	public key_two_two: StrongBoolean;
+	public key_two_three: StrongBoolean;
+
+	constructor() {
+		super();
+		this.key_two_one = makeBoolean(false);
+		this.key_two_two = makeBoolean(false);
+		this.key_two_three = makeBoolean(false);
+	}
+}
+
+class SampleGroupThree extends StrongMap {
+	public key_three_one: StrongString;
+	public key_three_two: StrongString;
+	public key_three_three: StrongString;
+
+	constructor() {
+		super();
+		this.key_three_one = makeString('');
+		this.key_three_two = makeString('');
+		this.key_three_three = makeString('');
+	}
+}
+
+class SampleMap extends StrongMap {
+	public groupOne: SampleGroupOne;
+	public groupTwo: SampleGroupTwo;
+	public groupThree: SampleGroupThree;
+
+	constructor(data?: unknown) {
+		super();
+		this.groupOne = new SampleGroupOne();
+		this.groupTwo = new SampleGroupTwo();
+		this.groupThree = new SampleGroupThree();
+
+		this.parse(data);
 	}
 }
 
 describe('Parser', () => {
 	let sampleMap: StrongMap;
-	let instance: StrongMapParser;
-	const state = new State();
+	let instance: MapParser;
+	const state = new MapParserState();
 
 	beforeAll(() => {
 		sampleMap = new StrongMap();
-		instance = new StrongMapParser();
+		instance = new MapParser();
 	});
 
 	describe('Implementation', () => {
@@ -138,17 +181,14 @@ describe('Parser', () => {
 			it('should parse group with children on node', () => {
 				const expectedValue = 44120;
 				const json = {
-					group_one: {
-						key_one: expectedValue
+					groupOne: {
+						key_one_one: expectedValue
 					}
 				};
 
-				const node = new StrongMap();
-				node['group_one'] = new StrongMap();
-				node['group_one']['key_one'] = makeInt(expectedValue, 1);
-
+				const node = new SampleMap();
 				instance.parseMap(node, json, state);
-				expect(node['group_one']['key_one']()).toEqual(expectedValue);
+				expect(node.groupOne.key_one_one()).toEqual(expectedValue);
 			});
 
 			it('should parse multiple groups which each have a single key', () => {
@@ -168,21 +208,17 @@ describe('Parser', () => {
 					}
 				};
 
-				const node = new StrongMap();
-				node['group_one'] = new StrongMap();
-				node['group_one']['key_one'] = makeInt(expectedValue1, 0);
+				const node = new SampleMap();
+				node.groupOne.key_one_one(expectedValue1);
+				node.groupTwo.key_two_two(expectedValue2);
 
-				node['group_two'] = new StrongMap();
-				node['group_two']['key_two'] = makeStrong<boolean>(expectedValue2, false);
-
-				node['group_three'] = new StrongMap();
-				node['group_three']['key_three'] = makeStrong<string>(expectedValue3, 'bad string here');
+				node.groupThree.key_three_three(expectedValue3);
 
 				instance.parseMap(node, json, state);
 
-				expect(node['group_one']['key_one']()).toEqual(expectedValue1);
-				expect(node['group_two']['key_two']()).toEqual(expectedValue2);
-				expect(node['group_three']['key_three']()).toEqual(expectedValue3);
+				expect(node.groupOne.key_one_one()).toEqual(expectedValue1);
+				expect(node.groupTwo.key_two_two()).toEqual(expectedValue2);
+				expect(node.groupThree.key_three_three()).toEqual(expectedValue3);
 			});
 
 			it('should parse multiple groups which have each have multiple keys', () => {
@@ -216,38 +252,32 @@ describe('Parser', () => {
 					}
 				};
 
-				const node = new StrongMap();
-				node['group_one'] = new StrongMap();
-				node['group_one']['key_one_one'] = makeInt(expectedValue1_1, 0);
-				node['group_one']['key_one_two'] = makeStrong<string>(expectedValue1_2, '');
-				node['group_one']['key_one_three'] = makeStrong<string>(expectedValue1_3, '');
+				const node = new SampleMap();
+				node.groupOne.key_one_one(expectedValue1_1);
+				node.groupOne.key_one_two(expectedValue1_2);
+				node.groupOne.key_one_three(expectedValue1_3);
 
-				node['group_two'] = new StrongMap();
-				node['group_two']['key_two_one'] = makeStrong<boolean>(expectedValue2_1, false);
-				node['group_two']['key_two_two'] = makeStrong<boolean>(expectedValue2_2, true);
-				node['group_two']['key_two_three'] = makeStrong<boolean>(expectedValue2_3, true);
+				node.groupTwo.key_two_one(expectedValue2_1);
+				node.groupTwo.key_two_two(expectedValue2_2);
+				node.groupTwo.key_two_three(expectedValue2_3);
 
-				node['group_three'] = new StrongMap();
-				node['group_three']['key_three_one'] = makeStrong<string>(expectedValue3_1, '3 - one one');
-				node['group_three']['key_three_two'] = makeStrong<string>(expectedValue3_2, '3 - two two');
-				node['group_three']['key_three_three'] = makeStrong<string>(
-					expectedValue3_3,
-					'3 - three three'
-				);
+				node.groupThree.key_three_one(expectedValue3_1);
+				node.groupThree.key_three_two(expectedValue3_2);
+				node.groupThree.key_three_three(expectedValue3_3);
 
 				instance.parseMap(node, json, state);
 
-				expect(node['group_one']['key_one_one']()).toEqual(expectedValue1_1);
-				expect(node['group_one']['key_one_two']()).toEqual(expectedValue1_2);
-				expect(node['group_one']['key_one_three']()).toEqual(expectedValue1_3);
+				expect(node.groupOne.key_one_one()).toEqual(expectedValue1_1);
+				expect(node.groupOne.key_one_two()).toEqual(expectedValue1_2);
+				expect(node.groupOne.key_one_three()).toEqual(expectedValue1_3);
 
-				expect(node['group_two']['key_two_one']()).toEqual(expectedValue2_1);
-				expect(node['group_two']['key_two_two']()).toEqual(expectedValue2_2);
-				expect(node['group_two']['key_two_three']()).toEqual(expectedValue2_3);
+				expect(node.groupTwo.key_two_one()).toEqual(expectedValue2_1);
+				expect(node.groupTwo.key_two_two()).toEqual(expectedValue2_2);
+				expect(node.groupTwo.key_two_three()).toEqual(expectedValue2_3);
 
-				expect(node['group_three']['key_three_one']()).toEqual(expectedValue3_1);
-				expect(node['group_three']['key_three_two']()).toEqual(expectedValue3_2);
-				expect(node['group_three']['key_three_three']()).toEqual(expectedValue3_3);
+				expect(node.groupThree.key_three_one()).toEqual(expectedValue3_1);
+				expect(node.groupThree.key_three_two()).toEqual(expectedValue3_2);
+				expect(node.groupThree.key_three_three()).toEqual(expectedValue3_3);
 			});
 		});
 

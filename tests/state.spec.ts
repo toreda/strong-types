@@ -1,10 +1,10 @@
-import {STState} from '../src/state';
+import {StrongState} from '../src/strong/state';
 
-describe('STState', () => {
-	let instance: STState<string>;
+describe('StrongState', () => {
+	let instance: StrongState<string>;
 
 	beforeAll(() => {
-		instance = new STState<string>();
+		instance = new StrongState<string>();
 	});
 	describe('Constructor', () => {});
 
@@ -12,7 +12,7 @@ describe('STState', () => {
 		describe('create', () => {
 			it('should not throw when no options argument provided', () => {
 				expect(() => {
-					const custom = new STState<string>();
+					const custom = new StrongState<string>();
 				}).not.toThrow();
 			});
 		});

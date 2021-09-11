@@ -1,5 +1,5 @@
-import {STRuleMust} from './must';
+import {RuleMust} from './must';
 
-export interface STRuleRoot {
-	must: STRuleMust;
+export interface RuleRoot {
+	must: RuleMust;
 }

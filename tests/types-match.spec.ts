@@ -1,5 +1,5 @@
-import {STRule} from '../src/rule/rule';
-import {isType} from '../src/validator/is-type';
+import {Rule} from '../src/rule';
+import {isType} from '../src/is/type';
 
 describe('types-match', () => {
 	it('should be a function', () => {
@@ -100,10 +100,10 @@ describe('types-match', () => {
 		});
 	});
 
-	describe('STRule validation', () => {
-		it('should return true for STRule', () => {
-			const rule = new STRule();
-			expect(isType(rule, STRule)).toBe(true);
+	describe('Rule validation', () => {
+		it('should return true for Rule', () => {
+			const rule = new Rule();
+			expect(isType(rule, Rule)).toBe(true);
 		});
 	});
 });

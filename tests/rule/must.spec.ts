@@ -1,12 +1,12 @@
-import {STRule} from '../../src/rule/rule';
-import {STRuleMust} from '../../src/rule/must';
+import {Rule} from '../../src/rule';
+import {RuleMust} from '../../src/rule/must';
 
 describe('STMust', () => {
-	let instance: STRuleMust;
-	const rules: STRule[] = [];
+	let instance: RuleMust;
+	const rules: Rule[] = [];
 
 	beforeAll(() => {
-		instance = new STRuleMust(rules, null);
+		instance = new RuleMust(rules, null);
 	});
 
 	beforeEach(() => {
@@ -36,14 +36,14 @@ describe('STMust', () => {
 
 		it('should push a rule to rules array when parentRule argument is null', () => {
 			expect(rules).toHaveLength(0);
-			const custom = new STRuleMust(rules, null);
+			const custom = new RuleMust(rules, null);
 			expect(rules).toHaveLength(1);
 		});
 
 		it('should not push parentRule to rules array when provided', () => {
-			const rule = new STRule();
+			const rule = new Rule();
 			expect(rules).toHaveLength(0);
-			const custom = new STRuleMust(rules, rule);
+			const custom = new RuleMust(rules, rule);
 			expect(rules).toHaveLength(0);
 		});
 	});

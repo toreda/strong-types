@@ -1,6 +1,6 @@
-import {StrongMapJsonifierOptions as Options} from './options';
+import {MapJsonifierOptions as Options} from './options';
 
-export class StrongMapJsonifierState {
+export class MapJsonifierState {
 	constructor(_options?: Options) {
 		// empty constructor
 	}

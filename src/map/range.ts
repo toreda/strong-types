@@ -1,7 +1,8 @@
-import {StrongMap} from '../map';
 import {StrongDouble, makeDouble} from '../types/double';
 
-export class StrongRange extends StrongMap {
+import {StrongMap} from '../map';
+
+export class Range extends StrongMap {
 	public readonly min: StrongDouble;
 	public readonly max: StrongDouble;
 
@@ -12,3 +13,5 @@ export class StrongRange extends StrongMap {
 		this.max = makeDouble(0, defaultMax);
 	}
 }
+
+export type StrongRange = Range;
