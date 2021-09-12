@@ -17,6 +17,9 @@ export class Vec3 {
 		this.z = makeDouble(0, z);
 	}
 
+	/**
+	 * Reset all coordinate properties to default values.
+	 */
 	public reset(): void {
 		this.x.reset();
 		this.y.reset();

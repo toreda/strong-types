@@ -1,4 +1,4 @@
-import {StrongDouble, makeDouble} from './double';
+import {Double, makeDouble} from './double';
 
 /**
  * Map for passing coodinates in 1-dimensional
@@ -7,10 +7,14 @@ import {StrongDouble, makeDouble} from './double';
  * @category Coordinates
  */
 export class Vec1 {
-	public readonly x: StrongDouble;
+	public readonly x: Double;
 
 	constructor(x: number | null) {
 		this.x = makeDouble(0, x);
+	}
+
+	public reset(): void {
+		this.x.reset();
 	}
 }
 

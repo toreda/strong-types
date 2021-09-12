@@ -39,4 +39,8 @@ export class Rule {
 		// OR operators to be true.
 		return trueCount > 0;
 	}
+
+	public reset(): void {
+		this.nodes.length = 0;
+	}
 }

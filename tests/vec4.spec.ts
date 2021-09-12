@@ -1,3 +1,4 @@
+import {Defaults} from '../src/defaults';
 import {Vec4} from '../src/vec4';
 
 const MOCK_X = 1081;
@@ -7,6 +8,7 @@ const MOCK_W = 60417;
 
 describe('Vec4', () => {
 	let instance: Vec4;
+
 	beforeAll(() => {
 		instance = new Vec4(MOCK_X, MOCK_Y, MOCK_Z, MOCK_W);
 	});
@@ -43,6 +45,36 @@ describe('Vec4', () => {
 
 		it(`should init w to provided w arg`, () => {
 			expect(instance.w()).toBe(MOCK_W);
+		});
+	});
+
+	describe('reset', () => {
+		it(`should reset x property to default value`, () => {
+			instance.x(660919);
+			expect(instance.x()).toBe(660919);
+			instance.reset();
+			expect(instance.x()).toBe(Defaults.Vec.X);
+		});
+
+		it(`should reset y property to default value`, () => {
+			instance.y(283100);
+			expect(instance.y()).toBe(283100);
+			instance.reset();
+			expect(instance.y()).toBe(Defaults.Vec.Y);
+		});
+
+		it(`should reset z property to default value`, () => {
+			instance.z(9099919);
+			expect(instance.z()).toBe(9099919);
+			instance.reset();
+			expect(instance.z()).toBe(Defaults.Vec.Z);
+		});
+
+		it(`should reset w property to default value`, () => {
+			instance.w(77191978);
+			expect(instance.w()).toBe(77191978);
+			instance.reset();
+			expect(instance.w()).toBe(Defaults.Vec.W);
 		});
 	});
 });

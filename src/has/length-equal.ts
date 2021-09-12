@@ -1,22 +1,36 @@
+import {BaseCollection} from '../base/collection';
 import {Rule} from '../rule';
 import {RuleFn} from '../rule/fn';
 import {RuleMods} from '../rule/mods';
 import {RuleNode} from '../rule/node';
 import {RuleNodeType} from '../rule/node/type';
-import {equalToFn} from '../is/equal';
 
 export type HasLengthEqual<CallerType> = (a: number) => CallerType;
 
 export const hasLengthEqual = (curr: unknown[] | string, target: number): boolean => {
-	if (typeof curr.length !== 'number') {
+	if (curr === undefined || curr === null) {
 		return false;
 	}
 
-	if (curr.length < 0) {
+	if (typeof target !== 'number') {
 		return false;
 	}
 
-	return equalToFn(curr.length, target);
+	if (typeof curr === 'string') {
+		return curr.length === target;
+	}
+
+	if (Array.isArray(curr)) {
+		return curr.length === target;
+	}
+
+	const obj = curr as BaseCollection;
+
+	if (typeof obj.length !== 'number') {
+		return false;
+	}
+
+	return obj.length === target;
 };
 
 export function makeHasLengthEqual<CallerType>(
