@@ -17,7 +17,6 @@ describe('Double', () => {
 		fn();
 	});
 
-
 	describe('makeIsDouble', () => {
 		it('should return a function', () => {
 			expect(typeof fn).toBe('function');

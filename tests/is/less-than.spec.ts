@@ -21,11 +21,7 @@ describe('LessThan', () => {
 		rule.reset();
 	});
 
-	describe('make', () => {
-		it('should return a function', () => {});
-	});
-
-	describe('usage', () => {
+	describe('Usage', () => {
 		it('should return false when curr value argument is not a number', () => {
 			const stringCurr = 'aaaa';
 

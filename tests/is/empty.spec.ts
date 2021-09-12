@@ -20,7 +20,6 @@ describe('IsEmpty', () => {
 		fn('aaaa');
 	});
 
-
 	describe('Usage', () => {
 		it('should return true when input is a non-empty string and mods.invert is true', () => {
 			const customRule = new Rule();

@@ -2,7 +2,7 @@ import {Rule} from '../../src/rule';
 import {RuleMods} from '../../src/rule/mods';
 import {makeIsLength} from '../../src/is/length';
 
-describe('IsUndefined', () => {
+describe('IsLength', () => {
 	let mods: RuleMods;
 	let rule: Rule;
 

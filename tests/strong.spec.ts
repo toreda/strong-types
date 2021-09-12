@@ -1,68 +1,71 @@
 import {Strong, makeStrong} from '../src/strong';
 
-const MOCK_INITIAL = '11110209';
 const MOCK_STRING = '113333';
-const MOCK_STRING2 = '10914094aaal';
 const MOCK_FALLBACK = 'roman bree';
-const MOCK_VALUE_UNDEFINED = undefined;
-const MOCK_VALUE_NULL = null;
 
 describe('Strong', () => {
+	let strong: Strong<string>;
+
+	beforeAll(() => {
+		strong = makeStrong<string>(MOCK_FALLBACK);
+	});
+
+	beforeEach(() => {
+		strong.reset();
+	});
+
+	describe('makeStrong', () => {
+		it('should make and return a function', () => {
+			expect(typeof strong).toBe('function');
+		});
+	});
+
+	describe('Strong Obj', () => {
+		it('should return current value when called with no arguments', () => {
+			const sampleStr = '44198657635';
+			expect(strong()).not.toBe(sampleStr);
+			strong(sampleStr);
+			expect(strong()).toBe(sampleStr);
+		});
+
+		it(`should return value to set when called with an argument`, () => {
+			const sampleStr = '97991721235';
+			expect(strong()).not.toBe(sampleStr);
+			expect(strong(sampleStr)).toBe(sampleStr);
+			strong(sampleStr);
+		});
+
+		it('should return default fallback value is not provided and value is undefined', () => {
+			expect(strong()).toBe(MOCK_FALLBACK);
+		});
+
+		it('should return fallback default when invoked with no arguments and value has been set to null', () => {
+			const value = '19714971974';
+			strong(value);
+			expect(strong()).toBe(value);
+			strong(null);
+			expect(strong()).toBe(MOCK_FALLBACK);
+		});
+
+		it('should return default fallback value argument is not provided and value is null', () => {
+			const custom = makeStrong<string>(MOCK_FALLBACK, null);
+			expect(custom()).toBe(MOCK_FALLBACK);
+		});
+
+		it('should return default value when called with no initial value', () => {
+			const initialStr = undefined;
+			const custom = makeStrong<string>(MOCK_FALLBACK, initialStr);
+			expect(custom()).toBe(MOCK_FALLBACK);
+		});
+	});
+
 	describe('make', () => {
 		describe('types', () => {
-			let st: Strong<string>;
-
-			beforeAll(() => {
-				st = makeStrong<string>(MOCK_FALLBACK, MOCK_INITIAL);
-			});
-
-			beforeEach(() => {
-				st.reset();
-			});
-
-			it('should make and return a function', () => {
-				expect(typeof st).toBe('function');
-			});
-
-			it('should return initial value when called with no arguments', () => {
-				const sampleStr = '44198657635';
-				const custom = makeStrong<string>(MOCK_FALLBACK, sampleStr);
-				expect(custom()).toBe(sampleStr);
-			});
-
-			it('should return default fallback value argument is not provided and value is null', () => {
-				const custom = makeStrong<string>(MOCK_FALLBACK, null);
-				expect(custom()).toBe(MOCK_FALLBACK);
-			});
-
-			it('should return default fallback value argument is not provided and value is undefined', () => {
-				const custom = makeStrong<string>(MOCK_FALLBACK);
-				expect(custom()).toBe(MOCK_FALLBACK);
-			});
-
-			it('should set value when st is called with an argument', () => {
-				const sampleStr = '44810100929';
-				st(sampleStr);
-				expect(st()).toBe(sampleStr);
-			});
-
-			it('should return fallback default when invoked with no arguments and value has been set to null', () => {
-				const sampleStr = '44810100929';
-				const st = makeStrong<string>(MOCK_FALLBACK, MOCK_STRING);
-				st(null);
-				expect(st()).toBe(MOCK_FALLBACK);
-			});
-
-			it('should return default value when called with no initial value', () => {
-				const initialStr = undefined;
-				const custom = makeStrong<string>(MOCK_FALLBACK, initialStr);
-				expect(custom()).toBe(MOCK_FALLBACK);
-			});
-
 			describe('get', () => {
 				it('should return provided fallback when value is null', () => {
 					const sampleStr = '9419814981';
-					expect(st.get(sampleStr)).toBe(sampleStr);
+					strong(null);
+					expect(strong.get(sampleStr)).toBe(sampleStr);
 				});
 
 				it('should return the fallback default when value is null and provided fallback is not valid', () => {
@@ -76,45 +79,47 @@ describe('Strong', () => {
 			describe('getNull', () => {
 				it('should return value when value is not null', () => {
 					const sampleStr = '6766199823';
-					const st = makeStrong<string>(MOCK_FALLBACK, sampleStr);
-					expect(st.getNull()).toBe(sampleStr);
+					strong(sampleStr);
+
+					expect(strong.getNull()).toBe(sampleStr);
 				});
 
 				it('should return null when value is null', () => {
-					st(null);
-					expect(st.getNull()).toBeNull();
+					strong(null);
+					expect(strong.getNull()).toBeNull();
 				});
 			});
 
 			describe('reset', () => {
 				it('should set value to null when value is set by initial value', () => {
-					const st = makeStrong<string>(MOCK_FALLBACK, null);
-					expect(st.getNull()).toBeNull();
+					const custom = makeStrong<string>(MOCK_FALLBACK, null);
+					expect(custom.getNull()).toBeNull();
 				});
 
-				it('should set value to null when value is set invoking st("val") with argument', () => {
+				it('should reset value to fallback', () => {
 					const sampleStr = '881032091';
-					st(sampleStr);
-					expect(st()).toBe(sampleStr);
-					st.reset();
-					expect(st.getNull()).toBeNull();
+					strong(sampleStr);
+					expect(strong()).toBe(sampleStr);
+					strong.reset();
+					expect(strong.getNull()).toBeNull();
+					expect(strong()).toBe(MOCK_FALLBACK);
 				});
 
 				it('should not throw when value is already null', () => {
-					st(null);
+					strong(null);
 					expect(() => {
-						st.reset();
+						strong.reset();
 					}).not.toThrow();
-					expect(st.getNull()).toBeNull();
+					expect(strong.getNull()).toBeNull();
 				});
 
 				it('should not throw when called repeatedly', () => {
 					expect(() => {
-						for (let i = 0; i < 10; i++) {
-							st.reset();
+						for (let i = 0; i < 4; i++) {
+							strong.reset();
 						}
 					}).not.toThrow();
-					expect(st.getNull()).toBeNull();
+					expect(strong.getNull()).toBeNull();
 				});
 			});
 		});
