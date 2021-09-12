@@ -1,4 +1,4 @@
-import {StrongArray, makeArray} from '../../src/types/array';
+import {StrongArray, makeArray} from '../../src/array';
 
 const MOCK_INITIAL = [5, 'snake', 8];
 const MOCK_FALLBACK_DEFAULT = ['dog'];

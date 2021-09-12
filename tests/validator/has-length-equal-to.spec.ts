@@ -1,6 +1,6 @@
 import {Rule} from '../../src/rule';
 import {RuleMods} from '../../src/rule/mods';
-import {makeHasLengthEqualTo} from '../../src/has/length-equal-to';
+import {makeHasLengthEqual} from '../../src/has/length-equal';
 
 describe('LengthEqualTo', () => {
 	let mods: RuleMods;
@@ -16,7 +16,7 @@ describe('LengthEqualTo', () => {
 			const rule = new Rule();
 			const target = 3;
 			const curr = 'dog';
-			const fn = makeHasLengthEqualTo<Rule>(rule, rule, mods);
+			const fn = makeHasLengthEqual<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -25,7 +25,7 @@ describe('LengthEqualTo', () => {
 			const rule = new Rule();
 			const target = 2;
 			const curr: string[] = ['dog', 'cat'];
-			const fn = makeHasLengthEqualTo<Rule>(rule, rule, mods);
+			const fn = makeHasLengthEqual<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -35,7 +35,7 @@ describe('LengthEqualTo', () => {
 			const target = 0;
 			const curr = '';
 
-			const fn = makeHasLengthEqualTo<Rule>(rule, rule, mods);
+			const fn = makeHasLengthEqual<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -45,7 +45,7 @@ describe('LengthEqualTo', () => {
 			const target = 0;
 			const curr: string[] = [];
 
-			const fn = makeHasLengthEqualTo<Rule>(rule, rule, mods);
+			const fn = makeHasLengthEqual<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -57,7 +57,7 @@ describe('LengthEqualTo', () => {
 			const target = 4;
 			const curr = 'number';
 
-			const fn = makeHasLengthEqualTo<Rule>(rule, rule, mods);
+			const fn = makeHasLengthEqual<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
@@ -67,7 +67,7 @@ describe('LengthEqualTo', () => {
 			const target = '' as any;
 			const curr = '1';
 
-			const fn = makeHasLengthEqualTo<Rule>(rule, rule, mods);
+			const fn = makeHasLengthEqual<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
@@ -77,7 +77,7 @@ describe('LengthEqualTo', () => {
 			const target = 2;
 			const curr = ['one', 'two', 'three'];
 
-			const fn = makeHasLengthEqualTo<Rule>(rule, rule, mods);
+			const fn = makeHasLengthEqual<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
@@ -87,7 +87,7 @@ describe('LengthEqualTo', () => {
 			const target = 2;
 			const curr: string[] = [];
 
-			const fn = makeHasLengthEqualTo<Rule>(rule, rule, mods);
+			const fn = makeHasLengthEqual<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
@@ -97,7 +97,7 @@ describe('LengthEqualTo', () => {
 			const target = [] as any;
 			const curr = [6];
 
-			const fn = makeHasLengthEqualTo<Rule>(rule, rule, mods);
+			const fn = makeHasLengthEqual<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
@@ -107,7 +107,7 @@ describe('LengthEqualTo', () => {
 			const target = 2;
 			const curr = 2;
 
-			const fn = makeHasLengthEqualTo<Rule>(rule, rule, mods);
+			const fn = makeHasLengthEqual<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
@@ -117,7 +117,7 @@ describe('LengthEqualTo', () => {
 			const target = 65;
 			const curr = false;
 
-			const fn = makeHasLengthEqualTo<Rule>(rule, rule, mods);
+			const fn = makeHasLengthEqual<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
@@ -127,7 +127,7 @@ describe('LengthEqualTo', () => {
 			const target = false as any;
 			const curr = ['hello'];
 
-			const fn = makeHasLengthEqualTo<Rule>(rule, rule, mods);
+			const fn = makeHasLengthEqual<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});

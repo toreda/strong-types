@@ -1,7 +1,7 @@
 import {Transform} from '../src/transform';
 import {TransformFN} from '../src/transform/fn';
 
-describe('STTransform', () => {
+describe('Transform', () => {
 	describe('Constructor', () => {
 		it('should throw when fn argument is not provided', () => {
 			expect(() => {

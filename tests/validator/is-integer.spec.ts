@@ -1,6 +1,8 @@
+import {IsInteger, makeIsInteger} from '../../src/is/integer';
+
 import {Rule} from '../../src/rule';
 import {RuleMods} from '../../src/rule/mods';
-import {makeIsInteger} from '../../src/is/integer';
+import {makeIsGreaterThan} from '../../src/is/greater-than';
 
 const EMPTY_ARRAY: string[] = [];
 
@@ -27,93 +29,72 @@ describe('Integer', () => {
 	});
 
 	describe('Usage', () => {
-		it('should return false when curr value is a string', () => {
-			const rule = new Rule();
+		let fn: IsInteger<Rule>;
+		let rule: Rule;
 
-			const fn = makeIsInteger<Rule>(rule, rule, mods);
+		beforeAll(() => {
+			rule = new Rule();
+			fn = makeIsInteger(rule, rule, {invert: false});
 			fn();
+		});
 
+		beforeEach(() => {
+			mods.invert = false;
+		});
+
+		it('should return false when curr value is a string', () => {
 			const str = '111111111';
+
 			expect(rule.nodes[0].execute(str)).toBe(false);
 		});
 
 		it('should return false when curr a positive float', () => {
-			const rule = new Rule();
 			const floatCurr = 1.333;
-
-			const fn = makeIsInteger<Rule>(rule, rule, mods);
-			fn();
 
 			expect(rule.nodes[0].execute(floatCurr)).toBe(false);
 		});
 
 		it('should return false when curr a negative float', () => {
-			const rule = new Rule();
 			const floatCurr = -7.333;
-
-			const fn = makeIsInteger<Rule>(rule, rule, mods);
-			fn();
 
 			expect(rule.nodes[0].execute(floatCurr)).toBe(false);
 		});
 
 		it('should return true when curr a negative float but invert flag is set', () => {
-			const rule = new Rule();
 			const floatCurr = -7.333;
-			mods.invert = true;
-
-			const fn = makeIsInteger<Rule>(rule, rule, mods);
-			fn();
-
-			expect(rule.nodes[0].execute(floatCurr)).toBe(true);
+			const customRule = new Rule();
+			const customFn = makeIsGreaterThan<Rule>(customRule, customRule, {
+				invert: true
+			});
+			customFn(111111);
+			expect(customRule.nodes[0].execute(floatCurr)).toBe(true);
 		});
 
 		it('should return true when curr a positive integer', () => {
-			const rule = new Rule();
 			const intCurr = 7;
-
-			const fn = makeIsInteger<Rule>(rule, rule, mods);
-			fn();
 
 			expect(rule.nodes[0].execute(intCurr)).toBe(true);
 		});
 
 		it('should return true when curr a negative integer', () => {
-			const rule = new Rule();
 			const intCurr = -43;
-
-			const fn = makeIsInteger<Rule>(rule, rule, mods);
-			fn();
 
 			expect(rule.nodes[0].execute(intCurr)).toBe(true);
 		});
 
 		it('should return false when curr is a boolean, true (non-number)', () => {
-			const rule = new Rule();
 			const curr = true;
-
-			const fn = makeIsInteger<Rule>(rule, rule, mods);
-			fn();
 
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
 
 		it('should return false when curr is a boolean, false (non-number)', () => {
-			const rule = new Rule();
 			const curr = false;
-
-			const fn = makeIsInteger<Rule>(rule, rule, mods);
-			fn();
 
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
 
 		it('should return false when curr is an empty array (non-number)', () => {
-			const rule = new Rule();
-
-			const fn = makeIsInteger<Rule>(rule, rule, mods);
-			fn();
-
 			expect(rule.nodes[0].execute(EMPTY_ARRAY)).toBe(false);
 		});
 	});

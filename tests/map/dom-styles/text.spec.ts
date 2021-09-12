@@ -1,4 +1,4 @@
-import {DOMStylesText} from '../../../src/map/dom-styles/text';
+import {CSSText} from '../../../src/css/text';
 import {Strong} from '../../../src/strong';
 
 const EXPECTED_STRONG_PROPERTIES = [
@@ -6,11 +6,11 @@ const EXPECTED_STRONG_PROPERTIES = [
 	{name: 'shadow', expectedValueType: 'string', expectedValue: '0'}
 ];
 
-describe('DOMStylesText', () => {
-	let instance: DOMStylesText;
+describe('CSSText', () => {
+	let instance: CSSText;
 
 	beforeAll(() => {
-		instance = new DOMStylesText();
+		instance = new CSSText();
 	});
 
 	describe('Constructor', () => {

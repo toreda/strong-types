@@ -5,7 +5,7 @@ import {RuleNode} from '../rule/node';
 import {RuleNodeType} from '../rule/node/type';
 import {lessThanFn} from '../is/less-than';
 
-export type STOpHasLengthLessThan<CallerType> = (a: number) => CallerType;
+export type HasLengthLessThan<CallerType> = (a: number) => CallerType;
 
 export const hasLengthLessThan = (curr: unknown[] | string, target: number): boolean => {
 	if (typeof curr.length !== 'number') {
@@ -23,7 +23,7 @@ export function makeHasLengthLessThan<CallerType>(
 	caller: CallerType,
 	rule: Rule,
 	mods: RuleMods
-): STOpHasLengthLessThan<CallerType> {
+): HasLengthLessThan<CallerType> {
 	return (target: number): CallerType => {
 		const fn: RuleFn<unknown[] | string> = (curr: unknown[] | string) => {
 			return hasLengthLessThan(curr, target);

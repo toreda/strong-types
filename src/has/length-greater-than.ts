@@ -5,7 +5,7 @@ import {RuleNode} from '../rule/node';
 import {RuleNodeType} from '../rule/node/type';
 import {greaterThanFn} from '../is/greater-than';
 
-export type STOpHasLengthGreaterThan<CallerType> = (a: number) => CallerType;
+export type HasLengthGreaterThan<CallerType> = (a: number) => CallerType;
 
 export const hasLengthGreaterThan = (curr: string | unknown[], target: number): boolean => {
 	if (typeof curr.length !== 'number') {
@@ -23,7 +23,7 @@ export function makeHasLengthGreaterThan<CallerType>(
 	caller: CallerType,
 	rule: Rule,
 	mods: RuleMods
-): STOpHasLengthGreaterThan<CallerType> {
+): HasLengthGreaterThan<CallerType> {
 	return (target: number): CallerType => {
 		const fn: RuleFn<unknown[] | string> = (curr: unknown[] | string) => {
 			return hasLengthGreaterThan(curr, target);

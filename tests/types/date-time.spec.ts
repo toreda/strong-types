@@ -1,10 +1,10 @@
-import {StrongDateTime, makeDateTime} from '../../src/types/date-time';
+import {DateTime, makeDateTime} from '../../src/date-time';
 
 const MOCK_FALLBACK_DEFAULT = '2020-12-25T09:05:20';
 const MOCK_FALLBACK = '2015-02-24T03:21:52';
 const MOCK_INITIAL = '1886-05-30T18:45:36';
 
-describe('StrongDateTime', () => {
+describe('DateTime', () => {
 	describe('Implementation', () => {
 		it('should set initial value to sampleInitial argument', () => {
 			const sampleInitial = '2008-04-16T06:45:25';

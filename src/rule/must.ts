@@ -1,4 +1,4 @@
-import {IsEqualTo, makeIsEqualTo} from '../is/equal-to';
+import {IsEqual, makeIsEqual} from '../is/equal';
 
 import {Rule} from '../rule';
 import {RuleBe} from './be';
@@ -11,7 +11,7 @@ export class RuleMust {
 	public readonly be: RuleBe;
 	public readonly have: RuleHave;
 	public readonly not: RuleNot;
-	public readonly equal: IsEqualTo<RuleMust>;
+	public readonly equal: IsEqual<RuleMust>;
 	public readonly match: RuleMatch;
 
 	constructor(rules: Rule[], parentRule: Rule | null) {
@@ -27,7 +27,7 @@ export class RuleMust {
 		this.be = new RuleBe(rule, mods);
 		this.have = new RuleHave(rule, mods);
 		this.not = new RuleNot(rule, mods);
-		this.equal = makeIsEqualTo<RuleMust>(this, rule, mods);
+		this.equal = makeIsEqual<RuleMust>(this, rule, mods);
 		this.match = new RuleMatch(rule, mods);
 	}
 }

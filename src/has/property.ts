@@ -1,3 +1,4 @@
+import {BaseObject} from 'src';
 import {Rule} from '../rule';
 import {RuleFn} from '../rule/fn';
 import {RuleMods} from '../rule/mods';
@@ -11,12 +12,8 @@ function hasProperty(o: unknown, propName: string): boolean {
 		return false;
 	}
 
-	const obj = o as ObjectConstructor;
-	if (!obj.hasOwnProperty || typeof obj.hasOwnProperty !== 'function') {
-		return false;
-	}
-
-	return obj.hasOwnProperty(propName);
+	const obj = o as BaseObject;
+	return typeof obj[propName] !== 'undefined';
 }
 
 export function makeHasProperty<CallerType>(
@@ -29,7 +26,7 @@ export function makeHasProperty<CallerType>(
 			return hasProperty(obj, propName);
 		};
 
-		const node = new RuleNode('HAS_PROPERTY', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<unknown>('HAS_PROPERTY', RuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

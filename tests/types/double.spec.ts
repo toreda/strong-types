@@ -1,10 +1,10 @@
-import {StrongDouble, makeDouble} from '../../src/types/double';
+import {Double, makeDouble} from '../../src/double';
 
 const MOCK_INITIAL = 5246576;
 const MOCK_FALLBACK_DEFAULT = 6.5;
 const MOCK_FALLBACK = -9.596596;
 
-describe('StrongDouble', () => {
+describe('Double', () => {
 	describe('Implementation', () => {
 		it('should set value to initialValue argument', () => {
 			const sampleInitial = 5.785216;

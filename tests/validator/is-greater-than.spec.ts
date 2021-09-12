@@ -1,17 +1,24 @@
+import {IsGreaterThan, makeIsGreaterThan} from '../../src/is/greater-than';
+
 import {Rule} from '../../src/rule';
 import {RuleMods} from '../../src/rule/mods';
-import {makeIsGreaterThan} from '../../src/is/greater-than';
 
 const MOCK_TARGET = 44410;
 const MOCK_CURR = 1111;
 
 describe('IsGreaterThan', () => {
 	let mods: RuleMods;
+	let rule: Rule;
+	let fn: IsGreaterThan<Rule>;
 
 	beforeAll(() => {
+		rule = new Rule();
+
 		mods = {
 			invert: false
 		};
+
+		fn = makeIsGreaterThan<Rule>(rule, rule, mods);
 	});
 
 	beforeEach(() => {
@@ -24,11 +31,9 @@ describe('IsGreaterThan', () => {
 
 	describe('usage', () => {
 		it('should return false when curr value argument is not a number', () => {
-			const rule = new Rule();
 			const stringCurr = 'aaaa';
-
-			const fn = makeIsGreaterThan<Rule>(rule, rule, mods);
 			fn(MOCK_TARGET);
+
 			expect(rule.nodes[0].execute(stringCurr as any)).toBe(false);
 		});
 

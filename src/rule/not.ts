@@ -1,18 +1,23 @@
-import {IsEqualTo, makeIsEqualTo} from '../is/equal-to';
+import {IsEqual, makeIsEqual} from '../is/equal';
 
 import {Rule} from '../rule';
 import {RuleBe} from './be';
 import {RuleMods} from './mods';
 
+/**
+ * Inverts the rule immediately following it.
+ *
+ * @cateogry Rules
+ */
 export class RuleNot {
 	public readonly be: RuleBe;
-	public readonly equal: IsEqualTo<RuleNot>;
+	public readonly equalTo: IsEqual<RuleNot>;
 
 	constructor(rule: Rule, parentMods: RuleMods) {
 		const mods: RuleMods = {
 			invert: !parentMods.invert
 		};
 		this.be = new RuleBe(rule, mods);
-		this.equal = makeIsEqualTo<RuleNot>(this, rule, mods);
+		this.equalTo = makeIsEqual<RuleNot>(this, rule, mods);
 	}
 }

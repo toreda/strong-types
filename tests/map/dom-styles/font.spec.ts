@@ -1,4 +1,4 @@
-import {DOMStylesFont} from '../../../src/map/dom-styles/font';
+import {CSSFont} from '../../../src/css/font';
 import {Strong} from '../../../src/strong';
 
 const EXPECTED_STRONG_PROPERTIES = [
@@ -11,10 +11,10 @@ const EXPECTED_STRONG_PROPERTIES = [
 	{name: 'variant', expectedValueType: 'string', expectedValue: 'normal'}
 ];
 describe('DomStylesFont', () => {
-	let instance: DOMStylesFont;
+	let instance: CSSFont;
 
 	beforeAll(() => {
-		instance = new DOMStylesFont();
+		instance = new CSSFont();
 	});
 
 	describe('Constructor', () => {

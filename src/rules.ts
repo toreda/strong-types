@@ -2,6 +2,11 @@ import {Rule} from './rule';
 import {RuleMust} from './rule/must';
 import {RuleRoot} from './rule/root';
 
+/**
+ * Container for rules applied to a node.
+ *
+ * @category Rules
+ */
 export class Rules<T> {
 	public readonly rules: Rule[];
 

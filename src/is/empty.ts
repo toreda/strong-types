@@ -24,7 +24,7 @@ export function makeIsEmpty<CallerType>(caller: CallerType, rule: Rule, mods: Ru
 			return emptyFn(curr);
 		};
 
-		const node = new RuleNode('IS_EMPTY', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<string | unknown[]>('IS_EMPTY', RuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

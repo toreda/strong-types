@@ -11,8 +11,9 @@
 		"lint:fix": "yarn eslint src/** --quiet --fix",
 		"build:nolint": "yarn tsc",
 		"build": "yarn gulp",
-		"test": "yarn jest --coverage",
-		"test:silent": "yarn jest --coverage=false --maxWorkers=1 --silent --verbose=false"
+		"test": "yarn jest --coverage --maxWorkers=50%",
+		"test:dev": "yarn jest --coverage=false --maxWorkers=50%",
+		"test:silent": "yarn jest --coverage=false --maxWorkers=50% --silent --verbose=false"
 	},
 	"repository": {
 		"type": "git",

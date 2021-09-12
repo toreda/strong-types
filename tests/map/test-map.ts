@@ -1,5 +1,5 @@
-import {StrongInt, makeInt} from '../../src/types/int';
-import {StrongString, makeString} from '../../src/types/string';
+import {Int, makeInt} from '../../src/int';
+import {StrongString, makeString} from '../../src/string';
 
 import {StrongMap} from '../../src/map';
 
@@ -12,7 +12,7 @@ export interface TestMapType {
 }
 
 export class TestMap extends StrongMap {
-	intProp?: StrongInt;
+	intProp?: Int;
 	stringProp?: StrongString;
 	arrayProp?: unknown[];
 	objectProp?: Record<string, unknown>;

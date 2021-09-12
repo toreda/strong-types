@@ -1,6 +1,6 @@
 import {Rule} from '../../src/rule';
 import {RuleMods} from '../../src/rule/mods';
-import {makeIsEqualTo} from '../../src/is/equal-to';
+import {makeIsEqual} from '../../src/is/equal';
 
 const EMPTY_ARRAY: string[] = [];
 
@@ -23,7 +23,7 @@ describe('EqualTo', () => {
 				const rule = new Rule();
 				const value = 'aaaaaaaaa';
 				const value2 = 'aaaaaaaaa';
-				const fn = makeIsEqualTo<Rule>(rule, rule, mods);
+				const fn = makeIsEqual<Rule>(rule, rule, mods);
 				fn(value);
 				expect(rule.nodes[0].execute(value2)).toBe(true);
 			});
@@ -34,7 +34,7 @@ describe('EqualTo', () => {
 				const value2 = 'aaaaaaaaa';
 				mods.invert = true;
 
-				const fn = makeIsEqualTo<Rule>(rule, rule, mods);
+				const fn = makeIsEqual<Rule>(rule, rule, mods);
 				fn(value);
 				expect(rule.nodes[0].execute(value2)).toBe(false);
 			});
@@ -46,7 +46,7 @@ describe('EqualTo', () => {
 				const value = 0;
 				const value2 = 0;
 
-				const fn = makeIsEqualTo<Rule>(rule, rule, mods);
+				const fn = makeIsEqual<Rule>(rule, rule, mods);
 				fn(value);
 				expect(rule.nodes[0].execute(value2)).toBe(true);
 			});
@@ -56,7 +56,7 @@ describe('EqualTo', () => {
 				const value = 1;
 				const value2 = 1;
 
-				const fn = makeIsEqualTo<Rule>(rule, rule, mods);
+				const fn = makeIsEqual<Rule>(rule, rule, mods);
 				fn(value);
 				expect(rule.nodes[0].execute(value2)).toBe(true);
 			});
@@ -67,7 +67,7 @@ describe('EqualTo', () => {
 				const rule = new Rule();
 				const target: string[] = [];
 
-				const fn = makeIsEqualTo<Rule>(rule, rule, mods);
+				const fn = makeIsEqual<Rule>(rule, rule, mods);
 				fn(target);
 				expect(rule.nodes[0].execute(EMPTY_ARRAY)).toBe(true);
 			});
@@ -78,7 +78,7 @@ describe('EqualTo', () => {
 				const current = [val];
 				const target = [val];
 
-				const fn = makeIsEqualTo<Rule>(rule, rule, mods);
+				const fn = makeIsEqual<Rule>(rule, rule, mods);
 				fn(target);
 				expect(rule.nodes[0].execute(current)).toBe(true);
 			});
@@ -88,7 +88,7 @@ describe('EqualTo', () => {
 				const current = ['one', 'two'];
 				const target = ['one', 'two', 'three'];
 
-				const fn = makeIsEqualTo<Rule>(rule, rule, mods);
+				const fn = makeIsEqual<Rule>(rule, rule, mods);
 				fn(target);
 				expect(rule.nodes[0].execute(current)).toBe(false);
 			});
@@ -98,7 +98,7 @@ describe('EqualTo', () => {
 				const current = ['one', 'two', 'four'];
 				const target = ['one', 'two', 'five'];
 
-				const fn = makeIsEqualTo<Rule>(rule, rule, mods);
+				const fn = makeIsEqual<Rule>(rule, rule, mods);
 				fn(target);
 				expect(rule.nodes[0].execute(current)).toBe(false);
 			});
@@ -110,7 +110,7 @@ describe('EqualTo', () => {
 				const current = undefined;
 				const target = 1000;
 
-				const fn = makeIsEqualTo<Rule>(rule, rule, mods);
+				const fn = makeIsEqual<Rule>(rule, rule, mods);
 				fn(target);
 				expect(rule.nodes[0].execute(current)).toBe(false);
 			});
@@ -120,7 +120,7 @@ describe('EqualTo', () => {
 				const current = 4981;
 				const target = undefined;
 
-				const fn = makeIsEqualTo<Rule>(rule, rule, mods);
+				const fn = makeIsEqual<Rule>(rule, rule, mods);
 				fn(target);
 				expect(rule.nodes[0].execute(current)).toBe(false);
 			});
@@ -130,7 +130,7 @@ describe('EqualTo', () => {
 				const current = 2222;
 				const target = 2222;
 
-				const fn = makeIsEqualTo<Rule>(rule, rule, mods);
+				const fn = makeIsEqual<Rule>(rule, rule, mods);
 				fn(target);
 				expect(rule.nodes[0].execute(current)).toBe(true);
 			});

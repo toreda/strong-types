@@ -20,25 +20,25 @@ describe('StrongMap', () => {
 
 	describe('Expected Class Methods', () => {
 		describe('parse', () => {
-			it('should call parse with args (map, json, options)', () => {
+			it(`should call parse with args provided map and json args`, () => {
 				const json = {};
 				const map = new TestMap({});
 				const spy = jest.spyOn(MapParser.prototype, 'parse');
 
-				map.parse(json, {});
+				map.parse(json);
 
-				expect(spy).toHaveBeenCalledWith(map, json, expect.anything());
+				expect(spy).toHaveBeenCalledWith(map, json);
 			});
 		});
 
 		describe('jsonify', () => {
-			it('should call jsonify with args (map, options)', () => {
+			it('should call jsonify with provided map', () => {
 				const map = new TestMap({});
 				const spy = jest.spyOn(MapJsonifier.prototype, 'jsonify');
 
-				map.jsonify({});
+				map.jsonify();
 
-				expect(spy).toHaveBeenCalledWith(map, expect.anything());
+				expect(spy).toHaveBeenCalledWith(map);
 			});
 		});
 	});

@@ -1,4 +1,4 @@
-import {StrongString, makeString} from '../../src/types/string';
+import {StrongString, makeString} from '../../src/string';
 
 const MOCK_INITIAL = 'hello';
 const MOCK_FALLBACK_DEFAULT = 'hello world';

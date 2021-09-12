@@ -1,9 +1,9 @@
-import {StrongBoolean, makeBoolean} from '../../src/types/boolean';
+import {Bool, makeBoolean} from '../../src/boolean';
 
 const MOCK_INITIAL = true;
 const MOCK_FALLBACK_DEFAULT = false;
 
-describe('StrongBoolean', () => {
+describe('Bool', () => {
 	describe('Implementation', () => {
 		it('should set value to initialValue argument', () => {
 			const sampleInitial = false;

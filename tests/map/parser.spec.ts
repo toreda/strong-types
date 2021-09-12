@@ -1,11 +1,11 @@
-import {StrongBoolean, makeBoolean} from '../../src/types/boolean';
-import {StrongString, makeString} from '../../src/types/string';
+import {Bool, makeBoolean} from '../../src/boolean';
+import {StrongString, makeString} from '../../src/string';
 
 import {MapParser} from '../../src/map/parser';
 import {MapParserState} from '../../src/map/parser/state';
-import {StrongInt} from '../../src/types/int';
+import {StrongInt} from '../../src/int';
 import {StrongMap} from '../../src/map';
-import {makeInt} from '../../src/types/int';
+import {makeInt} from '../../src/int';
 
 const MOCK_VALUE = 11091;
 const MOCK_KEY_NAME = 'keyname-119714971';
@@ -24,9 +24,9 @@ class SampleGroupOne extends StrongMap {
 }
 
 class SampleGroupTwo extends StrongMap {
-	public key_two_one: StrongBoolean;
-	public key_two_two: StrongBoolean;
-	public key_two_three: StrongBoolean;
+	public key_two_one: Bool;
+	public key_two_two: Bool;
+	public key_two_three: Bool;
 
 	constructor() {
 		super();
@@ -282,10 +282,48 @@ describe('Parser', () => {
 		});
 
 		describe('parseKey', () => {
-			it(`should not throw when keyName arg is missing`, () => {
-				expect(() => {
-					instance.parseKey(sampleMap, undefined as any, MOCK_VALUE);
-				}).not.toThrow();
+			it(`should return false when keyName arg is undefined`, () => {
+				expect(instance.parseKey(sampleMap, undefined as any, MOCK_VALUE)).toBe(false);
+			});
+
+			it(`should return false when keyName arg is null`, () => {
+				expect(instance.parseKey(sampleMap, null as any, MOCK_VALUE)).toBe(false);
+			});
+
+			it(`should return false when map arg is undefined`, () => {
+				expect(instance.parseKey(undefined as any, 'keyName', MOCK_VALUE)).toBe(false);
+			});
+
+			it(`should return false when map arg is null`, () => {
+				expect(instance.parseKey(null as any, 'keyName', MOCK_VALUE)).toBe(false);
+			});
+
+			it(`should set key and return true when value is null`, () => {
+				const map = new SampleMap();
+				const keyName = '971491741AAAljha';
+				const value = '__';
+				map[keyName] = value;
+				expect(map[keyName]).toBe(value);
+				expect(instance.parseKey(map, keyName, null)).toBe(true);
+				expect(map[keyName]).toBeNull();
+			});
+
+			it(`should not change map key and when value is undefined`, () => {
+				const map = new SampleMap();
+				const keyName = '10814081akVHKAha';
+				const value = 'AJFH917419087_861861';
+				map[keyName] = value;
+				expect(map[keyName]).toBe(value);
+
+				expect(instance.parseKey(map, keyName, undefined)).toBe(false);
+				expect(map[keyName]).toBe(value);
+			});
+
+			it(`should return false when value is undefined`, () => {
+				const map = new SampleMap();
+				const keyName = 'AKL7914971_91491';
+
+				expect(instance.parseKey(map, keyName, undefined)).toBe(false);
 			});
 		});
 

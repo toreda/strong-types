@@ -27,9 +27,13 @@
 		"traceResolution": false
 	},
 	"ts-jest": {
-		"module": "commonjs"
+		"module": "commonjs",
+		"declaration": false,
+		"isolatedModules": true,
+		"sourceMap": false
 	},
 	"ts-node": {
-		"module": "commonjs"
+		"module": "commonjs",
+		"sourceMap": false
 	}
 }

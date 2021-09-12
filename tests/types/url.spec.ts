@@ -1,10 +1,10 @@
-import {makeUrl} from '../../src/types/url';
+import {makeUrl} from '../../src/url';
 
 const MOCK_FALLBACK_DEFAULT = 'Http://somedomain.com';
 const MOCK_FALLBACK = 'Wss://somedomain.com:8080';
 const MOCK_INITIAL = 'http://test.com';
 
-describe('StrongUrl', () => {
+describe('Url', () => {
 	describe('Implementation', () => {
 		it('should set initial value to sampleInitial argument', () => {
 			const sampleInitial = 'http://dog.com';

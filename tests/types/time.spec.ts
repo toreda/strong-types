@@ -1,10 +1,10 @@
-import {StrongTime, makeTime} from '../../src/types/time';
+import {Time, makeTime} from '../../src/time';
 
 const MOCK_FALLBACK_DEFAULT = '05:24:41';
 const MOCK_FALLBACK = '23:05:12';
 const MOCK_INITIAL = '21:52:36';
 
-describe('StrongTime', () => {
+describe('Time', () => {
 	describe('Implementation', () => {
 		it('should set initial value to sampleInitial argument', () => {
 			const sampleInitial = '00:52:36';

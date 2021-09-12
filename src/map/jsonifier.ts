@@ -1,5 +1,3 @@
-import {MapJsonifierOptions as Options} from './jsonifier/options';
-import {MapJsonifierState as State} from './jsonifier/state';
 import {Strong} from '../strong';
 import {StrongMap} from '../map';
 
@@ -7,17 +5,15 @@ import {StrongMap} from '../map';
  * @category Strong Map
  */
 export class MapJsonifier {
-	public jsonify(map: StrongMap, options?: Options): Record<string, unknown> {
+	public jsonify(map: StrongMap): Record<string, unknown> {
 		if (!map) {
-			throw Error('Failed to jsonify map - map arg missing.');
+			throw Error(`Bad MapJsonifier.jsonify attempt - map arg missing.`);
 		}
 
-		const state = new State(options);
-
-		return this.jsonifyMap(map, state);
+		return this.jsonifyMap(map);
 	}
 
-	public jsonifyMap(map: unknown, state: State): Record<string, unknown> {
+	public jsonifyMap(map: unknown): Record<string, unknown> {
 		const result: Record<string, unknown> = {};
 
 		const keys = Object.keys(map as Record<string, unknown>);
@@ -32,22 +28,22 @@ export class MapJsonifier {
 			if (child === null) {
 				result[keyName] = null;
 			} else if (child instanceof StrongMap) {
-				result[keyName] = this.jsonifyMap(child, state);
+				result[keyName] = this.jsonifyMap(child);
 			} else if ((child as Strong<unknown>).typeId === 'StrongType') {
-				result[keyName] = this.jsonifyKey(child, state);
+				result[keyName] = this.jsonifyKey(child);
 			} else if (typeof child !== 'object') {
-				result[keyName] = this.jsonifyKey(child, state);
+				result[keyName] = this.jsonifyKey(child);
 			} else if (Array.isArray(child)) {
-				result[keyName] = this.jsonifyKey(child, state);
+				result[keyName] = this.jsonifyKey(child);
 			} else {
-				result[keyName] = this.jsonifyMap(child, state);
+				result[keyName] = this.jsonifyMap(child);
 			}
 		}
 
 		return result;
 	}
 
-	public jsonifyKey(key: unknown, _state: State): unknown {
+	public jsonifyKey(key: unknown): unknown {
 		if (key === undefined) {
 			return undefined;
 		}

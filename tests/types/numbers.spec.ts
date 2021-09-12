@@ -1,15 +1,15 @@
-import {StrongDouble, makeDouble} from '../../src/types/double';
-import {StrongInt, makeInt} from '../../src/types/int';
-import {StrongUInt, makeUInt} from '../../src/types/uint';
+import {Double, makeDouble} from '../../src/double';
+import {Int, makeInt} from '../../src/int';
+import {UInt, makeUInt} from '../../src/uint';
 
 interface TestType {
 	name: string;
 	instance: any;
 }
 
-let double: StrongDouble;
-let int: StrongInt;
-let uint: StrongUInt;
+let double: Double;
+let int: Int;
+let uint: UInt;
 let testTypes: TestType[];
 
 describe('numberMethods', () => {

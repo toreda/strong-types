@@ -1,10 +1,10 @@
-import {StrongDate, makeDate} from '../../src/types/date';
+import {Date, makeDate} from '../../src/date';
 
 const MOCK_FALLBACK_DEFAULT = '1886-08';
 const MOCK_FALLBACK = '1999-10-31';
 const MOCK_INITIAL = '2020';
 
-describe('StrongDate', () => {
+describe('Date', () => {
 	describe('Implementation', () => {
 		it('should set initial value to sampleInitial argument', () => {
 			const sampleInitial = '2020-12-25';

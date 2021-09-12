@@ -1,10 +1,10 @@
-import {StrongInt, makeInt} from '../../src/types/int';
+import {Int, makeInt} from '../../src/int';
 
 const MOCK_INITIAL = 524;
 const MOCK_FALLBACK_DEFAULT = 65;
 const MOCK_FALLBACK = -9596;
 
-describe('StrongInt', () => {
+describe('Int', () => {
 	describe('Implementation', () => {
 		it('should set value to initialValue argument', () => {
 			const sampleInitial = 578;

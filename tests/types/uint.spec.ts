@@ -1,10 +1,10 @@
-import {StrongUInt, makeUInt} from '../../src/types/uint';
+import {UInt, makeUInt} from '../../src/uint';
 
 const MOCK_INITIAL = 4410;
 const MOCK_FALLBACK_DEFAULT = 99121;
 const MOCK_FALLBACK = 172091;
 
-describe('StrongUInt', () => {
+describe('UInt', () => {
 	describe('Implementation', () => {
 		it('should set value to initialValue argument', () => {
 			const sampleInitial = 11098;

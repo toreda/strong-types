@@ -1,0 +1,22 @@
+import {StrongDouble, makeDouble} from './double';
+
+import {StrongMap} from './map';
+
+export class Size extends StrongMap {
+	public readonly width: StrongDouble;
+	public readonly height: StrongDouble;
+
+	constructor(defaultWidth: number | null, defaultHeight: number | null) {
+		super();
+
+		this.width = makeDouble(0, defaultWidth);
+		this.height = makeDouble(0, defaultHeight);
+	}
+}
+
+/**
+ * Size alias for backwards compat.
+ *
+ * @category Units
+ */
+export type StrongSize = Size;

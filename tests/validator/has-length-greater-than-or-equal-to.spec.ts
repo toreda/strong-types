@@ -1,6 +1,6 @@
 import {Rule} from '../../src/rule';
 import {RuleMods} from '../../src/rule/mods';
-import {makeHasLengthGreaterThanOrEqualTo} from '../../src/has/length-greater-than-or-equal-to';
+import {makeHasLengthGreaterThanOrEqual} from '../../src/has/length-greater-than-or-equal';
 
 describe('LengthGreaterThanOrEqualTo', () => {
 	let mods: RuleMods;
@@ -16,7 +16,7 @@ describe('LengthGreaterThanOrEqualTo', () => {
 			const rule = new Rule();
 			const target = 3;
 			const curr = 'dog';
-			const fn = makeHasLengthGreaterThanOrEqualTo<Rule>(rule, rule, mods);
+			const fn = makeHasLengthGreaterThanOrEqual<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -25,7 +25,7 @@ describe('LengthGreaterThanOrEqualTo', () => {
 			const rule = new Rule();
 			const target = 5;
 			const curr = 'Hello World';
-			const fn = makeHasLengthGreaterThanOrEqualTo<Rule>(rule, rule, mods);
+			const fn = makeHasLengthGreaterThanOrEqual<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -34,7 +34,7 @@ describe('LengthGreaterThanOrEqualTo', () => {
 			const rule = new Rule();
 			const target = 2;
 			const curr = ['dog', 'cat'];
-			const fn = makeHasLengthGreaterThanOrEqualTo<Rule>(rule, rule, mods);
+			const fn = makeHasLengthGreaterThanOrEqual<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -43,7 +43,7 @@ describe('LengthGreaterThanOrEqualTo', () => {
 			const rule = new Rule();
 			const target = 0;
 			const curr = ['dog', 'cat'];
-			const fn = makeHasLengthGreaterThanOrEqualTo<Rule>(rule, rule, mods);
+			const fn = makeHasLengthGreaterThanOrEqual<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -53,7 +53,7 @@ describe('LengthGreaterThanOrEqualTo', () => {
 			const target = 0;
 			const curr = '';
 
-			const fn = makeHasLengthGreaterThanOrEqualTo<Rule>(rule, rule, mods);
+			const fn = makeHasLengthGreaterThanOrEqual<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -65,7 +65,7 @@ describe('LengthGreaterThanOrEqualTo', () => {
 			const target = 10;
 			const curr = 'number';
 
-			const fn = makeHasLengthGreaterThanOrEqualTo<Rule>(rule, rule, mods);
+			const fn = makeHasLengthGreaterThanOrEqual<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
@@ -75,7 +75,7 @@ describe('LengthGreaterThanOrEqualTo', () => {
 			const target = '' as any;
 			const curr = '1';
 
-			const fn = makeHasLengthGreaterThanOrEqualTo<Rule>(rule, rule, mods);
+			const fn = makeHasLengthGreaterThanOrEqual<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
@@ -85,7 +85,7 @@ describe('LengthGreaterThanOrEqualTo', () => {
 			const target = 8;
 			const curr = ['one', 'two', 'three'];
 
-			const fn = makeHasLengthGreaterThanOrEqualTo<Rule>(rule, rule, mods);
+			const fn = makeHasLengthGreaterThanOrEqual<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
@@ -95,7 +95,7 @@ describe('LengthGreaterThanOrEqualTo', () => {
 			const target = 2;
 			const curr: string[] = [];
 
-			const fn = makeHasLengthGreaterThanOrEqualTo<Rule>(rule, rule, mods);
+			const fn = makeHasLengthGreaterThanOrEqual<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
@@ -105,7 +105,7 @@ describe('LengthGreaterThanOrEqualTo', () => {
 			const target = [] as any;
 			const curr = [6];
 
-			const fn = makeHasLengthGreaterThanOrEqualTo<Rule>(rule, rule, mods);
+			const fn = makeHasLengthGreaterThanOrEqual<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
@@ -115,7 +115,7 @@ describe('LengthGreaterThanOrEqualTo', () => {
 			const target = 2;
 			const curr = 2;
 
-			const fn = makeHasLengthGreaterThanOrEqualTo<Rule>(rule, rule, mods);
+			const fn = makeHasLengthGreaterThanOrEqual<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
@@ -125,7 +125,7 @@ describe('LengthGreaterThanOrEqualTo', () => {
 			const target = 65;
 			const curr = false;
 
-			const fn = makeHasLengthGreaterThanOrEqualTo<Rule>(rule, rule, mods);
+			const fn = makeHasLengthGreaterThanOrEqual<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
@@ -135,7 +135,7 @@ describe('LengthGreaterThanOrEqualTo', () => {
 			const target = false as any;
 			const curr = ['hi'];
 
-			const fn = makeHasLengthGreaterThanOrEqualTo<Rule>(rule, rule, mods);
+			const fn = makeHasLengthGreaterThanOrEqual<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});

@@ -1,6 +1,12 @@
 import {RuleNode} from './rule/node';
 import {RuleNodeType} from './rule/node/type';
 
+/**
+ * Single rule applied to a node. Can be modified by other rules, matches,
+ * specifiers, and flags such as invert.
+ *
+ * @category Rules
+ */
 export class Rule {
 	public readonly nodes: RuleNode<unknown>[];
 

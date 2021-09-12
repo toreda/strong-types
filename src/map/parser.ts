@@ -20,7 +20,7 @@ export class MapParser {
 	}
 
 	public parseStrongKey(key: Strong<unknown>, value: unknown, _state: State): void {
-		if (!key) {
+		if (!key || !value) {
 			return;
 		}
 
@@ -38,18 +38,22 @@ export class MapParser {
 		}
 	}
 
-	public parseKey(map: StrongMap, keyName: string, value: unknown): void {
+	public parseKey(map: StrongMap, keyName: string, value: unknown): boolean {
 		if (!map) {
-			return;
+			return false;
 		}
 
 		if (value === undefined) {
-			return;
+			return false;
+		}
+
+		if (typeof keyName !== 'string' || !keyName) {
+			return false;
 		}
 
 		if (value === null) {
 			map[keyName] = null;
-			return;
+			return true;
 		}
 
 		let result: Strong<unknown> | unknown;
@@ -61,10 +65,11 @@ export class MapParser {
 		}
 
 		if (typeof map[keyName] !== typeof result) {
-			return;
+			return false;
 		}
 
 		map[keyName] = result;
+		return true;
 	}
 
 	public parseMap(map: StrongMap, json: jsonType, state: State): boolean {
@@ -83,7 +88,7 @@ export class MapParser {
 			const jsonObj = json[keyName];
 
 			// Skip built-in properties.
-			if (map.hasOwnProperty(keyName)) {
+			if (!map.hasOwnProperty(keyName)) {
 				continue;
 			}
 

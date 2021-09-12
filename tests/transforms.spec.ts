@@ -3,12 +3,17 @@ import {TransformNB} from '../src/transform/nb';
 import {Transforms} from '../src/transforms';
 
 const MOCK_STRING = 'oneoneone';
+const MOCK_FALLBACK1 = '22222233333___11';
 
-describe('STTransforms', () => {
+describe('Transforms', () => {
 	let instance: Transforms<string>;
 
 	beforeAll(() => {
-		instance = new Transforms<string>(MOCK_STRING);
+		instance = new Transforms<string>(MOCK_FALLBACK1);
+	});
+
+	beforeEach(() => {
+		instance.reset();
 	});
 
 	describe('Constructor', () => {
@@ -17,66 +22,46 @@ describe('STTransforms', () => {
 
 	describe('Implementation', () => {
 		describe('add', () => {
-			let custom: Transforms<string>;
-			const MOCK_FALLBACK1 = '22222233333___11';
-
-			beforeEach(() => {
-				custom = new Transforms<string>(MOCK_FALLBACK1);
-			});
-
 			it('should return false when transform argument is null', () => {
-				expect(custom.add(null as any)).toBe(false);
+				expect(instance.add(null as any)).toBe(false);
 			});
 
 			it('should return false when transform argument is undefined', () => {
-				expect(custom.add(undefined as any)).toBe(false);
+				expect(instance.add(undefined as any)).toBe(false);
 			});
 		});
 
 		describe('addNB', () => {
-			let custom: Transforms<string>;
-			const MOCK_FALLBACK1 = '22222233333___11';
-
-			beforeEach(() => {
-				custom = new Transforms<string>(MOCK_FALLBACK1);
-			});
-
 			it('should return false when transform argument is null', () => {
-				expect(custom.addNB(null as any)).toBe(false);
+				expect(instance.addNB(null as any)).toBe(false);
 			});
 
 			it('should return false when transform argument is undefined', () => {
-				expect(custom.addNB(undefined as any)).toBe(false);
+				expect(instance.addNB(undefined as any)).toBe(false);
 			});
 
 			it('should add exactly 1 element to transformsNB when argument is a transform', () => {
 				const fn = jest.fn();
 				const transformNB = new Transform<string>(fn);
-				expect(custom.transformsNB).toHaveLength(0);
-				custom.addNB(transformNB);
-				expect(custom.transformsNB).toHaveLength(1);
+				expect(instance.transformsNB).toHaveLength(0);
+				instance.addNB(transformNB);
+				expect(instance.transformsNB).toHaveLength(1);
 			});
 		});
 
 		describe('run', () => {
-			let custom: Transforms<string>;
-			const MOCK_FALLBACK1 = '22222233333___11';
-			beforeEach(() => {
-				custom = new Transforms<string>(MOCK_FALLBACK1);
-			});
-
 			it('should return fallback default when value argument is null', () => {
-				expect(custom.run(null as any)).toBe(MOCK_FALLBACK1);
+				expect(instance.run(null as any)).toBe(MOCK_FALLBACK1);
 			});
 
 			it('should return fallback default when value argument is undefined', () => {
-				expect(custom.run(undefined as any)).toBe(MOCK_FALLBACK1);
+				expect(instance.run(undefined as any)).toBe(MOCK_FALLBACK1);
 			});
 
 			it('should return value argument when no transforms are applied', () => {
 				const inputValue = 'one_one_two';
-				expect(custom.transforms).toHaveLength(0);
-				expect(custom.run(inputValue)).toBe(inputValue);
+				expect(instance.transforms).toHaveLength(0);
+				expect(instance.run(inputValue)).toBe(inputValue);
 			});
 
 			it('should execute all transforms', () => {
@@ -97,16 +82,16 @@ describe('STTransforms', () => {
 				});
 				const transform3 = new Transform(tf3);
 
-				custom.add(transform1);
-				custom.add(transform2);
-				custom.add(transform3);
+				instance.add(transform1);
+				instance.add(transform2);
+				instance.add(transform3);
 
 				expect(tf1).not.toHaveBeenCalled();
 				expect(tf2).not.toHaveBeenCalled();
 				expect(tf3).not.toHaveBeenCalled();
 
 				const val = 'aaaaaaaaaa4414';
-				const result = custom.run(val);
+				const result = instance.run(val);
 
 				expect(tf1).toHaveBeenCalledTimes(1);
 				expect(tf2).toHaveBeenCalledTimes(1);
@@ -115,25 +100,18 @@ describe('STTransforms', () => {
 		});
 
 		describe('runNB', () => {
-			let custom: Transforms<string>;
-			const MOCK_FALLBACK1 = '22222233333___11';
-
-			beforeEach(() => {
-				custom = new Transforms<string>(MOCK_FALLBACK1);
-			});
-
 			it('should return null when value argument is null', () => {
-				expect(custom.runNB(null as any)).toBeNull();
+				expect(instance.runNB(null as any)).toBeNull();
 			});
 
 			it('should return null when value argument is undefined', () => {
-				expect(custom.runNB(undefined as any)).toBeNull();
+				expect(instance.runNB(undefined as any)).toBeNull();
 			});
 
 			it('should return value argument when no transforms are applied', () => {
 				const inputValue = 'one_one_two';
-				expect(custom.transforms).toHaveLength(0);
-				expect(custom.runNB(inputValue)).toBe(inputValue);
+				expect(instance.transforms).toHaveLength(0);
+				expect(instance.runNB(inputValue)).toBe(inputValue);
 			});
 
 			it('should return a final value modified by each transform in order', () => {
