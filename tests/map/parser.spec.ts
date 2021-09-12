@@ -1,4 +1,4 @@
-import {Bool, makeBoolean} from '../../src/boolean';
+import {Bool, makeBoolean} from '../../src/bool';
 import {StrongString, makeString} from '../../src/string';
 
 import {MapParser} from '../../src/map/parser';

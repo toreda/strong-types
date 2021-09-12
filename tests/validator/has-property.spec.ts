@@ -4,16 +4,22 @@ import {makeHasProperty} from '../../src/has/property';
 
 describe('HasProperty', () => {
 	let mods: RuleMods;
+	let rule: Rule;
 
 	beforeAll(() => {
+		rule = new Rule();
 		mods = {
 			invert: false
 		};
 	});
 
+	beforeEach(() => {
+		mods.invert = false;
+		rule.reset();
+	});
+
 	describe('valid input', () => {
 		it('should return true when the object property matches the propName', () => {
-			const rule = new Rule();
 			const obj = {age: '50'};
 			const propName = 'age';
 
@@ -23,7 +29,6 @@ describe('HasProperty', () => {
 		});
 
 		it('should return false when the object does not have property with propName', () => {
-			const rule = new Rule();
 			const obj = {number: '50'};
 			const propName = 'age';
 
@@ -33,7 +38,6 @@ describe('HasProperty', () => {
 		});
 
 		it('should return false when target object is empty', () => {
-			const rule = new Rule();
 			const obj = {};
 			const propName = 'age';
 
@@ -43,7 +47,6 @@ describe('HasProperty', () => {
 		});
 
 		it('should return false when the object is equal to an empty array', () => {
-			const rule = new Rule();
 			const obj: string[] = [];
 			const propName = 'age';
 
@@ -53,7 +56,6 @@ describe('HasProperty', () => {
 		});
 
 		it('should return false when object is equal to a string', () => {
-			const rule = new Rule();
 			const obj = 'age';
 			const propName = 'age';
 
@@ -63,7 +65,6 @@ describe('HasProperty', () => {
 		});
 
 		it('should return false when the object is equal to a number', () => {
-			const rule = new Rule();
 			const obj = 50;
 			const propName = 'age';
 
@@ -73,7 +74,6 @@ describe('HasProperty', () => {
 		});
 
 		it('should return false when the object is equal to a boolean', () => {
-			const rule = new Rule();
 			const obj = true;
 			const propName = 'age';
 
@@ -85,7 +85,6 @@ describe('HasProperty', () => {
 
 	describe('invalid input', () => {
 		it('should return false when obj is undefined', () => {
-			const rule = new Rule();
 			const obj = undefined;
 			const propName = 'name';
 
@@ -95,7 +94,6 @@ describe('HasProperty', () => {
 		});
 
 		it('should return false when obj is null', () => {
-			const rule = new Rule();
 			const obj = null;
 			const propName = 'breed';
 

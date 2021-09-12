@@ -6,6 +6,8 @@ import {RuleType} from '../rule/type';
 
 /**
  * Source must match the comparator immediately following a match.
+ *
+ * @category Rules
  */
 export class RuleMatch {
 	public readonly or: RuleOr;

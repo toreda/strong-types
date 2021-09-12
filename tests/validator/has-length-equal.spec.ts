@@ -1,10 +1,8 @@
-import {HasLengthEqual, makeHasLengthEqual} from '../../src/has/length-equal';
-
 import {Rule} from '../../src/rule';
+import {makeHasLengthEqual} from '../../src/has/length-equal';
 
 describe('HasLengthEqualTo', () => {
 	let rule: Rule;
-	let fn: HasLengthEqual<Rule>;
 
 	beforeAll(() => {
 		rule = new Rule();

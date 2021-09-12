@@ -2,18 +2,24 @@ import {Rule} from '../../src/rule';
 import {RuleMods} from '../../src/rule/mods';
 import {makeHasLengthGreaterThan} from '../../src/has/length-greater-than';
 
-describe('LengthGreaterThan', () => {
+describe('HasLengthGreaterThan', () => {
 	let mods: RuleMods;
+	let rule: Rule;
 
 	beforeAll(() => {
+		rule = new Rule();
 		mods = {
 			invert: false
 		};
 	});
 
+	beforeEach(() => {
+		rule.reset();
+		mods.invert = false;
+	});
+
 	describe('Usage', () => {
 		it('should return true when the current length is greater than the target length when the current value is a string', () => {
-			const rule = new Rule();
 			const target = 5;
 			const curr = 'Hello World';
 			const fn = makeHasLengthGreaterThan<Rule>(rule, rule, mods);
@@ -22,7 +28,6 @@ describe('LengthGreaterThan', () => {
 		});
 
 		it('should return true when the current length is greater than the target length when the current value is an array', () => {
-			const rule = new Rule();
 			const target = 0;
 			const curr = ['dog', 'cat'];
 			const fn = makeHasLengthGreaterThan<Rule>(rule, rule, mods);
@@ -33,7 +38,6 @@ describe('LengthGreaterThan', () => {
 
 	describe('invalid ouputs', () => {
 		it('should return false when the target length is equal to the current length when the current value is a string', () => {
-			const rule = new Rule();
 			const target = 3;
 			const curr = 'dog';
 			const fn = makeHasLengthGreaterThan<Rule>(rule, rule, mods);
@@ -42,7 +46,6 @@ describe('LengthGreaterThan', () => {
 		});
 
 		it('should return false when the target length is greater than the current length when the current value is a string', () => {
-			const rule = new Rule();
 			const target = 10;
 			const curr = 'number';
 
@@ -52,7 +55,6 @@ describe('LengthGreaterThan', () => {
 		});
 
 		it('should return false when the current value is an empty string', () => {
-			const rule = new Rule();
 			const target = 0;
 			const curr = '';
 
@@ -62,7 +64,6 @@ describe('LengthGreaterThan', () => {
 		});
 
 		it('should return false when the target value is an empty string', () => {
-			const rule = new Rule();
 			const target = '' as any;
 			const curr = '1';
 
@@ -72,7 +73,6 @@ describe('LengthGreaterThan', () => {
 		});
 
 		it('should return true when the target length is equal to the current length when the current value is an array', () => {
-			const rule = new Rule();
 			const target = 2;
 			const curr: string[] = ['dog', 'cat'];
 			const fn = makeHasLengthGreaterThan<Rule>(rule, rule, mods);
@@ -81,7 +81,6 @@ describe('LengthGreaterThan', () => {
 		});
 
 		it('should return false when the target length is greater than the current length when the current value is an array', () => {
-			const rule = new Rule();
 			const target = 8;
 			const curr: string[] = ['one', 'two', 'three'];
 
@@ -91,7 +90,6 @@ describe('LengthGreaterThan', () => {
 		});
 
 		it('should return false when the current value is an empty array', () => {
-			const rule = new Rule();
 			const target = 2;
 			const curr: string[] = [];
 
@@ -101,7 +99,6 @@ describe('LengthGreaterThan', () => {
 		});
 
 		it('should return false when the target value is an empty array', () => {
-			const rule = new Rule();
 			const target = [] as any;
 			const curr = [6];
 
@@ -111,7 +108,6 @@ describe('LengthGreaterThan', () => {
 		});
 
 		it('should return false when the current value is an integer', () => {
-			const rule = new Rule();
 			const target = 2;
 			const curr = 2;
 
@@ -121,7 +117,6 @@ describe('LengthGreaterThan', () => {
 		});
 
 		it('should return false when the current value is a boolean', () => {
-			const rule = new Rule();
 			const target = 65;
 			const curr = false;
 
@@ -131,7 +126,6 @@ describe('LengthGreaterThan', () => {
 		});
 
 		it('should return false when the target value is a boolean', () => {
-			const rule = new Rule();
 			const target = false as any;
 			const curr = ['hi'];
 

@@ -1,5 +1,7 @@
 import {Double, makeDouble} from './double';
 
+import {Defaults} from './defaults';
+
 /**
  * Map for passing coodinates in 1-dimensional
  * coordinate systems.
@@ -10,9 +12,12 @@ export class Vec1 {
 	public readonly x: Double;
 
 	constructor(x: number | null) {
-		this.x = makeDouble(0, x);
+		this.x = makeDouble(Defaults.Vec.X, x);
 	}
 
+	/**
+	 * Reset all coordinate properties to default values.
+	 */
 	public reset(): void {
 		this.x.reset();
 	}

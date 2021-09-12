@@ -1,6 +1,7 @@
 export {StrongType, makeStrong} from './strong';
 
 export {BaseObject} from './base/object';
+export {BaseCollection} from './base/collection';
 
 export {StrongData} from './strong/data';
 export {StrongState} from './strong/state';
@@ -9,7 +10,7 @@ export {typeMatch, isType, PrimitiveOrConstructor} from './is/type';
 
 // Custom Types
 export {StrongArray, makeArray} from './array';
-export {Bool, StrongBoolean, makeBoolean} from './boolean';
+export {Bool, StrongBoolean, makeBoolean} from './bool';
 export {Double, StrongDouble, makeDouble} from './double';
 export {Int, StrongInt, makeInt} from './int';
 export {UInt, StrongUInt, makeUInt} from './uint';

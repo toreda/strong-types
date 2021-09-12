@@ -23,6 +23,7 @@ export class RuleNode<T> {
 
 	public execute(value: T): boolean {
 		const result = this.fn(value);
+
 		if (!this.invertResult) {
 			return result;
 		} else {

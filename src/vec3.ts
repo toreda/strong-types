@@ -1,5 +1,7 @@
 import {Double, makeDouble} from './double';
 
+import {Defaults} from './defaults';
+
 /**
  * Map for passing coodinates in 3-dimensional
  * coordinate systems.
@@ -12,9 +14,9 @@ export class Vec3 {
 	public readonly z: Double;
 
 	constructor(x: number | null, y: number | null, z: number | null) {
-		this.x = makeDouble(0, x);
-		this.y = makeDouble(0, y);
-		this.z = makeDouble(0, z);
+		this.x = makeDouble(Defaults.Vec.X, x);
+		this.y = makeDouble(Defaults.Vec.Y, y);
+		this.z = makeDouble(Defaults.Vec.Z, z);
 	}
 
 	/**

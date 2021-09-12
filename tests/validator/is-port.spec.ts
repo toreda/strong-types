@@ -16,6 +16,11 @@ describe('IsPort', () => {
 		fn();
 	});
 
+	beforeEach(() => {
+		rule.reset();
+		fn();
+	});
+
 	describe('Usage', () => {
 		it('should return true when curr a positive integer', () => {
 			const intCurr = 7;

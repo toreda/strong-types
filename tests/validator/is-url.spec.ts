@@ -4,17 +4,22 @@ import {makeIsUrl} from '../../src/is/url';
 
 describe('IsUrl', () => {
 	let mods: RuleMods;
+	let rule: Rule;
 
 	beforeAll(() => {
+		rule = new Rule();
 		mods = {
 			invert: false
 		};
 	});
 
+	beforeEach(() => {
+		mods.invert = false;
+		rule.reset();
+	});
+
 	describe('valid inputs', () => {
 		it('should return true for a url string containing http', () => {
-			const rule = new Rule();
-
 			const value = 'http://test.com';
 
 			const fn = makeIsUrl<Rule>(rule, rule, mods);
@@ -24,8 +29,6 @@ describe('IsUrl', () => {
 		});
 
 		it('should return true for a url string containing Http', () => {
-			const rule = new Rule();
-
 			const value = 'Http://somedomain.com';
 
 			const fn = makeIsUrl<Rule>(rule, rule, mods);
@@ -35,8 +38,6 @@ describe('IsUrl', () => {
 		});
 
 		it('should return true for a url string containing Wss', () => {
-			const rule = new Rule();
-
 			const value = 'Wss://somedomain.com:8080';
 
 			const fn = makeIsUrl<Rule>(rule, rule, mods);
@@ -46,8 +47,6 @@ describe('IsUrl', () => {
 		});
 
 		it('should return true for a url starting with ftp://', () => {
-			const rule = new Rule();
-
 			const value = 'ftp://somedomain.com:3000';
 
 			const fn = makeIsUrl<Rule>(rule, rule, mods);
@@ -57,8 +56,6 @@ describe('IsUrl', () => {
 		});
 
 		it('should return true for a url starting with mailto://', () => {
-			const rule = new Rule();
-
 			const value = 'mailto://email@email.com';
 
 			const fn = makeIsUrl<Rule>(rule, rule, mods);
@@ -68,8 +65,6 @@ describe('IsUrl', () => {
 		});
 
 		it('should return true for a url starting with telnet://', () => {
-			const rule = new Rule();
-
 			const value = 'telnet://somedomain.com:3000';
 
 			const fn = makeIsUrl<Rule>(rule, rule, mods);
@@ -79,8 +74,6 @@ describe('IsUrl', () => {
 		});
 
 		it('should return true for a url starting with file://', () => {
-			const rule = new Rule();
-
 			const value = 'file://somedomain/data';
 
 			const fn = makeIsUrl<Rule>(rule, rule, mods);
@@ -90,8 +83,6 @@ describe('IsUrl', () => {
 		});
 
 		it('should return true for the following url structure', () => {
-			const rule = new Rule();
-
 			const value = 'http://www.test.com:81/a/b/c.html?user=Alice&year=2008#p2';
 
 			const fn = makeIsUrl<Rule>(rule, rule, mods);
@@ -101,8 +92,6 @@ describe('IsUrl', () => {
 		});
 
 		it('should return true for the following url structure', () => {
-			const rule = new Rule();
-
 			const value = 'http://www.test.com/showOrder.php?order=4621047';
 
 			const fn = makeIsUrl<Rule>(rule, rule, mods);
@@ -112,8 +101,6 @@ describe('IsUrl', () => {
 		});
 
 		it('should return true for the following url structure', () => {
-			const rule = new Rule();
-
 			const value = 'http://host.test.com/companyInfo?name=C&H Sugar';
 
 			const fn = makeIsUrl<Rule>(rule, rule, mods);
@@ -123,8 +110,6 @@ describe('IsUrl', () => {
 		});
 
 		it('should return true for the following url structure', () => {
-			const rule = new Rule();
-
 			const value = 'http://host.company.com/showCompanyInfo?name=C%26H%20Sugar';
 
 			const fn = makeIsUrl<Rule>(rule, rule, mods);
@@ -134,8 +119,6 @@ describe('IsUrl', () => {
 		});
 
 		it('should return true for a url string containing ftp', () => {
-			const rule = new Rule();
-
 			const value = 'ftp://test.com';
 
 			const fn = makeIsUrl<Rule>(rule, rule, mods);
@@ -145,8 +128,6 @@ describe('IsUrl', () => {
 		});
 
 		it('should return true for a url string containing gopher', () => {
-			const rule = new Rule();
-
 			const value = 'gopher://test.com';
 
 			const fn = makeIsUrl<Rule>(rule, rule, mods);
@@ -156,8 +137,6 @@ describe('IsUrl', () => {
 		});
 
 		it('should return true for a url string containing mailto', () => {
-			const rule = new Rule();
-
 			const value = 'mailto://test.com';
 
 			const fn = makeIsUrl<Rule>(rule, rule, mods);
@@ -167,8 +146,6 @@ describe('IsUrl', () => {
 		});
 
 		it('should return true for a url string containing mid', () => {
-			const rule = new Rule();
-
 			const value = 'mid://test.com';
 
 			const fn = makeIsUrl<Rule>(rule, rule, mods);
@@ -178,8 +155,6 @@ describe('IsUrl', () => {
 		});
 
 		it('should return true for a url string containing news', () => {
-			const rule = new Rule();
-
 			const value = 'news://test.com';
 
 			const fn = makeIsUrl<Rule>(rule, rule, mods);
@@ -189,8 +164,6 @@ describe('IsUrl', () => {
 		});
 
 		it('should return true for a url string containing nntp', () => {
-			const rule = new Rule();
-
 			const value = 'nntp://test.com';
 
 			const fn = makeIsUrl<Rule>(rule, rule, mods);
@@ -200,8 +173,6 @@ describe('IsUrl', () => {
 		});
 
 		it('should return true for a url string containing prospero', () => {
-			const rule = new Rule();
-
 			const value = 'prospero://test.com';
 
 			const fn = makeIsUrl<Rule>(rule, rule, mods);
@@ -211,8 +182,6 @@ describe('IsUrl', () => {
 		});
 
 		it('should return true for a url string containing telnet', () => {
-			const rule = new Rule();
-
 			const value = 'telnet://test.com';
 
 			const fn = makeIsUrl<Rule>(rule, rule, mods);
@@ -222,8 +191,6 @@ describe('IsUrl', () => {
 		});
 
 		it('should return true for a url string containing tn3270', () => {
-			const rule = new Rule();
-
 			const value = 'tn3270://test.com';
 
 			const fn = makeIsUrl<Rule>(rule, rule, mods);
@@ -233,8 +200,6 @@ describe('IsUrl', () => {
 		});
 
 		it('should return true for a url string containing rlogin', () => {
-			const rule = new Rule();
-
 			const value = 'rlogin://test.com';
 
 			const fn = makeIsUrl<Rule>(rule, rule, mods);
@@ -244,8 +209,6 @@ describe('IsUrl', () => {
 		});
 
 		it('should return true for a url string containing wais', () => {
-			const rule = new Rule();
-
 			const value = 'wais://test.com';
 
 			const fn = makeIsUrl<Rule>(rule, rule, mods);
@@ -255,8 +218,6 @@ describe('IsUrl', () => {
 		});
 
 		it('should return true for a valid url string ', () => {
-			const rule = new Rule();
-
 			const value = 'http://username:password@example.com/';
 
 			const fn = makeIsUrl<Rule>(rule, rule, mods);
@@ -367,7 +328,6 @@ describe('IsUrl', () => {
 
 		for (const input of inputs) {
 			it(`should ${input.label}`, () => {
-				const rule = new Rule();
 				const fn = makeIsUrl<Rule>(rule, rule, mods);
 				fn();
 

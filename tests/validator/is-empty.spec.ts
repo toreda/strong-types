@@ -5,7 +5,7 @@ import {RuleMods} from '../../src/rule/mods';
 
 const EMPTY_ARRAY: string[] = [];
 
-describe('empty', () => {
+describe('IsEmpty', () => {
 	let rule: Rule;
 	let fn: IsEmpty<Rule>;
 	let mods: RuleMods;
@@ -20,6 +20,7 @@ describe('empty', () => {
 		fn('aaaa');
 	});
 
+
 	describe('Usage', () => {
 		it('should return true when input is a non-empty string and mods.invert is true', () => {
 			const customRule = new Rule();
@@ -30,9 +31,8 @@ describe('empty', () => {
 		});
 
 		it('should return false when input is an empty array and mods.invert is true', () => {
-			const value: string[] = [];
-			mods.invert = true;
 			const customRule = new Rule();
+			const value: string[] = [];
 			const customFn = makeIsEmpty<Rule>(customRule, customRule, {invert: true});
 			customFn('');
 			expect(customRule.nodes[0].execute(value)).toBe(false);
@@ -59,21 +59,17 @@ describe('empty', () => {
 		it('should return false when input is a number', () => {
 			const value = 101;
 
-			fn(value);
 			expect(rule.nodes[0].execute(value)).toBe(false);
 		});
 
 		it('should return true when input is an empty array', () => {
-			const customRule = new Rule();
-			const customFn = makeIsEmpty<Rule>(customRule, customRule, {invert: false});
+			const customFn = makeIsEmpty<Rule>(rule, rule, {invert: false});
 			customFn(EMPTY_ARRAY);
-			expect(customRule.nodes[0].execute(EMPTY_ARRAY)).toBe(true);
+			expect(rule.nodes[0].execute(EMPTY_ARRAY)).toBe(true);
 		});
 
 		it('should return false when input is a non-empty array', () => {
 			const value: string[] = ['a', 'b', 'c'];
-
-			fn(value);
 			expect(rule.nodes[0].execute(value)).toBe(false);
 		});
 	});

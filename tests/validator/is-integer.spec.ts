@@ -8,40 +8,25 @@ const EMPTY_ARRAY: string[] = [];
 
 describe('Integer', () => {
 	let mods: RuleMods;
+	let rule: Rule;
+	let fn: IsInteger<Rule>;
 
 	beforeAll(() => {
+		rule = new Rule();
 		mods = {
 			invert: false
 		};
-	});
-
-	beforeEach(() => {
-		mods.invert = false;
+		fn = makeIsInteger<Rule>(rule, rule, mods);
+		fn();
 	});
 
 	describe('makeIsInteger', () => {
 		it('should return a function', () => {
-			const rule = new Rule();
-
-			const fn = makeIsInteger<Rule>(rule, rule, mods);
 			expect(typeof fn).toBe('function');
 		});
 	});
 
 	describe('Usage', () => {
-		let fn: IsInteger<Rule>;
-		let rule: Rule;
-
-		beforeAll(() => {
-			rule = new Rule();
-			fn = makeIsInteger(rule, rule, {invert: false});
-			fn();
-		});
-
-		beforeEach(() => {
-			mods.invert = false;
-		});
-
 		it('should return false when curr value is a string', () => {
 			const str = '111111111';
 

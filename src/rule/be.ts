@@ -17,6 +17,8 @@ import {Rule} from '../rule';
 import {RuleMods} from './mods';
 
 /**
+ * Rule chain matcher node with equality and type validation operations
+ *
  * @category Rules
  */
 export class RuleBe {

@@ -2,14 +2,14 @@
 
 ![CI](https://github.com/toreda/strong-types/workflows/CI/badge.svg?branch=master) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=toreda_strong-types&metric=coverage)](https://sonarcloud.io/dashboard?id=toreda_strong-types) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=toreda_strong-types&metric=alert_status)](https://sonarcloud.io/dashboard?id=toreda_strong-types)
 
-Native TypeScript containers for generic value storage. Reliably store and retrieve typed values without writing validation or type checking code. Use [built-in types](#BuiltInTypes) or define your own.
+Guaranteed types with validation in 1 line of code. Improve code quality & reliability while writing fewer lines of code.
 
 
 What does it do?
 ```typescript
-import {StrongInt, makeInt} from '@toreda/strong-types';
+import {Int, makeInt} from '@toreda/strong-types';
 //  int with initial value 10.
-const int = makeInt(10, 0);
+const int = makeInt(10);
 // Prints 10. It always return an int.
 console.log(int());
 
@@ -33,11 +33,11 @@ console.log(int());
 *	[**Built-in Types**](#built-in-types)
 	  - [`StrongMap`](#StrongMap)
 	  -	[`StrongArray`](#StrongArray)
-	  - [`StrongBoolean`](#StrongBoolean)
-	  - [`StrongDouble`](#StrongDouble)
-	  - [`StrongInt`](#StrongInt)
-	  - [`StrongStrongring`](#StrongStrongring)
-	  - [`StrongUInt`](#StrongUInt)
+	  - [`Bool`](#Bool)
+	  - [`Double`](#Double)
+	  - [`Int`](#Int)
+	  - [`StrongString`](#StrongString)
+	  - [`UInt`](#UInt)
 *	[**Custom Types**](#custom-types)
 	  - [Validators](#validators)
 * 	[**Package**](#package)
@@ -48,11 +48,11 @@ console.log(int());
 
 # Using `StrongType`
 
-Each built-in type exports a type and make function. The below examples use StrongInt but work the same using: `StrongArray`, `StrongBoolean`, `StrongDouble`, `StrongInt`, `StrongString`, and `StrongUInt`.
+Each built-in type exports a type and make function. The below examples use Int but work the same using: `StrongArray`, `Bool`, `Double`, `Int`, `StrongString`, and `UInt`.
 
 ## Instantiate with initial value
 ```typescript
-import {StrongInt, makeInt} from '@toreda/strong-types';
+import {Int, makeInt} from '@toreda/strong-types';
 
 const initial = 11;
 const fallback = 55;
@@ -67,7 +67,7 @@ const value = int();
 
 
 ```typescript
-import {StrongInt, makeInt} from '@toreda/strong-types';
+import {Int, makeInt} from '@toreda/strong-types';
 
 const fallback = 919;
 const int = makeInt(null, fallback);
@@ -81,7 +81,7 @@ const value = int();
 * `get(fallback: T): T`
 Call `container.get(fallback)` when a per-call fallback is preferred instead of the container's default fallback.
 ```typescript
-import {StrongInt, makeInt} from '@toreda/strong-types';
+import {Int, makeInt} from '@toreda/strong-types';
 const int = makeInt(null, 555);
 
 const fallback = 331;
@@ -96,7 +96,7 @@ Call `container.getNull()` to the current value, even if null. Value will never 
 NOTE: `getNull` **DOES NOT** take a fallback argument and will not return the container's default fallback. It always returns value (`null` or `StrongType<T>`).
 
 ```typescript
-import {StrongInt, makeInt} from '@toreda/strong-types';
+import {Int, makeInt} from '@toreda/strong-types';
 
 const fallback = 919;
 const int = makeInt(null, fallback);
@@ -107,7 +107,7 @@ console.log(int.getNull());
 
 ## Set Value
 ```
-import {StrongInt, makeInt} from '@toreda/strong-types';
+import {Int, makeInt} from '@toreda/strong-types';
 
 const initial = 331;
 const fallback = 400;
@@ -126,7 +126,7 @@ const value = int();
 
 ## Set `null`
 ```typescript
-import {StrongInt, makeInt} from '@toreda/strong-types';
+import {Int, makeInt} from '@toreda/strong-types';
 
 const initial = 414;
 const fallback = 500;
@@ -149,7 +149,7 @@ const value = int();
 Call `myContainer.reset()` to reset value without creating a new StrongType container. Default Fallback will not be reset. Useful for unit testing and serverless environments where the previous container value or state is unknown.
 
 ```typescript
-import {StrongInt, makeInt} from '@toreda/strong-types';
+import {Int, makeInt} from '@toreda/strong-types';
 
 const initial = 515;
 const fallback = 600;
@@ -171,33 +171,33 @@ console.log(int());
 `StrongType` containers validate value inputs before setting. Bad values are ignored and will not cause a throw. Each built-in container type provides specific guarantees for which values are allowed.
 
 ```typescript
-import {StrongInt, makeInt} from '@toreda/strong-types';
+import {Int, makeInt} from '@toreda/strong-types';
 const int = makeInt(50, 100);
 
 // success is false.
 // container.value is still it's initial value 50 because 1.5 is not an int.
-// StrongInt does not round or truncate non-integers. They are simply ignored.
+// Int does not round or truncate non-integers. They are simply ignored.
 const success = int(1.5);
 ```
 
 
 # Supported Types
 * [`StrongArray`](#StrongArray), arrays
-* [`StrongBoolean`](#StrongBoolean), booleans (strict)
-* [`StrongDouble`](#StrongDouble), doubles
-* [`StrongInt`](#StrongInt), integers
-* [`StrongUInt`](#StrongUint), unsigned integers
+* [`Bool`](#Bool), booleans (strict)
+* [`Double`](#Double), doubles
+* [`Int`](#Int), integers
+* [`UInt`](#StrongUint), unsigned integers
 * [`StrongString`](#StrongString) - strings
 
 # Using `StrongMap`
 
 Creating and using a StrongMap class.
 ```typescript
-import {StrongMap, StrongInt, StrongString, makeInt, makeString} from '@toreda/strong-types';
+import {StrongMap, Int, StrongString, makeInt, makeString} from '@toreda/strong-types';
 
 
 export class SomeConfig extends StrongMap {
-	public readonly counter: StrongInt;
+	public readonly counter: Int;
 	public readonly name: StrongString;
 
 	constructor(json: any) {
@@ -224,7 +224,7 @@ Creating a `StrongMap` and loading values from JSON
 import {StrongMap, StringInt, StrongString, makeInt, makeString} from '@toreda/strong-types';
 
 export class SomeConfig extends StrongMap {
-	public readonly counter: StrongInt;
+	public readonly counter: Int;
 	public readonly name: StrongString;
 
 	constructor(json?: any) {
@@ -255,7 +255,7 @@ Converting a `StrongMap` to a json object
 import {StrongMap, StringInt, StrongString, makeInt, makeString} from '@toreda/strong-types';
 
 export class SomeConfig extends StrongMap {
-	public readonly counter: StrongInt;
+	public readonly counter: Int;
 	public readonly name: StrongString;
 
 	constructor(json?: any) {
@@ -294,33 +294,33 @@ import {StrongArray, makeArray} from '@toreda/strong-types';
 * Accepts empty arrays (e.g. `[]`)
 
 
-## `StrongBoolean`
+## `Bool`
 
 ### Import
 ```typescript
-import {StrongBoolean, makeBoolean} from '@toreda/strong-types';
+import {Bool, makeBoolean} from '@toreda/strong-types';
 ```
 
 ### Accepted Values
 * Strict booleans: `true` or `false` only.
 * No type coercion (e.g. `1` or `0` will be rejected).
 
-## `StrongDouble`
+## `Double`
 
 ### Import
 ```typescript
-import {StrongDouble, makeDouble} from '@toreda/strong-types';
+import {Double, makeDouble} from '@toreda/strong-types';
 ```
 
 ### Accepted Values
 * `number` values between and including Number.MIN_VALUE and Number.MAX_VALUE.
 * Rejects `NaN` values.
 
-## `StrongInt`
+## `Int`
 
 ### Import ###
 ```typescript
-import {StrongInt, makeInt} from '@toreda/strong-types';
+import {Int, makeInt} from '@toreda/strong-types';
 ```
 ### Accepted Values ###
 * `number` values between and including Number.MIN_VALUE and Number.MAX_VALUE.
@@ -337,11 +337,11 @@ import {StrongString, makeString} from '@toreda/strong-types';
 * `string` values of any valid length.
 
 
-## `StrongUInt`
+## `UInt`
 
 ### Import
 ```typescript
-import {StrongUInt, makeUInt} from '@toreda/strong-types';
+import {UInt, makeUInt} from '@toreda/strong-types';
 ```
 
 ### Accepted Values ###
@@ -351,7 +351,7 @@ import {StrongUInt, makeUInt} from '@toreda/strong-types';
 * Rejected negative integers (e.g. `-22`).
 
 # Custom Types
-Each built-in type like `StrongInt` and `StrongUInt` are helper functions wrapping `Strong<T>`. They also apply validators which guarantee the `Strong<T>` value behaves as expected. While built-ins are provided for convenience, you can create custom types with your own validators.
+Each built-in type like `Int` and `UInt` are helper functions wrapping `Strong<T>`. They also apply validators which guarantee the `Strong<T>` value behaves as expected. While built-ins are provided for convenience, you can create custom types with your own validators.
 
 ## Instantiate `Strong<T>`
 

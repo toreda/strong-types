@@ -1,4 +1,4 @@
-import {Bool, makeBoolean} from '../../src/boolean';
+import {Bool, makeBoolean} from '../../src/bool';
 
 const MOCK_INITIAL = true;
 const MOCK_FALLBACK_DEFAULT = false;

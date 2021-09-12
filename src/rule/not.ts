@@ -5,7 +5,7 @@ import {RuleBe} from './be';
 import {RuleMods} from './mods';
 
 /**
- * Inverts the rule immediately following it.
+ * Inverts the operation immediately following it.
  *
  * @cateogry Rules
  */
