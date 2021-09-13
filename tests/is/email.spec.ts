@@ -1,41 +1,31 @@
 import {IsEmail, makeIsEmail} from '../../src/is/email';
 
 import {Rule} from '../../src/rule';
-import {RuleMods} from '../../src/rule/mods';
+import {TLDS} from '../_data/tlds';
 
 describe('IsEmail', () => {
-	let mods: RuleMods;
 	let rule: Rule;
 	let fn: IsEmail<Rule>;
 
 	beforeAll(() => {
 		rule = new Rule();
 
-		mods = {
-			invert: false
-		};
-		fn = makeIsEmail<Rule>(rule, rule, mods);
+		fn = makeIsEmail<Rule>(rule, rule, {invert: false});
 		fn();
 	});
 
-	beforeEach(() => {
-		mods.invert = false;
-	});
-
 	describe('Usage', () => {
-		it('should return true for an email string', () => {
-			const value = 'test@test.com';
-
-			expect(rule.nodes[0].execute(value)).toBe(true);
-		});
+		for (const tld of TLDS) {
+			it(`should return true for email address with valid TLD '.${tld}'`, () => {
+				const value = `testemail@somedomain.${tld}`;
+				expect(rule.nodes[0].execute(value)).toBe(true);
+			});
+		}
 	});
 
 	describe('invalid inputs', () => {
 		it('should return false for a string', () => {
 			const value = 'test com';
-
-			const fn = makeIsEmail<Rule>(rule, rule, mods);
-			fn();
 
 			expect(rule.nodes[0].execute(value)).toBe(false);
 		});
