@@ -1,7 +1,7 @@
 {
 	"exclude": ["node_modules", "**/*.spec.ts", "dist/**"],
-	"include": ["./src/**.ts"],
-	"filesGlob": ["./src/**.ts", "!./node_modules/**"],
+	"include": ["./src/**.ts", "./src/**/*.ts"],
+	"filesGlob": ["./src/**.ts", "./src/**/*.ts", "!./node_modules/**"],
 	"compilerOptions": {
 		"allowUnreachableCode": false,
 		"alwaysStrict": true,
