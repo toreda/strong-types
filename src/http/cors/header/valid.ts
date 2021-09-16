@@ -9,7 +9,7 @@ import {httpCorsHeaders} from '../headers';
  *
  * @category HTTP
  */
-export function httpCorsHeaderSupported(key?: HttpCorsHeader | null): boolean {
+export function httpCorsHeaderValid(key?: HttpCorsHeader | null): boolean {
 	if (typeof key !== 'string') {
 		return false;
 	}

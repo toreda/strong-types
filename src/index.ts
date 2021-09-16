@@ -1,3 +1,37 @@
+/**
+ *	MIT License
+ *
+ *	Copyright (c) 2019 - 2021 Toreda, Inc.
+ *
+ *	Permission is hereby granted, free of charge, to any person obtaining a copy
+ *	of this software and associated documentation files (the "Software"), to deal
+ *	in the Software without restriction, including without limitation the rights
+ *	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *	copies of the Software, and to permit persons to whom the Software is
+ *	furnished to do so, subject to the following conditions:
+
+ * 	The above copyright notice and this permission notice shall be included in all
+ * 	copies or substantial portions of the Software.
+ *
+ * 	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * 	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * 	SOFTWARE.
+ *
+ */
+
+export {Arch} from './arch';
+export {archSet} from './arch/set';
+export {archValid} from './arch/valid';
+
+export {OS} from './os';
+export {osSet} from './os/set';
+export {osValid} from './os/valid';
+
+// Generic strong type
 export {StrongType, makeStrong} from './strong';
 
 export {BaseObject} from './base/object';
@@ -31,34 +65,34 @@ export {CSSUserSelect} from './css/user/select';
 // Http headers, helpers, and types.
 export {HttpAuthHeader} from './http/auth/header';
 export {HttpAuthHeaders, httpAuthHeaders} from './http/auth/headers';
-export {httpAuthHeaderSupported} from './http/auth/header/supported';
+export {httpAuthHeaderValid} from './http/auth/header/valid';
 export {HttpCacheHeader} from './http/cache/header';
 export {HttpCacheHeaders, httpCacheHeaders} from './http/cache/headers';
-export {httpCacheHeaderSupported} from './http/cache/header/supported';
+export {httpCacheHeaderValid} from './http/cache/header/valid';
 export {HttpCorsHeader} from './http/cors/header';
 export {HttpCorsHeaders, httpCorsHeaders} from './http/cors/headers';
-export {httpCorsHeaderSupported} from './http/cors/header/supported';
+export {httpCorsHeaderValid} from './http/cors/header/valid';
 export {HttpFetchHeader} from './http/fetch/header';
 export {HttpFetchHeaders, httpFetchHeaders} from './http/fetch/headers';
-export {httpFetchHeaderSupported} from './http/fetch/header/supported';
+export {httpFetchHeaderValid} from './http/fetch/header/valid';
 export {HttpMethod} from './http/method';
 export {HttpMethods, httpMethods} from './http/methods';
-export {httpMethodSupported} from './http/method/supported';
+export {httpMethodValid} from './http/method/valid';
 export {HttpProxyHeader} from './http/proxy/header';
 export {HttpProxyHeaders, httpProxyHeaders} from './http/proxy/headers';
-export {httpProxyHeaderSupported} from './http/proxy/header/supported';
+export {httpProxyHeaderValid} from './http/proxy/header/valid';
 export {HttpRequestHeader} from './http/request/header';
 export {HttpRequestHeaders, httpRequestHeaders} from './http/request/headers';
-export {httpRequestHeaderSupported} from './http/request/header/supported';
+export {httpRequestHeaderValid} from './http/request/header/valid';
 export {HttpResponseHeader} from './http/response/header';
 export {HttpResponseHeaders, httpResponseHeaders} from './http/response/headers';
-export {httpResponseHeaderSupported} from './http/response/header/supported';
+export {httpResponseHeaderValid} from './http/response/header/valid';
 export {HttpSecurityHeader} from './http/security/header';
 export {HttpSecurityHeaders, httpSecurityHeaders} from './http/security/headers';
-export {httpSecurityHeaderSupported} from './http/security/header/supported';
+export {httpSecurityHeaderValid} from './http/security/header/valid';
 export {HttpWebsocketHeader} from './http/websocket/header';
 export {HttpWebsocketHeaders, httpWebsocketHeaders} from './http/websocket/headers';
-export {httpWebsocketHeaderSupported} from './http/websocket/header/supported';
+export {httpWebsocketHeaderValid} from './http/websocket/header/valid';
 
 // Map
 export {StrongMap} from './map';
