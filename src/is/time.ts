@@ -29,6 +29,11 @@ import {RuleMods} from '../rule/mods';
 import {RuleNode} from '../rule/node';
 import {RuleNodeType} from '../rule/node/type';
 
+/**
+ * Type signature for isTime validators used in rule chains.
+ *
+ * @category Validators
+ */
 export type IsTime<CallerType> = () => CallerType;
 
 const maxTime = '^([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$';

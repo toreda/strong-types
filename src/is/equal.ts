@@ -29,22 +29,35 @@ import {RuleMods} from '../rule/mods';
 import {RuleNode} from '../rule/node';
 import {RuleNodeType} from '../rule/node/type';
 
+/**
+ * Type signature for isEqual validators used in rule chains.
+ *
+ * @category Validators
+ */
 export type IsEqual<CallerType> = (a: unknown) => CallerType;
 
-export const equalToFn = (curr: unknown, target: unknown): boolean => {
-	if (typeof target === 'undefined' || typeof curr === 'undefined') {
+/**
+ *
+ * @param curr
+ * @param target
+ * @returns
+ *
+ * @category Validators
+ */
+export const equalTo = (value: unknown, target: unknown): boolean => {
+	if (typeof target === 'undefined' || typeof value === 'undefined') {
 		return false;
 	}
 
-	if (Array.isArray(curr) && Array.isArray(target)) {
-		if (curr.length !== target.length) {
+	if (Array.isArray(value) && Array.isArray(target)) {
+		if (value.length !== target.length) {
 			return false;
 		}
 
 		// Naive check for equality. Will produce false negative
 		// if the arrays have the same contents in a different order.
-		for (let i = 0; i < curr.length; i++) {
-			if (curr[i] !== target[i]) {
+		for (let i = 0; i < value.length; i++) {
+			if (value[i] !== target[i]) {
 				return false;
 			}
 		}
@@ -52,13 +65,22 @@ export const equalToFn = (curr: unknown, target: unknown): boolean => {
 		return true;
 	}
 
-	return curr === target;
+	return value === target;
 };
 
+/**
+ *
+ * @param caller
+ * @param rule
+ * @param mods
+ * @returns
+ *
+ * @category Validators
+ */
 export function makeIsEqual<CallerType>(caller: CallerType, rule: Rule, mods: RuleMods): IsEqual<CallerType> {
 	return (target: unknown): CallerType => {
 		const fn: RuleFn<unknown> = (curr: unknown): boolean => {
-			return equalToFn(curr, target);
+			return equalTo(curr, target);
 		};
 		const node = new RuleNode('IS_EQ', RuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);

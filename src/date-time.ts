@@ -27,13 +27,23 @@ import {Strong, makeStrong} from './strong';
 
 import {Rules} from './rules';
 
-export type DateTime = Strong<string>;
 /**
- * DateTime alias for backwards compat.
+ * Strong Type which can only store DateTime strings. Rejects all other value types,
+ * including non-date strings & non-datetime strings.
+ *
+ * @category Date & Time
  */
-export type StrongDateTime = DateTime;
+export type DateTime = Strong<string>;
 
-export function makeDateTime(fallback: string, initial?: string | null): StrongDateTime {
+/**
+ *
+ * @param fallback
+ * @param initial
+ * @returns
+ *
+ * @category Date & Time
+ */
+export function makeDateTime(fallback: string, initial?: string | null): DateTime {
 	const rules = new Rules();
 	rules.add().must.match.type.string();
 	rules.add().must.be.dateTime();

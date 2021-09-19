@@ -31,7 +31,7 @@ import {Defaults} from './defaults';
  * Map for passing coodinates in 1-dimensional
  * coordinate systems.
  *
- * @category Coordinates
+ * @category Numbers
  */
 export class Vec1 {
 	public readonly x: Double;
@@ -51,6 +51,6 @@ export class Vec1 {
 /**
  * Vec1 alias for backwards compat.
  *
- * @category Coordinates
+ * @category Numbers
  */
 export type StrongVec1 = Vec1;

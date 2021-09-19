@@ -29,16 +29,36 @@ import {RuleMods} from '../rule/mods';
 import {RuleNode} from '../rule/node';
 import {RuleNodeType} from '../rule/node/type';
 
+/**
+ * Type signature for isInteger validators used in rule chains.
+ *
+ * @category Validators
+ */
 export type IsInteger<CallerType> = () => CallerType;
 
-export const isInteger = (curr: number): boolean => {
-	if (typeof curr !== 'number') {
+/**
+ * Check whether provided value is a valid number, and if so
+ * whether it's an integer.
+ * @param value		Number to check
+ * @returns
+ *
+ * @category Validators
+ */
+export const isInteger = (value: number): boolean => {
+	if (typeof value !== 'number') {
 		return false;
 	}
 
-	return Math.floor(curr) === curr;
+	return Math.floor(value) === value;
 };
 
+/**
+ * Factory function to create isInteger validator function.
+ * @param caller
+ * @param rule
+ * @param mods
+ * @returns
+ */
 export function makeIsInteger<CallerType>(
 	caller: CallerType,
 	rule: Rule,

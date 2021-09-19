@@ -24,6 +24,8 @@
  */
 
 /**
+ * CORS Header key names used in CORS-enabled HTTP requests.
+ *
  * @category HTTP
  */
 export type HttpCorsHeader =

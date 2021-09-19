@@ -1,6 +1,9 @@
 import {RuleFn} from './fn';
 import {RuleNodeType} from './node/type';
 
+/**
+ * @category Rules
+ */
 export class RuleNode<T> {
 	public readonly id: string;
 	public readonly children: RuleNode<unknown>[];

@@ -1,4 +1,4 @@
-import {OS} from 'src/os';
+import {OS} from '../os';
 import {osSet} from './set';
 
 /**

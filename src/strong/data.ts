@@ -25,22 +25,23 @@
 
 import type {ANY} from '@toreda/types';
 import {Rules} from '../rules';
-import {StrongState} from './state';
 import {Transforms} from '../transforms';
 
+/**
+ * @category Core
+ */
 export class StrongData<ValueT> {
 	public value: ValueT | null;
 	public readonly fallbackDefault: ValueT;
-	public readonly state: StrongState<ValueT>;
 	public readonly transforms: Transforms<ValueT>;
 	public readonly rules: Rules<ValueT>;
 
 	constructor(fallbackDefault: ValueT, initial?: ValueT | null, rules?: Rules<ValueT>) {
 		this.value = null;
 		this.fallbackDefault = fallbackDefault;
-		this.state = new StrongState<ValueT>();
 		this.transforms = new Transforms<ValueT>(fallbackDefault);
 		this.rules = rules ? rules : new Rules();
+
 		this.set(initial);
 	}
 

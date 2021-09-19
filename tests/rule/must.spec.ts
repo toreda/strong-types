@@ -1,7 +1,7 @@
 import {Rule} from '../../src/rule';
 import {RuleMust} from '../../src/rule/must';
 
-describe('STMust', () => {
+describe('Must', () => {
 	let instance: RuleMust;
 	const rules: Rule[] = [];
 

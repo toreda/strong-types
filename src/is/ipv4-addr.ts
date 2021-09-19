@@ -29,6 +29,11 @@ import {RuleMods} from '../rule/mods';
 import {RuleNode} from '../rule/node';
 import {RuleNodeType} from '../rule/node/type';
 
+/**
+ * Type signature for isIpv4Addr validators used in rule chains.
+ *
+ * @category Validators
+ */
 export type IsIpv4Addr<CallerType> = () => CallerType;
 
 export const isIpv4Addr = (curr: string): boolean => {

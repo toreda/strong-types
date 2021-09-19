@@ -28,10 +28,23 @@ import {RuleFn} from '../rule/fn';
 import {RuleMods} from '../rule/mods';
 import {RuleNode} from '../rule/node';
 import {RuleNodeType} from '../rule/node/type';
-import {greaterThanOrEqualFn} from '../is/greater-than-or-equal';
+import {greaterThanOrEqual} from '../is/greater-than-or-equal';
 
+/**
+ * Type signature for hasLengthGreaterThanOrEqual validators used in rule chains.
+ *
+ * @category Validators
+ */
 export type HasLengthGreaterThanOrEqual<CallerType> = (a: number) => CallerType;
 
+/**
+ *
+ * @param curr
+ * @param target
+ * @returns
+ *
+ * @category Validators
+ */
 export const hasLengthGreaterThanOrEqual = (curr: unknown[] | string, target: number): boolean => {
 	if (typeof curr.length !== 'number') {
 		return false;
@@ -41,9 +54,18 @@ export const hasLengthGreaterThanOrEqual = (curr: unknown[] | string, target: nu
 		return false;
 	}
 
-	return greaterThanOrEqualFn(curr.length, target);
+	return greaterThanOrEqual(curr.length, target);
 };
 
+/**
+ *
+ * @param caller
+ * @param rule
+ * @param mods
+ * @returns
+ *
+ * @category Validators
+ */
 export function makeHasLengthGreaterThanOrEqual<CallerType>(
 	caller: CallerType,
 	rule: Rule,

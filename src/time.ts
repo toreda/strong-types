@@ -27,9 +27,19 @@ import {Strong, makeStrong} from './strong';
 
 import {Rules} from './rules';
 
+/**
+ * @category Date & Time
+ */
 export type Time = Strong<string>;
-export type StrongTime = Time;
 
+/**
+ *
+ * @param fallback
+ * @param initial
+ * @returns
+ *
+ * @category Date & Time
+ */
 export function makeTime(fallback: string, initial?: string | null): Time {
 	const rules = new Rules();
 	rules.add().must.match.type.string();

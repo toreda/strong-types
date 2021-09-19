@@ -29,6 +29,11 @@ import {RuleMods} from '../rule/mods';
 import {RuleNode} from '../rule/node';
 import {RuleNodeType} from '../rule/node/type';
 
+/**
+ * Type signature for isDateTime validators used in rule chains.
+ *
+ * @category Validators
+ */
 export type IsDateTime<CallerType> = () => CallerType;
 
 function isDateTime(value: string): boolean {

@@ -6,7 +6,7 @@ import {archSet} from './set';
  * @param value
  * @returns
  *
- * @category System
+ * @category System Info
  */
 export function archValid(key?: Arch | null): boolean {
 	if (!key) {

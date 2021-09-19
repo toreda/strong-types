@@ -24,7 +24,7 @@
  */
 
 /**
- * Modifiers which modify rule behavior.
+ * Modify rule node behavior with properties.
  *
  * @category Rules
  */

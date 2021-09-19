@@ -25,6 +25,13 @@
  * CSS Property descriptions from w3 schools:
  * https://www.w3schools.com/cssref/pr_pos_clip.asp
  */
+
+/**
+ * Cast objects from unknown to BaseObject to check properties before the object's
+ * real type is known. Useful when validating properties and checking property types.
+ *
+ * @category Base
+ */
 export interface BaseObject {
 	[k: string]: unknown;
 	hasOwnProperty: (propName: string) => boolean;

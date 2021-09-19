@@ -31,7 +31,7 @@ import {Defaults} from './defaults';
  * Map for passing coodinates in 4-dimensional
  * coordinate systems.
  *
- * @category Coordinates
+ * @category Numbers
  */
 export class Vec4 {
 	public readonly x: Double;
@@ -60,6 +60,6 @@ export class Vec4 {
 /**
  * Vec4 alias for backwards compat.
  *
- * @category Coordinates
+ * @category Numbers
  */
 export type StrongVec4 = Vec4;

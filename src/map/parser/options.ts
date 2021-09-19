@@ -23,4 +23,22 @@
  *
  */
 
-export interface MapParserOptions {}
+/**
+ * Options used to initialize internal parser state.
+ *
+ * @category Strong Map
+ */
+export interface MapParserOptions {
+	/**
+	 * 	Recursively parse map and all children up to and including children at
+	 * 	the specified max parse depth.
+	 *		Depth 0 - Properties on map.
+	 *			map -> childProp
+	 *		Depth 1 - Children of map properties.
+	 *			map -> childProp -> childProp
+	 *		Depth 2 - Children of Children of map properties.
+	 *			map -> childProp -> childProp -> childProp
+	 *		(etc)
+	 */
+	parseDepthMax?: number;
+}

@@ -54,10 +54,5 @@ describe('StrongData', () => {
 			const custom = new StrongData<number>(sampleVal, MOCK_INITIAL);
 			expect(custom.fallbackDefault).toBe(sampleVal);
 		});
-
-		it('should initialize state property', () => {
-			const custom = new StrongData<number>(MOCK_FALLBACK, MOCK_INITIAL);
-			expect(custom).toHaveProperty('state');
-		});
 	});
 });

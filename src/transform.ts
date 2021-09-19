@@ -26,6 +26,9 @@
 import {TransformFN} from './transform/fn';
 import {TransformOptions} from './transform/options';
 
+/**
+ * @category Transforms
+ */
 export class Transform<T> {
 	public readonly id: string;
 	public readonly label: string;

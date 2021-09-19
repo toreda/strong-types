@@ -29,16 +29,38 @@ import {RuleMods} from '../rule/mods';
 import {RuleNode} from '../rule/node';
 import {RuleNodeType} from '../rule/node/type';
 
+/**
+ * Type signature for lessThanOrEqual validators used in rule chains.
+ *
+ * @category Validators
+ */
 export type IsLessThanOrEqual<CallerType> = (a: number) => CallerType;
 
-export const lessThanOrEqualFn = (curr: number, target: number): boolean => {
-	if (typeof curr !== 'number' || typeof target !== 'number') {
+/**
+ * Check whether target number is less than or equal to current value.
+ * @param value		Strong Type's current value.
+ * @param target	Target number to compare.
+ * @returns
+ *
+ * @category Validators
+ */
+export const lessThanOrEqual = (value: number, target: number): boolean => {
+	if (typeof value !== 'number' || typeof target !== 'number') {
 		return false;
 	}
 
-	return curr <= target;
+	return value <= target;
 };
 
+/**
+ * Factory to create a isLessThanOrEqual validator function.
+ * @param caller
+ * @param rule
+ * @param mods
+ * @returns
+ *
+ * @category Validators
+ */
 export function makeIsLessThanOrEqual<CallerType>(
 	caller: CallerType,
 	rule: Rule,
@@ -46,7 +68,7 @@ export function makeIsLessThanOrEqual<CallerType>(
 ): IsLessThanOrEqual<CallerType> {
 	return (target: number): CallerType => {
 		const ruleFn: RuleFn<number> = (curr: number) => {
-			return lessThanOrEqualFn(curr, target);
+			return lessThanOrEqual(curr, target);
 		};
 
 		const node = new RuleNode('IS_LT_OR_EQT', RuleNodeType.CMP, ruleFn, mods.invert);

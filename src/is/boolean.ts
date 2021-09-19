@@ -29,12 +29,34 @@ import {RuleMods} from '../rule/mods';
 import {RuleNode} from '../rule/node';
 import {RuleNodeType} from '../rule/node/type';
 
+/**
+ * Type signature for isBoolean validator functions used within rule chains.
+ *
+ * @category Validators
+ */
 export type IsBoolean<CallerType> = () => CallerType;
 
-export const isBooleanFn = (curr: boolean | null): boolean => {
-	return curr === true || curr === false;
+/**
+ * Determine if provided value is a boolean with strict true or
+ * false value. All non-booleans return false, regardless of truthyness.
+ * @param value
+ * @returns
+ *
+ * @category Validators
+ */
+export const isBoolean = (value: boolean | null): boolean => {
+	return value === true || value === false;
 };
 
+/**
+ * Create 'isBoolean' validator function.
+ * @param caller
+ * @param rule
+ * @param mods
+ * @returns
+ *
+ * @category Validators
+ */
 export function makeIsBoolean<CallerType>(
 	caller: CallerType,
 	rule: Rule,
@@ -42,7 +64,7 @@ export function makeIsBoolean<CallerType>(
 ): IsBoolean<CallerType> {
 	return (): CallerType => {
 		const fn: RuleFn<boolean | null> = (curr: boolean | null): boolean => {
-			return isBooleanFn(curr);
+			return isBoolean(curr);
 		};
 
 		const node = new RuleNode('IS_T_BOOLEAN', RuleNodeType.CMP, fn, mods.invert);

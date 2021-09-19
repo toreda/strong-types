@@ -27,8 +27,10 @@ import {Strong, makeStrong} from '../../strong';
 
 import {Rules} from '../../rules';
 
+/**
+ * @category HexColorCode
+ */
 export type HexColorCode = Strong<string>;
-export type StrongHextColorCode = HexColorCode;
 
 /**
  * Create new strong hex color code object.

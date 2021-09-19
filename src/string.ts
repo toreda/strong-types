@@ -27,8 +27,19 @@ import {Strong, makeStrong} from './strong';
 
 import {Rules} from './rules';
 
+/**
+ * @category Strings
+ */
 export type StrongString = Strong<string>;
 
+/**
+ *
+ * @param fallback
+ * @param initial
+ * @returns
+ *
+ * @category Strings
+ */
 export function makeString(fallback: string, initial?: string | null): StrongString {
 	const rules = new Rules();
 	rules.add().must.match.type.string();

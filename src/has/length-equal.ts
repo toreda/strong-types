@@ -23,15 +23,28 @@
  *
  */
 
-import {BaseCollection} from '../base/collection';
+import {Collection} from '../collection';
 import {Rule} from '../rule';
 import {RuleFn} from '../rule/fn';
 import {RuleMods} from '../rule/mods';
 import {RuleNode} from '../rule/node';
 import {RuleNodeType} from '../rule/node/type';
 
+/**
+ * Type signature for hasLengthEqual validator functions used within rule chains.
+ *
+ * @category Validators
+ */
 export type HasLengthEqual<CallerType> = (a: number) => CallerType;
 
+/**
+ *
+ * @param curr
+ * @param target
+ * @returns
+ *
+ * @category Validators
+ */
 export const hasLengthEqual = (curr: unknown[] | string, target: number): boolean => {
 	if (curr === undefined || curr === null) {
 		return false;
@@ -49,7 +62,7 @@ export const hasLengthEqual = (curr: unknown[] | string, target: number): boolea
 		return curr.length === target;
 	}
 
-	const obj = curr as BaseCollection;
+	const obj = curr as Collection;
 
 	if (typeof obj.length !== 'number') {
 		return false;
@@ -58,6 +71,15 @@ export const hasLengthEqual = (curr: unknown[] | string, target: number): boolea
 	return obj.length === target;
 };
 
+/**
+ *
+ * @param caller
+ * @param rule
+ * @param mods
+ * @returns
+ *
+ * @category Validators
+ */
 export function makeHasLengthEqual<CallerType>(
 	caller: CallerType,
 	rule: Rule,

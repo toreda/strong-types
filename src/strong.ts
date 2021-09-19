@@ -26,6 +26,9 @@
 import {Rules} from './rules';
 import {StrongData} from './strong/data';
 
+/**
+ * @category Core
+ */
 export interface Strong<ValueT> {
 	(val?: ValueT | null): ValueT;
 	get: (fallback: ValueT) => ValueT;
@@ -36,10 +39,21 @@ export interface Strong<ValueT> {
 }
 
 /**
- * Temporary Strong<ValueT> alias for backwards compat.
+ * Strong<ValueT> alias for backwards compat.
+ *
+ * @category Core
  */
 export type StrongType<ValueT> = Strong<ValueT>;
 
+/**
+ *
+ * @param fallbackArg
+ * @param initial
+ * @param rules
+ * @returns
+ *
+ * @category Core
+ */
 export function makeStrong<ValueT>(
 	fallbackArg: ValueT,
 	initial?: ValueT | null,

@@ -31,16 +31,17 @@ export {OS} from './os';
 export {osSet} from './os/set';
 export {osValid} from './os/valid';
 
+export {Date, makeDate} from './date';
+export {DateTime, makeDateTime} from './date-time';
+
 // Generic strong type
-export {StrongType, makeStrong} from './strong';
+export {Strong, StrongType, makeStrong} from './strong';
 
 export {BaseObject} from './base/object';
-export {BaseCollection} from './base/collection';
+export {Collection} from './collection';
 
 export {StrongData} from './strong/data';
-export {StrongState} from './strong/state';
-
-export {typeMatch, isType, PrimitiveOrConstructor} from './is/type';
+export {typeMatch, isType, TypeMap, PrimitiveOrConstructor} from './is/type';
 
 // Custom Types
 export {StrongArray, makeArray} from './array';
@@ -98,8 +99,10 @@ export {httpWebsocketHeaderValid} from './http/websocket/header/valid';
 export {StrongMap} from './map';
 export {MapJsonifier} from './map/jsonifier';
 export {MapParser} from './map/parser';
-export {Range, StrongRange} from './range';
-export {Size, StrongSize} from './size';
+export {MapParserState} from './map/parser/state';
+export {MapParserOptions} from './map/parser/options';
+export {Range} from './range';
+export {Size} from './size';
 export {Vec1, StrongVec1} from './vec1';
 export {Vec2, StrongVec2} from './vec2';
 export {Vec3, StrongVec3} from './vec3';
@@ -112,15 +115,19 @@ export {
 	HasLengthGreaterThanOrEqual,
 	makeHasLengthGreaterThanOrEqual
 } from './has/length-greater-than-or-equal';
+export {HasChar, makeHasChar} from './has/char';
+export {HasCharTimes, makeHasCharTimes} from './has/char-times';
 export {HasLengthGreaterThan, makeHasLengthGreaterThan} from './has/length-greater-than';
 export {HasLengthLessThan, makeHasLengthLessThan} from './has/length-less-than';
 export {HasLengthLessThanOrEqual, makeHasLengthLessThanOrEqual} from './has/length-less-than-or-equal';
 export {HasProperty, makeHasProperty} from './has/property';
 export {HasPropertyWithType, makeHasPropertyWithType} from './has/property-with-type';
+export {HasText, makeHasText} from './has/text';
+export {HasTextTimes, makeHasTextTimes} from './has/text-times';
 export {IsArray, makeIsArray} from './is/array';
 export {IsBoolean, makeIsBoolean} from './is/boolean';
-export {IsDateTime, makeIsDateTime} from './is/date-time';
 export {IsDate, makeIsDate} from './is/date';
+export {IsDateTime, makeIsDateTime} from './is/date-time';
 export {IsDouble, makeIsDouble} from './is/double';
 export {IsEmail, makeIsEmail} from './is/email';
 export {IsEmpty, makeIsEmpty} from './is/empty';
@@ -146,15 +153,17 @@ export {Pattern} from './pattern';
 
 // Transforms
 export {Transform} from './transform';
+export {TransformNB} from './transform/nb';
 export {TransformFN} from './transform/fn';
 export {TransformFNNB} from './transform/fn/nb';
 export {Transforms} from './transforms';
+export {TransformOptions} from './transform/options';
 
 // Rules
 export {Rule} from './rule';
-export {Rules} from './rules';
 export {RuleA} from './rule/a';
 export {RuleBe} from './rule/be';
+export {RuleContains} from './rule/contains';
 export {RuleFn} from './rule/fn';
 export {RuleHave} from './rule/have';
 export {RuleMatch} from './rule/match';
@@ -165,6 +174,7 @@ export {RuleNodeType} from './rule/node/type';
 export {RuleNot} from './rule/not';
 export {RuleOr} from './rule/or';
 export {RuleRoot} from './rule/root';
+export {Rules} from './rules';
 export {RuleType} from './rule/type';
 
 // Mapped Types

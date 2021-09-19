@@ -29,24 +29,49 @@ import {RuleMods} from '../rule/mods';
 import {RuleNode} from '../rule/node';
 import {RuleNodeType} from '../rule/node/type';
 
+/**
+ * Type signature for isEmpty validators used in rule chains.
+ *
+ * @category Validators
+ */
 export type IsEmpty<CallerType> = (a: unknown) => CallerType;
 
-export const emptyFn = (curr: unknown[] | string): boolean => {
-	if (!Array.isArray(curr) && typeof curr !== 'string') {
+/**
+ * Determine if value is an empty array or empty string. Arrays & strings with
+ * length > 0 and all other types return false.
+ * @param value		Array or string to validate.
+ * @returns			true	-	value is an empty string or empty array.
+ *					false	-	value is either not a string, not an array,
+ *								or not not empty.
+ *
+ * @category Validators
+ */
+export const isEmpty = (value: unknown[] | string): boolean => {
+	if (!Array.isArray(value) && typeof value !== 'string') {
 		return false;
 	}
 
-	if (typeof curr === 'string') {
-		return curr === '';
+	if (typeof value === 'string') {
+		return value === '';
 	}
 
-	return curr.length === 0;
+	return value.length === 0;
 };
 
+/**
+ * Create 'isEmpty' validator function. Can be invoked to determine if a value is an empty
+ * string or empty array.
+ * @param caller
+ * @param rule
+ * @param mods
+ * @returns
+ *
+ * @category Validators
+ */
 export function makeIsEmpty<CallerType>(caller: CallerType, rule: Rule, mods: RuleMods): IsEmpty<CallerType> {
 	return (): CallerType => {
 		const fn: RuleFn<unknown[] | string> = (curr: unknown[] | string): boolean => {
-			return emptyFn(curr);
+			return isEmpty(curr);
 		};
 
 		const node = new RuleNode<string | unknown[]>('IS_EMPTY', RuleNodeType.CMP, fn, mods.invert);

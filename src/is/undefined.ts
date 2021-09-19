@@ -29,12 +29,33 @@ import {RuleMods} from '../rule/mods';
 import {RuleNode} from '../rule/node';
 import {RuleNodeType} from '../rule/node/type';
 
+/**
+ * Type signature for isUndefined validator within a rule chain.
+ *
+ * @category Validators
+ */
 export type IsUndefined<CallerType> = () => CallerType;
 
-function isUndefined(currValue: unknown): boolean {
-	return typeof currValue === 'undefined';
+/**
+ * Check if provided value is undefined.
+ * @param value
+ * @returns
+ *
+ * @category Validators
+ */
+function isUndefined(value: unknown): boolean {
+	return typeof value === 'undefined';
 }
 
+/**
+ * Factory to create an isDefined validator function.
+ * @param caller
+ * @param rule
+ * @param mods
+ * @returns
+ *
+ * @category Validators
+ */
 export function makeIsUndefined<CallerType>(
 	caller: CallerType,
 	rule: Rule,

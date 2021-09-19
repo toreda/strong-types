@@ -29,6 +29,11 @@ import {RuleMods} from '../rule/mods';
 import {RuleNode} from '../rule/node';
 import {RuleNodeType} from '../rule/node/type';
 
+/**
+ * Type signature for isHexColorCode validators used in rule chains.
+ *
+ * @category Validators
+ */
 export type IsHexColorCode<CallerType> = () => CallerType;
 
 const MIN_HEX_VALUE = 0x0;

@@ -23,20 +23,49 @@
  *
  */
 
-import {StrongDouble, makeDouble} from './double';
+import {Double, makeDouble} from './double';
 
 import {StrongMap} from './map';
 
+/**
+ * General numeric range with min and max value.
+ *
+ * @category Numbers
+ */
 export class Range extends StrongMap {
-	public readonly min: StrongDouble;
-	public readonly max: StrongDouble;
+	public readonly min: Double;
+	public readonly max: Double;
 
 	constructor(defaultMin: number | null, defaultMax: number | null) {
 		super();
 
-		this.min = makeDouble(0, defaultMin);
-		this.max = makeDouble(0, defaultMax);
+		this.min = makeDouble(typeof defaultMin === 'number' ? defaultMin : 0);
+		this.max = makeDouble(typeof defaultMax === 'number' ? defaultMax : 0);
+	}
+
+	/**
+	 * Check if provided value exists between min and max range values (inclusive).
+	 * @param value
+	 * @returns
+	 */
+	public in(value: number, exclusive?: boolean): boolean {
+		if (typeof value !== 'number') {
+			return false;
+		}
+
+		// Value must be strict greater than range min and strictly less than the
+		// range max in exclusive mode.
+		if (exclusive === true) {
+			return value > this.min() && value < this.max();
+		} else {
+			// Inclusive comparison requires value` be greater than or equal to range
+			// min and less than or equal to range max.
+			return value >= this.min() && value <= this.max();
+		}
+	}
+
+	public reset(): void {
+		this.max.reset();
+		this.min.reset();
 	}
 }
-
-export type StrongRange = Range;

@@ -31,10 +31,21 @@ import {RuleFn} from '../rule/fn';
 import {RuleMods} from '../rule/mods';
 import {RuleNode} from '../rule/node';
 import {RuleNodeType} from '../rule/node/type';
-import {lessThanOrEqualFn} from '../is/less-than-or-equal';
+import {lessThanOrEqual} from '../is/less-than-or-equal';
 
+/**
+ * @category Validators
+ */
 export type HasLengthLessThanOrEqual<CallerType> = (a: number) => CallerType;
 
+/**
+ *
+ * @param curr
+ * @param target
+ * @returns
+ *
+ * @category Validators
+ */
 export const hasLengthLessThanOrEqual = (curr: unknown[] | string, target: number): boolean => {
 	if (typeof curr.length !== 'number') {
 		return false;
@@ -44,9 +55,18 @@ export const hasLengthLessThanOrEqual = (curr: unknown[] | string, target: numbe
 		return false;
 	}
 
-	return lessThanOrEqualFn(curr.length, target);
+	return lessThanOrEqual(curr.length, target);
 };
 
+/**
+ *
+ * @param caller
+ * @param rule
+ * @param mods
+ * @returns
+ *
+ * @category Validators
+ */
 export function makeHasLengthLessThanOrEqual<CallerType>(
 	caller: CallerType,
 	rule: Rule,

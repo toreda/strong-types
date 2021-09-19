@@ -29,14 +29,26 @@ import {RuleMods} from '../rule/mods';
 import {RuleNode} from '../rule/node';
 import {RuleNodeType} from '../rule/node/type';
 
+/**
+ * Type signature for isDate validators used in rule chains.
+ *
+ * @category Validators
+ */
 export type IsDate<CallerType> = () => CallerType;
 
-// prettier-ignore
 // eslint-disable-next-line
 const timeStr = 'T([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]';
 const timeStr1 = 'T([01]?[0-9]|2[0-3]):[0-5][0-9]';
 const timeStr2 = 'T([01]?[0-9]|2[0-3])';
 
+/**
+ * Check if provided value is a valid Date string. Accepts most ISO
+ * Date strings as valid.
+ * @param value
+ * @returns
+ *
+ * @category Validators
+ */
 function isDate(value: string): boolean {
 	if (typeof value !== 'string') {
 		return false;
@@ -51,6 +63,16 @@ function isDate(value: string): boolean {
 	return true;
 }
 
+/**
+ * Factory function to create isDate validator function. Once created, the validator function can
+ * be invoked with a value.
+ * @param caller
+ * @param rule
+ * @param mods
+ * @returns
+ *
+ * @category Validators
+ */
 export function makeIsDate<CallerType>(caller: CallerType, rule: Rule, mods: RuleMods): IsDate<CallerType> {
 	return (): CallerType => {
 		const fn: RuleFn<string> = (curr: string): boolean => {

@@ -37,7 +37,12 @@ export class CSSText extends StrongMap {
 	constructor() {
 		super();
 
-		this.decoration = makeString('none', null);
-		this.shadow = makeString('0', null);
+		this.decoration = makeString('none');
+		this.shadow = makeString('0');
+	}
+
+	public reset(): void {
+		this.decoration.reset();
+		this.shadow.reset();
 	}
 }

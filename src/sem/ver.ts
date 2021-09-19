@@ -1,7 +1,7 @@
 /**
  *	MIT License
  *
- *	Copyright (c) 2010 - 2021 Toreda, Inc.
+ *	Copyright (c) 2019 - 2021 Toreda, Inc.
  *
  *	Permission is hereby granted, free of charge, to any person obtaining a copy
  *	of this software and associated documentation files (the "Software"), to deal
@@ -23,23 +23,22 @@
  *
  */
 
-import {StrongState} from '../src/strong/state';
+import {Strong, makeStrong} from '../strong';
 
-describe('StrongState', () => {
-	let instance: StrongState<string>;
+import {Rules} from '../rules';
 
-	beforeAll(() => {
-		instance = new StrongState<string>();
-	});
-	describe('Constructor', () => {});
+export type SemVer = Strong<string>;
 
-	describe('Implementation', () => {
-		describe('create', () => {
-			it('should not throw when no options argument provided', () => {
-				expect(() => {
-					const custom = new StrongState<string>();
-				}).not.toThrow();
-			});
-		});
-	});
-});
+/**
+ * Create new strong hex color code object.
+ * @param fallback
+ * @param initial
+ * @returns
+ */
+export function makeSemVer(fallback: string, initial?: string | null): SemVer {
+	const rules = new Rules();
+	rules.add().must.match.type.string();
+	rules.add().must.contain.charTimes('.', 3);
+
+	return makeStrong<string>(fallback, initial, rules);
+}

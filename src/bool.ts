@@ -27,9 +27,28 @@ import {Strong, makeStrong} from './strong';
 
 import {Rules} from './rules';
 
+/**
+ * StrongType Bool.
+ *
+ * @category Bool
+ */
 export type Bool = Strong<boolean>;
+
+/**
+ * Alias for StrongType Bool for backwards compat.
+ *
+ * @category Bool
+ */
 export type StrongBoolean = Bool;
 
+/**
+ * Factory function to create a StrongType Bool object.
+ * @param fallback
+ * @param initial
+ * @returns
+ *
+ * @category Bool
+ */
 export function makeBoolean(fallback: boolean, initial?: boolean | null): Bool {
 	const rules = new Rules();
 	rules.add().must.match.type.boolean();

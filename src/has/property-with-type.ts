@@ -5,8 +5,22 @@ import {RuleMods} from '../rule/mods';
 import {RuleNode} from '../rule/node';
 import {RuleNodeType} from '../rule/node/type';
 
+/**
+ * Type signature for hasPropertyWithType validators used in rule chains.
+ *
+ * @category Validators
+ */
 export type HasPropertyWithType<CallerType> = (propName: string, typeName: string) => CallerType;
 
+/**
+ *
+ * @param o
+ * @param propName
+ * @param typeName
+ * @returns
+ *
+ * @category Validators
+ */
 export function hasPropertyWithType(o: unknown, propName: string, typeName: string): boolean {
 	if (typeof propName !== 'string' || typeName !== 'string') {
 		return false;
@@ -29,6 +43,15 @@ export function hasPropertyWithType(o: unknown, propName: string, typeName: stri
 	return typeof obj[propName] === typeName;
 }
 
+/**
+ *
+ * @param caller
+ * @param rule
+ * @param mods
+ * @returns
+ *
+ * @category Validators
+ */
 export function makeHasPropertyWithType<CallerType>(
 	caller: CallerType,
 	rule: Rule,

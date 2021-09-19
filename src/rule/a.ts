@@ -23,4 +23,7 @@
  *
  */
 
+/**
+ * @category Rules
+ */
 export class RuleA {}

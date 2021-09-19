@@ -1,12 +1,25 @@
-import {BaseObject} from 'src';
+import {BaseObject} from '../base/object';
 import {Rule} from '../rule';
 import {RuleFn} from '../rule/fn';
 import {RuleMods} from '../rule/mods';
 import {RuleNode} from '../rule/node';
 import {RuleNodeType} from '../rule/node/type';
 
+/**
+ * Type signature for hasProperty validators used in rule chains.
+ *
+ * @category Validators
+ */
 export type HasProperty<CallerType> = (propName: string) => CallerType;
 
+/**
+ *
+ * @param o
+ * @param propName
+ * @returns
+ *
+ * @category Validators
+ */
 function hasProperty(o: unknown, propName: string): boolean {
 	if (typeof o === 'undefined' || o === null) {
 		return false;
@@ -16,6 +29,15 @@ function hasProperty(o: unknown, propName: string): boolean {
 	return typeof obj[propName] !== 'undefined';
 }
 
+/**
+ *
+ * @param caller
+ * @param rule
+ * @param mods
+ * @returns
+ *
+ * @category Validators
+ */
 export function makeHasProperty<CallerType>(
 	caller: CallerType,
 	rule: Rule,

@@ -30,15 +30,25 @@ import {RuleNode} from '../rule/node';
 import {RuleNodeType} from '../rule/node/type';
 import {URL} from 'url';
 
+/**
+ * Type signature for isUrl validator functions used within rule chains.
+ *
+ * @category Validators
+ */
 export type IsUrl<CallerType> = () => CallerType;
 
-function isUrl(currValue: string): boolean {
-	if (typeof currValue !== 'string') {
+/**
+ * Check whether value is a valid URL.
+ *
+ * @category Validators
+ */
+function isUrl(value: string): boolean {
+	if (typeof value !== 'string') {
 		return false;
 	}
 
-	const pieces = currValue.split('http://');
-	const segment = currValue.split('https://');
+	const pieces = value.split('http://');
+	const segment = value.split('https://');
 
 	if (pieces[1] === '' || segment[1] === '') {
 		return false;
@@ -46,7 +56,7 @@ function isUrl(currValue: string): boolean {
 
 	let result = false;
 	try {
-		const url = new URL(currValue);
+		const url = new URL(value);
 		result = true;
 	} catch (e) {
 		result = false;
@@ -55,6 +65,15 @@ function isUrl(currValue: string): boolean {
 	return result;
 }
 
+/**
+ * Factory function to make isUrl validator function.
+ * @param caller
+ * @param rule
+ * @param mods
+ * @returns
+ *
+ * @category Validators
+ */
 export function makeIsUrl<CallerType>(caller: CallerType, rule: Rule, mods: RuleMods): IsUrl<CallerType> {
 	return (): CallerType => {
 		const fn: RuleFn<string> = (curr: string): boolean => {

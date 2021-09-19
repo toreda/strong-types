@@ -8,6 +8,9 @@ import {IsString, makeIsString} from '../is/string';
 import {Rule} from '../rule';
 import {RuleMods} from './mods';
 
+/**
+ * @category Rules
+ */
 export class RuleType {
 	public readonly integer: IsInteger<RuleType>;
 	public readonly double: IsDouble<RuleType>;

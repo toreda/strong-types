@@ -27,9 +27,24 @@ import {Strong, makeStrong} from './strong';
 
 import {Rules} from './rules';
 
+/**
+ * @category Numbers
+ */
 export type Double = Strong<number>;
+
+/**
+ * @category Numbers
+ */
 export type StrongDouble = Double;
 
+/**
+ *
+ * @param fallback
+ * @param initial
+ * @returns
+ *
+ * @category Numbers
+ */
 export function makeDouble(fallback: number, initial?: number | null): Double {
 	const rules = new Rules<number>();
 

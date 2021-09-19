@@ -26,7 +26,12 @@
  * https://www.w3schools.com/cssref/pr_pos_clip.asp
  */
 
-export interface BaseCollection {
+/**
+ * Cast unknowns to BaseCollection to check basic collection properties.
+ *
+ * @category Collections
+ */
+export interface Collection {
 	[k: string]: unknown;
 	length?: number;
 	size?: number;

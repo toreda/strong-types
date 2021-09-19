@@ -27,10 +27,14 @@ import {Strong, makeStrong} from './strong';
 
 import {Rules} from './rules';
 
+/**
+ * @category Date & Time
+ */
 export type Date = Strong<string>;
-/** Date alias for backwards compat. */
-export type StrongDate = Date;
 
+/**
+ * @category Date & Time
+ */
 export function makeDate(fallback: string, initial?: string | null): Date {
 	const rules = new Rules();
 	rules.add().must.match.type.string();

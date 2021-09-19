@@ -27,9 +27,15 @@ import {ANY, AnyObj, Expand, LiteralToPrimitive, Primitive} from '@toreda/types'
 
 import {Strong} from '../strong';
 
+/**
+ * @category Core
+ */
 export type PrimitiveToStrong<Literal> = Strong<LiteralToPrimitive<Literal>>;
 
 // Do not export, this is a helper type and has unexpected results if not used correctly
+/**
+ * @category Core
+ */
 type RecordToStrongRequired<Rec> = {
 	[Key in keyof Rec]: Rec[Key] extends Primitive
 		? PrimitiveToStrong<Rec[Key]>
@@ -38,4 +44,7 @@ type RecordToStrongRequired<Rec> = {
 		: Rec[Key];
 };
 
+/**
+ * @category Core
+ */
 export type RecordToStrong<Rec> = RecordToStrongRequired<Required<Rec>>;

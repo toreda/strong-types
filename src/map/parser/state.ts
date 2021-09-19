@@ -25,6 +25,11 @@
 
 import {MapParserOptions as Options} from './options';
 
+/**
+ * Internal state used while parsing.
+ *
+ * @category Strong Map
+ */
 export class MapParserState {
 	constructor(_options?: Options) {
 		// empty constructor

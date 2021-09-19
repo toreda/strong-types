@@ -27,14 +27,21 @@ import {Strong, makeStrong} from './strong';
 
 import {Rules} from './rules';
 
+/**
+ * Strong Type container for valid email addresses. Rejects all values which are not valid
+ * email addresses.
+ *
+ * @category Email
+ */
 export type Email = Strong<string>;
-export type StrongEmail = Email;
 
 /**
  * Create Strong Email object with fallback and optional initial value.
  * @param fallback	Value returned when none is set.
  * @param initial	Starting value.
  * @returns			New strong Email object.
+ *
+ * @category Email
  */
 export function makeEmail(fallback: string, initial?: string | null): Email {
 	const rules = new Rules();

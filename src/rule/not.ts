@@ -7,7 +7,7 @@ import {RuleMods} from './mods';
 /**
  * Inverts the operation immediately following it.
  *
- * @cateogry Rules
+ * @category Rules
  */
 export class RuleNot {
 	public readonly be: RuleBe;

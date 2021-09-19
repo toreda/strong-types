@@ -29,12 +29,12 @@ import {Rules} from './rules';
 
 /** Strong Unsigned Integer type.
  *
- * @category Types - Numbers
+ * @category Numbers
  */
 export type UInt = Strong<number>;
 /** UInt alias added for temporary backwards compat.
  *
- * @category Types - Numbers
+ * @category Numbers
  */
 
 export type StrongUInt = UInt;
@@ -44,6 +44,8 @@ export type StrongUInt = UInt;
  * @param fallback
  * @param initial
  * @returns
+ *
+ * @category Numbers
  */
 export function makeUInt(fallback: number, initial?: number | null): UInt {
 	const rules = new Rules<number>();

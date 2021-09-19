@@ -24,14 +24,61 @@
  */
 
 import {Rule} from '../rule';
-import {Transform} from '../transform';
+import {RuleFn} from '../rule/fn';
+import {RuleMods} from '../rule/mods';
+import {RuleNode} from '../rule/node';
+import {RuleNodeType} from '../rule/node/type';
 
-export class StrongState<T> {
-	public readonly rules: Rule[];
-	public readonly transforms: Transform<T>[];
+/**
+ * Type signature for hasText validators used in rule chains.
+ *
+ * @category Validators
+ */
+export type HasText<CallerType> = (curr: string) => CallerType;
 
-	constructor() {
-		this.transforms = [];
-		this.rules = [];
+/**
+ *
+ * @param data
+ * @param target
+ * @returns
+ *
+ * @category Validators
+ */
+export const hasText = (curr: string, target: string): boolean => {
+	if (typeof curr !== 'string') {
+		return false;
 	}
+
+	if (typeof target !== 'string') {
+		return false;
+	}
+
+	if (curr === '' || target === '') {
+		return false;
+	}
+
+	return curr.indexOf(target, 0) !== -1;
+};
+
+/**
+ *
+ * @param caller
+ * @param data
+ * @param rule
+ * @param mods
+ * @returns
+ *
+ * @category Validators
+ */
+export function makeHasText<CallerType>(caller: CallerType, rule: Rule, mods: RuleMods): HasText<CallerType> {
+	return (curr: string): CallerType => {
+		const fn: RuleFn<string> = (target: string) => {
+			return hasText(curr, target);
+		};
+
+		const node = new RuleNode<string>('HAS_TEXT', RuleNodeType.CMP, fn, mods.invert);
+		rule.add(node);
+
+		return caller;
+	};
 }

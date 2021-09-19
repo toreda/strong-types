@@ -25,6 +25,8 @@
 
 /**
  * Default values used across the library.
+ *
+ * @category Core
  */
 export class Defaults {
 	public static Vec = {

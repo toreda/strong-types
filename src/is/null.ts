@@ -29,6 +29,11 @@ import {RuleMods} from '../rule/mods';
 import {RuleNode} from '../rule/node';
 import {RuleNodeType} from '../rule/node/type';
 
+/**
+ * Type signature for isNull validators used in rule chains.
+ *
+ * @category Validators
+ */
 export type IsNull<CallerType> = () => CallerType;
 
 export function makeIsNull<CallerType>(caller: CallerType, rule: Rule, mods: RuleMods): IsNull<CallerType> {

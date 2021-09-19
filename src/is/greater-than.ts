@@ -29,16 +29,38 @@ import {RuleMods} from '../rule/mods';
 import {RuleNode} from '../rule/node';
 import {RuleNodeType} from '../rule/node/type';
 
+/**
+ * Type signature for greaterThan validators used in rule chains.
+ *
+ * @category Validators
+ */
 export type IsGreaterThan<CallerType> = (target: number) => CallerType;
 
-export const greaterThanFn = (curr: number, target: number): boolean => {
-	if (typeof curr !== 'number' || typeof target !== 'number') {
+/**
+ * Check if target number is strictly greater than value.
+ * @param value
+ * @param target
+ * @returns
+ *
+ * @category Validators
+ */
+export const greaterThan = (value: number, target: number): boolean => {
+	if (typeof value !== 'number' || typeof target !== 'number') {
 		return false;
 	}
 
-	return curr > target;
+	return value > target;
 };
 
+/**
+ * Factory function to create an isGreaterThan validation function.
+ * @param caller
+ * @param rule
+ * @param mods
+ * @returns
+ *
+ * @category Validators
+ */
 export function makeIsGreaterThan<CallerType>(
 	caller: CallerType,
 	rule: Rule,
@@ -46,7 +68,7 @@ export function makeIsGreaterThan<CallerType>(
 ): IsGreaterThan<CallerType> {
 	return (target: number): CallerType => {
 		const fn: RuleFn<number> = (curr: number) => {
-			return greaterThanFn(curr, target);
+			return greaterThan(curr, target);
 		};
 
 		const node = new RuleNode<number>('IS_GT', RuleNodeType.CMP, fn, mods.invert);

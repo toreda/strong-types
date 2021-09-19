@@ -57,4 +57,55 @@ describe('Range', () => {
 			expect(instance.max()).toBe(expectedMax);
 		});
 	});
+
+	describe('in', () => {
+		beforeEach(() => {
+			instance.reset();
+		});
+
+		describe('inclusive mode', () => {
+			it(`should return true when value, min, and max have the same value`, () => {
+				instance.min(8);
+				instance.max(8);
+
+				expect(instance.in(8)).toBe(true);
+			});
+		});
+
+		describe('exclusive mode', () => {
+			it(`should return false when value, min, and max have the same value`, () => {
+				instance.min(9);
+				instance.max(9);
+
+				expect(instance.in(9, true)).toBe(false);
+			});
+
+			it(`should return true when value is between min and max`, () => {
+				instance.min(10);
+				instance.max(20);
+
+				expect(instance.in(15, true)).toBe(true);
+			});
+		});
+	});
+
+	describe('reset', () => {
+		it(`should reset min to fallback value`, () => {
+			const min = 779;
+			const custom = new Range(min, 1000);
+			custom.min(10);
+			expect(custom.min()).toBe(10);
+			custom.reset();
+			expect(custom.min()).toBe(min);
+		});
+
+		it(`should reset max to fallback value`, () => {
+			const max = 6661;
+			const custom = new Range(0, max);
+			custom.max(10);
+			expect(custom.max()).toBe(10);
+			custom.reset();
+			expect(custom.max()).toBe(max);
+		});
+	});
 });

@@ -29,24 +29,46 @@ import {RuleMods} from '../rule/mods';
 import {RuleNode} from '../rule/node';
 import {RuleNodeType} from '../rule/node/type';
 
+/**
+ * Type signature for isLength validators used in rule chains.
+ *
+ * @category Validators
+ */
 export type IsLength<CallerType> = (a: number) => CallerType;
 
-export const isLengthFn = (curr: unknown[] | string, expectedLength: number): boolean => {
-	if (!Array.isArray(curr) && typeof curr !== 'number' && typeof curr !== 'string') {
+/**
+ * Check whether current value is a string or array matching target length.
+ * @param value
+ * @param expectedLength
+ * @returns
+ *
+ * @category Validators
+ */
+export const isLength = (value: unknown[] | string, expectedLength: number): boolean => {
+	if (!Array.isArray(value) && typeof value !== 'number' && typeof value !== 'string') {
 		return false;
 	}
 
-	if (typeof curr === 'string') {
-		return curr.length === expectedLength;
+	if (typeof value === 'string') {
+		return value.length === expectedLength;
 	}
 
-	if (typeof curr === 'number') {
-		return curr === expectedLength;
+	if (typeof value === 'number') {
+		return value === expectedLength;
 	}
 
-	return curr.length === expectedLength;
+	return value.length === expectedLength;
 };
 
+/**
+ *
+ * @param caller
+ * @param rule
+ * @param mods
+ * @returns
+ *
+ * @category Validators
+ */
 export function makeIsLength<CallerType>(
 	caller: CallerType,
 	rule: Rule,
@@ -54,7 +76,7 @@ export function makeIsLength<CallerType>(
 ): IsLength<CallerType> {
 	return (expectedLength: number): CallerType => {
 		const fn: RuleFn<unknown[] | string> = (curr: unknown[] | string): boolean => {
-			return isLengthFn(curr, expectedLength);
+			return isLength(curr, expectedLength);
 		};
 
 		const node = new RuleNode('IS_LENGTH', RuleNodeType.CMP, fn, mods.invert);

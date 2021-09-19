@@ -29,14 +29,24 @@ import {RuleMods} from '../rule/mods';
 import {RuleNode} from '../rule/node';
 import {RuleNodeType} from '../rule/node/type';
 
+/**
+ * Type signature for isDouble validators used in rule chains.
+ *
+ * @category Validators
+ */
 export type IsDouble<CallerType> = () => CallerType;
 
-export const isDouble = (curr: number): boolean => {
-	if (typeof curr !== 'number') {
+/**
+ * Check whether value is a valid Double.
+ *
+ * @category Validators
+ */
+export const isDouble = (value: number): boolean => {
+	if (typeof value !== 'number') {
 		return false;
 	}
 
-	if (isNaN(curr)) {
+	if (isNaN(value)) {
 		return false;
 	}
 

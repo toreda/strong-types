@@ -27,9 +27,23 @@ import {Strong, makeStrong} from './strong';
 
 import {Rules} from './rules';
 
+/**
+ * @category Numbers
+ */
 export type Int = Strong<number>;
+/**
+ * @category Numbers
+ */
 export type StrongInt = Int;
 
+/**
+ *
+ * @param fallback
+ * @param initial
+ * @returns
+ *
+ * @category Numbers
+ */
 export function makeInt(fallback: number, initial?: number | null): Int {
 	const rules = new Rules();
 	rules.add().must.match.type.integer();

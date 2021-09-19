@@ -38,10 +38,11 @@ import {CSSUserSelect} from './css/user/select';
 import {StrongMap} from './map';
 
 /**
- * @category Strong Map
+ * @category Styles
  */
 export class Styles extends StrongMap {
 	public readonly zIndex: Int;
+	/** Element opacity from 0 -> 1 */
 	public readonly opacity: Double;
 	public readonly width: Double;
 	public readonly height: Double;
@@ -82,7 +83,7 @@ export class Styles extends StrongMap {
 
 	public reset(): void {
 		this.font.reset();
-		this.text.r;
+		this.text.reset();
 		this.opacity.reset();
 		this.display.reset();
 		this.width.reset();

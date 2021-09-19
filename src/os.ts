@@ -27,7 +27,7 @@
  * OS Identifiers typically as returned by 'uname' on POSIX compatible
  * systems. Windows continues to be do its own things and be windows.
  *
- * @category System
+ * @category System Info
  */
 export type OS =
 	/** All windows desktop family OS. */

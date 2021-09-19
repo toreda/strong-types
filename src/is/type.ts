@@ -46,6 +46,14 @@ export type GuardedType<T extends PrimitiveOrConstructor> = T extends {
 	? TypeMap[T]
 	: never;
 
+/**
+ * Determine whether object is an instance of provided type or className.
+ * @param o
+ * @param className
+ * @returns
+ *
+ * @category Validators
+ */
 export function typeMatch<T extends PrimitiveOrConstructor>(o: ANY, className: T): o is GuardedType<T> {
 	const localPrimitiveOrConstructor: PrimitiveOrConstructor = className;
 

@@ -30,22 +30,36 @@ import {RuleNode} from '../rule/node';
 import {RuleNodeType} from '../rule/node/type';
 import {isInteger} from './integer';
 
+/**
+ * Type signature for isPort validators used in rule chains.
+ *
+ * @category Validators
+ */
 export type IsPort<CallerType> = () => CallerType;
 
-export const isPort = (curr: number): boolean => {
-	if (typeof curr !== 'number') {
+/**
+ * Check if provided value is a valid port number. Does not differentiate
+ * between reserved system ports (root only)and non-reserved ports, only that
+ * the port is in the valid port range.
+ * @param value
+ * @returns
+ *
+ * @category Validators
+ */
+export const isPort = (value: number): boolean => {
+	if (typeof value !== 'number') {
 		return false;
 	}
 
-	if (curr < 0) {
+	if (value < 0) {
 		return false;
 	}
 
-	if (curr > 65353) {
+	if (value > 65353) {
 		return false;
 	}
 
-	return isInteger(curr);
+	return isInteger(value);
 };
 
 //Must be an unsigned int (whole number).
@@ -53,6 +67,15 @@ export const isPort = (curr: number): boolean => {
 //port > 65353 is invalid.
 //port < 0 is invalid.
 
+/**
+ *
+ * @param caller
+ * @param rule
+ * @param mods
+ * @returns
+ *
+ * @category Validators
+ */
 export function makeIsPort<CallerType>(caller: CallerType, rule: Rule, mods: RuleMods): IsPort<CallerType> {
 	return (): CallerType => {
 		const fn: RuleFn<number> = (curr: number): boolean => {

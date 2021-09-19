@@ -29,6 +29,11 @@ import {RuleMods} from '../rule/mods';
 import {RuleNode} from '../rule/node';
 import {RuleNodeType} from '../rule/node/type';
 
+/**
+ * Type signature for isArray validator functions used within rule chains.
+ *
+ * @category Validators
+ */
 export type IsArray<CallerType> = () => CallerType;
 
 export function makeIsArray<CallerType>(caller: CallerType, rule: Rule, mods: RuleMods): IsArray<CallerType> {

@@ -27,16 +27,19 @@ import {Strong, makeStrong} from './strong';
 
 import {Rules} from './rules';
 
-/** Strong Url object type*/
+/** Strong Url object type*
+ *
+ *	@category Strings
+ */
 export type Url = Strong<string>;
-/** Alias for Url for temporary backwards compat. */
-export type StrongUrl = Url;
 
 /**
  * Create new strong Url object. Only valid Urls can be set.
  * @param fallback
  * @param initial
  * @returns
+ *
+ * @category Strings
  */
 export function makeUrl(fallback: string, initial?: string | null): Url {
 	const rules = new Rules();

@@ -23,25 +23,23 @@
  *
  */
 
-import {StrongDouble, makeDouble} from './double';
+import {Double, makeDouble} from './double';
 
 import {StrongMap} from './map';
 
+/**
+ * Size object containing width & height properties as strong doubles.
+ *
+ * @category Numbers
+ */
 export class Size extends StrongMap {
-	public readonly width: StrongDouble;
-	public readonly height: StrongDouble;
+	public readonly width: Double;
+	public readonly height: Double;
 
 	constructor(defaultWidth: number | null, defaultHeight: number | null) {
 		super();
 
-		this.width = makeDouble(0, defaultWidth);
-		this.height = makeDouble(0, defaultHeight);
+		this.width = makeDouble(typeof defaultWidth === 'number' ? defaultWidth : 0);
+		this.height = makeDouble(typeof defaultHeight === 'number' ? defaultHeight : 0);
 	}
 }
-
-/**
- * Size alias for backwards compat.
- *
- * @category Units
- */
-export type StrongSize = Size;
