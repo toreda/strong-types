@@ -57,13 +57,13 @@ export const lessThan = (value: number, target: number): boolean => {
 };
 
 /**
- * Factory function which creates a lessThan validator function.
+ * Factory to create isLessThan validator function used in rule chains.
  * @param caller
  * @param rule
  * @param mods
  * @returns
  *
- * @category Validators
+ * @category Validator Factory
  */
 export function makeIsLessThan<CallerType>(
 	caller: CallerType,

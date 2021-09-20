@@ -59,14 +59,13 @@ export const isEmpty = (value: unknown[] | string): boolean => {
 };
 
 /**
- * Create 'isEmpty' validator function. Can be invoked to determine if a value is an empty
- * string or empty array.
+ * Factory to create isEmpty validator function used in rule chains.
  * @param caller
  * @param rule
  * @param mods
  * @returns
  *
- * @category Validators
+ * @category Validator Factory
  */
 export function makeIsEmpty<CallerType>(caller: CallerType, rule: Rule, mods: RuleMods): IsEmpty<CallerType> {
 	return (): CallerType => {

@@ -66,13 +66,13 @@ function isUrl(value: string): boolean {
 }
 
 /**
- * Factory function to make isUrl validator function.
+ * Factory to create isUrl validator function used in rule chains.
  * @param caller
  * @param rule
  * @param mods
  * @returns
  *
- * @category Validators
+ * @category Validator Factory
  */
 export function makeIsUrl<CallerType>(caller: CallerType, rule: Rule, mods: RuleMods): IsUrl<CallerType> {
 	return (): CallerType => {

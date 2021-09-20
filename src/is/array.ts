@@ -36,6 +36,15 @@ import {RuleNodeType} from '../rule/node/type';
  */
 export type IsArray<CallerType> = () => CallerType;
 
+/**
+ * Factory to create isArray validator function used in rule chains.
+ * @param caller
+ * @param rule
+ * @param mods
+ * @returns
+ *
+ * @category Validator Factory
+ */
 export function makeIsArray<CallerType>(caller: CallerType, rule: Rule, mods: RuleMods): IsArray<CallerType> {
 	return (): CallerType => {
 		const fn: RuleFn<unknown[]> = (curr: unknown[]): boolean => {

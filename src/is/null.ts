@@ -36,6 +36,15 @@ import {RuleNodeType} from '../rule/node/type';
  */
 export type IsNull<CallerType> = () => CallerType;
 
+/**
+ * Factory to create isNull validator function used in rule chains.
+ * @param caller
+ * @param rule
+ * @param mods
+ * @returns
+ *
+ * @category Validator Factory
+ */
 export function makeIsNull<CallerType>(caller: CallerType, rule: Rule, mods: RuleMods): IsNull<CallerType> {
 	return (): CallerType => {
 		const fn: RuleFn<unknown | null> = (curr?: unknown | null): boolean => {

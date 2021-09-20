@@ -58,6 +58,8 @@ export const isInteger = (value: number): boolean => {
  * @param rule
  * @param mods
  * @returns
+ *
+ * @category Validator Factory
  */
 export function makeIsInteger<CallerType>(
 	caller: CallerType,

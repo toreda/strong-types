@@ -59,7 +59,7 @@ export const lessThanOrEqual = (value: number, target: number): boolean => {
  * @param mods
  * @returns
  *
- * @category Validators
+ * @category Validator Factory
  */
 export function makeIsLessThanOrEqual<CallerType>(
 	caller: CallerType,

@@ -77,6 +77,15 @@ export const isIpv4Addr = (curr: string): boolean => {
 	return true;
 };
 
+/**
+ * Factory to create isIpv4Addr validator function used in rule chains.
+ * @param caller
+ * @param rule
+ * @param mods
+ * @returns
+ *
+ * @category Validator Factory
+ */
 export function makeIsIpv4Addr<CallerType>(
 	caller: CallerType,
 	rule: Rule,

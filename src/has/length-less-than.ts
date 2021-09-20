@@ -67,7 +67,7 @@ export const hasLengthLessThan = (curr: unknown[] | string, target: number): boo
  * @param mods
  * @returns
  *
- * @category Validators
+ * @category Validator Factory
  */
 export function makeHasLengthLessThan<CallerType>(
 	caller: CallerType,

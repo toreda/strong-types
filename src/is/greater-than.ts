@@ -59,7 +59,7 @@ export const greaterThan = (value: number, target: number): boolean => {
  * @param mods
  * @returns
  *
- * @category Validators
+ * @category Validator Factory
  */
 export function makeIsGreaterThan<CallerType>(
 	caller: CallerType,

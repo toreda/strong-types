@@ -6,7 +6,7 @@ import {osSet} from './set';
  * @param value
  * @returns
  *
- * @category System
+ * @category System Info
  */
 export function osValid(key?: OS | null): boolean {
 	if (!key) {

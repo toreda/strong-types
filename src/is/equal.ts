@@ -69,13 +69,13 @@ export const equalTo = (value: unknown, target: unknown): boolean => {
 };
 
 /**
- *
+ * Factory to create isEqual validator function used in rule chains.
  * @param caller
  * @param rule
  * @param mods
  * @returns
  *
- * @category Validators
+ * @category Validator Factory
  */
 export function makeIsEqual<CallerType>(caller: CallerType, rule: Rule, mods: RuleMods): IsEqual<CallerType> {
 	return (target: unknown): CallerType => {

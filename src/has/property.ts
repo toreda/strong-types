@@ -36,7 +36,7 @@ function hasProperty(o: unknown, propName: string): boolean {
  * @param mods
  * @returns
  *
- * @category Validators
+ * @category Validator Factory
  */
 export function makeHasProperty<CallerType>(
 	caller: CallerType,

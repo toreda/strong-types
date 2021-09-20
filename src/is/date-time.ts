@@ -104,6 +104,15 @@ function isDateTime(value: string): boolean {
 	return true;
 }
 
+/**
+ * Factory to create isDatetTime validator function used in rule chains.
+ * @param caller
+ * @param rule
+ * @param mods
+ * @returns
+ *
+ * @category Validator Factory
+ */
 export function makeIsDateTime<CallerType>(
 	caller: CallerType,
 	rule: Rule,

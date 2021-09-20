@@ -71,7 +71,7 @@ function isDate(value: string): boolean {
  * @param mods
  * @returns
  *
- * @category Validators
+ * @category Validator Factory
  */
 export function makeIsDate<CallerType>(caller: CallerType, rule: Rule, mods: RuleMods): IsDate<CallerType> {
 	return (): CallerType => {

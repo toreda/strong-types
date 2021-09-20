@@ -50,7 +50,7 @@ export function hasPropertyWithType(o: unknown, propName: string, typeName: stri
  * @param mods
  * @returns
  *
- * @category Validators
+ * @category Validator Factory
  */
 export function makeHasPropertyWithType<CallerType>(
 	caller: CallerType,

@@ -64,7 +64,7 @@ export const hasTextTimes = (curr: string, target: string, count: number): boole
  * @param mods
  * @returns
  *
- * @category Validators
+ * @category Validator Factory
  */
 export function makeHasTextTimes<CallerType>(
 	caller: CallerType,

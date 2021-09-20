@@ -65,7 +65,7 @@ export const hasLengthLessThanOrEqual = (curr: unknown[] | string, target: numbe
  * @param mods
  * @returns
  *
- * @category Validators
+ * @category Validator Factory
  */
 export function makeHasLengthLessThanOrEqual<CallerType>(
 	caller: CallerType,

@@ -61,13 +61,13 @@ export const isLength = (value: unknown[] | string, expectedLength: number): boo
 };
 
 /**
- *
+ * Factory to create isLength validator function used in rule chains.
  * @param caller
  * @param rule
  * @param mods
  * @returns
  *
- * @category Validators
+ * @category Validator Factory
  */
 export function makeIsLength<CallerType>(
 	caller: CallerType,

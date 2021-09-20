@@ -44,13 +44,13 @@ const dateTimeStr = '^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))T([01]?[0
 // prettier-ignore
 const dateStr = '^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$';
 
-function isTime(currValue: string): boolean {
-	if (typeof currValue !== 'string' || currValue.match(dateTimeStr) || currValue.match(dateStr)) {
+function isTime(value: string): boolean {
+	if (typeof value !== 'string' || value.match(dateTimeStr) || value.match(dateStr)) {
 		return false;
 	}
 
-	if (typeof currValue === 'string') {
-		if (currValue.match(maxTime) || currValue.match(minTime)) {
+	if (typeof value === 'string') {
+		if (value.match(maxTime) || value.match(minTime)) {
 			return true;
 		}
 		return false;
@@ -59,6 +59,15 @@ function isTime(currValue: string): boolean {
 	return true;
 }
 
+/**
+ * Factory to create isTime validator function used in rule chains.
+ * @param caller
+ * @param rule
+ * @param mods
+ * @returns
+ *
+ * @category Validator Factory
+ */
 export function makeIsTime<CallerType>(caller: CallerType, rule: Rule, mods: RuleMods): IsTime<CallerType> {
 	return (): CallerType => {
 		const fn: RuleFn<string> = (curr: string): boolean => {

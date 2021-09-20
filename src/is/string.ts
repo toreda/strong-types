@@ -36,14 +36,23 @@ import {RuleNodeType} from '../rule/node/type';
  */
 export type IsString<CallerType> = () => CallerType;
 
+/**
+ * Factory to create isString validator function used in rule chains.
+ * @param caller
+ * @param rule
+ * @param mods
+ * @returns
+ *
+ * @category Validator Factory
+ */
 export function makeIsString<CallerType>(
 	caller: CallerType,
 	rule: Rule,
 	mods: RuleMods
 ): IsString<CallerType> {
 	return (): CallerType => {
-		const fn: RuleFn<unknown> = (curr: unknown): boolean => {
-			return typeof curr === 'string';
+		const fn: RuleFn<unknown> = (value: unknown): boolean => {
+			return typeof value === 'string';
 		};
 
 		const node = new RuleNode<unknown>('IS_T_STR', RuleNodeType.CMP, fn, mods.invert);

@@ -59,7 +59,7 @@ export const greaterThanOrEqual = (value: number, target: number): boolean => {
  * @param mods
  * @returns
  *
- * @category Validators
+ * @category Validator Factory
  */
 export function makeIsGreaterThanOrEqual<CallerType>(
 	caller: CallerType,

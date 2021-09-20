@@ -89,6 +89,15 @@ export const isHexColorFn = (curr: string | number): boolean => {
 	return false;
 };
 
+/**
+ * Factory to create isHexColorCode validator function used in rule chains.
+ * @param caller
+ * @param rule
+ * @param mods
+ * @returns
+ *
+ * @category Validator Factory
+ */
 export function makeIsHexColorCode<CallerType>(
 	caller: CallerType,
 	rule: Rule,

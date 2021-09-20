@@ -53,6 +53,15 @@ export const isDouble = (value: number): boolean => {
 	return true;
 };
 
+/**
+ * Factory to create isDouble validator function used in rule chains.
+ * @param caller
+ * @param rule
+ * @param mods
+ * @returns
+ *
+ * @category Validator Factory
+ */
 export function makeIsDouble<CallerType>(
 	caller: CallerType,
 	rule: Rule,

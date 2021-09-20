@@ -73,7 +73,7 @@ export const hasCharTimes = (text: string, char: string, count: number): boolean
  * @param mods
  * @returns
  *
- * @category Validators
+ * @category Validator Factory
  */
 export function makeHasCharTimes<CallerType>(
 	caller: CallerType,

@@ -68,7 +68,7 @@ export const hasText = (curr: string, target: string): boolean => {
  * @param mods
  * @returns
  *
- * @category Validators
+ * @category Validator Factory
  */
 export function makeHasText<CallerType>(caller: CallerType, rule: Rule, mods: RuleMods): HasText<CallerType> {
 	return (curr: string): CallerType => {

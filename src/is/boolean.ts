@@ -49,13 +49,13 @@ export const isBoolean = (value: boolean | null): boolean => {
 };
 
 /**
- * Create 'isBoolean' validator function.
+ * Factory to create isBoolean validator function used in rule chains.
  * @param caller
  * @param rule
  * @param mods
  * @returns
  *
- * @category Validators
+ * @category Validator Factory
  */
 export function makeIsBoolean<CallerType>(
 	caller: CallerType,

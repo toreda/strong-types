@@ -64,5 +64,9 @@ export function typeMatch<T extends PrimitiveOrConstructor>(o: ANY, className: T
 	return o instanceof localPrimitiveOrConstructor;
 }
 
-/** typeMatch alias for backwards compat. */
+/**
+ * Alias for typeMatch for backwards compat.
+ *
+ * @category Validators
+ */
 export const isType = typeMatch;

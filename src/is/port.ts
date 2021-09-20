@@ -68,13 +68,13 @@ export const isPort = (value: number): boolean => {
 //port < 0 is invalid.
 
 /**
- *
+ * Factory to create isPort validator function used in rule chains.
  * @param caller
  * @param rule
  * @param mods
  * @returns
  *
- * @category Validators
+ * @category Validator Factory
  */
 export function makeIsPort<CallerType>(caller: CallerType, rule: Rule, mods: RuleMods): IsPort<CallerType> {
 	return (): CallerType => {

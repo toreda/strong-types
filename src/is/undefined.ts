@@ -48,13 +48,13 @@ function isUndefined(value: unknown): boolean {
 }
 
 /**
- * Factory to create an isDefined validator function.
+ * Factory to create isUndefined validator function used in rule chains.
  * @param caller
  * @param rule
  * @param mods
  * @returns
  *
- * @category Validators
+ * @category Validator Factory
  */
 export function makeIsUndefined<CallerType>(
 	caller: CallerType,

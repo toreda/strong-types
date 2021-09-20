@@ -78,7 +78,7 @@ export const hasLengthEqual = (curr: unknown[] | string, target: number): boolea
  * @param mods
  * @returns
  *
- * @category Validators
+ * @category Validator Factory
  */
 export function makeHasLengthEqual<CallerType>(
 	caller: CallerType,

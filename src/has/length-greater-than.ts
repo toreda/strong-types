@@ -64,7 +64,7 @@ export const hasLengthGreaterThan = (curr: string | unknown[], target: number): 
  * @param mods
  * @returns
  *
- * @category Validators
+ * @category Validator Factory
  */
 export function makeHasLengthGreaterThan<CallerType>(
 	caller: CallerType,

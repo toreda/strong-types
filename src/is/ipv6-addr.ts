@@ -85,6 +85,15 @@ export const isValidSegment = (segment: string): boolean => {
 	return hex >= 0x0 && hex <= 0xffff;
 };
 
+/**
+ * Factory to create isIpv6Addr validator function used in rule chains.
+ * @param caller
+ * @param rule
+ * @param mods
+ * @returns
+ *
+ * @category Validator Factory
+ */
 export function makeIsIpv6Addr<CallerType>(
 	caller: CallerType,
 	rule: Rule,

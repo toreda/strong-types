@@ -27,12 +27,17 @@
  */
 
 /**
- * Cast unknowns to BaseCollection to check basic collection properties.
+ * General container type with optional size & length properties. Cast
+ * unknowns as Collection to verify & validate length or size properties.
  *
  * @category Collections
  */
 export interface Collection {
 	[k: string]: unknown;
+	/** Element count for collections with ordered data including arrays, lists,
+	 * and strings (even though strings aren't technically a collection). */
 	length?: number;
+	/** Element count for collections with unordered data including sets, maps,
+	 * dictionaries, and other key value stores. */
 	size?: number;
 }

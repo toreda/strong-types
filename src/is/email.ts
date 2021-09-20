@@ -36,16 +36,21 @@ import {RuleNodeType} from '../rule/node/type';
  */
 export type IsEmail<CallerType> = () => CallerType;
 
-function isEmail(currValue: string): boolean {
-	if (typeof currValue !== 'string') {
+/**
+ * Determine if provided value is a validly formatted email address.
+ * @param value
+ * @returns
+ */
+function isEmail(value: string): boolean {
+	if (typeof value !== 'string') {
 		return false;
 	}
 
-	if (!currValue.trim()) {
+	if (!value.trim()) {
 		return false;
 	}
 
-	const pieces = currValue.split('@');
+	const pieces = value.split('@');
 	if (pieces.length !== 2) {
 		return false;
 	}
@@ -76,6 +81,15 @@ function isEmail(currValue: string): boolean {
 	return true;
 }
 
+/**
+ * Factory to create isEmail validator function used in rule chains.
+ * @param caller
+ * @param rule
+ * @param mods
+ * @returns
+ *
+ * @category Validator Factory
+ */
 export function makeIsEmail<CallerType>(caller: CallerType, rule: Rule, mods: RuleMods): IsEmail<CallerType> {
 	return (): CallerType => {
 		const fn: RuleFn<string> = (curr: string): boolean => {
