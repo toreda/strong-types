@@ -28,12 +28,16 @@
 	},
 	"ts-jest": {
 		"module": "commonjs",
+		"compilerOptions": {
 		"declaration": false,
 		"isolatedModules": true,
 		"sourceMap": false
+		}
 	},
 	"ts-node": {
 		"module": "commonjs",
-		"sourceMap": false
+		"compilerOptions": {
+			"sourceMap": false
+		}
 	}
 }

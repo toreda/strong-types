@@ -24,27 +24,26 @@
  */
 
 import {Bool, makeBoolean} from '../../src/bool';
-import {StrongString, makeString} from '../../src/string';
+import {Text, textMake} from '../../src/text';
 
+import {Int} from '../../src/int';
 import {MapParser} from '../../src/map/parser';
 import {MapParserState} from '../../src/map/parser/state';
-import {StrongInt} from '../../src/int';
 import {StrongMap} from '../../src/map';
-import {makeInt} from '../../src/int';
+import {intMake} from '../../src/int';
 
 const MOCK_VALUE = 11091;
-const MOCK_KEY_NAME = 'keyname-119714971';
 
 class SampleGroupOne extends StrongMap {
-	public key_one_one: StrongInt;
-	public key_one_two: StrongString;
-	public key_one_three: StrongString;
+	public key_one_one: Int;
+	public key_one_two: Text;
+	public key_one_three: Text;
 
 	constructor() {
 		super();
-		this.key_one_one = makeInt(0);
-		this.key_one_two = makeString('');
-		this.key_one_three = makeString('');
+		this.key_one_one = intMake(0);
+		this.key_one_two = textMake('');
+		this.key_one_three = textMake('');
 	}
 }
 
@@ -62,15 +61,15 @@ class SampleGroupTwo extends StrongMap {
 }
 
 class SampleGroupThree extends StrongMap {
-	public key_three_one: StrongString;
-	public key_three_two: StrongString;
-	public key_three_three: StrongString;
+	public key_three_one: Text;
+	public key_three_two: Text;
+	public key_three_three: Text;
 
 	constructor() {
 		super();
-		this.key_three_one = makeString('');
-		this.key_three_two = makeString('');
-		this.key_three_three = makeString('');
+		this.key_three_one = textMake('');
+		this.key_three_two = textMake('');
+		this.key_three_three = textMake('');
 	}
 }
 
@@ -139,7 +138,6 @@ describe('Parser', () => {
 			it('should return false when group arg is missing', () => {
 				expect(parseMapSpy).not.toHaveBeenCalled();
 				const json = {};
-				const options = {};
 				expect(instance.parse(undefined as any, json)).toBe(false);
 			});
 
@@ -307,20 +305,26 @@ describe('Parser', () => {
 		});
 
 		describe('parseKey', () => {
+			let state: MapParserState;
+
+			beforeAll(() => {
+				state = new MapParserState();
+			});
+
 			it(`should return false when keyName arg is undefined`, () => {
-				expect(instance.parseKey(sampleMap, undefined as any, MOCK_VALUE)).toBe(false);
+				expect(instance.parseKey(sampleMap, undefined as any, MOCK_VALUE, state)).toBe(false);
 			});
 
 			it(`should return false when keyName arg is null`, () => {
-				expect(instance.parseKey(sampleMap, null as any, MOCK_VALUE)).toBe(false);
+				expect(instance.parseKey(sampleMap, null as any, MOCK_VALUE, state)).toBe(false);
 			});
 
 			it(`should return false when map arg is undefined`, () => {
-				expect(instance.parseKey(undefined as any, 'keyName', MOCK_VALUE)).toBe(false);
+				expect(instance.parseKey(undefined as any, 'keyName', MOCK_VALUE, state)).toBe(false);
 			});
 
 			it(`should return false when map arg is null`, () => {
-				expect(instance.parseKey(null as any, 'keyName', MOCK_VALUE)).toBe(false);
+				expect(instance.parseKey(null as any, 'keyName', MOCK_VALUE, state)).toBe(false);
 			});
 
 			it(`should set key and return true when value is null`, () => {
@@ -329,7 +333,7 @@ describe('Parser', () => {
 				const value = '__';
 				map[keyName] = value;
 				expect(map[keyName]).toBe(value);
-				expect(instance.parseKey(map, keyName, null)).toBe(true);
+				expect(instance.parseKey(map, keyName, null, state)).toBe(true);
 				expect(map[keyName]).toBeNull();
 			});
 
@@ -340,7 +344,7 @@ describe('Parser', () => {
 				map[keyName] = value;
 				expect(map[keyName]).toBe(value);
 
-				expect(instance.parseKey(map, keyName, undefined)).toBe(false);
+				expect(instance.parseKey(map, keyName, undefined, state)).toBe(false);
 				expect(map[keyName]).toBe(value);
 			});
 
@@ -348,7 +352,7 @@ describe('Parser', () => {
 				const map = new SampleMap();
 				const keyName = 'AKL7914971_91491';
 
-				expect(instance.parseKey(map, keyName, undefined)).toBe(false);
+				expect(instance.parseKey(map, keyName, undefined, state)).toBe(false);
 			});
 		});
 

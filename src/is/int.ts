@@ -30,14 +30,34 @@ import {RuleNode} from '../rule/node';
 import {RuleNodeType} from '../rule/node/type';
 
 /**
- * Type signature for isString validators used in rule chains.
+ * Type signature for isInteger validators used in rule chains.
  *
  * @category Validators
  */
-export type IsString<CallerType> = () => CallerType;
+export type IsInt<CallerT> = (value?: number) => CallerT;
 
 /**
- * Factory to create isString validator function used in rule chains.
+ * Check whether provided value is a valid number, and if so
+ * whether it's an integer.
+ * @param value		Number to check
+ * @returns
+ *
+ * @category Validators
+ */
+export function isInt(target?: number): boolean {
+	if (typeof target !== 'number') {
+		return false;
+	}
+
+	if (isNaN(target)) {
+		return false;
+	}
+
+	return Math.floor(target) === target;
+}
+
+/**
+ * Factory function to create isInteger validator function.
  * @param caller
  * @param rule
  * @param mods
@@ -45,17 +65,13 @@ export type IsString<CallerType> = () => CallerType;
  *
  * @category Validator Factory
  */
-export function makeIsString<CallerType>(
-	caller: CallerType,
-	rule: Rule,
-	mods: RuleMods
-): IsString<CallerType> {
-	return (): CallerType => {
-		const fn: RuleFn<unknown> = (value: unknown): boolean => {
-			return typeof value === 'string';
+export function isIntMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsInt<CallerT> {
+	return (): CallerT => {
+		const fn: RuleFn<number> = (value: number): boolean => {
+			return isInt(value);
 		};
 
-		const node = new RuleNode<unknown>('IS_T_STR', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<number>('IS_T_INT', RuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

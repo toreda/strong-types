@@ -34,7 +34,7 @@ import {RuleNodeType} from '../rule/node/type';
  *
  * @category Validators
  */
-export type IsTime<CallerType> = () => CallerType;
+export type IsTime<CallerT> = () => CallerT;
 
 const maxTime = '^([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$';
 const minTime = '^([01]?[0-9]|2[0-3]):[0-5][0-9]$';
@@ -44,7 +44,7 @@ const dateTimeStr = '^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))T([01]?[0
 // prettier-ignore
 const dateStr = '^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$';
 
-function isTime(value: string): boolean {
+export function isTime(value: string): boolean {
 	if (typeof value !== 'string' || value.match(dateTimeStr) || value.match(dateStr)) {
 		return false;
 	}
@@ -68,8 +68,8 @@ function isTime(value: string): boolean {
  *
  * @category Validator Factory
  */
-export function makeIsTime<CallerType>(caller: CallerType, rule: Rule, mods: RuleMods): IsTime<CallerType> {
-	return (): CallerType => {
+export function isTimeMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsTime<CallerT> {
+	return (): CallerT => {
 		const fn: RuleFn<string> = (curr: string): boolean => {
 			return isTime(curr);
 		};

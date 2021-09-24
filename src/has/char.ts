@@ -35,7 +35,7 @@ import {hasText} from './text';
  *
  * @category Validators
  */
-export type HasChar<CallerType> = (curr: string) => CallerType;
+export type HasChar<CallerT> = (curr: string) => CallerT;
 
 /**
  *
@@ -45,7 +45,7 @@ export type HasChar<CallerType> = (curr: string) => CallerType;
  *
  * @category Validators
  */
-export const hasChar = (text: string, char: string): boolean => {
+export function hasChar(text: string, char: string): boolean {
 	if (typeof text !== 'string' || typeof char !== 'string') {
 		return false;
 	}
@@ -59,7 +59,7 @@ export const hasChar = (text: string, char: string): boolean => {
 	}
 
 	return hasText(text, char);
-};
+}
 
 /**
  *
@@ -70,8 +70,8 @@ export const hasChar = (text: string, char: string): boolean => {
  *
  * @category Validator Factory
  */
-export function makeHasChar<CallerType>(caller: CallerType, rule: Rule, mods: RuleMods): HasChar<CallerType> {
-	return (target: string): CallerType => {
+export function hasCharMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): HasChar<CallerT> {
+	return (target: string): CallerT => {
 		const fn: RuleFn<string> = (curr: string) => {
 			return hasChar(curr, target);
 		};

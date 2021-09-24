@@ -1,4 +1,4 @@
-import {IsEqual, makeIsEqual} from '../is/equal';
+import {IsEqual, isEqualMake} from '../is/equal';
 
 import {Rule} from '../rule';
 import {RuleBe} from './be';
@@ -18,6 +18,6 @@ export class RuleNot {
 			invert: !parentMods.invert
 		};
 		this.be = new RuleBe(rule, mods);
-		this.equalTo = makeIsEqual<RuleNot>(this, rule, mods);
+		this.equalTo = isEqualMake<RuleNot>(this, rule, mods);
 	}
 }

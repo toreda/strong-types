@@ -1,4 +1,4 @@
-import {IsIpv6Addr, makeIsIpv6Addr} from '../../src/is/ipv6-addr';
+import {IsIpv6Addr, isIpv6AddrMake} from '../../src/is/ipv6-addr';
 
 import {Rule} from '../../src/rule';
 
@@ -9,7 +9,7 @@ describe('IsIpv6Addr', () => {
 	beforeAll(() => {
 		rule = new Rule();
 
-		fn = makeIsIpv6Addr<Rule>(rule, rule, {invert: false});
+		fn = isIpv6AddrMake<Rule>(rule, rule, {invert: false});
 		fn();
 	});
 

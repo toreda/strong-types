@@ -34,14 +34,16 @@ import {RuleNodeType} from '../rule/node/type';
  *
  * @category Validators
  */
-export type IsEmail<CallerType> = () => CallerType;
+export type IsEmail<CallerT> = (value?: string) => CallerT;
 
 /**
  * Determine if provided value is a validly formatted email address.
  * @param value
  * @returns
+ *
+ * @category Validators
  */
-function isEmail(value: string): boolean {
+export function isEmail(value: string): boolean {
 	if (typeof value !== 'string') {
 		return false;
 	}
@@ -90,8 +92,8 @@ function isEmail(value: string): boolean {
  *
  * @category Validator Factory
  */
-export function makeIsEmail<CallerType>(caller: CallerType, rule: Rule, mods: RuleMods): IsEmail<CallerType> {
-	return (): CallerType => {
+export function isEmailMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsEmail<CallerT> {
+	return (): CallerT => {
 		const fn: RuleFn<string> = (curr: string): boolean => {
 			return isEmail(curr);
 		};

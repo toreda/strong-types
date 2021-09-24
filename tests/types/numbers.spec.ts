@@ -24,8 +24,8 @@
  */
 
 import {Double, makeDouble} from '../../src/double';
-import {Int, makeInt} from '../../src/int';
-import {UInt, makeUInt} from '../../src/uint';
+import {Int, intMake} from '../../src/int';
+import {UInt, uIntMake} from '../../src/uint';
 
 interface TestType {
 	name: string;
@@ -39,8 +39,8 @@ let testTypes: TestType[];
 
 describe('numberMethods', () => {
 	double = makeDouble(0);
-	int = makeInt(0);
-	uint = makeUInt(0);
+	int = intMake(0);
+	uint = uIntMake(0);
 	testTypes = [
 		{name: 'double', instance: double},
 		{name: 'int', instance: int},

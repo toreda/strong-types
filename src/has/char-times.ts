@@ -35,7 +35,7 @@ import {hasTextTimes} from './text-times';
  *
  * @category Validators
  */
-export type HasCharTimes<CallerType> = (curr: string, count: number) => CallerType;
+export type HasCharTimes<CallerT> = (curr: string, count: number) => CallerT;
 
 /**
  *
@@ -46,7 +46,7 @@ export type HasCharTimes<CallerType> = (curr: string, count: number) => CallerTy
  *
  * @category Validators
  */
-export const hasCharTimes = (text: string, char: string, count: number): boolean => {
+export function hasCharTimes(text: string, char: string, count: number): boolean {
 	if (typeof text !== 'string' || typeof char !== 'string') {
 		return false;
 	}
@@ -64,7 +64,7 @@ export const hasCharTimes = (text: string, char: string, count: number): boolean
 	}
 
 	return hasTextTimes(text, char, count);
-};
+}
 
 /**
  *
@@ -75,12 +75,12 @@ export const hasCharTimes = (text: string, char: string, count: number): boolean
  *
  * @category Validator Factory
  */
-export function makeHasCharTimes<CallerType>(
-	caller: CallerType,
+export function hasCharTimesMake<CallerT>(
+	caller: CallerT,
 	rule: Rule,
 	mods: RuleMods
-): HasCharTimes<CallerType> {
-	return (char: string, count: number): CallerType => {
+): HasCharTimes<CallerT> {
+	return (char: string, count: number): CallerT => {
 		const fn: RuleFn<string> = (curr: string) => {
 			return hasCharTimes(curr, char, count);
 		};

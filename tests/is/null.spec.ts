@@ -1,6 +1,6 @@
 import {Rule} from '../../src/rule';
 import {RuleMods} from '../../src/rule/mods';
-import {makeIsNull} from '../../src/is/null';
+import {isNullMake} from '../../src/is/null';
 
 describe('IsNull', () => {
 	let mods: RuleMods;
@@ -22,7 +22,7 @@ describe('IsNull', () => {
 		it('should return true when input is null', () => {
 			const value = null;
 
-			const fn = makeIsNull<Rule>(rule, rule, mods);
+			const fn = isNullMake<Rule>(rule, rule, mods);
 			fn();
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
@@ -31,7 +31,7 @@ describe('IsNull', () => {
 			const value = null;
 			mods.invert = true;
 
-			const fn = makeIsNull<Rule>(rule, rule, mods);
+			const fn = isNullMake<Rule>(rule, rule, mods);
 			fn();
 			expect(rule.nodes[0].execute(value)).toBe(false);
 		});
@@ -40,7 +40,7 @@ describe('IsNull', () => {
 			const value = 'aaaaaa';
 			mods.invert = true;
 
-			const fn = makeIsNull<Rule>(rule, rule, mods);
+			const fn = isNullMake<Rule>(rule, rule, mods);
 			fn();
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
@@ -48,7 +48,7 @@ describe('IsNull', () => {
 		it('should return false when input is a non-empty string', () => {
 			const value = 'aaaaaaaaa';
 
-			const fn = makeIsNull<Rule>(rule, rule, mods);
+			const fn = isNullMake<Rule>(rule, rule, mods);
 			fn();
 			expect(rule.nodes[0].execute(value)).toBe(false);
 		});
@@ -56,7 +56,7 @@ describe('IsNull', () => {
 		it('should return false when input is a boolean (false)', () => {
 			const value = false;
 
-			const fn = makeIsNull<Rule>(rule, rule, mods);
+			const fn = isNullMake<Rule>(rule, rule, mods);
 			fn();
 			expect(rule.nodes[0].execute(value)).toBe(false);
 		});
@@ -64,7 +64,7 @@ describe('IsNull', () => {
 		it('should return false when input is a boolean (true)', () => {
 			const value = true;
 
-			const fn = makeIsNull<Rule>(rule, rule, mods);
+			const fn = isNullMake<Rule>(rule, rule, mods);
 			fn();
 			expect(rule.nodes[0].execute(value)).toBe(false);
 		});
@@ -72,7 +72,7 @@ describe('IsNull', () => {
 		it('should return false when input is a number', () => {
 			const value = 101;
 
-			const fn = makeIsNull<Rule>(rule, rule, mods);
+			const fn = isNullMake<Rule>(rule, rule, mods);
 			fn();
 			expect(rule.nodes[0].execute(value)).toBe(false);
 		});
@@ -80,7 +80,7 @@ describe('IsNull', () => {
 		it('should return false when input is an empty array', () => {
 			const value: string[] = [];
 
-			const fn = makeIsNull<Rule>(rule, rule, mods);
+			const fn = isNullMake<Rule>(rule, rule, mods);
 			fn();
 			expect(rule.nodes[0].execute(value)).toBe(false);
 		});
@@ -88,7 +88,7 @@ describe('IsNull', () => {
 		it('should return false when input is a non-empty array', () => {
 			const value = ['a', 'b', 'c'];
 
-			const fn = makeIsNull<Rule>(rule, rule, mods);
+			const fn = isNullMake<Rule>(rule, rule, mods);
 			fn();
 			expect(rule.nodes[0].execute(value)).toBe(false);
 		});

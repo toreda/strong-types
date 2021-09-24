@@ -1,4 +1,4 @@
-import {IsEmail, makeIsEmail} from '../../src/is/email';
+import {IsEmail, isEmailMake} from '../../src/is/email';
 
 import {Rule} from '../../src/rule';
 import {TLDS} from '../_data/tlds';
@@ -10,7 +10,7 @@ describe('IsEmail', () => {
 	beforeAll(() => {
 		rule = new Rule();
 
-		fn = makeIsEmail<Rule>(rule, rule, {invert: false});
+		fn = isEmailMake<Rule>(rule, rule, {invert: false});
 		fn();
 	});
 

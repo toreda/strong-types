@@ -24,7 +24,7 @@
  */
 
 import {Rule} from '../../src/rule';
-import {makeHasLengthEqual} from '../../src/has/length-equal';
+import {hasLengthEqualMake} from '../../src/has/length-equal';
 
 describe('HasLengthEqualTo', () => {
 	let rule: Rule;
@@ -41,7 +41,7 @@ describe('HasLengthEqualTo', () => {
 		it('should return true when target length is equal to the current length when the current value is a string', () => {
 			const target = 3;
 			const curr = 'dog';
-			const fn = makeHasLengthEqual<Rule>(rule, rule, {invert: false});
+			const fn = hasLengthEqualMake<Rule>(rule, rule, {invert: false});
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -49,7 +49,7 @@ describe('HasLengthEqualTo', () => {
 		it('should return true when the target length is equal to the current length when the current value is an array', () => {
 			const target = 2;
 			const curr: string[] = ['dog', 'cat'];
-			const fn = makeHasLengthEqual<Rule>(rule, rule, {invert: false});
+			const fn = hasLengthEqualMake<Rule>(rule, rule, {invert: false});
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -57,7 +57,7 @@ describe('HasLengthEqualTo', () => {
 		it('should return true when the current value and target value are equal', () => {
 			const target = 0;
 			const curr = '';
-			const fn = makeHasLengthEqual<Rule>(rule, rule, {invert: false});
+			const fn = hasLengthEqualMake<Rule>(rule, rule, {invert: false});
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -65,7 +65,7 @@ describe('HasLengthEqualTo', () => {
 		it('should return true when the target and curr values are equal', () => {
 			const target = 0;
 			const curr: string[] = [];
-			const fn = makeHasLengthEqual<Rule>(rule, rule, {invert: false});
+			const fn = hasLengthEqualMake<Rule>(rule, rule, {invert: false});
 
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
@@ -77,7 +77,7 @@ describe('HasLengthEqualTo', () => {
 			const target = 4;
 			const curr = 'number';
 
-			const fn = makeHasLengthEqual<Rule>(rule, rule, {invert: false});
+			const fn = hasLengthEqualMake<Rule>(rule, rule, {invert: false});
 			fn(3);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
@@ -86,7 +86,7 @@ describe('HasLengthEqualTo', () => {
 			const target = '' as any;
 			const curr = '1';
 
-			const fn = makeHasLengthEqual<Rule>(rule, rule, {invert: false});
+			const fn = hasLengthEqualMake<Rule>(rule, rule, {invert: false});
 			fn(10);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
@@ -94,7 +94,7 @@ describe('HasLengthEqualTo', () => {
 		it('should return false when the target length does not equal the current length when the current value is an array', () => {
 			const target = 2;
 			const curr = ['one', 'two', 'three'];
-			const fn = makeHasLengthEqual<Rule>(rule, rule, {invert: false});
+			const fn = hasLengthEqualMake<Rule>(rule, rule, {invert: false});
 
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
@@ -103,7 +103,7 @@ describe('HasLengthEqualTo', () => {
 		it('should return false when the current value is an empty array', () => {
 			const target = 2;
 			const curr: string[] = [];
-			const fn = makeHasLengthEqual<Rule>(rule, rule, {invert: false});
+			const fn = hasLengthEqualMake<Rule>(rule, rule, {invert: false});
 
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
@@ -112,7 +112,7 @@ describe('HasLengthEqualTo', () => {
 		it('should return false when the target value is an empty array', () => {
 			const target = [] as any;
 			const curr = [6];
-			const fn = makeHasLengthEqual<Rule>(rule, rule, {invert: false});
+			const fn = hasLengthEqualMake<Rule>(rule, rule, {invert: false});
 
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
@@ -121,7 +121,7 @@ describe('HasLengthEqualTo', () => {
 		it('should return false when the current value is an integer', () => {
 			const target = 2;
 			const curr = 2;
-			const fn = makeHasLengthEqual<Rule>(rule, rule, {invert: false});
+			const fn = hasLengthEqualMake<Rule>(rule, rule, {invert: false});
 
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
@@ -130,7 +130,7 @@ describe('HasLengthEqualTo', () => {
 		it('should return false when the current value is a boolean', () => {
 			const target = 65;
 			const curr = false;
-			const fn = makeHasLengthEqual<Rule>(rule, rule, {invert: false});
+			const fn = hasLengthEqualMake<Rule>(rule, rule, {invert: false});
 
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
@@ -139,7 +139,7 @@ describe('HasLengthEqualTo', () => {
 		it('should return false when the target value is a boolean', () => {
 			const target = false as any;
 			const curr = ['hello'];
-			const fn = makeHasLengthEqual<Rule>(rule, rule, {invert: false});
+			const fn = hasLengthEqualMake<Rule>(rule, rule, {invert: false});
 
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);

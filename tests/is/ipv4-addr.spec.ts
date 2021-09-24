@@ -1,4 +1,4 @@
-import {IsIpv4Addr, makeIsIpv4Addr} from '../../src/is/ipv4-addr';
+import {IsIpv4Addr, isIpv4AddrMake} from '../../src/is/ipv4-addr';
 
 import {Rule} from '../../src/rule';
 
@@ -8,7 +8,7 @@ describe('IsIpv4Addr', () => {
 
 	beforeAll(() => {
 		rule = new Rule();
-		fn = makeIsIpv4Addr<Rule>(rule, rule, {invert: false});
+		fn = isIpv4AddrMake<Rule>(rule, rule, {invert: false});
 		fn();
 	});
 

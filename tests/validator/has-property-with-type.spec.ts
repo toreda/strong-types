@@ -25,7 +25,7 @@
 
 import {Rule} from '../../src/rule';
 import {RuleMods} from '../../src/rule/mods';
-import {makeHasPropertyWithType} from '../../src/has/property-with-type';
+import {hasPropertyWithTypeMake} from '../../src/has/property-with-type';
 
 describe('HasPropertyWithType', () => {
 	let mods: RuleMods;
@@ -49,7 +49,7 @@ describe('HasPropertyWithType', () => {
 			const propName = 'age';
 			const typeName = 'string';
 
-			const fn = makeHasPropertyWithType<Rule>(rule, rule, mods);
+			const fn = hasPropertyWithTypeMake<Rule>(rule, rule, mods);
 			fn(propName, typeName);
 			expect(rule.nodes[0].execute(obj)).toBe(true);
 		});
@@ -61,7 +61,7 @@ describe('HasPropertyWithType', () => {
 			const propName = 'age';
 			const typeName = 'string';
 
-			const fn = makeHasPropertyWithType<Rule>(rule, rule, mods);
+			const fn = hasPropertyWithTypeMake<Rule>(rule, rule, mods);
 			fn(propName, typeName);
 			expect(rule.nodes[0].execute(obj)).toBe(false);
 		});
@@ -71,7 +71,7 @@ describe('HasPropertyWithType', () => {
 			const propName = 'age';
 			const typeName = 'string';
 
-			const fn = makeHasPropertyWithType<Rule>(rule, rule, mods);
+			const fn = hasPropertyWithTypeMake<Rule>(rule, rule, mods);
 			fn(propName, typeName);
 			expect(rule.nodes[0].execute(obj)).toBe(false);
 		});
@@ -81,7 +81,7 @@ describe('HasPropertyWithType', () => {
 			const propName = 'age';
 			const typeName = 'string';
 
-			const fn = makeHasPropertyWithType<Rule>(rule, rule, mods);
+			const fn = hasPropertyWithTypeMake<Rule>(rule, rule, mods);
 			fn(propName, typeName);
 			expect(rule.nodes[0].execute(obj)).toBe(false);
 		});
@@ -91,7 +91,7 @@ describe('HasPropertyWithType', () => {
 			const propName = 'age';
 			const typeName = 'string';
 
-			const fn = makeHasPropertyWithType<Rule>(rule, rule, mods);
+			const fn = hasPropertyWithTypeMake<Rule>(rule, rule, mods);
 			fn(propName, typeName);
 			expect(rule.nodes[0].execute(obj)).toBe(false);
 		});
@@ -101,7 +101,7 @@ describe('HasPropertyWithType', () => {
 			const propName = 'age';
 			const typeName = 'string';
 
-			const fn = makeHasPropertyWithType<Rule>(rule, rule, mods);
+			const fn = hasPropertyWithTypeMake<Rule>(rule, rule, mods);
 			fn(propName, typeName);
 			expect(rule.nodes[0].execute(obj)).toBe(false);
 		});
@@ -111,7 +111,7 @@ describe('HasPropertyWithType', () => {
 			const propName = 'age';
 			const typeName = 'string';
 
-			const fn = makeHasPropertyWithType<Rule>(rule, rule, mods);
+			const fn = hasPropertyWithTypeMake<Rule>(rule, rule, mods);
 			fn(propName, typeName);
 			expect(rule.nodes[0].execute(obj)).toBe(false);
 		});
@@ -121,7 +121,7 @@ describe('HasPropertyWithType', () => {
 			const propName = 'name';
 			const typeName = 'string';
 
-			const fn = makeHasPropertyWithType<Rule>(rule, rule, mods);
+			const fn = hasPropertyWithTypeMake<Rule>(rule, rule, mods);
 			fn(propName, typeName);
 			expect(rule.nodes[0].execute(obj)).toBe(false);
 		});
@@ -131,7 +131,7 @@ describe('HasPropertyWithType', () => {
 			const propName = 'breed';
 			const typeName = 'string';
 
-			const fn = makeHasPropertyWithType<Rule>(rule, rule, mods);
+			const fn = hasPropertyWithTypeMake<Rule>(rule, rule, mods);
 			fn(propName, typeName);
 			expect(rule.nodes[0].execute(obj)).toBe(false);
 		});

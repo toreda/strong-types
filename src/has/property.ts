@@ -10,7 +10,7 @@ import {RuleNodeType} from '../rule/node/type';
  *
  * @category Validators
  */
-export type HasProperty<CallerType> = (propName: string) => CallerType;
+export type HasProperty<CallerT> = (propName: string) => CallerT;
 
 /**
  *
@@ -20,7 +20,7 @@ export type HasProperty<CallerType> = (propName: string) => CallerType;
  *
  * @category Validators
  */
-function hasProperty(o: unknown, propName: string): boolean {
+export function hasProperty(o: unknown, propName: string): boolean {
 	if (typeof o === 'undefined' || o === null) {
 		return false;
 	}
@@ -38,12 +38,8 @@ function hasProperty(o: unknown, propName: string): boolean {
  *
  * @category Validator Factory
  */
-export function makeHasProperty<CallerType>(
-	caller: CallerType,
-	rule: Rule,
-	mods: RuleMods
-): HasProperty<CallerType> {
-	return (propName: string): CallerType => {
+export function hasPropertyMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): HasProperty<CallerT> {
+	return (propName: string): CallerT => {
 		const fn: RuleFn<unknown> = (obj: unknown) => {
 			return hasProperty(obj, propName);
 		};

@@ -6,4 +6,14 @@ import {Arch} from '../arch';
  *
  * @category System Info
  */
-export const archSet = new Set<Arch>(['x86', 'x86_64', 'arm', 'arm64']);
+export const archSet = new Set<Arch>([
+	'arc',
+	'arm',
+	'arm64',
+	'itanium',
+	'mips',
+	'powerpc',
+	'sparc',
+	'x86_64',
+	'x86'
+]);

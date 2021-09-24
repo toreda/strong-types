@@ -34,7 +34,7 @@ import {RuleNodeType} from '../rule/node/type';
  *
  * @category Validators
  */
-export type IsGreaterThanOrEqual<CallerType> = (a: number) => CallerType;
+export type IsGreaterThanOrEqual<CallerT> = (a: number) => CallerT;
 
 /**
  * Validate whether target number is greater than or equal to current value.
@@ -44,13 +44,13 @@ export type IsGreaterThanOrEqual<CallerType> = (a: number) => CallerType;
  *
  * @category Validators
  */
-export const greaterThanOrEqual = (value: number, target: number): boolean => {
+export function isGreaterThanOrEqual(value: number, target: number): boolean {
 	if (typeof value !== 'number' || typeof target !== 'number') {
 		return false;
 	}
 
 	return value >= target;
-};
+}
 
 /**
  * Factory function to create a greaterThanorEqual validator function.
@@ -61,14 +61,14 @@ export const greaterThanOrEqual = (value: number, target: number): boolean => {
  *
  * @category Validator Factory
  */
-export function makeIsGreaterThanOrEqual<CallerType>(
-	caller: CallerType,
+export function isGreaterThanOrEqualMake<CallerT>(
+	caller: CallerT,
 	rule: Rule,
 	mods: RuleMods
-): IsGreaterThanOrEqual<CallerType> {
-	return (target: number): CallerType => {
+): IsGreaterThanOrEqual<CallerT> {
+	return (target: number): CallerT => {
 		const fn: RuleFn<number> = (curr: number) => {
-			return greaterThanOrEqual(curr, target);
+			return isGreaterThanOrEqual(curr, target);
 		};
 
 		const node = new RuleNode<number>('IS_GT_OR_EQT', RuleNodeType.CMP, fn, mods.invert);

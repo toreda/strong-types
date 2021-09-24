@@ -1,6 +1,6 @@
 import {Rule} from '../../src/rule';
 import {RuleMods} from '../../src/rule/mods';
-import {makeIsArray} from '../../src/is/array';
+import {isArrayMake} from '../../src/is/array';
 
 describe('IsArray', () => {
 	let mods: RuleMods;
@@ -22,7 +22,7 @@ describe('IsArray', () => {
 		it('should return true when input is an empty array', () => {
 			const value: string[] = [];
 
-			const fn = makeIsArray<Rule>(rule, rule, mods);
+			const fn = isArrayMake<Rule>(rule, rule, mods);
 			fn();
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
@@ -30,7 +30,7 @@ describe('IsArray', () => {
 		it('should return true when input is a non-empty array', () => {
 			const value: string[] = ['a', 'b', 'c'];
 
-			const fn = makeIsArray<Rule>(rule, rule, mods);
+			const fn = isArrayMake<Rule>(rule, rule, mods);
 			fn();
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
@@ -39,7 +39,7 @@ describe('IsArray', () => {
 			const value: string[] = [];
 			mods.invert = true;
 
-			const fn = makeIsArray<Rule>(rule, rule, mods);
+			const fn = isArrayMake<Rule>(rule, rule, mods);
 			fn();
 			expect(rule.nodes[0].execute(value)).toBe(false);
 		});
@@ -48,7 +48,7 @@ describe('IsArray', () => {
 			const value = ['a', 'b', 'c'];
 			mods.invert = true;
 
-			const fn = makeIsArray<Rule>(rule, rule, mods);
+			const fn = isArrayMake<Rule>(rule, rule, mods);
 			fn();
 			expect(rule.nodes[0].execute(value)).toBe(false);
 		});
@@ -57,7 +57,7 @@ describe('IsArray', () => {
 			const value = 'aaaaaaaaa';
 			mods.invert = true;
 
-			const fn = makeIsArray<Rule>(rule, rule, mods);
+			const fn = isArrayMake<Rule>(rule, rule, mods);
 			fn();
 			expect(rule.nodes[0].execute(value)).toBe(true);
 		});
@@ -65,7 +65,7 @@ describe('IsArray', () => {
 		it('should return false when input is a non-empty string', () => {
 			const value = 'aaaaaaaaa';
 
-			const fn = makeIsArray<Rule>(rule, rule, mods);
+			const fn = isArrayMake<Rule>(rule, rule, mods);
 			fn();
 			expect(rule.nodes[0].execute(value)).toBe(false);
 		});
@@ -73,7 +73,7 @@ describe('IsArray', () => {
 		it('should return false when input is a boolean (false)', () => {
 			const value = false;
 
-			const fn = makeIsArray<Rule>(rule, rule, mods);
+			const fn = isArrayMake<Rule>(rule, rule, mods);
 			fn();
 			expect(rule.nodes[0].execute(value)).toBe(false);
 		});
@@ -81,7 +81,7 @@ describe('IsArray', () => {
 		it('should return false when input is a boolean (true)', () => {
 			const value = true;
 
-			const fn = makeIsArray<Rule>(rule, rule, mods);
+			const fn = isArrayMake<Rule>(rule, rule, mods);
 			fn();
 			expect(rule.nodes[0].execute(value)).toBe(false);
 		});
@@ -89,7 +89,7 @@ describe('IsArray', () => {
 		it('should return false when input is a number', () => {
 			const value = 101;
 
-			const fn = makeIsArray<Rule>(rule, rule, mods);
+			const fn = isArrayMake<Rule>(rule, rule, mods);
 			fn();
 			expect(rule.nodes[0].execute(value)).toBe(false);
 		});

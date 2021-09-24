@@ -34,7 +34,7 @@ import {RuleNodeType} from '../rule/node/type';
  *
  * @category Validators
  */
-export type IsGreaterThan<CallerType> = (target: number) => CallerType;
+export type IsGreaterThan<CallerT> = (target: number) => CallerT;
 
 /**
  * Check if target number is strictly greater than value.
@@ -44,13 +44,13 @@ export type IsGreaterThan<CallerType> = (target: number) => CallerType;
  *
  * @category Validators
  */
-export const greaterThan = (value: number, target: number): boolean => {
+export function isGreaterThan(value: number, target: number): boolean {
 	if (typeof value !== 'number' || typeof target !== 'number') {
 		return false;
 	}
 
 	return value > target;
-};
+}
 
 /**
  * Factory function to create an isGreaterThan validation function.
@@ -61,14 +61,14 @@ export const greaterThan = (value: number, target: number): boolean => {
  *
  * @category Validator Factory
  */
-export function makeIsGreaterThan<CallerType>(
-	caller: CallerType,
+export function isGreaterThanMake<CallerT>(
+	caller: CallerT,
 	rule: Rule,
 	mods: RuleMods
-): IsGreaterThan<CallerType> {
-	return (target: number): CallerType => {
+): IsGreaterThan<CallerT> {
+	return (target: number): CallerT => {
 		const fn: RuleFn<number> = (curr: number) => {
-			return greaterThan(curr, target);
+			return isGreaterThan(curr, target);
 		};
 
 		const node = new RuleNode<number>('IS_GT', RuleNodeType.CMP, fn, mods.invert);

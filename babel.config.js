@@ -4,16 +4,19 @@ module.exports = {
 			'@babel/env',
 			{
 				targets: {
+					/** Node v14 is the latest version supported in AWS Lambda.*/
 					node: '14.1.1'
 				},
 				useBuiltIns: 'usage',
 				corejs: {
-					version: '3.17.2',
-					shippedProposals: true
+					version: '^3.18.0',
+					shippedProposals: false
 				}
 			}
 		],
 		'@babel/preset-typescript'
 	],
-	plugins: ['const-enum', '@babel/transform-typescript']
+	sourceType: 'unambiguous',
+	plugins: ['const-enum', '@babel/transform-runtime', '@babel/transform-typescript'],
+	ignore: ['core-js/']
 };

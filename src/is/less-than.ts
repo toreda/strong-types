@@ -34,7 +34,7 @@ import {RuleNodeType} from '../rule/node/type';
  *
  * @category Validators
  */
-export type IsLessThan<CallerType> = (a: number) => CallerType;
+export type IsLessThan<CallerT> = (a: number) => CallerT;
 
 /**
  * Check whether target number is strictly less than value.
@@ -44,7 +44,7 @@ export type IsLessThan<CallerType> = (a: number) => CallerType;
  *
  * @category Validators
  */
-export const lessThan = (value: number, target: number): boolean => {
+export function isLessThan(value: number, target: number): boolean {
 	if (typeof value !== 'number') {
 		return false;
 	}
@@ -54,7 +54,7 @@ export const lessThan = (value: number, target: number): boolean => {
 	}
 
 	return value < target;
-};
+}
 
 /**
  * Factory to create isLessThan validator function used in rule chains.
@@ -65,14 +65,10 @@ export const lessThan = (value: number, target: number): boolean => {
  *
  * @category Validator Factory
  */
-export function makeIsLessThan<CallerType>(
-	caller: CallerType,
-	rule: Rule,
-	mods: RuleMods
-): IsLessThan<CallerType> {
-	return (target: number): CallerType => {
+export function isLessThanMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsLessThan<CallerT> {
+	return (target: number): CallerT => {
 		const fn: RuleFn<number> = (curr: number) => {
-			return lessThan(curr, target);
+			return isLessThan(curr, target);
 		};
 
 		const node = new RuleNode<number>('IS_LT', RuleNodeType.CMP, fn, mods.invert);

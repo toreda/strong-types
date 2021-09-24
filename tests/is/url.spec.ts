@@ -1,4 +1,4 @@
-import {IsUrl, makeIsUrl} from '../../src/is/url';
+import {IsUrl, isUrlMake} from '../../src/is/url';
 
 import {Rule} from '../../src/rule';
 
@@ -8,7 +8,7 @@ describe('IsUrl', () => {
 
 	beforeAll(() => {
 		rule = new Rule();
-		fn = makeIsUrl<Rule>(rule, rule, {invert: false});
+		fn = isUrlMake<Rule>(rule, rule, {invert: false});
 		fn();
 	});
 

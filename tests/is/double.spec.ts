@@ -1,4 +1,4 @@
-import {IsDouble, makeIsDouble} from '../../src/is/double';
+import {IsDouble, isDoubleMake} from '../../src/is/double';
 
 import {Rule} from '../../src/rule';
 import {RuleMods} from '../../src/rule/mods';
@@ -13,11 +13,11 @@ describe('Double', () => {
 			invert: false
 		};
 		rule = new Rule();
-		fn = makeIsDouble<Rule>(rule, rule, mods);
+		fn = isDoubleMake<Rule>(rule, rule, mods);
 		fn();
 	});
 
-	describe('makeIsDouble', () => {
+	describe('isDoubleMake', () => {
 		it('should return a function', () => {
 			expect(typeof fn).toBe('function');
 		});
@@ -47,7 +47,7 @@ describe('Double', () => {
 
 		it('should return false when curr is a negative float, but invert flag is active', () => {
 			const customRule = new Rule();
-			const customFn = makeIsDouble<Rule>(customRule, customRule, {invert: true});
+			const customFn = isDoubleMake<Rule>(customRule, customRule, {invert: true});
 			customFn();
 			const floatCurr = -7.333;
 

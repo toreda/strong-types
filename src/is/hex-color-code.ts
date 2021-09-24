@@ -34,7 +34,7 @@ import {RuleNodeType} from '../rule/node/type';
  *
  * @category Validators
  */
-export type IsHexColorCode<CallerType> = () => CallerType;
+export type IsHexColorCode<CallerT> = () => CallerT;
 
 const MIN_HEX_VALUE = 0x0;
 const MAX_HEX_VALUE = 0xffffff;
@@ -77,7 +77,7 @@ export function isHexColorCodeStr(value: string): boolean {
 	return isHexColorCode(Number(hexStr));
 }
 
-export const isHexColorFn = (curr: string | number): boolean => {
+export function isHexColorFn(curr: string | number): boolean {
 	if (typeof curr === 'string') {
 		return isHexColorCodeStr(curr);
 	}
@@ -87,7 +87,7 @@ export const isHexColorFn = (curr: string | number): boolean => {
 	}
 
 	return false;
-};
+}
 
 /**
  * Factory to create isHexColorCode validator function used in rule chains.
@@ -98,12 +98,12 @@ export const isHexColorFn = (curr: string | number): boolean => {
  *
  * @category Validator Factory
  */
-export function makeIsHexColorCode<CallerType>(
-	caller: CallerType,
+export function isHexColorCodeMake<CallerT>(
+	caller: CallerT,
 	rule: Rule,
 	mods: RuleMods
-): IsHexColorCode<CallerType> {
-	return (): CallerType => {
+): IsHexColorCode<CallerT> {
+	return (): CallerT => {
 		const fn: RuleFn<string> = (curr: string): boolean => {
 			return isHexColorFn(curr);
 		};

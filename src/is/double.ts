@@ -34,14 +34,14 @@ import {RuleNodeType} from '../rule/node/type';
  *
  * @category Validators
  */
-export type IsDouble<CallerType> = () => CallerType;
+export type IsDouble<CallerT> = () => CallerT;
 
 /**
  * Check whether value is a valid Double.
  *
  * @category Validators
  */
-export const isDouble = (value: number): boolean => {
+export function isDouble(value: number): boolean {
 	if (typeof value !== 'number') {
 		return false;
 	}
@@ -51,7 +51,7 @@ export const isDouble = (value: number): boolean => {
 	}
 
 	return true;
-};
+}
 
 /**
  * Factory to create isDouble validator function used in rule chains.
@@ -62,14 +62,10 @@ export const isDouble = (value: number): boolean => {
  *
  * @category Validator Factory
  */
-export function makeIsDouble<CallerType>(
-	caller: CallerType,
-	rule: Rule,
-	mods: RuleMods
-): IsDouble<CallerType> {
-	return (): CallerType => {
-		const fn: RuleFn<number> = (curr: number): boolean => {
-			return isDouble(curr);
+export function isDoubleMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsDouble<CallerT> {
+	return (): CallerT => {
+		const fn: RuleFn<number> = (value: number): boolean => {
+			return isDouble(value);
 		};
 
 		const node = new RuleNode<number>('IS_T_DOUBLE', RuleNodeType.CMP, fn, mods.invert);

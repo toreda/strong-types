@@ -1,4 +1,4 @@
-import {IsGreaterThan, makeIsGreaterThan} from '../../src/is/greater-than';
+import {IsGreaterThan, isGreaterThanMake} from '../../src/is/greater-than';
 
 import {Rule} from '../../src/rule';
 import {RuleMods} from '../../src/rule/mods';
@@ -18,7 +18,7 @@ describe('IsGreaterThan', () => {
 			invert: false
 		};
 
-		fn = makeIsGreaterThan<Rule>(rule, rule, mods);
+		fn = isGreaterThanMake<Rule>(rule, rule, mods);
 	});
 
 	beforeEach(() => {
@@ -41,7 +41,7 @@ describe('IsGreaterThan', () => {
 		it('should return false when target value is not a number', () => {
 			const stringTarget = 'ffffffff';
 
-			const fn = makeIsGreaterThan<Rule>(rule, rule, mods);
+			const fn = isGreaterThanMake<Rule>(rule, rule, mods);
 			fn(stringTarget as any);
 			expect(rule.nodes[0].execute(MOCK_CURR)).toBe(false);
 		});
@@ -50,7 +50,7 @@ describe('IsGreaterThan', () => {
 			const curr = 0;
 			const target = 0;
 
-			const fn = makeIsGreaterThan<Rule>(rule, rule, mods);
+			const fn = isGreaterThanMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
@@ -60,7 +60,7 @@ describe('IsGreaterThan', () => {
 			const target = 0;
 			mods.invert = true;
 
-			const fn = makeIsGreaterThan<Rule>(rule, rule, mods);
+			const fn = isGreaterThanMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -69,7 +69,7 @@ describe('IsGreaterThan', () => {
 			const curr = 13;
 			const target = 55;
 
-			const fn = makeIsGreaterThan<Rule>(rule, rule, mods);
+			const fn = isGreaterThanMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
@@ -79,7 +79,7 @@ describe('IsGreaterThan', () => {
 			const target = 55;
 			mods.invert = true;
 
-			const fn = makeIsGreaterThan<Rule>(rule, rule, mods);
+			const fn = isGreaterThanMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -88,7 +88,7 @@ describe('IsGreaterThan', () => {
 			const curr = 25;
 			const target = 10;
 
-			const fn = makeIsGreaterThan<Rule>(rule, rule, mods);
+			const fn = isGreaterThanMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -97,7 +97,7 @@ describe('IsGreaterThan', () => {
 			const curr = 25;
 			const target = -10;
 
-			const fn = makeIsGreaterThan<Rule>(rule, rule, mods);
+			const fn = isGreaterThanMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -106,7 +106,7 @@ describe('IsGreaterThan', () => {
 			const curr = -2;
 			const target = -10;
 
-			const fn = makeIsGreaterThan<Rule>(rule, rule, mods);
+			const fn = isGreaterThanMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -115,7 +115,7 @@ describe('IsGreaterThan', () => {
 			const curr = 2.223;
 			const target = -10;
 
-			const fn = makeIsGreaterThan<Rule>(rule, rule, mods);
+			const fn = isGreaterThanMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -124,7 +124,7 @@ describe('IsGreaterThan', () => {
 			const curr = -3.3;
 			const target = -10;
 
-			const fn = makeIsGreaterThan<Rule>(rule, rule, mods);
+			const fn = isGreaterThanMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -133,7 +133,7 @@ describe('IsGreaterThan', () => {
 			const curr = 25;
 			const target = -10;
 
-			const fn = makeIsGreaterThan<Rule>(rule, rule, mods);
+			const fn = isGreaterThanMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -142,7 +142,7 @@ describe('IsGreaterThan', () => {
 			const curr = 4.4422;
 			const target = -5.2111;
 
-			const fn = makeIsGreaterThan<Rule>(rule, rule, mods);
+			const fn = isGreaterThanMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -151,7 +151,7 @@ describe('IsGreaterThan', () => {
 			const curr = -7.11;
 			const target = -11.5557;
 
-			const fn = makeIsGreaterThan<Rule>(rule, rule, mods);
+			const fn = isGreaterThanMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});

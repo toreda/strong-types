@@ -23,7 +23,7 @@
  *
  */
 
-import {isHexColorCodeStr, makeIsHexColorCode} from '../../../src/is/hex-color-code';
+import {isHexColorCodeMake, isHexColorCodeStr} from '../../../src/is/hex-color-code';
 
 import {Rule} from '../../../src/rule';
 import {RuleMods} from '../../../src/rule/mods';
@@ -397,7 +397,7 @@ describe('HexColorCode', () => {
 	describe('Usage', () => {
 		for (const input of TEST_INPUTS) {
 			it(`should return ${input.expectedResult} when ${input.label}`, () => {
-				const fn = makeIsHexColorCode(rule, rule, mods);
+				const fn = isHexColorCodeMake(rule, rule, mods);
 				fn();
 				expect(rule.nodes[0].execute(input.value)).toBe(input.expectedResult);
 			});

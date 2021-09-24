@@ -2,6 +2,7 @@
 export {Arch} from './arch';
 export {archSet} from './arch/set';
 export {archValid} from './arch/valid';
+export {archAliases} from './arch/aliases';
 
 // System Info - OS
 export {OS} from './os';
@@ -24,9 +25,9 @@ export {typeMatch, isType, TypeMap, PrimitiveOrConstructor} from './is/type';
 export {StrongArray, makeArray} from './array';
 export {Bool, StrongBoolean, makeBoolean} from './bool';
 export {Double, StrongDouble, makeDouble} from './double';
-export {Int, StrongInt, makeInt} from './int';
-export {UInt, StrongUInt, makeUInt} from './uint';
-export {StrongString, makeString} from './string';
+export {Int, StrongInt, intMake} from './int';
+export {UInt, StrongUInt, uIntMake} from './uint';
+export {Text, StrongString, textMake} from './text';
 
 // CSS Types & Objects
 export {CSSBoxShadow} from './css/box/shadow';
@@ -39,6 +40,9 @@ export {CSSTextDecorationLine} from './css/text/decoration/line';
 export {CSSTextIndent} from './css/text/indent';
 export {CSSUnits} from './css/units';
 export {CSSUserSelect} from './css/user/select';
+
+// Env
+export {Env} from './env';
 
 // Http headers, helpers, and types.
 export {HttpAuthHeader} from './http/auth/header';
@@ -80,61 +84,69 @@ export {MapParserState} from './map/parser/state';
 export {MapParserOptions} from './map/parser/options';
 export {Range} from './range';
 export {Size} from './size';
-export {Vec1, StrongVec1} from './vec1';
-export {Vec2, StrongVec2} from './vec2';
-export {Vec3, StrongVec3} from './vec3';
-export {Vec4, StrongVec4} from './vec4';
+export {Vec1} from './vec1';
+export {Vec2} from './vec2';
+export {Vec3} from './vec3';
+export {Vec4} from './vec4';
 
 // Validator functions for is & has
 
-export {HasLengthEqual, makeHasLengthEqual} from './has/length-equal';
+export {HasLengthEqual, hasLengthEqual, hasLengthEqualMake} from './has/length-equal';
 export {
 	HasLengthGreaterThanOrEqual,
-	makeHasLengthGreaterThanOrEqual
+	hasLengthGreaterThanOrEqual,
+	hasLengthGreaterThanOrEqualMake
 } from './has/length-greater-than-or-equal';
-export {HasChar, makeHasChar} from './has/char';
-export {HasCharTimes, makeHasCharTimes} from './has/char-times';
-export {HasLengthGreaterThan, makeHasLengthGreaterThan} from './has/length-greater-than';
-export {HasLengthLessThan, makeHasLengthLessThan} from './has/length-less-than';
-export {HasLengthLessThanOrEqual, makeHasLengthLessThanOrEqual} from './has/length-less-than-or-equal';
-export {HasProperty, makeHasProperty} from './has/property';
-export {HasPropertyWithType, makeHasPropertyWithType} from './has/property-with-type';
-export {HasText, makeHasText} from './has/text';
-export {HasTextTimes, makeHasTextTimes} from './has/text-times';
-export {IsArray, makeIsArray} from './is/array';
-export {IsBoolean, makeIsBoolean} from './is/boolean';
-export {IsDate, makeIsDate} from './is/date';
-export {IsDateTime, makeIsDateTime} from './is/date-time';
-export {IsDouble, makeIsDouble} from './is/double';
-export {IsEmail, makeIsEmail} from './is/email';
-export {IsEmpty, makeIsEmpty} from './is/empty';
-export {IsEqual, makeIsEqual} from './is/equal';
-export {IsGreaterThan, makeIsGreaterThan} from './is/greater-than';
-export {IsGreaterThanOrEqual, makeIsGreaterThanOrEqual} from './is/greater-than-or-equal';
-export {IsHexColorCode, makeIsHexColorCode} from './is/hex-color-code';
-export {IsInteger, makeIsInteger} from './is/integer';
-export {IsIpv4Addr, makeIsIpv4Addr} from './is/ipv4-addr';
-export {IsIpv6Addr, makeIsIpv6Addr} from './is/ipv6-addr';
-export {IsLength, makeIsLength} from './is/length';
-export {IsLessThan, makeIsLessThan} from './is/less-than';
-export {IsLessThanOrEqual, makeIsLessThanOrEqual} from './is/less-than-or-equal';
-export {IsNull, makeIsNull} from './is/null';
-export {IsPort, makeIsPort} from './is/port';
-export {IsString, makeIsString} from './is/string';
-export {IsTime, makeIsTime} from './is/time';
-export {IsUndefined, makeIsUndefined} from './is/undefined';
-export {IsUrl, makeIsUrl} from './is/url';
+export {HasChar, hasChar, hasCharMake} from './has/char';
+export {HasCharTimes, hasCharTimes, hasCharTimesMake} from './has/char-times';
+export {
+	HasLengthGreaterThan,
+	hasLengthGreaterThan,
+	hasLengthGreaterThanMake
+} from './has/length-greater-than';
+export {HasLengthLessThan, hasLengthLessThan, hasLengthLessThanMake} from './has/length-less-than';
+export {
+	HasLengthLessThanOrEqual,
+	hasLengthLessThanOrEqual,
+	hasLengthLessThanOrEqualMake
+} from './has/length-less-than-or-equal';
+export {HasProperty, hasProperty, hasPropertyMake} from './has/property';
+export {HasPropertyWithType, hasPropertyWithType, hasPropertyWithTypeMake} from './has/property-with-type';
+export {HasText, hasText, hasTextMake} from './has/text';
+export {HasTextTimes, hasTextTimes, makeHasTextTimes} from './has/text-times';
+export {IsArray, isArrayMake} from './is/array';
+export {IsBoolean, isBoolean, isBooleanMake} from './is/boolean';
+export {IsDate, isDate, isDateMake} from './is/date';
+export {IsDateTime, isDateTime, isDateTimeMake} from './is/date-time';
+export {IsDouble, isDouble, isDoubleMake} from './is/double';
+export {IsEmail, isEmail, isEmailMake} from './is/email';
+export {IsEmpty, isEmpty, isEmptyMake} from './is/empty';
+export {IsEqual, isEqual, isEqualMake} from './is/equal';
+export {IsGreaterThan, isGreaterThanMake, isGreaterThan} from './is/greater-than';
+export {
+	IsGreaterThanOrEqual,
+	isGreaterThanOrEqual,
+	isGreaterThanOrEqualMake
+} from './is/greater-than-or-equal';
+export {IsHexColorCode, isHexColorCode, isHexColorCodeMake} from './is/hex-color-code';
+export {IsInt, isInt, isIntMake} from './is/int';
+export {IsIpv4Addr, isIpv4Addr, isIpv4AddrMake} from './is/ipv4-addr';
+export {IsIpv6Addr, isIpv6Addr, isIpv6AddrMake} from './is/ipv6-addr';
+export {IsLength, isLength, isLengthMake} from './is/length';
+export {IsLessThan, isLessThan, isLessThanMake} from './is/less-than';
+export {IsLessThanOrEqual, isLessThanOrEqual, isLessThanOrEqualMake} from './is/less-than-or-equal';
+export {IsNull, isNull, isNullMake} from './is/null';
+export {IsPort, isPort, isPortMake} from './is/port';
+export {IsText, isTextMake} from './is/text';
+export {IsTime, isTime, isTimeMake} from './is/time';
+export {IsUndefined, isUndefined, isUndefinedMake} from './is/undefined';
+export {IsUrl, isUrl, isUrlMake} from './is/url';
+export {IsSystemPort, isSystemPortMake, isSystemPort} from './is/system/port';
 
 // Patterns
 export {Pattern} from './pattern';
-
-// Transforms
-export {Transform} from './transform';
-export {TransformNB} from './transform/nb';
-export {TransformFN} from './transform/fn';
-export {TransformFNNB} from './transform/fn/nb';
-export {Transforms} from './transforms';
-export {TransformOptions} from './transform/options';
+export {Port, portMake} from './port';
+export {SystemPort, systemPortMake} from './system/port';
 
 // Rules
 export {Rule} from './rule';
@@ -158,5 +170,15 @@ export {RuleType} from './rule/type';
 export {PrimitiveToStrong} from './mapped/types';
 export {RecordToStrong} from './mapped/types';
 
+// Transforms
+export {Transform} from './transform';
+export {TransformNB} from './transform/nb';
+export {TransformFN} from './transform/fn';
+export {TransformFNNB} from './transform/fn/nb';
+export {Transforms} from './transforms';
+export {TransformOptions} from './transform/options';
+
+// Strong Time
 export {Time, makeTime} from './time';
+// Strong URLs
 export {Url, makeUrl} from './url';

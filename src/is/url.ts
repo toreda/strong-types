@@ -35,14 +35,14 @@ import {URL} from 'url';
  *
  * @category Validators
  */
-export type IsUrl<CallerType> = () => CallerType;
+export type IsUrl<CallerT> = () => CallerT;
 
 /**
  * Check whether value is a valid URL.
  *
  * @category Validators
  */
-function isUrl(value: string): boolean {
+export function isUrl(value: string): boolean {
 	if (typeof value !== 'string') {
 		return false;
 	}
@@ -74,8 +74,8 @@ function isUrl(value: string): boolean {
  *
  * @category Validator Factory
  */
-export function makeIsUrl<CallerType>(caller: CallerType, rule: Rule, mods: RuleMods): IsUrl<CallerType> {
-	return (): CallerType => {
+export function isUrlMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsUrl<CallerT> {
+	return (): CallerT => {
 		const fn: RuleFn<string> = (curr: string): boolean => {
 			return isUrl(curr);
 		};

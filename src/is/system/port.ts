@@ -23,37 +23,38 @@
  *
  */
 
-import {Rule} from '../rule';
-import {RuleFn} from '../rule/fn';
-import {RuleMods} from '../rule/mods';
-import {RuleNode} from '../rule/node';
-import {RuleNodeType} from '../rule/node/type';
+import {Rule} from '../../rule';
+import {RuleFn} from '../../rule/fn';
+import {RuleMods} from '../../rule/mods';
+import {RuleNode} from '../../rule/node';
+import {RuleNodeType} from '../../rule/node/type';
+import {isPort} from '../port';
 
 /**
- * Type signature for isInteger validators used in rule chains.
+ * Type signature for isSystemPort validators used in rule chains.
  *
  * @category Validators
  */
-export type IsInteger<CallerType> = () => CallerType;
+export type IsSystemPort<CallerT> = (value?: number) => CallerT;
 
 /**
- * Check whether provided value is a valid number, and if so
- * whether it's an integer.
- * @param value		Number to check
+ * Check if provided value is a valid port system port number in the
+ * range of 1 - 1024 which requires root/admin access to use.
+ * @param value
  * @returns
  *
  * @category Validators
  */
-export const isInteger = (value: number): boolean => {
-	if (typeof value !== 'number') {
+export function isSystemPort(value?: number): value is number {
+	if (!isPort(value)) {
 		return false;
 	}
 
-	return Math.floor(value) === value;
-};
+	return value < 1024;
+}
 
 /**
- * Factory function to create isInteger validator function.
+ * Factory to create isSystemPort validator function used in rule chains.
  * @param caller
  * @param rule
  * @param mods
@@ -61,17 +62,17 @@ export const isInteger = (value: number): boolean => {
  *
  * @category Validator Factory
  */
-export function makeIsInteger<CallerType>(
-	caller: CallerType,
+export function isSystemPortMake<CallerT>(
+	caller: CallerT,
 	rule: Rule,
 	mods: RuleMods
-): IsInteger<CallerType> {
-	return (): CallerType => {
+): IsSystemPort<CallerT> {
+	return (): CallerT => {
 		const fn: RuleFn<number> = (curr: number): boolean => {
-			return isInteger(curr);
+			return isSystemPort(curr);
 		};
 
-		const node = new RuleNode<number>('IS_T_INT', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<number>('IS_SYS_PORT', RuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);
 
 		return caller;

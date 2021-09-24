@@ -23,20 +23,24 @@
  *
  */
 
-import {IsDate, makeIsDate} from '../is/date';
-import {IsDateTime, makeIsDateTime} from '../is/date-time';
-import {IsEmail, makeIsEmail} from '../is/email';
-import {IsEmpty, makeIsEmpty} from '../is/empty';
-import {IsEqual, makeIsEqual} from '../is/equal';
-import {IsGreaterThan, makeIsGreaterThan} from '../is/greater-than';
-import {IsGreaterThanOrEqual, makeIsGreaterThanOrEqual} from '../is/greater-than-or-equal';
-import {IsHexColorCode, makeIsHexColorCode} from '../is/hex-color-code';
-import {IsLessThan, makeIsLessThan} from '../is/less-than';
-import {IsLessThanOrEqual, makeIsLessThanOrEqual} from '../is/less-than-or-equal';
-import {IsNull, makeIsNull} from '../is/null';
-import {IsTime, makeIsTime} from '../is/time';
-import {IsUndefined, makeIsUndefined} from '../is/undefined';
-import {IsUrl, makeIsUrl} from '../is/url';
+import {IsDate, isDateMake} from '../is/date';
+import {IsDateTime, isDateTimeMake} from '../is/date-time';
+import {IsEmail, isEmailMake} from '../is/email';
+import {IsEmpty, isEmptyMake} from '../is/empty';
+import {IsEqual, isEqualMake} from '../is/equal';
+import {IsGreaterThan, isGreaterThanMake} from '../is/greater-than';
+import {IsGreaterThanOrEqual, isGreaterThanOrEqualMake} from '../is/greater-than-or-equal';
+import {IsHexColorCode, isHexColorCodeMake} from '../is/hex-color-code';
+import {IsIpv4Addr, isIpv4AddrMake} from '../is/ipv4-addr';
+import {IsIpv6Addr, isIpv6AddrMake} from '../is/ipv6-addr';
+import {IsLessThan, isLessThanMake} from '../is/less-than';
+import {IsLessThanOrEqual, isLessThanOrEqualMake} from '../is/less-than-or-equal';
+import {IsNull, isNullMake} from '../is/null';
+import {IsPort, isPortMake} from '../is/port';
+import {IsSystemPort, isSystemPortMake} from '../is/system/port';
+import {IsTime, isTimeMake} from '../is/time';
+import {IsUndefined, isUndefinedMake} from '../is/undefined';
+import {IsUrl, isUrlMake} from '../is/url';
 
 import {Rule} from '../rule';
 import {RuleMods} from './mods';
@@ -61,21 +65,29 @@ export class RuleBe {
 	public readonly lessThanOrEqual: IsLessThanOrEqual<RuleBe>;
 	public readonly time: IsTime<RuleBe>;
 	public readonly url: IsUrl<RuleBe>;
+	public readonly portNumber: IsPort<RuleBe>;
+	public readonly systemPortNumber: IsSystemPort<RuleBe>;
+	public readonly ipv4Addr: IsIpv4Addr<RuleBe>;
+	public readonly ipv6Addr: IsIpv6Addr<RuleBe>;
 
 	constructor(rule: Rule, mods: RuleMods) {
-		this.greaterThan = makeIsGreaterThan<RuleBe>(this, rule, mods);
-		this.greaterThanOrEqual = makeIsGreaterThanOrEqual<RuleBe>(this, rule, mods);
-		this.lessThan = makeIsLessThan<RuleBe>(this, rule, mods);
-		this.lessThanOrEqual = makeIsLessThanOrEqual<RuleBe>(this, rule, mods);
-		this.equalTo = makeIsEqual<RuleBe>(this, rule, mods);
-		this.undefined = makeIsUndefined<RuleBe>(this, rule, mods);
-		this.null = makeIsNull<RuleBe>(this, rule, mods);
-		this.empty = makeIsEmpty<RuleBe>(this, rule, mods);
-		this.date = makeIsDate<RuleBe>(this, rule, mods);
-		this.time = makeIsTime<RuleBe>(this, rule, mods);
-		this.hexColorCode = makeIsHexColorCode<RuleBe>(this, rule, mods);
-		this.email = makeIsEmail<RuleBe>(this, rule, mods);
-		this.url = makeIsUrl<RuleBe>(this, rule, mods);
-		this.dateTime = makeIsDateTime<RuleBe>(this, rule, mods);
+		this.greaterThan = isGreaterThanMake<RuleBe>(this, rule, mods);
+		this.greaterThanOrEqual = isGreaterThanOrEqualMake<RuleBe>(this, rule, mods);
+		this.lessThan = isLessThanMake<RuleBe>(this, rule, mods);
+		this.lessThanOrEqual = isLessThanOrEqualMake<RuleBe>(this, rule, mods);
+		this.equalTo = isEqualMake<RuleBe>(this, rule, mods);
+		this.undefined = isUndefinedMake<RuleBe>(this, rule, mods);
+		this.null = isNullMake<RuleBe>(this, rule, mods);
+		this.empty = isEmptyMake<RuleBe>(this, rule, mods);
+		this.date = isDateMake<RuleBe>(this, rule, mods);
+		this.time = isTimeMake<RuleBe>(this, rule, mods);
+		this.hexColorCode = isHexColorCodeMake<RuleBe>(this, rule, mods);
+		this.email = isEmailMake<RuleBe>(this, rule, mods);
+		this.url = isUrlMake<RuleBe>(this, rule, mods);
+		this.dateTime = isDateTimeMake<RuleBe>(this, rule, mods);
+		this.portNumber = isPortMake<RuleBe>(this, rule, mods);
+		this.systemPortNumber = isSystemPortMake<RuleBe>(this, rule, mods);
+		this.ipv4Addr = isIpv4AddrMake<RuleBe>(this, rule, mods);
+		this.ipv6Addr = isIpv6AddrMake<RuleBe>(this, rule, mods);
 	}
 }

@@ -23,7 +23,7 @@
  *
  */
 
-import {UInt, makeUInt} from '../../src/uint';
+import {UInt, uIntMake} from '../../src/uint';
 
 const MOCK_INITIAL = 4410;
 const MOCK_FALLBACK_DEFAULT = 99121;
@@ -33,24 +33,24 @@ describe('UInt', () => {
 	describe('Implementation', () => {
 		it('should set value to initialValue argument', () => {
 			const sampleInitial = 11098;
-			const uint = makeUInt(MOCK_FALLBACK_DEFAULT, sampleInitial);
+			const uint = uIntMake(MOCK_FALLBACK_DEFAULT, sampleInitial);
 			expect(uint()).toBe(sampleInitial);
 		});
 
 		it('should return fallback default when value is null', () => {
 			const sampleFallback = 999981;
-			const uint = makeUInt(sampleFallback, null);
+			const uint = uIntMake(sampleFallback, null);
 			expect(uint()).toBe(sampleFallback);
 		});
 
 		it('should return fallback default when value is undefined', () => {
 			const sampleFallback = 684257;
-			const result = makeUInt(sampleFallback);
+			const result = uIntMake(sampleFallback);
 			expect(result()).toBe(sampleFallback);
 		});
 
 		it('should set value when called with non-null value', () => {
-			const uint = makeUInt(MOCK_FALLBACK_DEFAULT, null);
+			const uint = uIntMake(MOCK_FALLBACK_DEFAULT, null);
 			const sampleValue = 140781;
 			uint(sampleValue);
 			expect(uint()).toBe(sampleValue);
@@ -59,7 +59,7 @@ describe('UInt', () => {
 		it('should not set value when called with a negative value', () => {
 			const sampleFallbackDefault = 37192;
 			const negativeInt = -14409;
-			const uint = makeUInt(sampleFallbackDefault, null);
+			const uint = uIntMake(sampleFallbackDefault, null);
 			uint(negativeInt);
 			expect(uint()).toBe(sampleFallbackDefault);
 		});
@@ -67,7 +67,7 @@ describe('UInt', () => {
 		it('should not set value when called with a negative decimal value', () => {
 			const sampleFallbackDefault = 333221;
 			const negativeFloat = -55.3;
-			const uint = makeUInt(sampleFallbackDefault, null);
+			const uint = uIntMake(sampleFallbackDefault, null);
 			uint(negativeFloat);
 			expect(uint()).toBe(sampleFallbackDefault);
 		});
@@ -75,7 +75,7 @@ describe('UInt', () => {
 		it('should not set value when called with a positive decimal value', () => {
 			const sampleFallbackDefault = 3900001;
 			const positiveFloat = 22.333;
-			const uint = makeUInt(sampleFallbackDefault, null);
+			const uint = uIntMake(sampleFallbackDefault, null);
 			uint(positiveFloat);
 			expect(uint()).toBe(sampleFallbackDefault);
 		});
@@ -85,14 +85,14 @@ describe('UInt', () => {
 		describe('get', () => {
 			it('should return fallback argument when value is null', () => {
 				const sampleFallback = 8810992;
-				const uint = makeUInt(MOCK_FALLBACK_DEFAULT, null);
+				const uint = uIntMake(MOCK_FALLBACK_DEFAULT, null);
 				expect(uint.get(sampleFallback)).toBe(sampleFallback);
 			});
 
 			it('should return value when value is set', () => {
 				const sampleInitial = 3101;
 
-				const uint = makeUInt(MOCK_FALLBACK_DEFAULT, sampleInitial);
+				const uint = uIntMake(MOCK_FALLBACK_DEFAULT, sampleInitial);
 				expect(uint.get(MOCK_FALLBACK)).toBe(sampleInitial);
 			});
 		});

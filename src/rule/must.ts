@@ -23,7 +23,7 @@
  *
  */
 
-import {IsEqual, makeIsEqual} from '../is/equal';
+import {IsEqual, isEqualMake} from '../is/equal';
 
 import {Rule} from '../rule';
 import {RuleBe} from './be';
@@ -57,7 +57,7 @@ export class RuleMust {
 		this.be = new RuleBe(rule, mods);
 		this.have = new RuleHave(rule, mods);
 		this.not = new RuleNot(rule, mods);
-		this.equal = makeIsEqual<RuleMust>(this, rule, mods);
+		this.equal = isEqualMake<RuleMust>(this, rule, mods);
 		this.match = new RuleMatch(rule, mods);
 		this.contain = new RuleContains(rule, mods);
 	}

@@ -34,7 +34,7 @@ import {RuleNodeType} from '../rule/node/type';
  *
  * @category Validators
  */
-export type IsBoolean<CallerType> = () => CallerType;
+export type IsBoolean<CallerT> = (value?: boolean) => CallerT;
 
 /**
  * Determine if provided value is a boolean with strict true or
@@ -44,9 +44,9 @@ export type IsBoolean<CallerType> = () => CallerType;
  *
  * @category Validators
  */
-export const isBoolean = (value: boolean | null): boolean => {
+export function isBoolean(value: boolean | null): boolean {
 	return value === true || value === false;
-};
+}
 
 /**
  * Factory to create isBoolean validator function used in rule chains.
@@ -57,14 +57,10 @@ export const isBoolean = (value: boolean | null): boolean => {
  *
  * @category Validator Factory
  */
-export function makeIsBoolean<CallerType>(
-	caller: CallerType,
-	rule: Rule,
-	mods: RuleMods
-): IsBoolean<CallerType> {
-	return (): CallerType => {
-		const fn: RuleFn<boolean | null> = (curr: boolean | null): boolean => {
-			return isBoolean(curr);
+export function isBooleanMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsBoolean<CallerT> {
+	return (): CallerT => {
+		const fn: RuleFn<boolean | null> = (value: boolean | null): boolean => {
+			return isBoolean(value);
 		};
 
 		const node = new RuleNode('IS_T_BOOLEAN', RuleNodeType.CMP, fn, mods.invert);

@@ -23,7 +23,7 @@
  *
  */
 
-import {StrongString, makeString} from '../string';
+import {Text, textMake} from '../text';
 
 import {StrongMap} from '../map';
 
@@ -31,14 +31,14 @@ import {StrongMap} from '../map';
  * @category CSS
  */
 export class CSSText extends StrongMap {
-	public readonly decoration: StrongString;
-	public readonly shadow: StrongString;
+	public readonly decoration: Text;
+	public readonly shadow: Text;
 
 	constructor() {
 		super();
 
-		this.decoration = makeString('none');
-		this.shadow = makeString('0');
+		this.decoration = textMake('none');
+		this.shadow = textMake('0');
 	}
 
 	public reset(): void {

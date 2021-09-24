@@ -35,18 +35,18 @@ import {RuleNodeType} from '../rule/node/type';
  *
  * @category Validators
  */
-export type HasLengthEqual<CallerType> = (a: number) => CallerType;
+export type HasLengthEqual<CallerT> = (a: number) => CallerT;
 
 /**
  *
- * @param curr
+ * @param value
  * @param target
  * @returns
  *
  * @category Validators
  */
-export const hasLengthEqual = (curr: unknown[] | string, target: number): boolean => {
-	if (curr === undefined || curr === null) {
+export function hasLengthEqual(value: unknown[] | string, target: number): boolean {
+	if (value === undefined || value === null) {
 		return false;
 	}
 
@@ -54,22 +54,22 @@ export const hasLengthEqual = (curr: unknown[] | string, target: number): boolea
 		return false;
 	}
 
-	if (typeof curr === 'string') {
-		return curr.length === target;
+	if (typeof value === 'string') {
+		return value.length === target;
 	}
 
-	if (Array.isArray(curr)) {
-		return curr.length === target;
+	if (Array.isArray(value)) {
+		return value.length === target;
 	}
 
-	const obj = curr as Collection;
+	const obj = value as Collection;
 
 	if (typeof obj.length !== 'number') {
 		return false;
 	}
 
 	return obj.length === target;
-};
+}
 
 /**
  *
@@ -80,12 +80,12 @@ export const hasLengthEqual = (curr: unknown[] | string, target: number): boolea
  *
  * @category Validator Factory
  */
-export function makeHasLengthEqual<CallerType>(
-	caller: CallerType,
+export function hasLengthEqualMake<CallerT>(
+	caller: CallerT,
 	rule: Rule,
 	mods: RuleMods
-): HasLengthEqual<CallerType> {
-	return (target: number): CallerType => {
+): HasLengthEqual<CallerT> {
+	return (target: number): CallerT => {
 		const fn: RuleFn<unknown[] | string> = (curr: unknown[] | string) => {
 			return hasLengthEqual(curr, target);
 		};

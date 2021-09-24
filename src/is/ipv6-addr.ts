@@ -34,9 +34,9 @@ import {RuleNodeType} from '../rule/node/type';
  *
  * @category Validators
  */
-export type IsIpv6Addr<CallerType> = () => CallerType;
+export type IsIpv6Addr<CallerT> = () => CallerT;
 
-export const isIpv6Addr = (current: string): boolean => {
+export function isIpv6Addr(current: string): boolean {
 	if (typeof current != 'string') {
 		return false;
 	}
@@ -70,7 +70,7 @@ export const isIpv6Addr = (current: string): boolean => {
 	}
 
 	return true;
-};
+}
 
 export const isValidSegment = (segment: string): boolean => {
 	if (typeof segment !== 'string') {
@@ -94,12 +94,12 @@ export const isValidSegment = (segment: string): boolean => {
  *
  * @category Validator Factory
  */
-export function makeIsIpv6Addr<CallerType>(
-	caller: CallerType,
+export function isIpv6AddrMake<CallerT>(
+	caller: CallerT,
 	rule: Rule,
 	mods: RuleMods
-): IsIpv6Addr<CallerType> {
-	return (): CallerType => {
+): IsIpv6Addr<CallerT> {
+	return (): CallerT => {
 		const fn: RuleFn<string> = (curr: string): boolean => {
 			return isIpv6Addr(curr);
 		};

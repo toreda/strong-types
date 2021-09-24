@@ -49,7 +49,7 @@ export class MapParser {
 		return this.parseMap(map, json, parseState);
 	}
 
-	public parseStrongKey(key: Strong<unknown>, value: unknown, parseState: State): void {
+	public parseStrongKey(key: Strong<unknown>, value: unknown, _parseState: State): void {
 		if (!key || !value) {
 			return;
 		}
@@ -68,7 +68,7 @@ export class MapParser {
 		}
 	}
 
-	public parseKey(map: StrongMap, keyName: string, value: unknown, parseState: State): boolean {
+	public parseKey(map: StrongMap, keyName: string, value: unknown, _parseState: State): boolean {
 		if (!map) {
 			return false;
 		}

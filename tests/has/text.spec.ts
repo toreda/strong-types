@@ -1,4 +1,4 @@
-import {HasText, makeHasText} from '../../src/has/text';
+import {HasText, hasTextMake} from '../../src/has/text';
 
 import {Rule} from '../../src/rule';
 
@@ -8,7 +8,7 @@ describe('HasText', () => {
 
 	beforeAll(() => {
 		rule = new Rule();
-		fn = makeHasText<Rule>(rule, rule, {invert: false});
+		fn = hasTextMake<Rule>(rule, rule, {invert: false});
 	});
 
 	describe('Usage', () => {

@@ -23,10 +23,10 @@
  *
  */
 
-import {HasProperty, makeHasProperty} from '../has/property';
-import {HasText, makeHasText} from '../has/text';
+import {HasProperty, hasPropertyMake} from '../has/property';
+import {HasText, hasTextMake} from '../has/text';
 import {HasTextTimes, makeHasTextTimes} from '../has/text-times';
-import {IsLength, makeIsLength} from '../is/length';
+import {IsLength, isLengthMake} from '../is/length';
 
 import {Rule} from '../rule';
 import {RuleMods} from './mods';
@@ -41,9 +41,9 @@ export class RuleHave {
 	public readonly property: HasProperty<RuleHave>;
 
 	constructor(rule: Rule, mods: RuleMods) {
-		this.length = makeIsLength<RuleHave>(this, rule, mods);
-		this.property = makeHasProperty<RuleHave>(this, rule, mods);
-		this.text = makeHasText<RuleHave>(this, rule, mods);
+		this.length = isLengthMake<RuleHave>(this, rule, mods);
+		this.property = hasPropertyMake<RuleHave>(this, rule, mods);
+		this.text = hasTextMake<RuleHave>(this, rule, mods);
 		this.textTimes = makeHasTextTimes<RuleHave>(this, rule, mods);
 	}
 }

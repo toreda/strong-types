@@ -48,8 +48,12 @@ export type OS =
 	 *		macOS Big Sur 11.0.1 build 20B29 on Apple M1
 	 */
 	| 'darwin'
-	/**  */
+	/** All distributions of Linux. */
 	| 'linux'
+	/** Android (DROID) family of operating systems. */
 	| 'android'
+	/** Amazon's FireOS - their Android fork for kindles. */
+	| 'fireos'
+	/**  */
 	| 'all'
 	| 'none';

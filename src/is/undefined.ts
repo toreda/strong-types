@@ -34,7 +34,7 @@ import {RuleNodeType} from '../rule/node/type';
  *
  * @category Validators
  */
-export type IsUndefined<CallerType> = () => CallerType;
+export type IsUndefined<CallerT> = () => CallerT;
 
 /**
  * Check if provided value is undefined.
@@ -43,7 +43,7 @@ export type IsUndefined<CallerType> = () => CallerType;
  *
  * @category Validators
  */
-function isUndefined(value: unknown): boolean {
+export function isUndefined(value: unknown): boolean {
 	return typeof value === 'undefined';
 }
 
@@ -56,12 +56,8 @@ function isUndefined(value: unknown): boolean {
  *
  * @category Validator Factory
  */
-export function makeIsUndefined<CallerType>(
-	caller: CallerType,
-	rule: Rule,
-	mods: RuleMods
-): IsUndefined<CallerType> {
-	return (): CallerType => {
+export function isUndefinedMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsUndefined<CallerT> {
+	return (): CallerT => {
 		const fn: RuleFn<unknown | undefined> = (curr: unknown): boolean => {
 			return isUndefined(curr);
 		};

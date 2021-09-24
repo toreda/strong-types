@@ -34,16 +34,16 @@ import {RuleNodeType} from '../rule/node/type';
  *
  * @category Validators
  */
-export type IsIpv4Addr<CallerType> = () => CallerType;
+export type IsIpv4Addr<CallerT> = () => CallerT;
 
-export const isIpv4Addr = (curr: string): boolean => {
+export function isIpv4Addr(addr: string): boolean {
 	//Always a string.
-	if (typeof curr !== 'string') {
+	if (typeof addr !== 'string') {
 		return false;
 	}
 	//Is valid if it has whitespace which can be trimmed with .trim()
 	//Invalid if it contains any other whitespace which cannot be trimmed with .trim()
-	const trimmed = curr.trim();
+	const trimmed = addr.trim();
 
 	//Always has exactly four quads, and 3 periods.
 	const pieces = trimmed.split('.');
@@ -75,7 +75,7 @@ export const isIpv4Addr = (curr: string): boolean => {
 	}
 
 	return true;
-};
+}
 
 /**
  * Factory to create isIpv4Addr validator function used in rule chains.
@@ -86,12 +86,8 @@ export const isIpv4Addr = (curr: string): boolean => {
  *
  * @category Validator Factory
  */
-export function makeIsIpv4Addr<CallerType>(
-	caller: CallerType,
-	rule: Rule,
-	mods: RuleMods
-): IsIpv4Addr<CallerType> {
-	return (): CallerType => {
+export function isIpv4AddrMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsIpv4Addr<CallerT> {
+	return (): CallerT => {
 		const fn: RuleFn<string> = (curr: string): boolean => {
 			return isIpv4Addr(curr);
 		};

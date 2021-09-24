@@ -44,9 +44,9 @@ export type StrongInt = Int;
  *
  * @category Numbers
  */
-export function makeInt(fallback: number, initial?: number | null): Int {
+export function intMake(fallback: number, initial?: number | null): Int {
 	const rules = new Rules();
-	rules.add().must.match.type.integer();
+	rules.add().must.match.type.int();
 
 	const strong = makeStrong<number>(fallback, initial, rules);
 

@@ -28,14 +28,14 @@ import {RuleFn} from '../rule/fn';
 import {RuleMods} from '../rule/mods';
 import {RuleNode} from '../rule/node';
 import {RuleNodeType} from '../rule/node/type';
-import {isInteger} from './integer';
+import {isInt} from './int';
 
 /**
  * Type signature for isPort validators used in rule chains.
  *
  * @category Validators
  */
-export type IsPort<CallerType> = () => CallerType;
+export type IsPort<CallerT> = (value?: number) => CallerT;
 
 /**
  * Check if provided value is a valid port number. Does not differentiate
@@ -46,7 +46,7 @@ export type IsPort<CallerType> = () => CallerType;
  *
  * @category Validators
  */
-export const isPort = (value: number): boolean => {
+export function isPort(value?: number): value is number {
 	if (typeof value !== 'number') {
 		return false;
 	}
@@ -59,8 +59,8 @@ export const isPort = (value: number): boolean => {
 		return false;
 	}
 
-	return isInteger(value);
-};
+	return isInt(value);
+}
 
 //Must be an unsigned int (whole number).
 //Must be from 0 to 65353 .
@@ -76,8 +76,8 @@ export const isPort = (value: number): boolean => {
  *
  * @category Validator Factory
  */
-export function makeIsPort<CallerType>(caller: CallerType, rule: Rule, mods: RuleMods): IsPort<CallerType> {
-	return (): CallerType => {
+export function isPortMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsPort<CallerT> {
+	return (): CallerT => {
 		const fn: RuleFn<number> = (curr: number): boolean => {
 			return isPort(curr);
 		};

@@ -34,7 +34,7 @@ import {RuleNodeType} from '../rule/node/type';
  *
  * @category Validators
  */
-export type IsEqual<CallerType> = (a: unknown) => CallerType;
+export type IsEqual<CallerT> = (target: unknown) => CallerT;
 
 /**
  *
@@ -44,7 +44,7 @@ export type IsEqual<CallerType> = (a: unknown) => CallerType;
  *
  * @category Validators
  */
-export const equalTo = (value: unknown, target: unknown): boolean => {
+export function isEqual(value: unknown, target: unknown): boolean {
 	if (typeof target === 'undefined' || typeof value === 'undefined') {
 		return false;
 	}
@@ -66,7 +66,7 @@ export const equalTo = (value: unknown, target: unknown): boolean => {
 	}
 
 	return value === target;
-};
+}
 
 /**
  * Factory to create isEqual validator function used in rule chains.
@@ -77,10 +77,10 @@ export const equalTo = (value: unknown, target: unknown): boolean => {
  *
  * @category Validator Factory
  */
-export function makeIsEqual<CallerType>(caller: CallerType, rule: Rule, mods: RuleMods): IsEqual<CallerType> {
-	return (target: unknown): CallerType => {
-		const fn: RuleFn<unknown> = (curr: unknown): boolean => {
-			return equalTo(curr, target);
+export function isEqualMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsEqual<CallerT> {
+	return (target: unknown): CallerT => {
+		const fn: RuleFn<unknown> = (value: unknown): boolean => {
+			return isEqual(value, target);
 		};
 		const node = new RuleNode('IS_EQ', RuleNodeType.CMP, fn, mods.invert);
 		rule.add(node);

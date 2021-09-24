@@ -34,7 +34,7 @@ import {RuleNodeType} from '../rule/node/type';
  *
  * @category Validators
  */
-export type IsEmpty<CallerType> = (a: unknown) => CallerType;
+export type IsEmpty<CallerT> = (a: unknown) => CallerT;
 
 /**
  * Determine if value is an empty array or empty string. Arrays & strings with
@@ -46,7 +46,7 @@ export type IsEmpty<CallerType> = (a: unknown) => CallerType;
  *
  * @category Validators
  */
-export const isEmpty = (value: unknown[] | string): boolean => {
+export function isEmpty(value: unknown[] | string): boolean {
 	if (!Array.isArray(value) && typeof value !== 'string') {
 		return false;
 	}
@@ -56,7 +56,7 @@ export const isEmpty = (value: unknown[] | string): boolean => {
 	}
 
 	return value.length === 0;
-};
+}
 
 /**
  * Factory to create isEmpty validator function used in rule chains.
@@ -67,8 +67,8 @@ export const isEmpty = (value: unknown[] | string): boolean => {
  *
  * @category Validator Factory
  */
-export function makeIsEmpty<CallerType>(caller: CallerType, rule: Rule, mods: RuleMods): IsEmpty<CallerType> {
-	return (): CallerType => {
+export function isEmptyMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsEmpty<CallerT> {
+	return (): CallerT => {
 		const fn: RuleFn<unknown[] | string> = (curr: unknown[] | string): boolean => {
 			return isEmpty(curr);
 		};

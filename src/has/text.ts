@@ -34,7 +34,7 @@ import {RuleNodeType} from '../rule/node/type';
  *
  * @category Validators
  */
-export type HasText<CallerType> = (curr: string) => CallerType;
+export type HasText<CallerT> = (target: string) => CallerT;
 
 /**
  *
@@ -44,8 +44,8 @@ export type HasText<CallerType> = (curr: string) => CallerType;
  *
  * @category Validators
  */
-export const hasText = (curr: string, target: string): boolean => {
-	if (typeof curr !== 'string') {
+export function hasText(value: string, target: string): boolean {
+	if (typeof value !== 'string') {
 		return false;
 	}
 
@@ -53,12 +53,12 @@ export const hasText = (curr: string, target: string): boolean => {
 		return false;
 	}
 
-	if (curr === '' || target === '') {
+	if (value === '' || target === '') {
 		return false;
 	}
 
-	return curr.indexOf(target, 0) !== -1;
-};
+	return value.indexOf(target, 0) !== -1;
+}
 
 /**
  *
@@ -70,8 +70,8 @@ export const hasText = (curr: string, target: string): boolean => {
  *
  * @category Validator Factory
  */
-export function makeHasText<CallerType>(caller: CallerType, rule: Rule, mods: RuleMods): HasText<CallerType> {
-	return (curr: string): CallerType => {
+export function hasTextMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): HasText<CallerT> {
+	return (curr: string): CallerT => {
 		const fn: RuleFn<string> = (target: string) => {
 			return hasText(curr, target);
 		};

@@ -1,5 +1,5 @@
-import {Int, makeInt} from '../../src/int';
-import {StrongString, makeString} from '../../src/string';
+import {Int, intMake} from '../../src/int';
+import {Text, textMake} from '../../src/text';
 
 import {StrongMap} from '../../src/map';
 
@@ -13,7 +13,7 @@ export interface TestMapType {
 
 export class TestMap extends StrongMap {
 	intProp?: Int;
-	stringProp?: StrongString;
+	stringProp?: Text;
 	arrayProp?: unknown[];
 	objectProp?: Record<string, unknown>;
 	strongMapProp?: TestMap;
@@ -24,11 +24,11 @@ export class TestMap extends StrongMap {
 		const o = json as Record<string, unknown>;
 
 		if (o.hasOwnProperty('intProp')) {
-			this.intProp = makeInt(o.intProp as number);
+			this.intProp = intMake(o.intProp as number);
 		}
 
 		if (o.hasOwnProperty('stringProp')) {
-			this.stringProp = makeString(o.stringProp as string);
+			this.stringProp = textMake(o.stringProp as string);
 		}
 
 		if (o.hasOwnProperty('arrayProp')) {

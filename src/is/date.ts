@@ -34,7 +34,7 @@ import {RuleNodeType} from '../rule/node/type';
  *
  * @category Validators
  */
-export type IsDate<CallerType> = () => CallerType;
+export type IsDate<CallerT> = () => CallerT;
 
 // eslint-disable-next-line
 const timeStr = 'T([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]';
@@ -49,7 +49,7 @@ const timeStr2 = 'T([01]?[0-9]|2[0-3])';
  *
  * @category Validators
  */
-function isDate(value: string): boolean {
+export function isDate(value: string): boolean {
 	if (typeof value !== 'string') {
 		return false;
 	}
@@ -73,8 +73,8 @@ function isDate(value: string): boolean {
  *
  * @category Validator Factory
  */
-export function makeIsDate<CallerType>(caller: CallerType, rule: Rule, mods: RuleMods): IsDate<CallerType> {
-	return (): CallerType => {
+export function isDateMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsDate<CallerT> {
+	return (): CallerT => {
 		const fn: RuleFn<string> = (curr: string): boolean => {
 			return isDate(curr);
 		};

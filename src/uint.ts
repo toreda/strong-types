@@ -47,10 +47,10 @@ export type StrongUInt = UInt;
  *
  * @category Numbers
  */
-export function makeUInt(fallback: number, initial?: number | null): UInt {
+export function uIntMake(fallback: number, initial?: number | null): UInt {
 	const rules = new Rules<number>();
 
-	rules.add().must.match.type.integer();
+	rules.add().must.match.type.int();
 	rules.add().must.be.greaterThanOrEqual(0);
 
 	const strong = makeStrong<number>(fallback, initial, rules);

@@ -1,4 +1,4 @@
-import {IsPort, makeIsPort} from '../../src/is/port';
+import {IsPort, isPortMake} from '../../src/is/port';
 
 import {Rule} from '../../src/rule';
 
@@ -12,7 +12,7 @@ describe('IsPort', () => {
 
 	beforeAll(() => {
 		rule = new Rule();
-		fn = makeIsPort<Rule>(rule, rule, {invert: false});
+		fn = isPortMake<Rule>(rule, rule, {invert: false});
 		fn();
 	});
 

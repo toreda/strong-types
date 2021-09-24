@@ -34,7 +34,7 @@ import {RuleNodeType} from '../rule/node/type';
  *
  * @category Validators
  */
-export type HasTextTimes<CallerType> = (curr: string, count: number) => CallerType;
+export type HasTextTimes<CallerT> = (curr: string, count: number) => CallerT;
 
 /**
  *
@@ -66,12 +66,8 @@ export const hasTextTimes = (curr: string, target: string, count: number): boole
  *
  * @category Validator Factory
  */
-export function makeHasTextTimes<CallerType>(
-	caller: CallerType,
-	rule: Rule,
-	mods: RuleMods
-): HasTextTimes<CallerType> {
-	return (target: string, count: number): CallerType => {
+export function makeHasTextTimes<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): HasTextTimes<CallerT> {
+	return (target: string, count: number): CallerT => {
 		const fn: RuleFn<string> = (curr: string) => {
 			return hasTextTimes(curr, target, count);
 		};

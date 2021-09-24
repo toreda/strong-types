@@ -1,6 +1,6 @@
 import {Rule} from '../../src/rule';
 import {RuleMods} from '../../src/rule/mods';
-import {makeIsGreaterThanOrEqual} from '../../src/is/greater-than-or-equal';
+import {isGreaterThanOrEqualMake} from '../../src/is/greater-than-or-equal';
 
 const MOCK_TARGET = 44410;
 const MOCK_CURR = 1111;
@@ -29,7 +29,7 @@ describe('IsGreaterThanOrEqualTo', () => {
 		it('should return false when curr value argument is not a number', () => {
 			const stringCurr = 'aaaa';
 
-			const fn = makeIsGreaterThanOrEqual<Rule>(rule, rule, mods);
+			const fn = isGreaterThanOrEqualMake<Rule>(rule, rule, mods);
 			fn(MOCK_TARGET);
 			expect(rule.nodes[0].execute(stringCurr as any)).toBe(false);
 		});
@@ -37,7 +37,7 @@ describe('IsGreaterThanOrEqualTo', () => {
 		it('should return false when target value is not a number', () => {
 			const stringTarget = 'ffffffff';
 
-			const fn = makeIsGreaterThanOrEqual<Rule>(rule, rule, mods);
+			const fn = isGreaterThanOrEqualMake<Rule>(rule, rule, mods);
 			fn(stringTarget as any);
 			expect(rule.nodes[0].execute(MOCK_CURR)).toBe(false);
 		});
@@ -46,7 +46,7 @@ describe('IsGreaterThanOrEqualTo', () => {
 			const curr = 0;
 			const target = 0;
 
-			const fn = makeIsGreaterThanOrEqual<Rule>(rule, rule, mods);
+			const fn = isGreaterThanOrEqualMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -56,7 +56,7 @@ describe('IsGreaterThanOrEqualTo', () => {
 			const target = 0;
 			mods.invert = true;
 
-			const fn = makeIsGreaterThanOrEqual<Rule>(rule, rule, mods);
+			const fn = isGreaterThanOrEqualMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
@@ -65,7 +65,7 @@ describe('IsGreaterThanOrEqualTo', () => {
 			const curr = 23;
 			const target = 77;
 
-			const fn = makeIsGreaterThanOrEqual<Rule>(rule, rule, mods);
+			const fn = isGreaterThanOrEqualMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
@@ -75,7 +75,7 @@ describe('IsGreaterThanOrEqualTo', () => {
 			const target = 77;
 			mods.invert = true;
 
-			const fn = makeIsGreaterThanOrEqual<Rule>(rule, rule, mods);
+			const fn = isGreaterThanOrEqualMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -84,7 +84,7 @@ describe('IsGreaterThanOrEqualTo', () => {
 			const curr = 25;
 			const target = 10;
 
-			const fn = makeIsGreaterThanOrEqual<Rule>(rule, rule, mods);
+			const fn = isGreaterThanOrEqualMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -94,7 +94,7 @@ describe('IsGreaterThanOrEqualTo', () => {
 			const target = 10;
 			mods.invert = true;
 
-			const fn = makeIsGreaterThanOrEqual<Rule>(rule, rule, mods);
+			const fn = isGreaterThanOrEqualMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
@@ -103,7 +103,7 @@ describe('IsGreaterThanOrEqualTo', () => {
 			const curr = 25;
 			const target = -10;
 
-			const fn = makeIsGreaterThanOrEqual<Rule>(rule, rule, mods);
+			const fn = isGreaterThanOrEqualMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -112,7 +112,7 @@ describe('IsGreaterThanOrEqualTo', () => {
 			const curr = -2;
 			const target = -10;
 
-			const fn = makeIsGreaterThanOrEqual<Rule>(rule, rule, mods);
+			const fn = isGreaterThanOrEqualMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -121,7 +121,7 @@ describe('IsGreaterThanOrEqualTo', () => {
 			const curr = 2.223;
 			const target = -10;
 
-			const fn = makeIsGreaterThanOrEqual<Rule>(rule, rule, mods);
+			const fn = isGreaterThanOrEqualMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -130,7 +130,7 @@ describe('IsGreaterThanOrEqualTo', () => {
 			const curr = -3.3;
 			const target = -10;
 
-			const fn = makeIsGreaterThanOrEqual<Rule>(rule, rule, mods);
+			const fn = isGreaterThanOrEqualMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -139,7 +139,7 @@ describe('IsGreaterThanOrEqualTo', () => {
 			const curr = 25;
 			const target = -10;
 
-			const fn = makeIsGreaterThanOrEqual<Rule>(rule, rule, mods);
+			const fn = isGreaterThanOrEqualMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -148,7 +148,7 @@ describe('IsGreaterThanOrEqualTo', () => {
 			const curr = 4.4422;
 			const target = -5.2111;
 
-			const fn = makeIsGreaterThanOrEqual<Rule>(rule, rule, mods);
+			const fn = isGreaterThanOrEqualMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -157,7 +157,7 @@ describe('IsGreaterThanOrEqualTo', () => {
 			const curr = -7.11;
 			const target = -11.5557;
 
-			const fn = makeIsGreaterThanOrEqual<Rule>(rule, rule, mods);
+			const fn = isGreaterThanOrEqualMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});

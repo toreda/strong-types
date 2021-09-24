@@ -10,7 +10,7 @@ import {RuleNodeType} from '../rule/node/type';
  *
  * @category Validators
  */
-export type HasPropertyWithType<CallerType> = (propName: string, typeName: string) => CallerType;
+export type HasPropertyWithType<CallerT> = (propName: string, typeName: string) => CallerT;
 
 /**
  *
@@ -52,12 +52,12 @@ export function hasPropertyWithType(o: unknown, propName: string, typeName: stri
  *
  * @category Validator Factory
  */
-export function makeHasPropertyWithType<CallerType>(
-	caller: CallerType,
+export function hasPropertyWithTypeMake<CallerT>(
+	caller: CallerT,
 	rule: Rule,
 	mods: RuleMods
-): HasPropertyWithType<CallerType> {
-	return (propName, typeName): CallerType => {
+): HasPropertyWithType<CallerT> {
+	return (propName, typeName): CallerT => {
 		const fn: RuleFn<unknown> = (obj: unknown): boolean => {
 			return hasPropertyWithType(obj, propName, typeName);
 		};

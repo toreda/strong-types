@@ -23,25 +23,24 @@
  *
  */
 
-import {Strong, makeStrong} from './strong';
-
-import {Rules} from './rules';
-
 /**
- * @category Strings
- */
-export type StrongString = Strong<string>;
-
-/**
+ * Identifies build type or target environment.
  *
- * @param fallback
- * @param initial
- * @returns
- *
- * @category Strings
+ * @category Build
  */
-export function makeString(fallback: string, initial?: string | null): StrongString {
-	const rules = new Rules();
-	rules.add().must.match.type.string();
-	return makeStrong<string>(fallback, initial, rules);
-}
+export type Env =
+	/** Development build. Often includes extra logging, debug symbols.*/
+	| 'dev'
+	/** QA Build or Env for Quality Assurance teams. Generally identical to prod or
+	 * close to live but with extra debug or admin tools enabled which would always
+	 * be disabled in prod. */
+	| 'qa'
+	/** Alias for prod, but is the preferred nomenclature for certain products
+	 * or teams insteead of 'prod'. Server-side data is commonly close but not
+	 * identical to stage or live. */
+	| 'live'
+	/** Production env generally live to all users. */
+	| 'prod'
+	/** Pre-deployment env or branch where builds go for a final check before prod.
+	 * For live apps (apps, games, sites), env data is ideally identical to prod.*/
+	| 'stage';

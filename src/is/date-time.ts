@@ -34,9 +34,9 @@ import {RuleNodeType} from '../rule/node/type';
  *
  * @category Validators
  */
-export type IsDateTime<CallerType> = () => CallerType;
+export type IsDateTime<CallerT> = () => CallerT;
 
-function isDateTime(value: string): boolean {
+export function isDateTime(value: string): boolean {
 	if (typeof value !== 'string') {
 		return false;
 	}
@@ -113,12 +113,12 @@ function isDateTime(value: string): boolean {
  *
  * @category Validator Factory
  */
-export function makeIsDateTime<CallerType>(
-	caller: CallerType,
+export function isDateTimeMake<CallerT>(
+	caller: CallerT,
 	rule: Rule,
 	mods: RuleMods
-): IsDateTime<CallerType> {
-	return (): CallerType => {
+): IsDateTime<CallerT> {
+	return (): CallerT => {
 		const fn: RuleFn<string> = (curr: string): boolean => {
 			return isDateTime(curr);
 		};

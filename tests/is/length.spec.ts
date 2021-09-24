@@ -1,6 +1,6 @@
 import {Rule} from '../../src/rule';
 import {RuleMods} from '../../src/rule/mods';
-import {makeIsLength} from '../../src/is/length';
+import {isLengthMake} from '../../src/is/length';
 
 describe('IsLength', () => {
 	let mods: RuleMods;
@@ -24,7 +24,7 @@ describe('IsLength', () => {
 				const currentValue = '';
 				const expectedLength = 1;
 
-				const fn = makeIsLength<Rule>(rule, rule, mods);
+				const fn = isLengthMake<Rule>(rule, rule, mods);
 				fn(expectedLength);
 				expect(rule.nodes[0].execute(currentValue)).toBe(false);
 			});
@@ -33,7 +33,7 @@ describe('IsLength', () => {
 				const currentValue = '';
 				const expectedLength = 0;
 
-				const fn = makeIsLength<Rule>(rule, rule, mods);
+				const fn = isLengthMake<Rule>(rule, rule, mods);
 				fn(expectedLength);
 				expect(rule.nodes[0].execute(currentValue)).toBe(true);
 			});
@@ -44,7 +44,7 @@ describe('IsLength', () => {
 				const currentValue: string[] = [];
 				const expectedLength = 0;
 
-				const fn = makeIsLength<Rule>(rule, rule, mods);
+				const fn = isLengthMake<Rule>(rule, rule, mods);
 				fn(expectedLength);
 				expect(rule.nodes[0].execute(currentValue)).toBe(true);
 			});
@@ -53,7 +53,7 @@ describe('IsLength', () => {
 				const currentValue: string[] = ['a'];
 				const expectedLength = 1;
 
-				const fn = makeIsLength<Rule>(rule, rule, mods);
+				const fn = isLengthMake<Rule>(rule, rule, mods);
 				fn(expectedLength);
 				expect(rule.nodes[0].execute(currentValue)).toBe(true);
 			});
@@ -62,7 +62,7 @@ describe('IsLength', () => {
 				const currentValue = [11, 50982, 11092, 11092];
 				const expectedLength = 4;
 
-				const fn = makeIsLength<Rule>(rule, rule, mods);
+				const fn = isLengthMake<Rule>(rule, rule, mods);
 				fn(expectedLength);
 				expect(rule.nodes[0].execute(currentValue)).toBe(true);
 			});
@@ -71,7 +71,7 @@ describe('IsLength', () => {
 				const currentValue = undefined as any;
 				const expectedLength = 0;
 
-				const fn = makeIsLength<Rule>(rule, rule, mods);
+				const fn = isLengthMake<Rule>(rule, rule, mods);
 				fn(expectedLength);
 				expect(rule.nodes[0].execute(currentValue)).toBe(false);
 			});
@@ -80,7 +80,7 @@ describe('IsLength', () => {
 				const currentValue = null as any;
 				const expectedLength = 0;
 
-				const fn = makeIsLength<Rule>(rule, rule, mods);
+				const fn = isLengthMake<Rule>(rule, rule, mods);
 				fn(expectedLength);
 				expect(rule.nodes[0].execute(currentValue)).toBe(false);
 			});
@@ -91,7 +91,7 @@ describe('IsLength', () => {
 				const currentValue = 1;
 				const expectedLength = 0;
 
-				const fn = makeIsLength<Rule>(rule, rule, mods);
+				const fn = isLengthMake<Rule>(rule, rule, mods);
 				fn(expectedLength);
 				expect(rule.nodes[0].execute(currentValue)).toBe(false);
 			});
@@ -100,7 +100,7 @@ describe('IsLength', () => {
 				const currentValue = 1;
 				const expectedLength = 1;
 
-				const fn = makeIsLength<Rule>(rule, rule, mods);
+				const fn = isLengthMake<Rule>(rule, rule, mods);
 				fn(expectedLength);
 				expect(rule.nodes[0].execute(currentValue)).toBe(true);
 			});
@@ -109,7 +109,7 @@ describe('IsLength', () => {
 				const currentValue = 105;
 				const expectedLength = 10;
 
-				const fn = makeIsLength<Rule>(rule, rule, mods);
+				const fn = isLengthMake<Rule>(rule, rule, mods);
 				fn(expectedLength);
 				expect(rule.nodes[0].execute(currentValue)).toBe(false);
 			});
@@ -118,7 +118,7 @@ describe('IsLength', () => {
 				const currentValue = 77;
 				const expectedLength = 120;
 
-				const fn = makeIsLength<Rule>(rule, rule, mods);
+				const fn = isLengthMake<Rule>(rule, rule, mods);
 				fn(expectedLength);
 				expect(rule.nodes[0].execute(currentValue)).toBe(false);
 			});
@@ -129,7 +129,7 @@ describe('IsLength', () => {
 				const currentValue = true as any;
 				const expectedLength = 1;
 
-				const fn = makeIsLength<Rule>(rule, rule, mods);
+				const fn = isLengthMake<Rule>(rule, rule, mods);
 				fn(expectedLength);
 				expect(rule.nodes[0].execute(currentValue)).toBe(false);
 			});
@@ -138,7 +138,7 @@ describe('IsLength', () => {
 				const currentValue = false as any;
 				const expectedLength = 0;
 
-				const fn = makeIsLength<Rule>(rule, rule, mods);
+				const fn = isLengthMake<Rule>(rule, rule, mods);
 				fn(expectedLength);
 				expect(rule.nodes[0].execute(currentValue)).toBe(false);
 			});

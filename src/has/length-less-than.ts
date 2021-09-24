@@ -31,14 +31,14 @@ import {RuleFn} from '../rule/fn';
 import {RuleMods} from '../rule/mods';
 import {RuleNode} from '../rule/node';
 import {RuleNodeType} from '../rule/node/type';
-import {lessThan} from '../is/less-than';
+import {isLessThan} from '../is/less-than';
 
 /**
  * Type signature for hasLengthlessThan validators used in rule chains.
  *
  * @category Validators
  */
-export type HasLengthLessThan<CallerType> = (a: number) => CallerType;
+export type HasLengthLessThan<CallerT> = (target: number) => CallerT;
 
 /**
  *
@@ -48,7 +48,7 @@ export type HasLengthLessThan<CallerType> = (a: number) => CallerType;
  *
  * @category Validators
  */
-export const hasLengthLessThan = (curr: unknown[] | string, target: number): boolean => {
+export function hasLengthLessThan(curr: unknown[] | string, target: number): boolean {
 	if (typeof curr.length !== 'number') {
 		return false;
 	}
@@ -57,8 +57,8 @@ export const hasLengthLessThan = (curr: unknown[] | string, target: number): boo
 		return false;
 	}
 
-	return lessThan(curr.length, target);
-};
+	return isLessThan(curr.length, target);
+}
 
 /**
  *
@@ -69,12 +69,12 @@ export const hasLengthLessThan = (curr: unknown[] | string, target: number): boo
  *
  * @category Validator Factory
  */
-export function makeHasLengthLessThan<CallerType>(
-	caller: CallerType,
+export function hasLengthLessThanMake<CallerT>(
+	caller: CallerT,
 	rule: Rule,
 	mods: RuleMods
-): HasLengthLessThan<CallerType> {
-	return (target: number): CallerType => {
+): HasLengthLessThan<CallerT> {
+	return (target: number): CallerT => {
 		const fn: RuleFn<unknown[] | string> = (curr: unknown[] | string) => {
 			return hasLengthLessThan(curr, target);
 		};

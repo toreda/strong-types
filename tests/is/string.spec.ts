@@ -1,8 +1,8 @@
 import {Rule} from '../../src/rule';
 import {RuleMods} from '../../src/rule/mods';
-import {makeIsString} from '../../src/is/string';
+import {isTextMake} from '../../src/is/text';
 
-describe('IsString', () => {
+describe('IsText', () => {
 	let mods: RuleMods;
 	let rule: Rule;
 
@@ -23,7 +23,7 @@ describe('IsString', () => {
 			it('should return true for an empty string', () => {
 				const currentValue = '';
 
-				const fn = makeIsString<Rule>(rule, rule, mods);
+				const fn = isTextMake<Rule>(rule, rule, mods);
 				fn();
 				expect(rule.nodes[0].execute(currentValue)).toBe(true);
 			});
@@ -33,7 +33,7 @@ describe('IsString', () => {
 			it('should reject empty array input', () => {
 				const currentValue = [] as any;
 
-				const fn = makeIsString<Rule>(rule, rule, mods);
+				const fn = isTextMake<Rule>(rule, rule, mods);
 				fn();
 				expect(rule.nodes[0].execute(currentValue)).toBe(false);
 			});
@@ -41,7 +41,7 @@ describe('IsString', () => {
 			it('should reject empty object input', () => {
 				const currentValue = {} as any;
 
-				const fn = makeIsString<Rule>(rule, rule, mods);
+				const fn = isTextMake<Rule>(rule, rule, mods);
 				fn();
 				expect(rule.nodes[0].execute(currentValue)).toBe(false);
 			});
@@ -49,7 +49,7 @@ describe('IsString', () => {
 			it('should reject undefined input', () => {
 				const currentValue = undefined as any;
 
-				const fn = makeIsString<Rule>(rule, rule, mods);
+				const fn = isTextMake<Rule>(rule, rule, mods);
 				fn();
 				expect(rule.nodes[0].execute(currentValue)).toBe(false);
 			});
@@ -57,7 +57,7 @@ describe('IsString', () => {
 			it('should reject null input', () => {
 				const currentValue = null as any;
 
-				const fn = makeIsString<Rule>(rule, rule, mods);
+				const fn = isTextMake<Rule>(rule, rule, mods);
 				fn();
 				expect(rule.nodes[0].execute(currentValue)).toBe(false);
 			});
@@ -65,7 +65,7 @@ describe('IsString', () => {
 			it('should reject string array input', () => {
 				const currentValue = ['camembert', 'brie', 'cheddar'] as any;
 
-				const fn = makeIsString<Rule>(rule, rule, mods);
+				const fn = isTextMake<Rule>(rule, rule, mods);
 				fn();
 				expect(rule.nodes[0].execute(currentValue)).toBe(false);
 			});
