@@ -1,4 +1,4 @@
-import {Arch} from 'src';
+import {Arch} from '../arch';
 
 /**
  * Common architecture aliases mappe dto full arch IDs.

@@ -23,7 +23,7 @@
  *
  */
 
-import {Double, makeDouble} from './double';
+import {Double, doubleMake} from './double';
 
 import {Defaults} from './defaults';
 
@@ -31,7 +31,7 @@ import {Defaults} from './defaults';
  * Map for passing coodinates in 4-dimensional
  * coordinate systems.
  *
- * @category Numbers
+ * @category Math
  */
 export class Vec4 {
 	public readonly x: Double;
@@ -40,10 +40,10 @@ export class Vec4 {
 	public readonly w: Double;
 
 	constructor(x: number | null, y: number | null, z: number | null, w: number | null) {
-		this.x = makeDouble(Defaults.Vec.X, x);
-		this.y = makeDouble(Defaults.Vec.Y, y);
-		this.z = makeDouble(Defaults.Vec.Z, z);
-		this.w = makeDouble(Defaults.Vec.W, w);
+		this.x = doubleMake(Defaults.Vec.X, x);
+		this.y = doubleMake(Defaults.Vec.Y, y);
+		this.z = doubleMake(Defaults.Vec.Z, z);
+		this.w = doubleMake(Defaults.Vec.W, w);
 	}
 
 	/**
@@ -60,6 +60,6 @@ export class Vec4 {
 /**
  * Vec4 alias for backwards compat.
  *
- * @category Numbers
+ * @category Math
  */
 export type StrongVec4 = Vec4;

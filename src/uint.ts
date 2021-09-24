@@ -23,18 +23,18 @@
  *
  */
 
-import {Strong, makeStrong} from './strong';
+import {Strong, strongMake} from './strong';
 
 import {Rules} from './rules';
 
-/** Strong Unsigned Integer type.
+/** Strong unsigned integer.
  *
- * @category Numbers
+ * @category Math
  */
 export type UInt = Strong<number>;
 /** UInt alias added for temporary backwards compat.
  *
- * @category Numbers
+ * @category Math
  */
 
 export type StrongUInt = UInt;
@@ -45,7 +45,7 @@ export type StrongUInt = UInt;
  * @param initial
  * @returns
  *
- * @category Numbers
+ * @category Math
  */
 export function uIntMake(fallback: number, initial?: number | null): UInt {
 	const rules = new Rules<number>();
@@ -53,7 +53,7 @@ export function uIntMake(fallback: number, initial?: number | null): UInt {
 	rules.add().must.match.type.int();
 	rules.add().must.be.greaterThanOrEqual(0);
 
-	const strong = makeStrong<number>(fallback, initial, rules);
+	const strong = strongMake<number>(fallback, initial, rules);
 
 	return Object.assign(strong, {
 		increment: () => {

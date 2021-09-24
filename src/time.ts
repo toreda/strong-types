@@ -23,7 +23,7 @@
  *
  */
 
-import {Strong, makeStrong} from './strong';
+import {Strong, strongMake} from './strong';
 
 import {Rules} from './rules';
 
@@ -44,5 +44,5 @@ export function makeTime(fallback: string, initial?: string | null): Time {
 	const rules = new Rules();
 	rules.add().must.match.type.string();
 	rules.add().must.be.time();
-	return makeStrong<string>(fallback, initial, rules);
+	return strongMake<string>(fallback, initial, rules);
 }

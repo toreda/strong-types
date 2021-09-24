@@ -23,16 +23,16 @@
  *
  */
 
-import {Strong, makeStrong} from './strong';
+import {Strong, strongMake} from './strong';
 
 import {Rules} from './rules';
 
 /**
- * @category Numbers
+ * @category Math
  */
 export type Int = Strong<number>;
 /**
- * @category Numbers
+ * @category Math
  */
 export type StrongInt = Int;
 
@@ -42,13 +42,13 @@ export type StrongInt = Int;
  * @param initial
  * @returns
  *
- * @category Numbers
+ * @category Math
  */
 export function intMake(fallback: number, initial?: number | null): Int {
 	const rules = new Rules();
 	rules.add().must.match.type.int();
 
-	const strong = makeStrong<number>(fallback, initial, rules);
+	const strong = strongMake<number>(fallback, initial, rules);
 
 	return Object.assign(strong, {
 		increment: () => {

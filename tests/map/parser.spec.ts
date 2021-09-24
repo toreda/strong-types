@@ -23,7 +23,7 @@
  *
  */
 
-import {Bool, makeBoolean} from '../../src/bool';
+import {Bool, boolMake} from '../../src/bool';
 import {Text, textMake} from '../../src/text';
 
 import {Int} from '../../src/int';
@@ -54,9 +54,9 @@ class SampleGroupTwo extends StrongMap {
 
 	constructor() {
 		super();
-		this.key_two_one = makeBoolean(false);
-		this.key_two_two = makeBoolean(false);
-		this.key_two_three = makeBoolean(false);
+		this.key_two_one = boolMake(false);
+		this.key_two_two = boolMake(false);
+		this.key_two_three = boolMake(false);
 	}
 }
 

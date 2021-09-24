@@ -23,7 +23,7 @@
  *
  */
 
-import {Strong, makeStrong} from './strong';
+import {Strong, strongMake} from './strong';
 
 import {Rules} from './rules';
 
@@ -49,5 +49,5 @@ export function portMake(fallback: number, initial?: number | null): Port {
 	rules.add().must.be.lessThanOrEqual(65535);
 	rules.add().must.be.greaterThanOrEqual(1);
 
-	return makeStrong<number>(fallback, initial, rules);
+	return strongMake<number>(fallback, initial, rules);
 }

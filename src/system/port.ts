@@ -23,7 +23,7 @@
  *
  */
 
-import {Strong, makeStrong} from '../strong';
+import {Strong, strongMake} from '../strong';
 
 import {Rules} from '../rules';
 
@@ -48,5 +48,5 @@ export function systemPortMake(fallback: number, initial?: number | null): Syste
 	rules.add().must.match.type.int();
 	rules.add().must.be.systemPortNumber();
 
-	return makeStrong<number>(fallback, initial, rules);
+	return strongMake<number>(fallback, initial, rules);
 }

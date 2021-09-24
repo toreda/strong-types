@@ -23,7 +23,7 @@
  *
  */
 
-import {Strong, makeStrong} from './strong';
+import {Strong, strongMake} from './strong';
 
 import {Rules} from './rules';
 
@@ -50,5 +50,5 @@ export type StrongString = Text;
 export function textMake(fallback: string, initial?: string | null): Text {
 	const rules = new Rules();
 	rules.add().must.match.type.string();
-	return makeStrong<string>(fallback, initial, rules);
+	return strongMake<string>(fallback, initial, rules);
 }

@@ -23,7 +23,7 @@
  *
  */
 
-import {Strong, makeStrong} from '../src/strong';
+import {Strong, strongMake} from '../src/strong';
 
 const MOCK_STRING = '113333';
 const MOCK_FALLBACK = 'roman bree';
@@ -32,14 +32,14 @@ describe('Strong', () => {
 	let strong: Strong<string>;
 
 	beforeAll(() => {
-		strong = makeStrong<string>(MOCK_FALLBACK);
+		strong = strongMake<string>(MOCK_FALLBACK);
 	});
 
 	beforeEach(() => {
 		strong.reset();
 	});
 
-	describe('makeStrong', () => {
+	describe('strongMake', () => {
 		it('should make and return a function', () => {
 			expect(typeof strong).toBe('function');
 		});
@@ -73,13 +73,13 @@ describe('Strong', () => {
 		});
 
 		it('should return default fallback value argument is not provided and value is null', () => {
-			const custom = makeStrong<string>(MOCK_FALLBACK, null);
+			const custom = strongMake<string>(MOCK_FALLBACK, null);
 			expect(custom()).toBe(MOCK_FALLBACK);
 		});
 
 		it('should return default value when called with no initial value', () => {
 			const initialStr = undefined;
-			const custom = makeStrong<string>(MOCK_FALLBACK, initialStr);
+			const custom = strongMake<string>(MOCK_FALLBACK, initialStr);
 			expect(custom()).toBe(MOCK_FALLBACK);
 		});
 	});
@@ -95,7 +95,7 @@ describe('Strong', () => {
 
 				it('should return the fallback default when value is null and provided fallback is not valid', () => {
 					const sampleStr = '4098211872';
-					const st = makeStrong<string>(sampleStr, MOCK_STRING);
+					const st = strongMake<string>(sampleStr, MOCK_STRING);
 					st(null);
 					expect(st.get(undefined as any)).toBe(sampleStr);
 				});
@@ -117,7 +117,7 @@ describe('Strong', () => {
 
 			describe('reset', () => {
 				it('should set value to null when value is set by initial value', () => {
-					const custom = makeStrong<string>(MOCK_FALLBACK, null);
+					const custom = strongMake<string>(MOCK_FALLBACK, null);
 					expect(custom.getNull()).toBeNull();
 				});
 

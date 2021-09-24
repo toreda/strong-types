@@ -298,7 +298,7 @@ import {StrongArray, makeArray} from '@toreda/strong-types';
 
 ### Import
 ```typescript
-import {Bool, makeBoolean} from '@toreda/strong-types';
+import {Bool, boolMake} from '@toreda/strong-types';
 ```
 
 ### Accepted Values
@@ -356,7 +356,7 @@ Each built-in type like `Int` and `UInt` are helper functions wrapping `Strong<T
 ## Instantiate `Strong<T>`
 
 ```typescript
-import {Strong, makeStrong} from '@toreda/strong-types';
+import {Strong, strongMake} from '@toreda/strong-types';
 
 export type MyOwnType = {
 	id: string | null;
@@ -373,7 +373,7 @@ const fallback: MyOwnType = {
 	name: null
 };
 
-const myObj = makeStrong<MyOwnType>(initial, fallback);
+const myObj = strongMake<MyOwnType>(initial, fallback);
 
 ```
 

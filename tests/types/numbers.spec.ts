@@ -23,7 +23,7 @@
  *
  */
 
-import {Double, makeDouble} from '../../src/double';
+import {Double, doubleMake} from '../../src/double';
 import {Int, intMake} from '../../src/int';
 import {UInt, uIntMake} from '../../src/uint';
 
@@ -38,7 +38,7 @@ let uint: UInt;
 let testTypes: TestType[];
 
 describe('numberMethods', () => {
-	double = makeDouble(0);
+	double = doubleMake(0);
 	int = intMake(0);
 	uint = uIntMake(0);
 	testTypes = [

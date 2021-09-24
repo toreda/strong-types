@@ -23,14 +23,14 @@
  *
  */
 
-import {Double, makeDouble} from './double';
+import {Double, doubleMake} from './double';
 
 import {StrongMap} from './map';
 
 /**
  * Size object containing width & height properties as strong doubles.
  *
- * @category Numbers
+ * @category Math
  */
 export class Size extends StrongMap {
 	public readonly width: Double;
@@ -39,7 +39,7 @@ export class Size extends StrongMap {
 	constructor(defaultWidth: number | null, defaultHeight: number | null) {
 		super();
 
-		this.width = makeDouble(typeof defaultWidth === 'number' ? defaultWidth : 0);
-		this.height = makeDouble(typeof defaultHeight === 'number' ? defaultHeight : 0);
+		this.width = doubleMake(typeof defaultWidth === 'number' ? defaultWidth : 0);
+		this.height = doubleMake(typeof defaultHeight === 'number' ? defaultHeight : 0);
 	}
 }

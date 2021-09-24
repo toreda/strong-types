@@ -23,7 +23,7 @@
  *
  */
 
-import {Strong, makeStrong} from './strong';
+import {Strong, strongMake} from './strong';
 
 import {Rules} from './rules';
 
@@ -40,8 +40,8 @@ export type StrongArray<T> = Strong<T[]>;
  *
  * @category Collections
  */
-export function makeArray<T>(fallback: T[], initial?: T[] | null): StrongArray<T> {
+export function arrayMake<T>(fallback: T[], initial?: T[] | null): StrongArray<T> {
 	const rules = new Rules();
 	rules.add().must.match.type.array();
-	return makeStrong<T[]>(fallback, initial, rules);
+	return strongMake<T[]>(fallback, initial, rules);
 }

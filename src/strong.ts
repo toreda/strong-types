@@ -54,7 +54,7 @@ export type StrongType<ValueT> = Strong<ValueT>;
  *
  * @category Core
  */
-export function makeStrong<ValueT>(
+export function strongMake<ValueT>(
 	fallbackArg: ValueT,
 	initial?: ValueT | null,
 	rules?: Rules<ValueT>

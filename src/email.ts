@@ -23,7 +23,7 @@
  *
  */
 
-import {Strong, makeStrong} from './strong';
+import {Strong, strongMake} from './strong';
 
 import {Rules} from './rules';
 
@@ -47,5 +47,5 @@ export function makeEmail(fallback: string, initial?: string | null): Email {
 	const rules = new Rules();
 	rules.add().must.match.type.string();
 	rules.add().must.be.email();
-	return makeStrong<string>(fallback, initial, rules);
+	return strongMake<string>(fallback, initial, rules);
 }

@@ -23,14 +23,14 @@
  *
  */
 
-import {Double, makeDouble} from './double';
+import {Double, doubleMake} from './double';
 
 import {StrongMap} from './map';
 
 /**
  * General numeric range with min and max value.
  *
- * @category Numbers
+ * @category Math
  */
 export class Range extends StrongMap {
 	public readonly min: Double;
@@ -39,8 +39,8 @@ export class Range extends StrongMap {
 	constructor(defaultMin: number | null, defaultMax: number | null) {
 		super();
 
-		this.min = makeDouble(typeof defaultMin === 'number' ? defaultMin : 0);
-		this.max = makeDouble(typeof defaultMax === 'number' ? defaultMax : 0);
+		this.min = doubleMake(typeof defaultMin === 'number' ? defaultMin : 0);
+		this.max = doubleMake(typeof defaultMax === 'number' ? defaultMax : 0);
 	}
 
 	/**
@@ -64,6 +64,9 @@ export class Range extends StrongMap {
 		}
 	}
 
+	/**
+	 * Reset min and max to initial values.
+	 */
 	public reset(): void {
 		this.max.reset();
 		this.min.reset();

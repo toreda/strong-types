@@ -23,7 +23,7 @@
  *
  */
 
-import {Double, makeDouble} from './double';
+import {Double, doubleMake} from './double';
 
 import {Defaults} from './defaults';
 
@@ -31,13 +31,13 @@ import {Defaults} from './defaults';
  * Map for passing coodinates in 1-dimensional
  * coordinate systems.
  *
- * @category Numbers
+ * @category Math
  */
 export class Vec1 {
 	public readonly x: Double;
 
 	constructor(x: number | null) {
-		this.x = makeDouble(Defaults.Vec.X, x);
+		this.x = doubleMake(Defaults.Vec.X, x);
 	}
 
 	/**
@@ -51,6 +51,6 @@ export class Vec1 {
 /**
  * Vec1 alias for backwards compat.
  *
- * @category Numbers
+ * @category Math
  */
 export type StrongVec1 = Vec1;

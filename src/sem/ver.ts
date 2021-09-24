@@ -23,7 +23,7 @@
  *
  */
 
-import {Strong, makeStrong} from '../strong';
+import {Strong, strongMake} from '../strong';
 
 import {Rules} from '../rules';
 
@@ -40,5 +40,5 @@ export function makeSemVer(fallback: string, initial?: string | null): SemVer {
 	rules.add().must.match.type.string();
 	rules.add().must.contain.charTimes('.', 3);
 
-	return makeStrong<string>(fallback, initial, rules);
+	return strongMake<string>(fallback, initial, rules);
 }

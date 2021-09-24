@@ -23,7 +23,7 @@
  *
  */
 
-import {Strong, makeStrong} from './strong';
+import {Strong, strongMake} from './strong';
 
 import {Rules} from './rules';
 
@@ -46,5 +46,5 @@ export function makeUrl(fallback: string, initial?: string | null): Url {
 	rules.add().must.match.type.string();
 	rules.add().must.be.url();
 
-	return makeStrong<string>(fallback, initial, rules);
+	return strongMake<string>(fallback, initial, rules);
 }

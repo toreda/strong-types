@@ -23,17 +23,17 @@
  *
  */
 
-import {Strong, makeStrong} from './strong';
+import {Strong, strongMake} from './strong';
 
 import {Rules} from './rules';
 
 /**
- * @category Numbers
+ * @category Math
  */
 export type Double = Strong<number>;
 
 /**
- * @category Numbers
+ * @category Math
  */
 export type StrongDouble = Double;
 
@@ -43,14 +43,14 @@ export type StrongDouble = Double;
  * @param initial
  * @returns
  *
- * @category Numbers
+ * @category Math
  */
-export function makeDouble(fallback: number, initial?: number | null): Double {
+export function doubleMake(fallback: number, initial?: number | null): Double {
 	const rules = new Rules<number>();
 
 	rules.add().must.match.type.double();
 
-	const strong = makeStrong<number>(fallback, initial, rules);
+	const strong = strongMake<number>(fallback, initial, rules);
 
 	return Object.assign(strong, {
 		increment: () => {

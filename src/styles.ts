@@ -23,9 +23,9 @@
  *
  */
 
-import {Double, makeDouble} from './double';
+import {Double, doubleMake} from './double';
 import {Int, intMake} from './int';
-import {Strong, makeStrong} from './strong';
+import {Strong, strongMake} from './strong';
 import {Text, textMake} from './text';
 
 import {CSSBoxShadow} from './css/box/shadow';
@@ -64,20 +64,20 @@ export class Styles extends StrongMap {
 		super();
 
 		this.background = textMake('');
-		this.bottom = makeStrong<CSSUnits>('');
-		this.boxShadow = makeStrong<CSSBoxShadow>('');
-		this.clip = makeStrong<CSSClip>('');
-		this.display = makeStrong<CSSDisplay>('');
+		this.bottom = strongMake<CSSUnits>('');
+		this.boxShadow = strongMake<CSSBoxShadow>('');
+		this.clip = strongMake<CSSClip>('');
+		this.display = strongMake<CSSDisplay>('');
 		this.font = new CSSFont();
-		this.height = makeDouble(1);
-		this.left = makeStrong<CSSUnits>('');
+		this.height = doubleMake(1);
+		this.left = strongMake<CSSUnits>('');
 		this.lineHeight = textMake('');
-		this.opacity = makeDouble(1);
-		this.right = makeStrong<CSSUnits>('');
+		this.opacity = doubleMake(1);
+		this.right = strongMake<CSSUnits>('');
 		this.text = new CSSText();
-		this.top = makeStrong<CSSUnits>('');
-		this.userSelect = makeStrong<CSSUserSelect>('');
-		this.width = makeDouble(1);
+		this.top = strongMake<CSSUnits>('');
+		this.userSelect = strongMake<CSSUserSelect>('');
+		this.width = doubleMake(1);
 		this.zIndex = intMake(0);
 	}
 

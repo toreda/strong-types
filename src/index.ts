@@ -10,10 +10,10 @@ export {osSet} from './os/set';
 export {osValid} from './os/valid';
 
 export {Date, makeDate} from './date';
-export {DateTime, makeDateTime} from './date-time';
+export {DateTime, dateTimeMake} from './date-time';
 
 // Generic strong type
-export {Strong, StrongType, makeStrong} from './strong';
+export {Strong, StrongType, strongMake} from './strong';
 
 export {BaseObject} from './base/object';
 export {Collection} from './collection';
@@ -22,9 +22,9 @@ export {StrongData} from './strong/data';
 export {typeMatch, isType, TypeMap, PrimitiveOrConstructor} from './is/type';
 
 // Custom Types
-export {StrongArray, makeArray} from './array';
-export {Bool, StrongBoolean, makeBoolean} from './bool';
-export {Double, StrongDouble, makeDouble} from './double';
+export {StrongArray, arrayMake} from './array';
+export {Bool, StrongBoolean, boolMake} from './bool';
+export {Double, StrongDouble, doubleMake} from './double';
 export {Int, StrongInt, intMake} from './int';
 export {UInt, StrongUInt, uIntMake} from './uint';
 export {Text, StrongString, textMake} from './text';
