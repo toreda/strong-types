@@ -15,8 +15,10 @@ export class RuleNot {
 
 	constructor(rule: Rule, parentMods: RuleMods) {
 		const mods: RuleMods = {
-			invert: !parentMods.invert
+			invert: !parentMods.invert,
+			target: parentMods.target
 		};
+
 		this.be = new RuleBe(rule, mods);
 		this.equalTo = isEqualMake<RuleNot>(this, rule, mods);
 	}

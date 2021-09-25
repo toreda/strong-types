@@ -28,6 +28,7 @@ export {Double, doubleMake} from './double';
 export {Int, intMake} from './int';
 export {UInt, uIntMake} from './uint';
 export {Text, textMake} from './text';
+export {Id, idMake} from './id';
 
 // CSS Types & Objects
 export {CSSBoxShadow} from './css/box/shadow';
@@ -155,6 +156,7 @@ export {RuleBe} from './rule/be';
 export {RuleContains} from './rule/contains';
 export {RuleFn} from './rule/fn';
 export {RuleHave} from './rule/have';
+export {RuleLength} from './rule/length';
 export {RuleMatch} from './rule/match';
 export {RuleMods} from './rule/mods';
 export {RuleMust} from './rule/must';

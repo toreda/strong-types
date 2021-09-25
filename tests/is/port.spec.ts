@@ -12,7 +12,7 @@ describe('IsPort', () => {
 
 	beforeAll(() => {
 		rule = new Rule();
-		fn = isPortMake<Rule>(rule, rule, {invert: false});
+		fn = isPortMake<Rule>(rule, rule, {invert: false, target: 'value'});
 		fn();
 	});
 

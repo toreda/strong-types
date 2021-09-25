@@ -62,7 +62,7 @@ export function isNullMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods)
 			return curr === null;
 		};
 
-		const node = new RuleNode<unknown | null>('IS_NULL', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<unknown | null>('IS_NULL', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

@@ -71,7 +71,7 @@ export function isGreaterThanMake<CallerT>(
 			return isGreaterThan(curr, target);
 		};
 
-		const node = new RuleNode<number>('IS_GT', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<number>('IS_GT', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

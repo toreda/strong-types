@@ -8,7 +8,7 @@ describe('IsUndefined', () => {
 
 	beforeAll(() => {
 		rule = new Rule();
-		fn = isUndefinedMake<Rule>(rule, rule, {invert: false});
+		fn = isUndefinedMake<Rule>(rule, rule, {invert: false, target: 'value'});
 		fn();
 	});
 
@@ -28,7 +28,7 @@ describe('IsUndefined', () => {
 		it('should return false when value argument is undefined and mods.invert is true', () => {
 			const val = undefined;
 			const customRule = new Rule();
-			const customFn = isUndefinedMake<Rule>(customRule, customRule, {invert: true});
+			const customFn = isUndefinedMake<Rule>(customRule, customRule, {invert: true, target: 'value'});
 			customFn();
 
 			expect(customRule.nodes[0].execute(val)).toBe(false);
@@ -38,7 +38,7 @@ describe('IsUndefined', () => {
 			const val = 'aaa';
 
 			const customRule = new Rule();
-			const customFn = isUndefinedMake<Rule>(customRule, customRule, {invert: true});
+			const customFn = isUndefinedMake<Rule>(customRule, customRule, {invert: true, target: 'value'});
 			customFn();
 
 			expect(customRule.nodes[0].execute(val)).toBe(true);

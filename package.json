@@ -1,6 +1,6 @@
 {
 	"name": "@toreda/strong-types",
-	"version": "0.18.1",
+	"version": "0.19.0",
 	"description": "Better TypeScript code in fewer lines.",
 	"main": "./dist/index",
 	"typings": "./dist/index.d.ts",

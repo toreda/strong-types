@@ -51,7 +51,7 @@ export function isTextMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods)
 			return typeof value === 'string';
 		};
 
-		const node = new RuleNode<unknown>('IS_T_STR', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<unknown>('IS_T_STR', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

@@ -9,7 +9,7 @@ describe('IsIpv6Addr', () => {
 	beforeAll(() => {
 		rule = new Rule();
 
-		fn = isIpv6AddrMake<Rule>(rule, rule, {invert: false});
+		fn = isIpv6AddrMake<Rule>(rule, rule, {invert: false, target: 'value'});
 		fn();
 	});
 

@@ -79,7 +79,7 @@ export function hasLengthLessThanMake<CallerT>(
 			return hasLengthLessThan(curr, target);
 		};
 
-		const node = new RuleNode<unknown[] | string>('HAS_LENGTH_LESS', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<unknown[] | string>('HAS_LENGTH_LESS', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

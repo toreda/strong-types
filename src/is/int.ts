@@ -71,7 +71,7 @@ export function isIntMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods):
 			return isInt(value);
 		};
 
-		const node = new RuleNode<number>('IS_T_INT', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<number>('IS_T_INT', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

@@ -75,7 +75,7 @@ export function isLengthMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMod
 			return isLength(curr, expectedLength);
 		};
 
-		const node = new RuleNode('IS_LENGTH', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode('IS_LENGTH', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

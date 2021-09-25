@@ -71,7 +71,7 @@ export function isLessThanMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleM
 			return isLessThan(curr, target);
 		};
 
-		const node = new RuleNode<number>('IS_LT', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<number>('IS_LT', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

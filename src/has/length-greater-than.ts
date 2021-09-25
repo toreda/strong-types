@@ -76,7 +76,7 @@ export function hasLengthGreaterThanMake<CallerT>(
 			return hasLengthGreaterThan(curr, target);
 		};
 
-		const node = new RuleNode<unknown[] | string>('HAS_LENGTH_GRT', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<unknown[] | string>('HAS_LENGTH_GRT', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

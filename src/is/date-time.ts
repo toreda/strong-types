@@ -123,7 +123,7 @@ export function isDateTimeMake<CallerT>(
 			return isDateTime(curr);
 		};
 
-		const node = new RuleNode<string>('IS_DATE_TIME', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<string>('IS_DATE_TIME', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

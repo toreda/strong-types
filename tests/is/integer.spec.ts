@@ -14,7 +14,8 @@ describe('Integer', () => {
 	beforeAll(() => {
 		rule = new Rule();
 		mods = {
-			invert: false
+			invert: false,
+			target: 'value'
 		};
 		fn = isIntMake<Rule>(rule, rule, mods);
 		fn();
@@ -49,7 +50,8 @@ describe('Integer', () => {
 			const floatCurr = -7.333;
 			const customRule = new Rule();
 			const customFn = isGreaterThanMake<Rule>(customRule, customRule, {
-				invert: true
+				invert: true,
+				target: 'value'
 			});
 			customFn(111111);
 			expect(customRule.nodes[0].execute(floatCurr)).toBe(true);

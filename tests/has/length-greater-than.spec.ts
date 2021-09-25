@@ -34,7 +34,8 @@ describe('HasLengthGreaterThan', () => {
 	beforeAll(() => {
 		rule = new Rule();
 		mods = {
-			invert: false
+			invert: false,
+			target: 'value'
 		};
 	});
 

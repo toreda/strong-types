@@ -63,7 +63,7 @@ export function isBooleanMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMo
 			return isBoolean(value);
 		};
 
-		const node = new RuleNode('IS_T_BOOLEAN', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode('IS_T_BOOLEAN', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

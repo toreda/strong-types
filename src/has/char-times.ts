@@ -85,7 +85,7 @@ export function hasCharTimesMake<CallerT>(
 			return hasCharTimes(curr, char, count);
 		};
 
-		const node = new RuleNode<string>('HAS_CHAR_TIMES', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<string>('HAS_CHAR_TIMES', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

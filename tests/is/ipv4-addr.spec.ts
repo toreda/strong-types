@@ -8,7 +8,7 @@ describe('IsIpv4Addr', () => {
 
 	beforeAll(() => {
 		rule = new Rule();
-		fn = isIpv4AddrMake<Rule>(rule, rule, {invert: false});
+		fn = isIpv4AddrMake<Rule>(rule, rule, {invert: false, target: 'value'});
 		fn();
 	});
 

@@ -15,7 +15,8 @@ describe('IsGreaterThan', () => {
 		rule = new Rule();
 
 		mods = {
-			invert: false
+			invert: false,
+			target: 'value'
 		};
 
 		fn = isGreaterThanMake<Rule>(rule, rule, mods);
@@ -23,6 +24,7 @@ describe('IsGreaterThan', () => {
 
 	beforeEach(() => {
 		mods.invert = false;
+		mods.target = 'value';
 		rule.reset();
 	});
 

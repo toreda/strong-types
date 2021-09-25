@@ -23,6 +23,8 @@
  *
  */
 
+import {RuleNodeTarget} from './node/target';
+
 /**
  * Modify rule node behavior with properties.
  *
@@ -30,4 +32,5 @@
  */
 export interface RuleMods {
 	invert: boolean;
+	target: RuleNodeTarget;
 }

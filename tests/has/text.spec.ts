@@ -8,7 +8,7 @@ describe('HasText', () => {
 
 	beforeAll(() => {
 		rule = new Rule();
-		fn = hasTextMake<Rule>(rule, rule, {invert: false});
+		fn = hasTextMake<Rule>(rule, rule, {invert: false, target: 'value'});
 	});
 
 	describe('Usage', () => {

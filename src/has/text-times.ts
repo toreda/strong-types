@@ -72,7 +72,7 @@ export function makeHasTextTimes<CallerT>(caller: CallerT, rule: Rule, mods: Rul
 			return hasTextTimes(curr, target, count);
 		};
 
-		const node = new RuleNode<string>('HAS_TEXT_TIMES', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<string>('HAS_TEXT_TIMES', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

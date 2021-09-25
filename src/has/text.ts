@@ -76,7 +76,7 @@ export function hasTextMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods
 			return hasText(curr, target);
 		};
 
-		const node = new RuleNode<string>('HAS_TEXT', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<string>('HAS_TEXT', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

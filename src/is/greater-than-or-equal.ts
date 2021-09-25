@@ -71,7 +71,7 @@ export function isGreaterThanOrEqualMake<CallerT>(
 			return isGreaterThanOrEqual(curr, target);
 		};
 
-		const node = new RuleNode<number>('IS_GT_OR_EQT', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<number>('IS_GT_OR_EQT', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

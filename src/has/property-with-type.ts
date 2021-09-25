@@ -62,7 +62,7 @@ export function hasPropertyWithTypeMake<CallerT>(
 			return hasPropertyWithType(obj, propName, typeName);
 		};
 
-		const node = new RuleNode<unknown>('HAS_PROP_W_TYPE', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<unknown>('HAS_PROP_W_TYPE', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

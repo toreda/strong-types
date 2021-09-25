@@ -12,7 +12,8 @@ describe('IsEmpty', () => {
 
 	beforeAll(() => {
 		mods = {
-			invert: false
+			invert: false,
+			target: 'value'
 		};
 
 		rule = new Rule();
@@ -20,10 +21,15 @@ describe('IsEmpty', () => {
 		fn('aaaa');
 	});
 
+	beforeEach(() => {
+		mods.invert = false;
+		mods.target = 'value';
+	});
+
 	describe('Usage', () => {
 		it('should return true when input is a non-empty string and mods.invert is true', () => {
 			const customRule = new Rule();
-			const customFn = isEmptyMake<Rule>(customRule, customRule, {invert: true});
+			const customFn = isEmptyMake<Rule>(customRule, customRule, {invert: true, target: 'value'});
 			const value = 'aaaaaaaaa';
 			customFn(value);
 			expect(customRule.nodes[0].execute(value)).toBe(true);
@@ -32,7 +38,7 @@ describe('IsEmpty', () => {
 		it('should return false when input is an empty array and mods.invert is true', () => {
 			const customRule = new Rule();
 			const value: string[] = [];
-			const customFn = isEmptyMake<Rule>(customRule, customRule, {invert: true});
+			const customFn = isEmptyMake<Rule>(customRule, customRule, {invert: true, target: 'value'});
 			customFn('');
 			expect(customRule.nodes[0].execute(value)).toBe(false);
 		});
@@ -62,7 +68,7 @@ describe('IsEmpty', () => {
 		});
 
 		it('should return true when input is an empty array', () => {
-			const customFn = isEmptyMake<Rule>(rule, rule, {invert: false});
+			const customFn = isEmptyMake<Rule>(rule, rule, {invert: false, target: 'value'});
 			customFn(EMPTY_ARRAY);
 			expect(rule.nodes[0].execute(EMPTY_ARRAY)).toBe(true);
 		});

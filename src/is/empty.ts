@@ -73,7 +73,7 @@ export function isEmptyMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods
 			return isEmpty(curr);
 		};
 
-		const node = new RuleNode<string | unknown[]>('IS_EMPTY', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<string | unknown[]>('IS_EMPTY', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

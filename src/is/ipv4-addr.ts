@@ -92,7 +92,7 @@ export function isIpv4AddrMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleM
 			return isIpv4Addr(curr);
 		};
 
-		const node = new RuleNode('IS_IP4_ADDR', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode('IS_IP4_ADDR', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

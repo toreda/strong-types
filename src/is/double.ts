@@ -68,7 +68,7 @@ export function isDoubleMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMod
 			return isDouble(value);
 		};
 
-		const node = new RuleNode<number>('IS_T_DOUBLE', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<number>('IS_T_DOUBLE', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

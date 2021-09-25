@@ -1,4 +1,5 @@
 import {RuleFn} from '../../src/rule/fn';
+import {RuleMods} from '../../src/rule/mods';
 import {RuleNode} from '../../src/rule/node';
 import {RuleNodeType} from '../../src/rule/node/type';
 
@@ -10,15 +11,23 @@ const MOCK_FN_NULL = null;
 describe('RuleNode', () => {
 	let instance: RuleNode<string>;
 	let sampleFn: jest.MockedFunction<RuleFn<string>>;
+	let mods: RuleMods;
 
 	beforeAll(() => {
 		sampleFn = jest.fn().mockImplementation((curr: string): string => {
 			return curr;
 		});
-		instance = new RuleNode<string>(MOCK_ID, RuleNodeType.OP, sampleFn);
+		mods = {
+			invert: false,
+			target: 'value'
+		};
+		instance = new RuleNode<string>(MOCK_ID, RuleNodeType.OP, sampleFn, mods);
 	});
 
 	beforeEach(() => {
+		mods.invert = false;
+		mods.target = 'value';
+
 		instance.children.length = 0;
 	});
 
@@ -28,7 +37,7 @@ describe('RuleNode', () => {
 
 		beforeAll(() => {
 			ctorId = '22220AAA';
-			ctorInstance = new RuleNode<string>(ctorId, RuleNodeType.CMP, sampleFn);
+			ctorInstance = new RuleNode<string>(ctorId, RuleNodeType.CMP, sampleFn, mods);
 		});
 
 		it('should initialize id property using id argument', () => {
@@ -41,22 +50,24 @@ describe('RuleNode', () => {
 
 		it('should throw when fn property is null', () => {
 			expect(() => {
-				const custom = new RuleNode<string>(MOCK_ID, RuleNodeType.OP, null as any);
+				const custom = new RuleNode<string>(MOCK_ID, RuleNodeType.OP, null as any, mods);
 			}).toThrow(`Bad rule init - fn arg is not a function.`);
 		});
 
 		it('should initialize invertResult property to false when not set', () => {
-			const custom = new RuleNode<string>(MOCK_ID, RuleNodeType.OP, sampleFn);
+			const custom = new RuleNode<string>(MOCK_ID, RuleNodeType.OP, sampleFn, mods);
 			expect(custom.invertResult).toBe(false);
 		});
 
 		it('should initialize invertResult property to false when invert arg is false', () => {
-			const custom = new RuleNode<string>(MOCK_ID, RuleNodeType.OP, sampleFn, false);
+			mods.invert = false;
+			const custom = new RuleNode<string>(MOCK_ID, RuleNodeType.OP, sampleFn, mods);
 			expect(custom.invertResult).toBe(false);
 		});
 
 		it('should initialize invertResult property to true when invert arg is true', () => {
-			const custom = new RuleNode<string>(MOCK_ID, RuleNodeType.OP, sampleFn, true);
+			mods.invert = true;
+			const custom = new RuleNode<string>(MOCK_ID, RuleNodeType.OP, sampleFn, mods);
 			expect(custom.invertResult).toBe(true);
 		});
 	});
@@ -69,7 +80,7 @@ describe('RuleNode', () => {
 					return true;
 				});
 
-				const custom = new RuleNode<string>(MOCK_ID, RuleNodeType.OP, fn);
+				const custom = new RuleNode<string>(MOCK_ID, RuleNodeType.OP, fn, mods);
 				expect(custom.execute(MOCK_VALUE_STR)).toBe(true);
 			});
 
@@ -79,7 +90,7 @@ describe('RuleNode', () => {
 					return true;
 				});
 
-				const custom = new RuleNode<string>(MOCK_ID, RuleNodeType.OP, fn);
+				const custom = new RuleNode<string>(MOCK_ID, RuleNodeType.OP, fn, mods);
 				custom.invertResult = true;
 				expect(custom.execute(MOCK_VALUE_STR)).toBe(false);
 			});
@@ -90,7 +101,7 @@ describe('RuleNode', () => {
 					return false;
 				});
 
-				const custom = new RuleNode<string>(MOCK_ID, RuleNodeType.OP, fn);
+				const custom = new RuleNode<string>(MOCK_ID, RuleNodeType.OP, fn, mods);
 				expect(custom.execute(MOCK_VALUE_STR)).toBe(false);
 			});
 
@@ -100,7 +111,7 @@ describe('RuleNode', () => {
 					return false;
 				});
 
-				const custom = new RuleNode<string>(MOCK_ID, RuleNodeType.OP, fn);
+				const custom = new RuleNode<string>(MOCK_ID, RuleNodeType.OP, fn, mods);
 				custom.invertResult = true;
 				expect(custom.execute(MOCK_VALUE_STR)).toBe(true);
 			});

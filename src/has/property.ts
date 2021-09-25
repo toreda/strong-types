@@ -44,7 +44,7 @@ export function hasPropertyMake<CallerT>(caller: CallerT, rule: Rule, mods: Rule
 			return hasProperty(obj, propName);
 		};
 
-		const node = new RuleNode<unknown>('HAS_PROPERTY', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<unknown>('HAS_PROPERTY', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

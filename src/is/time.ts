@@ -74,7 +74,7 @@ export function isTimeMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods)
 			return isTime(curr);
 		};
 
-		const node = new RuleNode<string>('IS_TIME', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<string>('IS_TIME', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

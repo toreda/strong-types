@@ -98,7 +98,7 @@ export function isEmailMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods
 			return isEmail(curr);
 		};
 
-		const node = new RuleNode<string>('IS_EMAIL', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<string>('IS_EMAIL', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

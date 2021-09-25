@@ -8,7 +8,7 @@ describe('IsUrl', () => {
 
 	beforeAll(() => {
 		rule = new Rule();
-		fn = isUrlMake<Rule>(rule, rule, {invert: false});
+		fn = isUrlMake<Rule>(rule, rule, {invert: false, target: 'value'});
 		fn();
 	});
 

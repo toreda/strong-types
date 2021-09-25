@@ -108,7 +108,7 @@ export function isHexColorCodeMake<CallerT>(
 			return isHexColorFn(curr);
 		};
 
-		const node = new RuleNode<string>('IS_HEX_COLOR_CODE', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<string>('IS_HEX_COLOR_CODE', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

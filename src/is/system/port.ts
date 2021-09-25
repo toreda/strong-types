@@ -72,7 +72,7 @@ export function isSystemPortMake<CallerT>(
 			return isSystemPort(curr);
 		};
 
-		const node = new RuleNode<number>('IS_SYS_PORT', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<number>('IS_SYS_PORT', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

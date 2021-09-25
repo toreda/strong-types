@@ -71,7 +71,7 @@ export function isLessThanOrEqualMake<CallerT>(
 			return isLessThanOrEqual(curr, target);
 		};
 
-		const node = new RuleNode('IS_LT_OR_EQT', RuleNodeType.CMP, ruleFn, mods.invert);
+		const node = new RuleNode('IS_LT_OR_EQT', RuleNodeType.CMP, ruleFn, mods);
 		rule.add(node);
 
 		return caller;

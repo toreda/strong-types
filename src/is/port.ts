@@ -82,7 +82,7 @@ export function isPortMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods)
 			return isPort(curr);
 		};
 
-		const node = new RuleNode<number>('IS_PORT', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<number>('IS_PORT', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

@@ -82,7 +82,7 @@ export function isEqualMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods
 		const fn: RuleFn<unknown> = (value: unknown): boolean => {
 			return isEqual(value, target);
 		};
-		const node = new RuleNode('IS_EQ', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode('IS_EQ', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 		return caller;
 	};

@@ -51,7 +51,8 @@ export class RuleMust {
 		}
 
 		const mods: RuleMods = {
-			invert: false
+			invert: false,
+			target: 'value'
 		};
 
 		this.be = new RuleBe(rule, mods);

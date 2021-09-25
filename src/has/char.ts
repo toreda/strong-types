@@ -76,7 +76,7 @@ export function hasCharMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods
 			return hasChar(curr, target);
 		};
 
-		const node = new RuleNode<string>('HAS_CHAR', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<string>('HAS_CHAR', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

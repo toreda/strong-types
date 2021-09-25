@@ -80,7 +80,7 @@ export function isUrlMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods):
 			return isUrl(curr);
 		};
 
-		const node = new RuleNode<string>('IS_URL', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<string>('IS_URL', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

@@ -10,7 +10,8 @@ describe('Double', () => {
 
 	beforeAll(() => {
 		mods = {
-			invert: false
+			invert: false,
+			target: 'value'
 		};
 		rule = new Rule();
 		fn = isDoubleMake<Rule>(rule, rule, mods);
@@ -47,7 +48,7 @@ describe('Double', () => {
 
 		it('should return false when curr is a negative float, but invert flag is active', () => {
 			const customRule = new Rule();
-			const customFn = isDoubleMake<Rule>(customRule, customRule, {invert: true});
+			const customFn = isDoubleMake<Rule>(customRule, customRule, {invert: true, target: 'value'});
 			customFn();
 			const floatCurr = -7.333;
 

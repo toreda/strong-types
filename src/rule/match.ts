@@ -41,7 +41,8 @@ export class RuleMatch {
 
 	constructor(rule: Rule, parentMods: RuleMods) {
 		const mods: RuleMods = {
-			invert: parentMods.invert
+			invert: parentMods.invert,
+			target: parentMods.target
 		};
 
 		this.or = new RuleOr(rule, mods);

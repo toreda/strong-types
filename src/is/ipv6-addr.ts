@@ -94,17 +94,13 @@ export const isValidSegment = (segment: string): boolean => {
  *
  * @category Validator Factory
  */
-export function isIpv6AddrMake<CallerT>(
-	caller: CallerT,
-	rule: Rule,
-	mods: RuleMods
-): IsIpv6Addr<CallerT> {
+export function isIpv6AddrMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsIpv6Addr<CallerT> {
 	return (): CallerT => {
 		const fn: RuleFn<string> = (curr: string): boolean => {
 			return isIpv6Addr(curr);
 		};
 
-		const node = new RuleNode<string>('IS_IP6_ADDR', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<string>('IS_IP6_ADDR', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

@@ -8,7 +8,7 @@ describe('IsBoolean', () => {
 
 	beforeAll(() => {
 		rule = new Rule();
-		fn = isBooleanMake<Rule>(rule, rule, {invert: false});
+		fn = isBooleanMake<Rule>(rule, rule, {invert: false, target: 'value'});
 		fn();
 	});
 
@@ -23,7 +23,7 @@ describe('IsBoolean', () => {
 
 			const customRule = new Rule();
 
-			const customFn = isBooleanMake<Rule>(customRule, customRule, {invert: true});
+			const customFn = isBooleanMake<Rule>(customRule, customRule, {invert: true, target: 'value'});
 			customFn();
 			expect(customRule.nodes[0].execute(value)).toBe(true);
 		});
@@ -44,7 +44,7 @@ describe('IsBoolean', () => {
 			const value: boolean = true;
 			const customRule = new Rule();
 
-			const customFn = isBooleanMake<Rule>(customRule, customRule, {invert: true});
+			const customFn = isBooleanMake<Rule>(customRule, customRule, {invert: true, target: 'value'});
 			customFn();
 			expect(customRule.nodes[0].execute(value)).toBe(false);
 		});
@@ -53,7 +53,7 @@ describe('IsBoolean', () => {
 			const value: boolean = false;
 			const customRule = new Rule();
 
-			const customFn = isBooleanMake<Rule>(customRule, customRule, {invert: true});
+			const customFn = isBooleanMake<Rule>(customRule, customRule, {invert: true, target: 'value'});
 			customFn();
 			expect(customRule.nodes[0].execute(value)).toBe(false);
 		});

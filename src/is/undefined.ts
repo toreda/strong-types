@@ -62,7 +62,7 @@ export function isUndefinedMake<CallerT>(caller: CallerT, rule: Rule, mods: Rule
 			return isUndefined(curr);
 		};
 
-		const node = new RuleNode<unknown | undefined>('IS_T_UNDEFINED', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<unknown | undefined>('IS_T_UNDEFINED', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

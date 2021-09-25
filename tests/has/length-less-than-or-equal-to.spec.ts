@@ -24,61 +24,85 @@
  */
 
 import {Rule} from '../../src/rule';
-import {hasLengthEqualMake} from '../../src/has/length-equal';
+import {RuleMods} from '../../src/rule/mods';
+import {hasLengthLessThanOrEqualMake} from '../../src/has/length-less-than-or-equal';
 
-describe('HasLengthEqualTo', () => {
+describe('HasLengthLessThanOrEqualTo', () => {
+	let mods: RuleMods;
 	let rule: Rule;
 
 	beforeAll(() => {
 		rule = new Rule();
+		mods = {
+			invert: false,
+			target: 'value'
+		};
 	});
 
 	beforeEach(() => {
+		mods.invert = false;
 		rule.reset();
 	});
 
 	describe('Usage', () => {
-		it('should return true when target length is equal to the current length when the current value is a string', () => {
+		it('should return true when the target length is equal to the current length when the current value is a string', () => {
 			const target = 3;
 			const curr = 'dog';
-			const fn = hasLengthEqualMake<Rule>(rule, rule, {invert: false});
+			const fn = hasLengthLessThanOrEqualMake<Rule>(rule, rule, mods);
+			fn(target);
+			expect(rule.nodes[0].execute(curr)).toBe(true);
+		});
+
+		it('should return true when the current length is less than the target length when the current value is a string', () => {
+			const target = 5;
+			const curr = '6';
+			const fn = hasLengthLessThanOrEqualMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
 
 		it('should return true when the target length is equal to the current length when the current value is an array', () => {
 			const target = 2;
-			const curr: string[] = ['dog', 'cat'];
-			const fn = hasLengthEqualMake<Rule>(rule, rule, {invert: false});
+			const curr = ['dog', 'cat'];
+			const fn = hasLengthLessThanOrEqualMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
 
-		it('should return true when the current value and target value are equal', () => {
+		it('should return true when the current length is less than the target length when the current value is an array', () => {
+			const target = 6;
+			const curr = ['dog', 'cat'];
+			const fn = hasLengthLessThanOrEqualMake<Rule>(rule, rule, mods);
+			fn(target);
+			expect(rule.nodes[0].execute(curr)).toBe(true);
+		});
+
+		it('should return true when the current value is is less than or equal to the target value', () => {
 			const target = 0;
 			const curr = '';
-			const fn = hasLengthEqualMake<Rule>(rule, rule, {invert: false});
+
+			const fn = hasLengthLessThanOrEqualMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
 
-		it('should return true when the target and curr values are equal', () => {
-			const target = 0;
+		it('should return true when the current value is is less than or equal to the target value', () => {
+			const target = 2;
 			const curr: string[] = [];
-			const fn = hasLengthEqualMake<Rule>(rule, rule, {invert: false});
 
+			const fn = hasLengthLessThanOrEqualMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
 	});
 
 	describe('invalid ouputs', () => {
-		it('should return false when the target length does not equal the current length when the current value is a string', () => {
-			const target = 4;
+		it('should return false when the target length is less than the current length when the current value is a string', () => {
+			const target = 0;
 			const curr = 'number';
 
-			const fn = hasLengthEqualMake<Rule>(rule, rule, {invert: false});
-			fn(3);
+			const fn = hasLengthLessThanOrEqualMake<Rule>(rule, rule, mods);
+			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
 
@@ -86,25 +110,16 @@ describe('HasLengthEqualTo', () => {
 			const target = '' as any;
 			const curr = '1';
 
-			const fn = hasLengthEqualMake<Rule>(rule, rule, {invert: false});
-			fn(10);
-			expect(rule.nodes[0].execute(curr)).toBe(false);
-		});
-
-		it('should return false when the target length does not equal the current length when the current value is an array', () => {
-			const target = 2;
-			const curr = ['one', 'two', 'three'];
-			const fn = hasLengthEqualMake<Rule>(rule, rule, {invert: false});
-
+			const fn = hasLengthLessThanOrEqualMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
 
-		it('should return false when the current value is an empty array', () => {
+		it('should return false when the target length is less than the current length when the current value is an array', () => {
 			const target = 2;
-			const curr: string[] = [];
-			const fn = hasLengthEqualMake<Rule>(rule, rule, {invert: false});
+			const curr = ['one', 'two', 'three'];
 
+			const fn = hasLengthLessThanOrEqualMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
@@ -112,8 +127,8 @@ describe('HasLengthEqualTo', () => {
 		it('should return false when the target value is an empty array', () => {
 			const target = [] as any;
 			const curr = [6];
-			const fn = hasLengthEqualMake<Rule>(rule, rule, {invert: false});
 
+			const fn = hasLengthLessThanOrEqualMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
@@ -121,8 +136,8 @@ describe('HasLengthEqualTo', () => {
 		it('should return false when the current value is an integer', () => {
 			const target = 2;
 			const curr = 2;
-			const fn = hasLengthEqualMake<Rule>(rule, rule, {invert: false});
 
+			const fn = hasLengthLessThanOrEqualMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
@@ -130,17 +145,17 @@ describe('HasLengthEqualTo', () => {
 		it('should return false when the current value is a boolean', () => {
 			const target = 65;
 			const curr = false;
-			const fn = hasLengthEqualMake<Rule>(rule, rule, {invert: false});
 
+			const fn = hasLengthLessThanOrEqualMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
 
 		it('should return false when the target value is a boolean', () => {
 			const target = false as any;
-			const curr = ['hello'];
-			const fn = hasLengthEqualMake<Rule>(rule, rule, {invert: false});
+			const curr = ['hi'];
 
+			const fn = hasLengthLessThanOrEqualMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});

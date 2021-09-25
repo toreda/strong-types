@@ -23,27 +23,39 @@
  *
  */
 
-import {HasProperty, hasPropertyMake} from '../has/property';
-import {HasText, hasTextMake} from '../has/text';
-import {HasTextTimes, makeHasTextTimes} from '../has/text-times';
+import {Strong, strongMake} from './strong';
 
-import {Rule} from '../rule';
-import {RuleLength} from './length';
-import {RuleMods} from './mods';
+import {IdOptions} from './id/options';
+import {Rules} from './rules';
 
 /**
- * @category Rules
+ * Unique string identifier.
+ *
+ * @category Strings
  */
-export class RuleHave {
-	public readonly text: HasText<RuleHave>;
-	public readonly textTimes: HasTextTimes<RuleHave>;
-	public readonly length: RuleLength;
-	public readonly property: HasProperty<RuleHave>;
+export type Id = Strong<string>;
 
-	constructor(rule: Rule, mods: RuleMods) {
-		this.length = new RuleLength(rule, mods);
-		this.property = hasPropertyMake<RuleHave>(this, rule, mods);
-		this.text = hasTextMake<RuleHave>(this, rule, mods);
-		this.textTimes = makeHasTextTimes<RuleHave>(this, rule, mods);
+/**
+ * Create a Strong Id type.
+ * @param fallback
+ * @param initial
+ * @returns
+ *
+ * @category Strings
+ */
+export function idMake(fallback: string, initial?: string | null, options?: IdOptions): Id {
+	const rules = new Rules();
+
+	if (options) {
+		if (typeof options.maxLength === 'number') {
+			rules.add().must.have.length.lessThanOrEqualTo(options.maxLength);
+		}
+
+		if (typeof options.minLength === 'number') {
+			rules.add().must.have.length.greaterThanOrEqualTo(options.minLength);
+		}
 	}
+
+	rules.add().must.match.type.string();
+	return strongMake<string>(fallback, initial, rules);
 }

@@ -79,7 +79,7 @@ export function isDateMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods)
 			return isDate(curr);
 		};
 
-		const node = new RuleNode<string>('IS_DATE', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<string>('IS_DATE', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

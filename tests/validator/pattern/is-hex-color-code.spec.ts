@@ -385,12 +385,14 @@ describe('HexColorCode', () => {
 	beforeAll(() => {
 		rule = new Rule();
 		mods = {
-			invert: false
+			invert: false,
+			target: 'value'
 		};
 	});
 
 	beforeEach(() => {
 		mods.invert = false;
+		mods.target = 'value';
 		rule.nodes.length = 0;
 	});
 

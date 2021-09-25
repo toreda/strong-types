@@ -51,7 +51,7 @@ export function isArrayMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods
 			return Array.isArray(curr);
 		};
 
-		const node = new RuleNode<unknown[]>('IS_T_ARRAY', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<unknown[]>('IS_T_ARRAY', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

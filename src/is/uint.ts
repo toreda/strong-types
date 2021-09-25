@@ -74,7 +74,7 @@ export function isUIntMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods)
 			return isUInt(value);
 		};
 
-		const node = new RuleNode<number>('IS_U_INT', RuleNodeType.CMP, fn, mods.invert);
+		const node = new RuleNode<number>('IS_U_INT', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

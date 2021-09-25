@@ -10,7 +10,7 @@ describe('IsEmail', () => {
 	beforeAll(() => {
 		rule = new Rule();
 
-		fn = isEmailMake<Rule>(rule, rule, {invert: false});
+		fn = isEmailMake<Rule>(rule, rule, {invert: false, target: 'value'});
 		fn();
 	});
 
