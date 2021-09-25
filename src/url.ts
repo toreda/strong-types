@@ -41,7 +41,7 @@ export type Url = Strong<string>;
  *
  * @category Strings
  */
-export function makeUrl(fallback: string, initial?: string | null): Url {
+export function urlMake(fallback: string, initial?: string | null): Url {
 	const rules = new Rules();
 	rules.add().must.match.type.string();
 	rules.add().must.be.url();

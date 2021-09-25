@@ -9,7 +9,7 @@ export {OS} from './os';
 export {osSet} from './os/set';
 export {osValid} from './os/valid';
 
-export {Date, makeDate} from './date';
+export {Date, dateMake} from './date';
 export {DateTime, dateTimeMake} from './date-time';
 
 // Generic strong type
@@ -23,11 +23,11 @@ export {typeMatch, isType, TypeMap, PrimitiveOrConstructor} from './is/type';
 
 // Custom Types
 export {StrongArray, arrayMake} from './array';
-export {Bool, StrongBoolean, boolMake} from './bool';
-export {Double, StrongDouble, doubleMake} from './double';
-export {Int, StrongInt, intMake} from './int';
-export {UInt, StrongUInt, uIntMake} from './uint';
-export {Text, StrongString, textMake} from './text';
+export {Bool, boolMake} from './bool';
+export {Double, doubleMake} from './double';
+export {Int, intMake} from './int';
+export {UInt, uIntMake} from './uint';
+export {Text, textMake} from './text';
 
 // CSS Types & Objects
 export {CSSBoxShadow} from './css/box/shadow';
@@ -181,4 +181,4 @@ export {TransformOptions} from './transform/options';
 // Strong Time
 export {Time, makeTime} from './time';
 // Strong URLs
-export {Url, makeUrl} from './url';
+export {Url, urlMake} from './url';

@@ -28,10 +28,10 @@ import {TransformFN} from '../src/transform/fn';
 
 describe('Transform', () => {
 	describe('Constructor', () => {
-		it('should throw when fn argument is not provided', () => {
+		it('should throw when fn argument is undefined', () => {
 			expect(() => {
 				const custom = new Transform<string>(undefined as any);
-			}).toThrow('STTransform init failed - fn argument missing.');
+			}).toThrow('Bad Transform init - fn arg missing.');
 		});
 
 		it('should set id when provided in options argument', () => {

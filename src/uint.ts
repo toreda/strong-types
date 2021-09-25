@@ -32,12 +32,6 @@ import {Rules} from './rules';
  * @category Math
  */
 export type UInt = Strong<number>;
-/** UInt alias added for temporary backwards compat.
- *
- * @category Math
- */
-
-export type StrongUInt = UInt;
 
 /**
  * Create new strong unsigned integer.

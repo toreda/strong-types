@@ -33,11 +33,6 @@ import {Rules} from './rules';
 export type Double = Strong<number>;
 
 /**
- * @category Math
- */
-export type StrongDouble = Double;
-
-/**
  *
  * @param fallback
  * @param initial

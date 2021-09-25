@@ -31,10 +31,6 @@ import {Rules} from './rules';
  * @category Math
  */
 export type Int = Strong<number>;
-/**
- * @category Math
- */
-export type StrongInt = Int;
 
 /**
  *

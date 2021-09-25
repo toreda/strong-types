@@ -33,13 +33,6 @@ import {Rules} from './rules';
 export type Text = Strong<string>;
 
 /**
- * Alias of Text for backwards compat.
- *
- * @category Strings
- */
-export type StrongString = Text;
-
-/**
  *
  * @param fallback
  * @param initial

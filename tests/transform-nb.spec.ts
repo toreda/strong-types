@@ -26,12 +26,12 @@
 import {TransformFNNB} from '../src/transform/fn/nb';
 import {TransformNB} from '../src/transform/nb';
 
-describe('STTransformNB', () => {
+describe('TransformNB', () => {
 	describe('Constructor', () => {
-		it('should throw when fn argument is not provided', () => {
+		it('should throw when fn argument is undefined', () => {
 			expect(() => {
 				const custom = new TransformNB<string>(undefined as any);
-			}).toThrow('STTransformNB init failed - fn argument missing.');
+			}).toThrow('Bad TransformNB init - fn arg missing.');
 		});
 
 		it('should set id when provided in options argument', () => {

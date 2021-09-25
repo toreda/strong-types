@@ -23,61 +23,94 @@
  *
  */
 
-import {makeUrl} from '../../src/url';
+import {Url, urlMake} from '../../src/url';
+
+import URL_SCHEMES from '../_data/schemes';
 
 const MOCK_FALLBACK_DEFAULT = 'Http://somedomain.com';
 const MOCK_FALLBACK = 'Wss://somedomain.com:8080';
-const MOCK_INITIAL = 'http://test.com';
+const EMPTY_STRING = '';
 
 describe('Url', () => {
+	let strongUrl: Url;
+	beforeAll(() => {
+		strongUrl = urlMake(MOCK_FALLBACK);
+	});
+
+	beforeEach(() => {
+		strongUrl.reset();
+	});
+
 	describe('Implementation', () => {
-		it('should set initial value to sampleInitial argument', () => {
-			const sampleInitial = 'http://dog.com';
-			const result = makeUrl(MOCK_FALLBACK_DEFAULT, sampleInitial);
-			expect(result()).toBe(sampleInitial);
-		});
+		describe('Schemes', () => {
+			for (const scheme of URL_SCHEMES) {
+				it('should set initial value to sampleInitial argument', () => {
+					const sampleInitial = 'http://dog.com';
+					const result = urlMake(MOCK_FALLBACK_DEFAULT, sampleInitial);
+					expect(result()).toBe(sampleInitial);
+				});
 
-		it('should not set value when called with a string', () => {
-			const result = makeUrl(MOCK_INITIAL, null);
-			const sampleValue = 'test .com';
-			result(sampleValue);
-			expect(result()).toBe(MOCK_INITIAL);
-		});
+				it('should not set value when called with a non-url string', () => {
+					const sampleValue = 'test .com';
+					strongUrl(sampleValue);
+					expect(strongUrl()).toBe(MOCK_FALLBACK);
+				});
 
-		it('should not set value when called with an empty string', () => {
-			const sampleFallback = 'Wss://test.com:3030';
-			const emptyString = '';
-			const result = makeUrl(sampleFallback, null);
-			result(emptyString);
-			expect(result()).toBe(sampleFallback);
-		});
+				it('should not set value when called with an empty string', () => {
+					strongUrl(EMPTY_STRING);
+					expect(strongUrl()).toBe(MOCK_FALLBACK);
+				});
 
-		it('should return fallback default when value is null', () => {
-			const sampleFallback = 'HTTPS://somedomain.com:888';
-			const result = makeUrl(sampleFallback, null);
-			expect(result()).toBe(sampleFallback);
-		});
+				it('should return fallback default when value is null', () => {
+					const sampleFallback = 'HTTPS://somedomain.com:888';
+					const result = urlMake(sampleFallback);
+					expect(result()).toBe(sampleFallback);
+				});
 
-		it('should return fallback default when value is undefined', () => {
-			const sampleFallback = 'https://thebest.com';
-			const result = makeUrl(sampleFallback);
-			expect(result()).toBe(sampleFallback);
-		});
+				it('should return fallback default when value is undefined', () => {
+					const sampleFallback = 'https://thebest.com';
+					const result = urlMake(sampleFallback);
+					expect(result()).toBe(sampleFallback);
+				});
 
-		it('should not set value when called with a number', () => {
-			const sampleFallback = 'Wss://cat.com';
-			const numberedValue = 5 as any;
-			const result = makeUrl(sampleFallback, null);
-			result(numberedValue);
-			expect(result()).toBe(sampleFallback);
-		});
+				it('should not set value when called with a number', () => {
+					strongUrl(5 as any);
+					expect(strongUrl()).toBe(MOCK_FALLBACK);
+				});
 
-		it('should not set value when called with a boolean value', () => {
-			const sampleFallback = 'HTTP://dog.com';
-			const booleanValue = false as any;
-			const result = makeUrl(sampleFallback, null);
-			result(booleanValue);
-			expect(result()).toBe(sampleFallback);
+				it('should not set value when called with a boolean value', () => {
+					strongUrl(false as any);
+					expect(strongUrl()).toBe(MOCK_FALLBACK);
+				});
+
+				it(`should set value when https url contains a query string and single param`, () => {
+					const url = 'http://domain.com?param=111';
+					expect(strongUrl()).toBe(MOCK_FALLBACK);
+					strongUrl(url);
+					expect(strongUrl()).toBe(url);
+				});
+
+				it(`should set value when http url contains a query string and single param`, () => {
+					const url = 'http://otherdomain.com?param=222';
+					expect(strongUrl()).toBe(MOCK_FALLBACK);
+					strongUrl(url);
+					expect(strongUrl()).toBe(url);
+				});
+
+				it(`should set value when url's querystring contains an escaped URL`, () => {
+					const url = `https://somedomainHello?url=https%3A%2F%2Fwww.aol.com%2Fsome%2Fkeyword%3Fhere%3D1111`;
+					expect(strongUrl()).toBe(MOCK_FALLBACK);
+					strongUrl(url);
+					expect(strongUrl()).toBe(url);
+				});
+
+				it(`should set value when a querystring param contains encoded text`, () => {
+					const url = `https://somedomainHello?text=%20G%C3%BCnter`;
+					expect(strongUrl()).toBe(MOCK_FALLBACK);
+					strongUrl(url);
+					expect(strongUrl()).toBe(url);
+				});
+			}
 		});
 	});
 
@@ -85,13 +118,13 @@ describe('Url', () => {
 		describe('get', () => {
 			it('should return fallback argument when value is null', () => {
 				const sampleFallback = 'https://grinch.com';
-				const string = makeUrl(MOCK_FALLBACK_DEFAULT, null);
+				const string = urlMake(MOCK_FALLBACK_DEFAULT);
 				expect(string.get(sampleFallback)).toBe(sampleFallback);
 			});
 
 			it('should return value when value is set', () => {
 				const sampleInitial = 'http://test.com';
-				const string = makeUrl(MOCK_FALLBACK_DEFAULT, sampleInitial);
+				const string = urlMake(MOCK_FALLBACK_DEFAULT, sampleInitial);
 				expect(string.get(MOCK_FALLBACK)).toBe(sampleInitial);
 			});
 		});

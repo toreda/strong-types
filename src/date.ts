@@ -35,7 +35,7 @@ export type Date = Strong<string>;
 /**
  * @category Date & Time
  */
-export function makeDate(fallback: string, initial?: string | null): Date {
+export function dateMake(fallback: string, initial?: string | null): Date {
 	const rules = new Rules();
 	rules.add().must.match.type.string();
 	rules.add().must.be.date();

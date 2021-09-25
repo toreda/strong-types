@@ -35,13 +35,6 @@ import {Rules} from './rules';
 export type Bool = Strong<boolean>;
 
 /**
- * Alias for StrongType Bool for backwards compat.
- *
- * @category Bool
- */
-export type StrongBoolean = Bool;
-
-/**
  * Factory function to create a StrongType Bool object.
  * @param fallback
  * @param initial

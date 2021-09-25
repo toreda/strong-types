@@ -36,12 +36,12 @@ export class TransformNB<T> {
 
 	constructor(fn: TransformFNNB<T>, options?: TransformOptions) {
 		if (!fn) {
-			throw new Error('STTransformNB init failed - fn argument missing.');
+			throw new Error('Bad TransformNB init - fn arg missing.');
 		}
 
 		this.fn = fn;
-		this.id = options && typeof options.id === 'string' ? options.id : 'ST_tf';
-		this.label = `ST_filter_${this.id}`;
+		this.id = options && typeof options.id === 'string' ? options.id : 'tf';
+		this.label = `filter_${this.id}`;
 	}
 
 	public run(value: T | null): T | null {

@@ -152,14 +152,14 @@ describe('Transforms', () => {
 				fn3.mockImplementation((a: number): number => {
 					return a * 10;
 				});
-				const ST = new Transforms<number>(0);
+				const tf = new Transforms<number>(0);
 				const nbt1 = new TransformNB<number>(fn1);
 				const nbt2 = new TransformNB<number>(fn2);
 				const nbt3 = new TransformNB<number>(fn3);
-				ST.addNB(nbt1);
-				ST.addNB(nbt2);
-				ST.addNB(nbt3);
-				expect(ST.runNB(0)).toBe(20);
+				tf.addNB(nbt1);
+				tf.addNB(nbt2);
+				tf.addNB(nbt3);
+				expect(tf.runNB(0)).toBe(20);
 			});
 		});
 	});
