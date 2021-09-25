@@ -39,5 +39,6 @@ export function dateMake(fallback: string, initial?: string | null): Date {
 	const rules = new Rules();
 	rules.add().must.match.type.string();
 	rules.add().must.be.date();
+
 	return strongMake<string>(fallback, initial, rules);
 }

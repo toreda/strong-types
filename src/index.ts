@@ -24,7 +24,7 @@ export {typeMatch, isType, TypeMap, PrimitiveOrConstructor} from './is/type';
 // Custom Types
 export {StrongArray, arrayMake} from './array';
 export {Bool, boolMake} from './bool';
-export {Double, doubleMake} from './double';
+export {Dbl, dblMake} from './dbl';
 export {Int, intMake} from './int';
 export {UInt, uIntMake} from './uint';
 export {Text, textMake} from './text';

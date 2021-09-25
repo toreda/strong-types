@@ -23,7 +23,7 @@
  *
  */
 
-import {Double, doubleMake} from './double';
+import {Dbl, dblMake} from './dbl';
 
 import {Defaults} from './defaults';
 
@@ -31,15 +31,15 @@ import {Defaults} from './defaults';
  * Map for passing coodinates in 2-dimensional
  * coordinate systems.
  *
- * @category Math
+ * @category Maths
  */
 export class Vec2 {
-	public readonly x: Double;
-	public readonly y: Double;
+	public readonly x: Dbl;
+	public readonly y: Dbl;
 
 	constructor(x: number | null, y: number | null) {
-		this.x = doubleMake(Defaults.Vec.X, x);
-		this.y = doubleMake(Defaults.Vec.Y, y);
+		this.x = dblMake(Defaults.Vec.X, x);
+		this.y = dblMake(Defaults.Vec.Y, y);
 	}
 
 	/**

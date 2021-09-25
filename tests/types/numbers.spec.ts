@@ -23,7 +23,7 @@
  *
  */
 
-import {Double, doubleMake} from '../../src/double';
+import {Dbl, dblMake} from '../../src/dbl';
 import {Int, intMake} from '../../src/int';
 import {UInt, uIntMake} from '../../src/uint';
 
@@ -32,13 +32,13 @@ interface TestType {
 	instance: any;
 }
 
-let double: Double;
+let double: Dbl;
 let int: Int;
 let uint: UInt;
 let testTypes: TestType[];
 
 describe('numberMethods', () => {
-	double = doubleMake(0);
+	double = dblMake(0);
 	int = intMake(0);
 	uint = uIntMake(0);
 	testTypes = [

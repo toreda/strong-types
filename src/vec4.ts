@@ -23,7 +23,7 @@
  *
  */
 
-import {Double, doubleMake} from './double';
+import {Dbl, dblMake} from './dbl';
 
 import {Defaults} from './defaults';
 
@@ -31,19 +31,19 @@ import {Defaults} from './defaults';
  * Map for passing coodinates in 4-dimensional
  * coordinate systems.
  *
- * @category Math
+ * @category Maths
  */
 export class Vec4 {
-	public readonly x: Double;
-	public readonly y: Double;
-	public readonly z: Double;
-	public readonly w: Double;
+	public readonly x: Dbl;
+	public readonly y: Dbl;
+	public readonly z: Dbl;
+	public readonly w: Dbl;
 
 	constructor(x: number | null, y: number | null, z: number | null, w: number | null) {
-		this.x = doubleMake(Defaults.Vec.X, x);
-		this.y = doubleMake(Defaults.Vec.Y, y);
-		this.z = doubleMake(Defaults.Vec.Z, z);
-		this.w = doubleMake(Defaults.Vec.W, w);
+		this.x = dblMake(Defaults.Vec.X, x);
+		this.y = dblMake(Defaults.Vec.Y, y);
+		this.z = dblMake(Defaults.Vec.Z, z);
+		this.w = dblMake(Defaults.Vec.W, w);
 	}
 
 	/**

@@ -26,7 +26,7 @@
 import {Strong} from './strong';
 
 /**
- * @category Math
+ * @category Maths
  */
 export interface StrongNumber extends Strong<number> {
 	increment: () => void;

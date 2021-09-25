@@ -30,7 +30,7 @@ import {Rules} from './rules';
 /**
  * @category Math
  */
-export type Double = Strong<number>;
+export type Dbl = Strong<number>;
 
 /**
  *
@@ -40,7 +40,7 @@ export type Double = Strong<number>;
  *
  * @category Math
  */
-export function doubleMake(fallback: number, initial?: number | null): Double {
+export function dblMake(fallback: number, initial?: number | null): Dbl {
 	const rules = new Rules<number>();
 
 	rules.add().must.match.type.double();
