@@ -45,6 +45,19 @@ export class StrongData<ValueT> {
 		this.set(initial);
 	}
 
+	/**
+	 * Check if value passes this instance's rule validation.
+	 * @param value
+	 * @returns
+	 */
+	public check(value?: ValueT | null): boolean {
+		if (value === undefined) {
+			return false;
+		}
+
+		return this.rules.run(value);
+	}
+
 	public get(fallback: ValueT): ValueT {
 		if (this.value === null) {
 			if (typeof fallback === 'undefined' || fallback === null) {
@@ -69,8 +82,7 @@ export class StrongData<ValueT> {
 
 		const transformed = value;
 
-		const passedValidation = this.rules.run(transformed);
-		if (!passedValidation) {
+		if (!this.check(value)) {
 			return false;
 		}
 

@@ -26,4 +26,4 @@
 /**
  * @category Rules
  */
-export type RuleFn<T> = (curr: T) => boolean;
+export type RuleFn<T> = (value: T) => boolean;

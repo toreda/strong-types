@@ -34,6 +34,7 @@ export interface Strong<ValueT> {
 	get: (fallback: ValueT) => ValueT;
 	getNull: () => ValueT | null;
 	reset: () => void;
+	check: (value?: ValueT) => boolean;
 	typeId: 'StrongType' | string;
 	_data: StrongData<ValueT>;
 }
@@ -72,14 +73,35 @@ export function strongMake<ValueT>(
 			return instance.get(localFallback);
 		},
 		{
+			/**
+			 * Get current value and return provided fallback if
+			 * @param fallback
+			 * @returns
+			 */
 			get: (fallback: ValueT): ValueT => {
 				return instance.get(fallback);
 			},
+			/**
+			 * Get current value, or null if there isn't one.
+			 * @returns		Current value when set, otherwise null.
+			 */
 			getNull: (): ValueT | null => {
 				return instance.getNull();
 			},
+			/**
+			 * Reset instance properties to their starting values.
+			 */
 			reset: (): void => {
 				instance.reset();
+			},
+			/**
+			 * Read-only check to determine if provided value passes
+			 * rule validation for this instance.
+			 * @param value
+			 * @returns
+			 */
+			check: (value?: ValueT | null): boolean => {
+				return instance.check(value);
 			},
 			typeId: 'StrongType',
 			_data: instance

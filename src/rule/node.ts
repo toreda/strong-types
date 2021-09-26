@@ -1,10 +1,7 @@
-import {RuleMods, RuleNodeType} from 'src';
-
-import type {Bool} from '../bool';
 import {RuleFn} from './fn';
+import {RuleMods} from '../rule/mods';
 import {RuleNodeTarget} from './node/target';
-import type {Strong} from '../strong';
-import {boolMake} from '../bool';
+import {RuleNodeType} from '../rule/node/type';
 
 /**
  * @category Rules

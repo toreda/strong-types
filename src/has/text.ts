@@ -34,7 +34,7 @@ import {RuleNodeType} from '../rule/node/type';
  *
  * @category Validators
  */
-export type HasText<CallerT> = (target: string) => CallerT;
+export type HasText<CallerT> = (target: string | string[]) => CallerT;
 
 /**
  *
@@ -44,20 +44,35 @@ export type HasText<CallerT> = (target: string) => CallerT;
  *
  * @category Validators
  */
-export function hasText(value: string, target: string): boolean {
-	if (typeof value !== 'string') {
+export function hasText(value: string, target: string | string[]): boolean {
+	let mustMatch: string[];
+
+	if (typeof value !== 'string' || value === '') {
 		return false;
 	}
 
-	if (typeof target !== 'string') {
+	if (Array.isArray(target)) {
+		mustMatch = target;
+	} else if (typeof target === 'string') {
+		mustMatch = [target];
+	} else {
+		mustMatch = [];
+	}
+
+	if (mustMatch.length === 0) {
 		return false;
 	}
 
-	if (value === '' || target === '') {
-		return false;
+	let matches = 0;
+
+	for (const match of mustMatch) {
+		if (value.indexOf(match) !== -1) {
+			matches++;
+		}
 	}
 
-	return value.indexOf(target, 0) !== -1;
+	// All substrings in target must be present.
+	return matches === mustMatch.length;
 }
 
 /**
@@ -71,9 +86,9 @@ export function hasText(value: string, target: string): boolean {
  * @category Validator Factory
  */
 export function hasTextMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): HasText<CallerT> {
-	return (curr: string): CallerT => {
-		const fn: RuleFn<string> = (target: string) => {
-			return hasText(curr, target);
+	return (target: string | string[]): CallerT => {
+		const fn: RuleFn<string> = (value: string) => {
+			return hasText(value, target);
 		};
 
 		const node = new RuleNode<string>('HAS_TEXT', RuleNodeType.CMP, fn, mods);

@@ -14,4 +14,10 @@ export interface IdOptions {
 	 * Value must be >= 1. No Min length enforced when not set.
 	 */
 	minLength?: number;
+	/**
+	 * Substring or substrings required in Id to be valid. When
+	 * `contains` is an array, Ids which do not contain all substrings
+	 * are rejected.
+	 */
+	contains?: string | string[];
 }

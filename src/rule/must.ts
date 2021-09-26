@@ -34,6 +34,8 @@ import {RuleMods} from './mods';
 import {RuleNot} from './not';
 
 /**
+ * Begins a new statement within a rule.
+ *
  * @category Rules
  */
 export class RuleMust {
@@ -50,6 +52,8 @@ export class RuleMust {
 			rules.push(rule);
 		}
 
+
+		// Each must begins a new rule and resets all preceding mods.
 		const mods: RuleMods = {
 			invert: false,
 			target: 'value'

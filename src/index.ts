@@ -1,14 +1,13 @@
-// System Info - Processor architecture
+// System Info
 export {Arch} from './arch';
 export {archSet} from './arch/set';
 export {archValid} from './arch/valid';
 export {archAliases} from './arch/aliases';
-
-// System Info - OS
 export {OS} from './os';
 export {osSet} from './os/set';
 export {osValid} from './os/valid';
 
+// Time
 export {Date, dateMake} from './date';
 export {DateTime, dateTimeMake} from './date-time';
 
@@ -21,7 +20,7 @@ export {Collection} from './collection';
 export {StrongData} from './strong/data';
 export {typeMatch, isType, TypeMap, PrimitiveOrConstructor} from './is/type';
 
-// Custom Types
+// General Types
 export {StrongArray, arrayMake} from './array';
 export {Bool, boolMake} from './bool';
 export {Dbl, dblMake} from './dbl';
@@ -29,6 +28,11 @@ export {Int, intMake} from './int';
 export {UInt, uIntMake} from './uint';
 export {Text, textMake} from './text';
 export {Id, idMake} from './id';
+
+// Versioning
+export {semVerMake, SemVer} from './sem/ver';
+// Types for 3rd party services
+export {AwsArn, awsArnMake} from './aws/arn';
 
 // CSS Types & Objects
 export {CSSBoxShadow} from './css/box/shadow';
@@ -91,7 +95,6 @@ export {Vec3} from './vec3';
 export {Vec4} from './vec4';
 
 // Validator functions for is & has
-
 export {HasLengthEqual, hasLengthEqual, hasLengthEqualMake} from './has/length-equal';
 export {
 	HasLengthGreaterThanOrEqual,

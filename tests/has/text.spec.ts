@@ -31,5 +31,10 @@ describe('HasText', () => {
 			fn('ELEPHANT-zebra-TIGER');
 			expect(rule.nodes[0].execute('zebra')).toBe(true);
 		});
+
+		it(`should return false when target is an empty array`, () => {
+			fn('BADGET-badger-BADGER');
+			expect(rule.nodes[0].execute([])).toBe(false);
+		});
 	});
 });

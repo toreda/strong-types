@@ -58,6 +58,52 @@ describe('Id', () => {
 			sampleId(input);
 			expect(sampleId()).toBe(defaultValue);
 		});
+
+		it(`should not set value when string does not contain substring from 'contains'`, () => {
+			const value = 'aaaaaa';
+			const sampleInit = 'random-string1111';
+			const custom = idMake(sampleInit, null, {
+				contains: 'bbbbbbb'
+			});
+			expect(custom()).toBe(sampleInit);
+			custom(value);
+			expect(custom()).toBe(sampleInit);
+		});
+
+		it(`should not set value when string it contains substring from 'contains'`, () => {
+			const value = 'aaabbbb';
+			const sampleInit = 'random-string1111';
+			const custom = idMake(sampleInit, null, {
+				contains: 'aaa'
+			});
+			expect(custom()).toBe(sampleInit);
+			custom(value);
+			expect(custom()).toBe(value);
+		});
+
+		it(`should not set value when string it contains one but not all substrings from 'contains'`, () => {
+			const value = 'aaabbbb';
+			const sampleInit = 'random-string1111';
+			const custom = idMake(sampleInit, null, {
+				contains: ['ccc', '000', 'aaa']
+			});
+			expect(custom()).toBe(sampleInit);
+			custom(value);
+			expect(custom()).toBe(sampleInit);
+		});
+
+		it(`should set value when string contains all substrings from 'contains' in any order`, () => {
+			const value = 'aaa-ccc-000';
+			const sampleInit = 'random-string1111';
+			const custom = idMake(sampleInit, null, {
+				contains: ['ccc', '000', 'aaa']
+			});
+			expect(custom()).toBe(sampleInit);
+			custom(value);
+			expect(custom()).toBe(value);
+		});
+
+
 	});
 
 	describe('Reset', () => {

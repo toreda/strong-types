@@ -35,7 +35,7 @@ export type SemVer = Strong<string>;
  * @param initial
  * @returns
  */
-export function makeSemVer(fallback: string, initial?: string | null): SemVer {
+export function semVerMake(fallback: string, initial?: string | null): SemVer {
 	const rules = new Rules();
 	rules.add().must.match.type.string();
 	rules.add().must.contain.charTimes('.', 3);

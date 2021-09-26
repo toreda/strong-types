@@ -45,6 +45,16 @@ describe('Strong', () => {
 		});
 	});
 
+	describe('check', () => {
+		it(`should return false when value arg is undefined`, () => {
+			expect(strong.check()).toBe(false);
+		});
+
+		it(`should return false when value arg is null`, () => {
+			expect(strong.check()).toBe(false);
+		});
+	});
+
 	describe('Strong Obj', () => {
 		it('should return current value when called with no arguments', () => {
 			const sampleStr = '44198657635';

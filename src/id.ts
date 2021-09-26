@@ -54,6 +54,10 @@ export function idMake(fallback: string, initial?: string | null, options?: IdOp
 		if (typeof options.minLength === 'number') {
 			rules.add().must.have.length.greaterThanOrEqualTo(options.minLength);
 		}
+
+		if (typeof options.contains === 'string' || Array.isArray(options.contains)) {
+			rules.add().must.contain.text(options.contains);
+		}
 	}
 
 	rules.add().must.match.type.string();
