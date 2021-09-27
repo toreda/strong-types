@@ -43,9 +43,10 @@ export type Email = Strong<string>;
  *
  * @category Email
  */
-export function makeEmail(fallback: string, initial?: string | null): Email {
+export function emailMake(fallback: string, initial?: string | null): Email {
 	const rules = new Rules();
 	rules.add().must.match.type.string();
 	rules.add().must.be.email();
+
 	return strongMake<string>(fallback, initial, rules);
 }

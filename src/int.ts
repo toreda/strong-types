@@ -23,14 +23,14 @@
  *
  */
 
-import {Strong, strongMake} from './strong';
-
 import {Rules} from './rules';
+import {StrongNumber} from './strong/number';
+import {strongMake} from './strong';
 
 /**
- * @category Math
+ * @category Maths
  */
-export type Int = Strong<number>;
+export type Int = StrongNumber;
 
 /**
  *
@@ -38,7 +38,7 @@ export type Int = Strong<number>;
  * @param initial
  * @returns
  *
- * @category Math
+ * @category Maths
  */
 export function intMake(fallback: number, initial?: number | null): Int {
 	const rules = new Rules();
@@ -48,14 +48,25 @@ export function intMake(fallback: number, initial?: number | null): Int {
 
 	return Object.assign(strong, {
 		increment: () => {
-			if (strong !== null) {
-				strong._data.add(1);
-			}
+			return strong._data.add(1);
 		},
 		decrement: () => {
-			if (strong !== null) {
-				strong._data.add(-1);
-			}
+			return strong._data.add(-1);
+		},
+		mul: (amt: number) => {
+			return strong._data.mul(amt);
+		},
+		pow: (exponent: number) => {
+			return strong._data.pow(exponent);
+		},
+		div: (amt: number) => {
+			return strong._data.div(amt);
+		},
+		add: (amt: number) => {
+			return strong._data.add(amt);
+		},
+		sub: (amt: number) => {
+			return strong._data.add(amt * -1);
 		}
 	});
 }

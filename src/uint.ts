@@ -23,15 +23,16 @@
  *
  */
 
-import {Strong, strongMake} from './strong';
-
 import {Rules} from './rules';
+import {StrongNumber} from './strong/number';
+import {strongMake} from './strong';
 
-/** Strong unsigned integer.
+/**
+ * Strong unsigned integer.
  *
- * @category Math
+ * @category Maths
  */
-export type UInt = Strong<number>;
+export type UInt = StrongNumber;
 
 /**
  * Create new strong unsigned integer.
@@ -39,7 +40,7 @@ export type UInt = Strong<number>;
  * @param initial
  * @returns
  *
- * @category Math
+ * @category Maths
  */
 export function uIntMake(fallback: number, initial?: number | null): UInt {
 	const rules = new Rules<number>();
@@ -51,14 +52,25 @@ export function uIntMake(fallback: number, initial?: number | null): UInt {
 
 	return Object.assign(strong, {
 		increment: () => {
-			if (strong !== null) {
-				strong._data.add(1);
-			}
+			return strong._data.add(1);
 		},
 		decrement: () => {
-			if (strong !== null) {
-				strong._data.add(-1);
-			}
+			return strong._data.add(-1);
+		},
+		mul: (amt: number) => {
+			return strong._data.mul(amt);
+		},
+		pow: (exponent: number) => {
+			return strong._data.pow(exponent);
+		},
+		div: (amt: number) => {
+			return strong._data.div(amt);
+		},
+		add: (amt: number) => {
+			return strong._data.add(amt);
+		},
+		sub: (amt: number) => {
+			return strong._data.add(amt * -1);
 		}
 	});
 }

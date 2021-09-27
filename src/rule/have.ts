@@ -25,7 +25,7 @@
 
 import {HasProperty, hasPropertyMake} from '../has/property';
 import {HasText, hasTextMake} from '../has/text';
-import {HasTextTimes, makeHasTextTimes} from '../has/text-times';
+import {HasTextTimes, hasTextTimesMake} from '../has/text-times';
 
 import {Rule} from '../rule';
 import {RuleLength} from './length';
@@ -44,6 +44,6 @@ export class RuleHave {
 		this.length = new RuleLength(rule, mods);
 		this.property = hasPropertyMake<RuleHave>(this, rule, mods);
 		this.text = hasTextMake<RuleHave>(this, rule, mods);
-		this.textTimes = makeHasTextTimes<RuleHave>(this, rule, mods);
+		this.textTimes = hasTextTimesMake<RuleHave>(this, rule, mods);
 	}
 }

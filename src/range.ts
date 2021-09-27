@@ -30,7 +30,7 @@ import {StrongMap} from './map';
 /**
  * General numeric range with min and max value.
  *
- * @category Math
+ * @category Maths
  */
 export class Range extends StrongMap {
 	public readonly min: Dbl;

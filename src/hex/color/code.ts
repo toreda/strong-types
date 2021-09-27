@@ -38,7 +38,7 @@ export type HexColorCode = Strong<string>;
  * @param initial
  * @returns
  */
-export function makeHexColorCode(fallback: string, initial?: string | null): HexColorCode {
+export function hexColorCodeMake(fallback: string, initial?: string | null): HexColorCode {
 	const rules = new Rules();
 	rules.add().must.match.type.string();
 	rules.add().must.be.hexColorCode();

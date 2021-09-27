@@ -103,19 +103,91 @@ export class StrongData<ValueT> {
 		this.value = null;
 	}
 
-	public add(amt: number): void {
+	public mathVal(amt: number): number | null {
 		if (typeof amt !== 'number') {
-			return;
+			return null;
 		}
 
 		const val = this.getNull();
-
 		if (typeof val !== 'number') {
-			return;
+			return null;
 		}
 
-		const setVal = val + amt;
+		return val;
+	}
 
-		this.set(setVal as ANY);
+	/**
+	 * Divide current `value` by `divisor`. Result is zero when
+	 * `divisor` or `value` are zero.
+	 * @param divisor
+	 * @returns
+	 */
+	public div(divisor: number): number | null {
+		const val = this.mathVal(divisor);
+
+		if (val === null) {
+			return null;
+		}
+
+		let result: number;
+
+		if (val !== 0 && divisor !== 0) {
+			result = val / divisor;
+		} else {
+			result = 0;
+		}
+
+		const success = this.set(result as ANY);
+
+		return success ? result : null;
+	}
+
+	public mul(amt: number): number | null {
+		const val = this.mathVal(amt);
+
+		if (val === null) {
+			return null;
+		}
+
+		const result = val * amt;
+		const success = this.set(result as ANY);
+
+		return success ? result : null;
+	}
+
+	/**
+	 *
+	 * @param exponent
+	 * @returns
+	 */
+	public pow(exponent: number): number | null {
+		const val = this.mathVal(exponent);
+
+		if (val === null) {
+			return null;
+		}
+
+		const result = Math.pow(val, exponent);
+		const success = this.set(result as ANY);
+
+		return success ? result : null;
+	}
+
+	public add(amt: number): number | null {
+		const val = this.mathVal(amt);
+
+		if (val === null) {
+			return null;
+		}
+
+		const result = val + amt;
+
+		const success = this.set(result as ANY);
+
+		if (success) {
+			return result;
+		} else {
+			return null;
+		}
 	}
 }

@@ -1,7 +1,7 @@
 import {HasChar, hasCharMake} from '../has/char';
 import {HasCharTimes, hasCharTimesMake} from '../has/char-times';
 import {HasText, hasTextMake} from '../has/text';
-import {HasTextTimes, makeHasTextTimes} from '../has/text-times';
+import {HasTextTimes, hasTextTimesMake} from '../has/text-times';
 
 import {Rule} from '../rule';
 import {RuleMods} from './mods';
@@ -17,7 +17,7 @@ export class RuleContains {
 
 	constructor(rule: Rule, mods: RuleMods) {
 		this.text = hasTextMake<RuleContains>(this, rule, mods);
-		this.textTimes = makeHasTextTimes<RuleContains>(this, rule, mods);
+		this.textTimes = hasTextTimesMake<RuleContains>(this, rule, mods);
 
 		this.char = hasCharMake<RuleContains>(this, rule, mods);
 		this.charTimes = hasCharTimesMake<RuleContains>(this, rule, mods);

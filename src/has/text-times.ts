@@ -66,7 +66,11 @@ export const hasTextTimes = (curr: string, target: string, count: number): boole
  *
  * @category Validator Factory
  */
-export function makeHasTextTimes<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): HasTextTimes<CallerT> {
+export function hasTextTimesMake<CallerT>(
+	caller: CallerT,
+	rule: Rule,
+	mods: RuleMods
+): HasTextTimes<CallerT> {
 	return (target: string, count: number): CallerT => {
 		const fn: RuleFn<string> = (curr: string) => {
 			return hasTextTimes(curr, target, count);

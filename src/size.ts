@@ -30,7 +30,7 @@ import {StrongMap} from './map';
 /**
  * Size object containing width & height properties as strong doubles.
  *
- * @category Math
+ * @category Maths
  */
 export class Size extends StrongMap {
 	public readonly width: Dbl;

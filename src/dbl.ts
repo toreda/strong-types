@@ -28,7 +28,7 @@ import {Strong, strongMake} from './strong';
 import {Rules} from './rules';
 
 /**
- * @category Math
+ * @category Maths
  */
 export type Dbl = Strong<number>;
 
@@ -38,25 +38,36 @@ export type Dbl = Strong<number>;
  * @param initial
  * @returns
  *
- * @category Math
+ * @category Maths
  */
 export function dblMake(fallback: number, initial?: number | null): Dbl {
 	const rules = new Rules<number>();
 
-	rules.add().must.match.type.double();
+	rules.add().must.match.type.dbl();
 
 	const strong = strongMake<number>(fallback, initial, rules);
 
 	return Object.assign(strong, {
 		increment: () => {
-			if (strong !== null) {
-				strong._data.add(1);
-			}
+			return strong._data.add(1);
 		},
 		decrement: () => {
-			if (strong !== null) {
-				strong._data.add(-1);
-			}
+			return strong._data.add(-1);
+		},
+		mul: (amt: number) => {
+			return strong._data.mul(amt);
+		},
+		pow: (exponent: number) => {
+			return strong._data.pow(exponent);
+		},
+		div: (amt: number) => {
+			return strong._data.div(amt);
+		},
+		add: (amt: number) => {
+			return strong._data.add(amt);
+		},
+		sub: (amt: number) => {
+			return strong._data.add(amt * -1);
 		}
 	});
 }

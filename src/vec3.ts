@@ -57,6 +57,6 @@ export class Vec3 {
 /**
  * Vec3 alias for backwards compat.
  *
- * @category Math
+ * @category Maths
  */
 export type StrongVec3 = Vec3;

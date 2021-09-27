@@ -23,12 +23,20 @@
  *
  */
 
-import {Strong} from './strong';
+import {Strong} from '../strong';
 
 /**
+ * Adds increment and decrement method requirements for numeric
+ * types, which are not required or needed for non-numerics.
+ *
  * @category Maths
  */
 export interface StrongNumber extends Strong<number> {
-	increment: () => void;
-	decrement: () => void;
+	increment: () => number | null;
+	decrement: () => number | null;
+	mul: (amt: number) => number | null;
+	div: (amt: number) => number | null;
+	pow: (exponent: number) => number | null;
+	add: (amt: number) => number | null;
+	sub: (amt: number) => number | null;
 }

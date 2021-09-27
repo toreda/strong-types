@@ -23,11 +23,20 @@
  *
  */
 
-import {StrongData} from '../src/strong/data';
+import {StrongData} from '../../src/strong/data';
 
 const MOCK_INITIAL = 1;
 const MOCK_FALLBACK_DEFAULT = 2;
 const MOCK_FALLBACK = 33;
+
+const ZERO = 0;
+const MATH_EX = {};
+
+const MATH_CASES = [];
+
+const MATH_OPS = {
+	mul: []
+};
 
 describe('StrongData', () => {
 	let instance: StrongData<number>;
@@ -53,6 +62,63 @@ describe('StrongData', () => {
 
 			const custom = new StrongData<number>(sampleVal, MOCK_INITIAL);
 			expect(custom.fallbackDefault).toBe(sampleVal);
+		});
+	});
+
+	describe('Implementation', () => {
+		describe('div', () => {
+			it(`should return null when divisor is 0`, () => {
+				expect(instance.mul(ZERO)).toBeNull();
+			});
+
+			it(`should set and return zero when divisor is 0 and value is 0`, () => {
+				instance.set(0);
+				expect(instance.getNull()).toBe(0);
+
+				expect(instance.mul(ZERO)).toBe(0);
+				expect(instance.getNull()).toBe(0);
+			});
+
+			it(`should set and return 0 when divisor is 0 and value is > 0`, () => {
+				instance.set(10);
+				expect(instance.getNull()).toBe(10);
+				expect(instance.mul(ZERO)).toBe(0);
+				expect(instance.getNull()).toBe(0);
+			});
+		});
+
+		describe('add', () => {});
+
+		describe('sub', () => {});
+
+		describe('pow', () => {
+			it(`should set and return 1 when value is 1 and pow is 0`, () => {
+				instance.set(1);
+				expect(instance.getNull()).toBe(1);
+				expect(instance.pow(0)).toBe(1);
+				expect(instance.getNull()).toBe(1);
+			});
+
+			it(`should set and return 0 when value is 0 and pow is 1`, () => {
+				instance.set(0);
+				expect(instance.getNull()).toBe(0);
+				expect(instance.pow(1)).toBe(0);
+				expect(instance.getNull()).toBe(0);
+			});
+
+			it(`should set and return 4 when value is 2 and pow is 2`, () => {
+				instance.set(2);
+				expect(instance.getNull()).toBe(2);
+				expect(instance.pow(2)).toBe(4);
+				expect(instance.getNull()).toBe(4);
+			});
+
+			it(`should set and return 4 when value is 2 and pow is 2`, () => {
+				instance.set(2);
+				expect(instance.getNull()).toBe(2);
+				expect(instance.pow(2)).toBe(4);
+				expect(instance.getNull()).toBe(4);
+			});
 		});
 	});
 });

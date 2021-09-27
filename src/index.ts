@@ -117,12 +117,13 @@ export {
 export {HasProperty, hasProperty, hasPropertyMake} from './has/property';
 export {HasPropertyWithType, hasPropertyWithType, hasPropertyWithTypeMake} from './has/property-with-type';
 export {HasText, hasText, hasTextMake} from './has/text';
-export {HasTextTimes, hasTextTimes, makeHasTextTimes} from './has/text-times';
+export {HasTextTimes, hasTextTimes, hasTextTimesMake} from './has/text-times';
 export {IsArray, isArrayMake} from './is/array';
 export {IsBoolean, isBoolean, isBooleanMake} from './is/boolean';
 export {IsDate, isDate, isDateMake} from './is/date';
 export {IsDateTime, isDateTime, isDateTimeMake} from './is/date-time';
-export {IsDouble, isDouble, isDoubleMake} from './is/double';
+export {IsDbl, isDbl, isDblMake} from './is/dbl';
+export {IsFloat, isFloat, isFloatMake} from './is/float';
 export {IsEmail, isEmail, isEmailMake} from './is/email';
 export {IsEmpty, isEmpty, isEmptyMake} from './is/empty';
 export {IsEqual, isEqual, isEqualMake} from './is/equal';
