@@ -32,7 +32,7 @@ import {strongMake} from './strong';
  *
  * @category Maths
  */
-export type UInt = StrongNumber;
+export type UInt = StrongNumber<number, number>;
 
 /**
  * Create new strong unsigned integer.

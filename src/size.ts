@@ -23,7 +23,7 @@
  *
  */
 
-import {Dbl, dblMake} from './dbl';
+import {Float, floatMake} from './float';
 
 import {StrongMap} from './map';
 
@@ -33,13 +33,13 @@ import {StrongMap} from './map';
  * @category Maths
  */
 export class Size extends StrongMap {
-	public readonly width: Dbl;
-	public readonly height: Dbl;
+	public readonly width: Float;
+	public readonly height: Float;
 
 	constructor(defaultWidth: number | null, defaultHeight: number | null) {
 		super();
 
-		this.width = dblMake(typeof defaultWidth === 'number' ? defaultWidth : 0);
-		this.height = dblMake(typeof defaultHeight === 'number' ? defaultHeight : 0);
+		this.width = floatMake(typeof defaultWidth === 'number' ? defaultWidth : 0);
+		this.height = floatMake(typeof defaultHeight === 'number' ? defaultHeight : 0);
 	}
 }

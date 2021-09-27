@@ -23,7 +23,7 @@
  *
  */
 
-import {Dbl, dblMake} from './dbl';
+import {Float, floatMake} from './float';
 import {Int, intMake} from './int';
 import {Strong, strongMake} from './strong';
 import {Text, textMake} from './text';
@@ -43,9 +43,9 @@ import {StrongMap} from './map';
 export class Styles extends StrongMap {
 	public readonly zIndex: Int;
 	/** Element opacity from 0 -> 1 */
-	public readonly opacity: Dbl;
-	public readonly width: Dbl;
-	public readonly height: Dbl;
+	public readonly opacity: Float;
+	public readonly width: Float;
+	public readonly height: Float;
 	public readonly font: CSSFont;
 	public readonly text: CSSText;
 	public readonly lineHeight: Text;
@@ -69,15 +69,15 @@ export class Styles extends StrongMap {
 		this.clip = strongMake<CSSClip>('');
 		this.display = strongMake<CSSDisplay>('');
 		this.font = new CSSFont();
-		this.height = dblMake(1);
+		this.height = floatMake(1);
 		this.left = strongMake<CSSUnits>('');
 		this.lineHeight = textMake('');
-		this.opacity = dblMake(1);
+		this.opacity = floatMake(1);
 		this.right = strongMake<CSSUnits>('');
 		this.text = new CSSText();
 		this.top = strongMake<CSSUnits>('');
 		this.userSelect = strongMake<CSSUserSelect>('');
-		this.width = dblMake(1);
+		this.width = floatMake(1);
 		this.zIndex = intMake(0);
 	}
 

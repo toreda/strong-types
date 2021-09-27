@@ -30,7 +30,7 @@ import {strongMake} from './strong';
 /**
  * @category Maths
  */
-export type Int = StrongNumber;
+export type Int = StrongNumber<number, number>;
 
 /**
  *

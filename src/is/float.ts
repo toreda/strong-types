@@ -23,20 +23,54 @@
  *
  */
 
-import {Strong} from '../strong';
+import {Rule} from '../rule';
+import {RuleFn} from '../rule/fn';
+import {RuleMods} from '../rule/mods';
+import {RuleNode} from '../rule/node';
+import {RuleNodeType} from '../rule/node/type';
 
 /**
- * Adds increment and decrement method requirements for numeric
- * types, which are not required or needed for non-numerics.
+ * Type signature for isFloat validators used in rule chains.
  *
- * @category Maths
+ * @category Validators
  */
-export interface StrongNumber<ArgT, ReturnT> extends Strong<ReturnT> {
-	increment: () => ReturnT | null;
-	decrement: () => ReturnT | null;
-	mul: (value: ArgT) => ReturnT | null;
-	div: (value: ArgT) => ReturnT | null;
-	pow: (exponent: ArgT) => ReturnT | null;
-	add: (value: ArgT) => ReturnT | null;
-	sub: (value: ArgT) => ReturnT | null;
+export type IsFloat<CallerT> = () => CallerT;
+
+/**
+ * Check whether value is a valid Double.
+ *
+ * @category Validators
+ */
+export function isFloat(value: number): boolean {
+	if (typeof value !== 'number') {
+		return false;
+	}
+
+	if (isNaN(value)) {
+		return false;
+	}
+
+	return true;
+}
+
+/**
+ * Factory to create isFloat validator function used in rule chains.
+ * @param caller
+ * @param rule
+ * @param mods
+ * @returns
+ *
+ * @category Validator Factory
+ */
+export function isFloatMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsFloat<CallerT> {
+	return (): CallerT => {
+		const fn: RuleFn<number> = (value: number): boolean => {
+			return isFloat(value);
+		};
+
+		const node = new RuleNode<number>('IS_T_FLOAT', RuleNodeType.CMP, fn, mods);
+		rule.add(node);
+
+		return caller;
+	};
 }

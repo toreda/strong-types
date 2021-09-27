@@ -23,14 +23,19 @@
  *
  */
 
-import {Strong, strongMake} from './strong';
-
 import {Rules} from './rules';
+import {StrongNumber} from './strong/number';
+import {strongMake} from './strong';
+import {toBigInt} from './strong/helpers';
+
+const BIG_ZERO = BigInt(0);
+const BIG_ONE_POS = BigInt(1);
+const BIG_ONE_NEG = BigInt(-1);
 
 /**
  * @category Maths
  */
-export type Dbl = Strong<number>;
+export type Dbl = StrongNumber<number | string | bigint, bigint>;
 
 /**
  *
@@ -40,34 +45,83 @@ export type Dbl = Strong<number>;
  *
  * @category Maths
  */
-export function dblMake(fallback: number, initial?: number | null): Dbl {
-	const rules = new Rules<number>();
+export function dblMake(fallback: bigint | string, initial?: bigint | string | null): Dbl {
+	const rules = new Rules<BigInt>();
 
 	rules.add().must.match.type.dbl();
 
-	const strong = strongMake<number>(fallback, initial, rules);
+	const bigFallback = toBigInt(fallback);
+	const bigInitial = toBigInt(initial);
+
+	const strong = strongMake<bigint>(bigFallback ?? BigInt(0), bigInitial, rules);
 
 	return Object.assign(strong, {
-		increment: () => {
-			return strong._data.add(1);
+		increment: (): bigint | null => {
+			const value = strong._data.get(BIG_ZERO) + BIG_ONE_POS;
+
+			return strong._data.set(value) ? value : null;
 		},
-		decrement: () => {
-			return strong._data.add(-1);
+		decrement: (): bigint | null => {
+			const value = strong._data.get(BIG_ZERO) + BIG_ONE_NEG;
+
+			return strong._data.set(value) ? value : null;
 		},
-		mul: (amt: number) => {
-			return strong._data.mul(amt);
+		mul: (input: number | string | bigint): bigint | null => {
+			const curr: bigint = strong.get(BigInt(0));
+
+			const value = toBigInt(input);
+			if (value === null) {
+				return null;
+			}
+
+			const result = BigInt(curr * value);
+
+			return strong._data.set(result) ? result : null;
 		},
-		pow: (exponent: number) => {
-			return strong._data.pow(exponent);
+		pow: (exponent: number | string | bigint): bigint | null => {
+			//return strong._data.pow(exponent);
+			const value = toBigInt(exponent);
+			const curr = strong._data.getNull();
+
+			if (value === null || curr === null) {
+				return null;
+			}
+
+			return null;
 		},
-		div: (amt: number) => {
-			return strong._data.div(amt);
+		div: (input: number | string | bigint): bigint | null => {
+			const curr = strong.getNull();
+			const value = toBigInt(input);
+
+			if (curr === null || value === null || value === BIG_ZERO || curr === BIG_ZERO) {
+				return null;
+			}
+
+			const result = curr - value;
+
+			return strong._data.set(result) ? result : null;
 		},
-		add: (amt: number) => {
-			return strong._data.add(amt);
+		add: (input: number | string | bigint): bigint | null => {
+			const value = toBigInt(input);
+			if (value === null) {
+				return null;
+			}
+
+			const curr = strong.get(BIG_ZERO);
+			const result = curr + value;
+
+			return strong._data.set(result) ? result : null;
 		},
-		sub: (amt: number) => {
-			return strong._data.add(amt * -1);
+		sub: (input: number | string | bigint): bigint | null => {
+			const value = toBigInt(input);
+			if (value === null) {
+				return null;
+			}
+
+			const curr = strong.get(BIG_ZERO);
+			const result = curr - value;
+
+			return strong._data.set(result) ? result : null;
 		}
 	});
 }

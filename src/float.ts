@@ -23,20 +23,51 @@
  *
  */
 
-import {Strong} from '../strong';
+import {Strong, strongMake} from './strong';
+
+import {Rules} from './rules';
 
 /**
- * Adds increment and decrement method requirements for numeric
- * types, which are not required or needed for non-numerics.
+ * @category Maths
+ */
+export type Float = Strong<number>;
+
+/**
+ *
+ * @param fallback
+ * @param initial
+ * @returns
  *
  * @category Maths
  */
-export interface StrongNumber<ArgT, ReturnT> extends Strong<ReturnT> {
-	increment: () => ReturnT | null;
-	decrement: () => ReturnT | null;
-	mul: (value: ArgT) => ReturnT | null;
-	div: (value: ArgT) => ReturnT | null;
-	pow: (exponent: ArgT) => ReturnT | null;
-	add: (value: ArgT) => ReturnT | null;
-	sub: (value: ArgT) => ReturnT | null;
+export function floatMake(fallback: number, initial?: number | null): Float {
+	const rules = new Rules<number>();
+
+	rules.add().must.match.type.float();
+
+	const strong = strongMake<number>(fallback, initial, rules);
+
+	return Object.assign(strong, {
+		increment: () => {
+			return strong._data.add(1);
+		},
+		decrement: () => {
+			return strong._data.add(-1);
+		},
+		mul: (amt: number) => {
+			return strong._data.mul(amt);
+		},
+		pow: (exponent: number) => {
+			return strong._data.pow(exponent);
+		},
+		div: (amt: number) => {
+			return strong._data.div(amt);
+		},
+		add: (amt: number) => {
+			return strong._data.add(amt);
+		},
+		sub: (amt: number) => {
+			return strong._data.add(amt * -1);
+		}
+	});
 }

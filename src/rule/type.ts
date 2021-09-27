@@ -1,6 +1,7 @@
 import {IsArray, isArrayMake} from '../is/array';
 import {IsBoolean, isBooleanMake} from '../is/boolean';
-import {IsDouble, isDoubleMake} from '../is/double';
+import {IsDbl, isDblMake} from '../is/dbl';
+import {IsFloat, isFloatMake} from '../is/float';
 import {IsInt, isIntMake} from '../is/int';
 import {IsNull, isNullMake} from '../is/null';
 import {IsText, isTextMake} from '../is/text';
@@ -14,8 +15,9 @@ import {RuleMods} from './mods';
  */
 export class RuleType {
 	public readonly array: IsArray<RuleType>;
+	public readonly float: IsFloat<RuleType>;
 	public readonly boolean: IsBoolean<RuleType>;
-	public readonly double: IsDouble<RuleType>;
+	public readonly dbl: IsDbl<RuleType>;
 	public readonly int: IsInt<RuleType>;
 	public readonly null: IsNull<RuleType>;
 	public readonly string: IsText<RuleType>;
@@ -25,7 +27,8 @@ export class RuleType {
 	constructor(rule: Rule, mods: RuleMods) {
 		this.array = isArrayMake<RuleType>(this, rule, mods);
 		this.boolean = isBooleanMake<RuleType>(this, rule, mods);
-		this.double = isDoubleMake<RuleType>(this, rule, mods);
+		this.dbl = isDblMake<RuleType>(this, rule, mods);
+		this.float = isFloatMake<RuleType>(this, rule, mods);
 		this.int = isIntMake<RuleType>(this, rule, mods);
 		this.null = isNullMake<RuleType>(this, rule, mods);
 		this.string = isTextMake<RuleType>(this, rule, mods);

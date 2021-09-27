@@ -103,7 +103,7 @@ export class StrongData<ValueT> {
 		this.value = null;
 	}
 
-	public mathVal(amt: number): number | null {
+	public mathVal(amt: number): ValueT | null {
 		if (typeof amt !== 'number') {
 			return null;
 		}
@@ -123,36 +123,29 @@ export class StrongData<ValueT> {
 	 * @returns
 	 */
 	public div(divisor: number): number | null {
-		const val = this.mathVal(divisor);
+		const curr = this.getNull();
 
-		if (val === null) {
+		if (typeof divisor !== 'number' || typeof curr !== 'number') {
 			return null;
 		}
 
-		let result: number;
-
-		if (val !== 0 && divisor !== 0) {
-			result = val / divisor;
-		} else {
-			result = 0;
+		if (divisor === 0 || curr === 0) {
+			return 0;
 		}
 
-		const success = this.set(result as ANY);
+		const result = curr / divisor;
 
-		return success ? result : null;
+		return this.set(result as ANY) ? result : null;
 	}
 
-	public mul(amt: number): number | null {
-		const val = this.mathVal(amt);
-
-		if (val === null) {
+	public mul(value: number): number | null {
+		const curr = this.getNull();
+		if (typeof value !== 'number' || typeof curr !== 'number') {
 			return null;
 		}
 
-		const result = val * amt;
-		const success = this.set(result as ANY);
-
-		return success ? result : null;
+		const result = value * curr;
+		return this.set(result as ANY) ? result : null;
 	}
 
 	/**
@@ -161,33 +154,26 @@ export class StrongData<ValueT> {
 	 * @returns
 	 */
 	public pow(exponent: number): number | null {
-		const val = this.mathVal(exponent);
+		const curr = this.getNull();
 
-		if (val === null) {
+		if (typeof curr !== 'number' || curr === null) {
 			return null;
 		}
 
-		const result = Math.pow(val, exponent);
-		const success = this.set(result as ANY);
+		const result = Math.pow(curr, exponent);
 
-		return success ? result : null;
+		return this.set(result as ANY) ? result : null;
 	}
 
-	public add(amt: number): number | null {
-		const val = this.mathVal(amt);
+	public add(value: number): number | null {
+		const curr = this.getNull();
 
-		if (val === null) {
+		if (typeof value !== 'number' || typeof curr !== 'number') {
 			return null;
 		}
 
-		const result = val + amt;
+		const result = value + curr;
 
-		const success = this.set(result as ANY);
-
-		if (success) {
-			return result;
-		} else {
-			return null;
-		}
+		return this.set(result as ANY) ? result : null;
 	}
 }

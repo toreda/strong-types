@@ -23,7 +23,7 @@
  *
  */
 
-import {Dbl, dblMake} from './dbl';
+import {Float, floatMake} from './float';
 
 import {StrongMap} from './map';
 
@@ -33,14 +33,14 @@ import {StrongMap} from './map';
  * @category Maths
  */
 export class Range extends StrongMap {
-	public readonly min: Dbl;
-	public readonly max: Dbl;
+	public readonly min: Float;
+	public readonly max: Float;
 
 	constructor(defaultMin: number | null, defaultMax: number | null) {
 		super();
 
-		this.min = dblMake(typeof defaultMin === 'number' ? defaultMin : 0);
-		this.max = dblMake(typeof defaultMax === 'number' ? defaultMax : 0);
+		this.min = floatMake(typeof defaultMin === 'number' ? defaultMin : 0);
+		this.max = floatMake(typeof defaultMax === 'number' ? defaultMax : 0);
 	}
 
 	/**

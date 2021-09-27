@@ -89,7 +89,8 @@
 	},
 	"prettier": "@toreda/prettier-config",
 	"dependencies": {
-		"@toreda/log": "^0.6.4"
+		"@toreda/log": "^0.6.4",
+		"big.js": "^6.1.1"
 	},
 	"browser": {
 		"crypto": false,

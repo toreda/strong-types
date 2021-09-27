@@ -21,13 +21,14 @@ export {StrongData} from './strong/data';
 export {typeMatch, isType, TypeMap, PrimitiveOrConstructor} from './is/type';
 
 // General Types
-export {StrongArray, arrayMake} from './array';
 export {Bool, boolMake} from './bool';
 export {Dbl, dblMake} from './dbl';
-export {Int, intMake} from './int';
-export {UInt, uIntMake} from './uint';
-export {Text, textMake} from './text';
+export {Float, floatMake} from './float';
 export {Id, idMake} from './id';
+export {Int, intMake} from './int';
+export {StrongArray, arrayMake} from './array';
+export {Text, textMake} from './text';
+export {UInt, uIntMake} from './uint';
 
 // Versioning
 export {semVerMake, SemVer} from './sem/ver';
@@ -148,6 +149,8 @@ export {IsUndefined, isUndefined, isUndefinedMake} from './is/undefined';
 export {IsUrl, isUrl, isUrlMake} from './is/url';
 export {IsSystemPort, isSystemPortMake, isSystemPort} from './is/system/port';
 
+export {toBigInt} from './strong/helpers';
+
 // Patterns
 export {Pattern} from './pattern';
 export {Port, portMake} from './port';
@@ -185,6 +188,6 @@ export {Transforms} from './transforms';
 export {TransformOptions} from './transform/options';
 
 // Strong Time
-export {Time, makeTime} from './time';
+export {Time, timeMake} from './time';
 // Strong URLs
 export {Url, urlMake} from './url';

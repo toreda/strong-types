@@ -40,9 +40,10 @@ export type Time = Strong<string>;
  *
  * @category Date & Time
  */
-export function makeTime(fallback: string, initial?: string | null): Time {
+export function timeMake(fallback: string, initial?: string | null): Time {
 	const rules = new Rules();
 	rules.add().must.match.type.string();
 	rules.add().must.be.time();
+
 	return strongMake<string>(fallback, initial, rules);
 }

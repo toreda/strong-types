@@ -23,7 +23,7 @@
  *
  */
 
-import {Dbl, dblMake} from './dbl';
+import {Float, floatMake} from './float';
 
 import {Defaults} from './defaults';
 
@@ -34,12 +34,12 @@ import {Defaults} from './defaults';
  * @category Maths
  */
 export class Vec2 {
-	public readonly x: Dbl;
-	public readonly y: Dbl;
+	public readonly x: Float;
+	public readonly y: Float;
 
 	constructor(x: number | null, y: number | null) {
-		this.x = dblMake(Defaults.Vec.X, x);
-		this.y = dblMake(Defaults.Vec.Y, y);
+		this.x = floatMake(Defaults.Vec.X, x);
+		this.y = floatMake(Defaults.Vec.Y, y);
 	}
 
 	/**

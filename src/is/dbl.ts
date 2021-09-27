@@ -30,18 +30,18 @@ import {RuleNode} from '../rule/node';
 import {RuleNodeType} from '../rule/node/type';
 
 /**
- * Type signature for isDouble validators used in rule chains.
+ * Type signature for isDbl validators used in rule chains.
  *
  * @category Validators
  */
-export type IsDouble<CallerT> = () => CallerT;
+export type IsDbl<CallerT> = () => CallerT;
 
 /**
  * Check whether value is a valid Double.
  *
  * @category Validators
  */
-export function isDouble(value: number): boolean {
+export function isDbl(value: number): boolean {
 	if (typeof value !== 'number') {
 		return false;
 	}
@@ -54,7 +54,7 @@ export function isDouble(value: number): boolean {
 }
 
 /**
- * Factory to create isDouble validator function used in rule chains.
+ * Factory to create isDbl validator function used in rule chains.
  * @param caller
  * @param rule
  * @param mods
@@ -62,13 +62,13 @@ export function isDouble(value: number): boolean {
  *
  * @category Validator Factory
  */
-export function isDoubleMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsDouble<CallerT> {
+export function isDblMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsDbl<CallerT> {
 	return (): CallerT => {
 		const fn: RuleFn<number> = (value: number): boolean => {
-			return isDouble(value);
+			return isDbl(value);
 		};
 
-		const node = new RuleNode<number>('IS_T_DOUBLE', RuleNodeType.CMP, fn, mods);
+		const node = new RuleNode<number>('IS_T_DBL', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

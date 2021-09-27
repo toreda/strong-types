@@ -24,8 +24,11 @@
  */
 
 import {Dbl, dblMake} from '../../src/dbl';
+import {Float, floatMake} from '../../src/float';
 import {Int, intMake} from '../../src/int';
 import {UInt, uIntMake} from '../../src/uint';
+
+const BIG_ZERO = BigInt(0);
 
 interface TestType {
 	name: string;
@@ -35,10 +38,12 @@ interface TestType {
 let double: Dbl;
 let int: Int;
 let uint: UInt;
+let float: Float;
 let testTypes: TestType[];
 
 describe('numberMethods', () => {
-	double = dblMake(0);
+	double = dblMake(BIG_ZERO);
+	float = floatMake(0);
 	int = intMake(0);
 	uint = uIntMake(0);
 	testTypes = [
