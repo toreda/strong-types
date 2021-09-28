@@ -29,7 +29,7 @@ import {StrongData} from './strong/data';
 /**
  * @category Core
  */
-export interface Strong<ValueT> {
+export interface Strong<ValueT = unknown> {
 	(val?: ValueT | null): ValueT;
 	get: (fallback: ValueT) => ValueT;
 	getNull: () => ValueT | null;

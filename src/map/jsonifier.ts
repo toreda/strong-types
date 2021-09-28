@@ -54,7 +54,7 @@ export class MapJsonifier {
 				result[keyName] = null;
 			} else if (child instanceof StrongMap) {
 				result[keyName] = this.jsonifyMap(child);
-			} else if ((child as Strong<unknown>).typeId === 'StrongType') {
+			} else if ((child as Strong).typeId === 'StrongType') {
 				result[keyName] = this.jsonifyKey(child);
 			} else if (typeof child !== 'object') {
 				result[keyName] = this.jsonifyKey(child);
@@ -77,7 +77,7 @@ export class MapJsonifier {
 			return null;
 		}
 
-		const assumeKeyIsStrongType = key as Strong<unknown>;
+		const assumeKeyIsStrongType = key as Strong;
 
 		if (assumeKeyIsStrongType?.typeId === 'StrongType') {
 			return assumeKeyIsStrongType();
