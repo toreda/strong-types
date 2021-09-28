@@ -48,7 +48,7 @@ export class MapParser {
 		return this.parseMap(map, data, parseState);
 	}
 
-	public parseStrongKey(key: Strong<unknown>, value: unknown, _parseState: State): void {
+	public parseStrongKey(key: Strong, value: unknown, _parseState: State): void {
 		if (!key || !value) {
 			return;
 		}
@@ -57,7 +57,7 @@ export class MapParser {
 			return;
 		}
 
-		const strongValue = value as Strong<unknown>;
+		const strongValue = value as Strong;
 		// When value is also a StrongType invoke it to get its value. Otherwise set
 		// the strong key with value.
 		if (strongValue.typeId === 'StrongType') {
@@ -85,8 +85,8 @@ export class MapParser {
 			return true;
 		}
 
-		let result: Strong<unknown> | unknown;
-		const strongValue = value as Strong<unknown>;
+		let result: Strong | unknown;
+		const strongValue = value as Strong;
 		if (strongValue.hasOwnProperty('typeId') && strongValue.typeId === 'StrongType') {
 			result = strongValue();
 		} else {
@@ -133,9 +133,9 @@ export class MapParser {
 			// Child is also a StrongMap. Parse it recursively.
 			if (child instanceof StrongMap) {
 				this.parseMap(child, data, parseState);
-			} else if ((child as Strong<unknown>).typeId === 'StrongType') {
+			} else if ((child as Strong)?.typeId === 'StrongType') {
 				// Child is a StrongType.
-				this.parseStrongKey(child as Strong<unknown>, keyValue, parseState);
+				this.parseStrongKey(child as Strong, keyValue, parseState);
 			} else if (typeof child !== 'object') {
 				// Child is not a StrongType and not an object.
 				this.parseKey(map, keyName, keyValue, parseState);
