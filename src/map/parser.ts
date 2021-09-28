@@ -132,7 +132,7 @@ export class MapParser {
 
 			// Child is also a StrongMap. Parse it recursively.
 			if (child instanceof StrongMap) {
-				this.parseMap(child, data, parseState);
+				this.parseMap(child, keyValue as Data, parseState);
 			} else if ((child as Strong)?.typeId === 'StrongType') {
 				// Child is a StrongType.
 				this.parseStrongKey(child as Strong, keyValue, parseState);
