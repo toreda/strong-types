@@ -23,12 +23,6 @@
  *
  */
 
-import {Rule} from '../rule';
-import {RuleFn} from '../rule/fn';
-import {RuleMods} from '../rule/mods';
-import {RuleNode} from '../rule/node';
-import {RuleNodeType} from '../rule/node/type';
-
 /**
  * Type signature for isIpv4Addr validators used in rule chains.
  *
@@ -75,26 +69,4 @@ export function isIpv4Addr(addr: string): boolean {
 	}
 
 	return true;
-}
-
-/**
- * Factory to create isIpv4Addr validator function used in rule chains.
- * @param caller
- * @param rule
- * @param mods
- * @returns
- *
- * @category Validator Factory
- */
-export function isIpv4AddrMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsIpv4Addr<CallerT> {
-	return (): CallerT => {
-		const fn: RuleFn<string> = (curr: string): boolean => {
-			return isIpv4Addr(curr);
-		};
-
-		const node = new RuleNode('IS_IP4_ADDR', RuleNodeType.CMP, fn, mods);
-		rule.add(node);
-
-		return caller;
-	};
 }

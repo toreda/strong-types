@@ -23,28 +23,19 @@
  *
  */
 
-import {ANY, AnyObj, Expand, LiteralToPrimitive, Primitive} from '@toreda/types';
+import Big from 'big.js';
+import {toIntBig} from '../../../src/to/int/big';
 
-import {Strong} from '../strong';
+describe('toIntBig', () => {
+	it(`should return null when value is undefined`, () => {
+		expect(toIntBig()).toBeNull();
+	});
 
-/**
- * @category Core
- */
-export type PrimitiveToStrong<Literal> = Strong<LiteralToPrimitive<Literal>>;
+	it(`should return null when value is null`, () => {
+		expect(toIntBig(null)).toBeNull();
+	});
 
-// Do not export, this is a helper type and has unexpected results if not used correctly
-/**
- * @category Core
- */
-type RecordToStrongRequired<Rec> = {
-	[Key in keyof Rec]: Rec[Key] extends Primitive
-		? PrimitiveToStrong<Rec[Key]>
-		: Rec[Key] extends AnyObj<ANY>
-		? Expand<RecordToStrong<Rec[Key]>>
-		: Rec[Key];
-};
-
-/**
- * @category Core
- */
-export type RecordToStrong<Rec> = RecordToStrongRequired<Required<Rec>>;
+	it(`should return value without modification when value is a Big type`, () => {
+		const big = Big(10814108);
+	});
+});

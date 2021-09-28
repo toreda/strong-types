@@ -1,3 +1,4 @@
+import Big from 'big.js';
 /**
  *	MIT License
  *
@@ -22,27 +23,39 @@
  * 	SOFTWARE.
  *
  */
+import {typeMatch} from '../type/match';
 
 /**
- * Configuration options used when creating a Strong Id.
+ * Convert a Big, string, or number to standard float (`number`). Returns `null` when
+ * input value is `undefined`, `null`, or a `Big` value which cannot be safely converted
+ * to `number`. Useful for working with `Big` values but small types, such as a small exponent,
+ * which must be in number form to use with a `Big`.
+ * @param value
+ * @returns
  *
- * @category Strings
+ * @category Strong Helpers
  */
-export interface IdOptions {
-	/**
-	 * Max allowed Id length. Ids above max len are rejected.
-	 * No max length enforced when maxLength is not set.
-	 */
-	maxLength?: number;
-	/**
-	 * Min allowed Id length. Ids below min len are rejected.
-	 * Value must be >= 1. No Min length enforced when not set.
-	 */
-	minLength?: number;
-	/**
-	 * Substring or substrings required in Id to be valid. When
-	 * `contains` is an array, Ids which do not contain all substrings
-	 * are rejected.
-	 */
-	contains?: string | string[];
+export function toFloat(value?: number | string | Big | null): number | null {
+	if (value === undefined || value === null) {
+		return null;
+	}
+
+	if (typeMatch(value, Big)) {
+		if (value.gt(Number.MAX_SAFE_INTEGER) || value.lt(Number.MIN_SAFE_INTEGER)) {
+			return null;
+		} else {
+			return value.toNumber();
+		}
+	}
+
+	if (typeof value === 'string') {
+		const result = parseFloat(value);
+		if (!isNaN(result) && isFinite(result)) {
+			return result;
+		} else {
+			return null;
+		}
+	}
+
+	return value;
 }

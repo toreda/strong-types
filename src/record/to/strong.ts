@@ -22,22 +22,9 @@
  * 	SOFTWARE.
  *
  */
+import {RecordToStrongRequired} from './strong/required';
 
-import Big from 'big.js';
-import {toIntBig} from '../../src/strong/helpers';
-
-describe('Strong Helpers', () => {
-	describe('toIntBig', () => {
-		it(`should return null when value is undefined`, () => {
-			expect(toIntBig()).toBeNull();
-		});
-
-		it(`should return null when value is null`, () => {
-			expect(toIntBig(null)).toBeNull();
-		});
-
-		it(`should return value without modification when value is a Big type`, () => {
-			const big = Big(10814108);
-		});
-	});
-});
+/**
+ * @category Core
+ */
+export type RecordToStrong<Rec> = RecordToStrongRequired<Required<Rec>>;

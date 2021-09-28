@@ -23,9 +23,9 @@
  *
  */
 
-import {Rule} from '../../src/rule';
-import {RuleMods} from '../../src/rule/mods';
-import {hasLengthGTMake} from '../../src/has/length/gt';
+import {Rule} from '../../../src/rule';
+import {RuleMods} from '../../../src/rule/mods';
+import {hasLengthGTMake} from '../../../src/has/length/gt';
 
 describe('HasLengthGreaterThan', () => {
 	let mods: RuleMods;

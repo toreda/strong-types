@@ -22,27 +22,31 @@
  * 	SOFTWARE.
  *
  */
+import Big from 'big.js';
+import {typeMatch} from '../../../type/match';
+
+const BIG_MAX_SAFE_INT = Big(Number.MAX_SAFE_INTEGER);
+const BIG_MIN_SAFE_INT = Big(Number.MIN_SAFE_INTEGER);
 
 /**
- * Configuration options used when creating a Strong Id.
+ * Convert from common numeric types to the `Big` data type.
+ * @param value
+ * @returns
  *
- * @category Strings
+ * @category Strong Helpers
  */
-export interface IdOptions {
-	/**
-	 * Max allowed Id length. Ids above max len are rejected.
-	 * No max length enforced when maxLength is not set.
-	 */
-	maxLength?: number;
-	/**
-	 * Min allowed Id length. Ids below min len are rejected.
-	 * Value must be >= 1. No Min length enforced when not set.
-	 */
-	minLength?: number;
-	/**
-	 * Substring or substrings required in Id to be valid. When
-	 * `contains` is an array, Ids which do not contain all substrings
-	 * are rejected.
-	 */
-	contains?: string | string[];
+export function canConvertFromBig(value?: Big | null): boolean {
+	if (value === undefined || value === null) {
+		return false;
+	}
+
+	if (!typeMatch(value, Big)) {
+		return false;
+	}
+
+	if (value.gt(BIG_MAX_SAFE_INT) || value.lt(BIG_MIN_SAFE_INT)) {
+		return false;
+	}
+
+	return true;
 }

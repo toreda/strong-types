@@ -23,11 +23,11 @@
  *
  */
 
-import {Rule} from '../rule';
-import {RuleFn} from '../rule/fn';
-import {RuleMods} from '../rule/mods';
-import {RuleNode} from '../rule/node';
-import {RuleNodeType} from '../rule/node/type';
+import {Rule} from '../../rule';
+import {RuleFn} from '../../rule/fn';
+import {RuleMods} from '../../rule/mods';
+import {RuleNode} from '../../rule/node';
+import {RuleNodeType} from '../../rule/node/type';
 
 /**
  * Type signature for isDateTime validators used in rule chains.
@@ -113,11 +113,7 @@ export function isDateTime(value: string): boolean {
  *
  * @category Validator Factory
  */
-export function isDateTimeMake<CallerT>(
-	caller: CallerT,
-	rule: Rule,
-	mods: RuleMods
-): IsDateTime<CallerT> {
+export function isDateTimeMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsDateTime<CallerT> {
 	return (): CallerT => {
 		const fn: RuleFn<string> = (curr: string): boolean => {
 			return isDateTime(curr);

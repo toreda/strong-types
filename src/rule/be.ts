@@ -24,15 +24,13 @@
  */
 
 import {IsDate, isDateMake} from '../is/date';
-import {IsDateTime, isDateTimeMake} from '../is/date-time';
+import {IsDateTime, isDateTimeMake} from '../is/date/time';
 import {IsEmail, isEmailMake} from '../is/email';
 import {IsEmpty, isEmptyMake} from '../is/empty';
 import {IsEqual, isEqualMake} from '../is/equal';
 import {IsGT, isGTMake} from '../is/gt';
 import {IsGTE, isGTEMake} from '../is/gte';
 import {IsHexColorCode, isHexColorCodeMake} from '../is/hex-color-code';
-import {IsIpv4Addr, isIpv4AddrMake} from '../is/ipv4-addr';
-import {IsIpv6Addr, isIpv6AddrMake} from '../is/ipv6-addr';
 import {IsLT, isLTMake} from '../is/lt';
 import {IsLTE, isLTEMake} from '../is/lte';
 import {IsNull, isNullMake} from '../is/null';
@@ -42,8 +40,12 @@ import {IsTime, isTimeMake} from '../is/time';
 import {IsUndefined, isUndefinedMake} from '../is/undefined';
 import {IsUrl, isUrlMake} from '../is/url';
 
+import {IsIpv4Addr} from '../is/ipv4/addr';
+import {IsIpv6Addr} from '../is/ipv6/addr';
 import {Rule} from '../rule';
 import {RuleMods} from './mods';
+import {isIpv4AddrMake} from '../is/ipv4/addr/make';
+import {isIpv6AddrMake} from '../is/ipv6/addr/make';
 
 /**
  * Rule chain matcher node with equality and type validation operations

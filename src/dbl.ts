@@ -23,12 +23,12 @@
  *
  */
 
-import {toFloat, toIntBig} from './strong/helpers';
-
 import Big from 'big.js';
 import {Rules} from './rules';
 import {StrongNumber} from './strong/number';
 import {strongMake} from './strong';
+import {toFloat} from './to/float';
+import {toIntBig} from './to/int/big';
 
 const BIG_ZERO = Big(0);
 

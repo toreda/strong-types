@@ -25,7 +25,7 @@
 
 import {Rule} from '../../src/rule';
 import {RuleMods} from '../../src/rule/mods';
-import {isDateTimeMake} from '../../src/is/date-time';
+import {isDateTimeMake} from '../../src/is/date/time';
 
 describe('IsDateTime', () => {
 	let mods: RuleMods;

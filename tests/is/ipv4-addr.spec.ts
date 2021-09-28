@@ -22,9 +22,9 @@
  * 	SOFTWARE.
  *
  */
-import {IsIpv4Addr, isIpv4AddrMake} from '../../src/is/ipv4-addr';
-
+import {IsIpv4Addr} from '../../src/is/ipv4/addr';
 import {Rule} from '../../src/rule';
+import {isIpv4AddrMake} from '../../src/is/ipv4/addr/make';
 
 describe('IsIpv4Addr', () => {
 	let rule: Rule;

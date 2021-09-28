@@ -5,6 +5,10 @@
 		}
 	],
 	"settings": {
+		"typescript.preferences.importModuleSpecifier": "relative",
+		"typescript.preferences.quoteStyle": "single",
+		"typescript.preferences.importModuleSpecifierEnding": "minimal",
+		"typescript.implementationsCodeLens.enabled": true,
 		"files.exclude": {
 			"**/.git": true,
 			"**/.svn": true,

@@ -22,27 +22,38 @@
  * 	SOFTWARE.
  *
  */
+import Big from 'big.js';
+import {typeMatch} from '../../type/match';
 
 /**
- * Configuration options used when creating a Strong Id.
+ * Convert from common numeric types to JavaScript `number` type.
+ * @param value
+ * @returns
  *
- * @category Strings
+ * @category Strong Helpers
  */
-export interface IdOptions {
-	/**
-	 * Max allowed Id length. Ids above max len are rejected.
-	 * No max length enforced when maxLength is not set.
-	 */
-	maxLength?: number;
-	/**
-	 * Min allowed Id length. Ids below min len are rejected.
-	 * Value must be >= 1. No Min length enforced when not set.
-	 */
-	minLength?: number;
-	/**
-	 * Substring or substrings required in Id to be valid. When
-	 * `contains` is an array, Ids which do not contain all substrings
-	 * are rejected.
-	 */
-	contains?: string | string[];
+export function toIntNumber(value?: number | string | Big | null): number | null {
+	if (value === undefined || value === null) {
+		return null;
+	}
+
+	// Possible precision loss, not an idea conversion.
+	if (typeMatch(value, Big)) {
+		if (value.gt(Number.MAX_SAFE_INTEGER) || value.lt(Number.MAX_SAFE_INTEGER)) {
+			return null;
+		} else {
+			return value.toNumber();
+		}
+	}
+
+	if (typeof value === 'string') {
+		const result = parseInt(value);
+		return !isNaN(result) ? result : null;
+	}
+
+	if (value >= Number.POSITIVE_INFINITY || value <= Number.NEGATIVE_INFINITY) {
+		return null;
+	}
+
+	return value;
 }

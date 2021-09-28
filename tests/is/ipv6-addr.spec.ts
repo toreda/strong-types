@@ -1,6 +1,6 @@
-import {IsIpv6Addr, isIpv6AddrMake} from '../../src/is/ipv6-addr';
-
+import {IsIpv6Addr} from '../../src/is/ipv6/addr';
 import {Rule} from '../../src/rule';
+import {isIpv6AddrMake} from '../../src/is/ipv6/addr/make';
 
 describe('IsIpv6Addr', () => {
 	let rule: Rule;

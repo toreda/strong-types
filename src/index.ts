@@ -7,12 +7,15 @@ export {OS} from './os';
 export {osSet} from './os/set';
 export {osValid} from './os/valid';
 
+export {canConvertFromBig} from './can/convert/from/big';
+
 // Time
 export {Date, dateMake} from './date';
 export {DateTime, dateTimeMake} from './date/time';
 
 // Generic strong type
 export {Strong, StrongType, strongMake} from './strong';
+export {StrongNumber} from './strong/number';
 
 export {BaseObject} from './base/object';
 export {Collection} from './collection';
@@ -110,7 +113,7 @@ export {HasTextTimes, hasTextTimes, hasTextTimesMake} from './has/text-times';
 export {IsArray, isArrayMake} from './is/array';
 export {IsBoolean, isBoolean, isBooleanMake} from './is/boolean';
 export {IsDate, isDate, isDateMake} from './is/date';
-export {IsDateTime, isDateTime, isDateTimeMake} from './is/date-time';
+export {IsDateTime, isDateTime, isDateTimeMake} from './is/date/time';
 export {IsDbl, isDbl, isDblMake} from './is/dbl';
 export {IsFloat, isFloat, isFloatMake} from './is/float';
 export {IsEmail, isEmail, isEmailMake} from './is/email';
@@ -122,8 +125,10 @@ export {IsBig, isBig, isBigMake} from './is/big';
 export {IsBigInt, isBigInt, isBigIntMake} from './is/big-int';
 export {IsHexColorCode, isHexColorCode, isHexColorCodeMake} from './is/hex-color-code';
 export {IsInt, isInt, isIntMake} from './is/int';
-export {IsIpv4Addr, isIpv4Addr, isIpv4AddrMake} from './is/ipv4-addr';
-export {IsIpv6Addr, isIpv6Addr, isIpv6AddrMake} from './is/ipv6-addr';
+export {IsIpv4Addr, isIpv4Addr} from './is/ipv4/addr';
+export {isIpv4AddrMake} from './is/ipv4/addr/make';
+export {isIpv6AddrMake} from './is/ipv6/addr/make';
+export {IsIpv6Addr, isIpv6Addr} from './is/ipv6/addr';
 export {IsLength, isLength, isLengthMake} from './is/length';
 export {IsLT, isLT, isLTMake} from './is/lt';
 export {IsLTE, isLTE, isLTEMake} from './is/lte';
@@ -134,8 +139,11 @@ export {IsText, isTextMake} from './is/text';
 export {IsTime, isTime, isTimeMake} from './is/time';
 export {IsUndefined, isUndefined, isUndefinedMake} from './is/undefined';
 export {IsUrl, isUrl, isUrlMake} from './is/url';
+export {IsUInt, isUInt, isUIntMake} from './is/uint';
 
-export {toIntBig, toFloat} from './strong/helpers';
+export {toFloat} from './to/float';
+export {toIntBig} from './to/int/big';
+export {toIntNumber} from './to/int/number';
 
 // Patterns
 export {Pattern} from './pattern';
@@ -162,8 +170,8 @@ export {Rules} from './rules';
 export {RuleType} from './rule/type';
 
 // Mapped Types
-export {PrimitiveToStrong} from './mapped/types';
-export {RecordToStrong} from './mapped/types';
+export {PrimitiveToStrong} from './primitive/to/strong';
+export {RecordToStrong} from './record/to/strong';
 
 // Transforms
 export {Transform} from './transform';

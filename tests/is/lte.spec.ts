@@ -5,7 +5,7 @@ import {isLTEMake} from '../../src/is/lte';
 const MOCK_TARGET = 44410;
 const MOCK_CURR = 1111;
 
-describe('IsLessThanOrEqualTo', () => {
+describe('IsLTE', () => {
 	let mods: RuleMods;
 	let rule: Rule;
 

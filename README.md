@@ -7,9 +7,9 @@ Guaranteed types with validation in 1 line of code. Improve code quality & relia
 
 What does it do?
 ```typescript
-import {Int, makeInt} from '@toreda/strong-types';
+import {Int, intMake} from '@toreda/strong-types';
 //  int with initial value 10.
-const int = makeInt(10);
+const int = intMake(10);
 // Prints 10. It always return an int.
 console.log(int());
 
@@ -34,9 +34,10 @@ console.log(int());
 	  - [`StrongMap`](#StrongMap)
 	  -	[`StrongArray`](#StrongArray)
 	  - [`Bool`](#Bool)
-	  - [`Double`](#Double)
+	  - [`Dbl`](#Dbl)
+	  - [`Float`](#Float)
 	  - [`Int`](#Int)
-	  - [`StrongString`](#StrongString)
+	  - [`Text`](#Text)
 	  - [`UInt`](#UInt)
 *	[**Custom Types**](#custom-types)
 	  - [Validators](#validators)
@@ -48,15 +49,15 @@ console.log(int());
 
 # Using `StrongType`
 
-Each built-in type exports a type and make function. The below examples use Int but work the same using: `StrongArray`, `Bool`, `Double`, `Int`, `StrongString`, and `UInt`.
+Each built-in type exports a type and make function. The below examples use Int but work the same using: `StrongArray`, `Bool`, `Dbl`, `Float`, `Int`, `Text`, and `UInt`.
 
 ## Instantiate with initial value
 ```typescript
-import {Int, makeInt} from '@toreda/strong-types';
+import {Int, intMake} from '@toreda/strong-types';
 
 const initial = 11;
 const fallback = 55;
-const int = makeInt(initial, fallback);
+const int = intMake(initial, fallback);
 
 // Returns 11 - initial value was 11.
 const value = int();
@@ -67,10 +68,10 @@ const value = int();
 
 
 ```typescript
-import {Int, makeInt} from '@toreda/strong-types';
+import {Int, intMake} from '@toreda/strong-types';
 
 const fallback = 919;
-const int = makeInt(null, fallback);
+const int = intMake(null, fallback);
 
 // value is 919 - initial value was null, so fallback was
 // returned instead to maintain the function's return type guarantee.
@@ -81,8 +82,8 @@ const value = int();
 * `get(fallback: T): T`
 Call `container.get(fallback)` when a per-call fallback is preferred instead of the container's default fallback.
 ```typescript
-import {Int, makeInt} from '@toreda/strong-types';
-const int = makeInt(null, 555);
+import {Int, intMake} from '@toreda/strong-types';
+const int = intMake(null, 555);
 
 const fallback = 331;
 // Prints 331 (fallback) instead of 555 (container default fallback).
@@ -96,10 +97,10 @@ Call `container.getNull()` to the current value, even if null. Value will never 
 NOTE: `getNull` **DOES NOT** take a fallback argument and will not return the container's default fallback. It always returns value (`null` or `StrongType<T>`).
 
 ```typescript
-import {Int, makeInt} from '@toreda/strong-types';
+import {Int, intMake} from '@toreda/strong-types';
 
 const fallback = 919;
-const int = makeInt(null, fallback);
+const int = intMake(null, fallback);
 
 // Prints null. Default fallback is not used for `getNull` calls.
 console.log(int.getNull());
@@ -107,11 +108,11 @@ console.log(int.getNull());
 
 ## Set Value
 ```
-import {Int, makeInt} from '@toreda/strong-types';
+import {Int, intMake} from '@toreda/strong-types';
 
 const initial = 331;
 const fallback = 400;
-const int = makeInt(initial, fallback);
+const int = intMake(initial, fallback);
 
 // value is 331 - the int's initial value.
 const value = int();
@@ -126,11 +127,11 @@ const value = int();
 
 ## Set `null`
 ```typescript
-import {Int, makeInt} from '@toreda/strong-types';
+import {Int, intMake} from '@toreda/strong-types';
 
 const initial = 414;
 const fallback = 500;
-const int = makeInt(initial, fallback);
+const int = intMake(initial, fallback);
 
 // value is 414 - the int's initial value.
 const value = int();
@@ -149,11 +150,11 @@ const value = int();
 Call `myContainer.reset()` to reset value without creating a new StrongType container. Default Fallback will not be reset. Useful for unit testing and serverless environments where the previous container value or state is unknown.
 
 ```typescript
-import {Int, makeInt} from '@toreda/strong-types';
+import {Int, intMake} from '@toreda/strong-types';
 
 const initial = 515;
 const fallback = 600;
-const int = makeInt(initial, fallback);
+const int = intMake(initial, fallback);
 
 // value is 515 (the initial value).
 const value = int();
@@ -171,8 +172,8 @@ console.log(int());
 `StrongType` containers validate value inputs before setting. Bad values are ignored and will not cause a throw. Each built-in container type provides specific guarantees for which values are allowed.
 
 ```typescript
-import {Int, makeInt} from '@toreda/strong-types';
-const int = makeInt(50, 100);
+import {Int, intMake} from '@toreda/strong-types';
+const int = intMake(50, 100);
 
 // success is false.
 // container.value is still it's initial value 50 because 1.5 is not an int.
@@ -184,25 +185,25 @@ const success = int(1.5);
 # Supported Types
 * [`StrongArray`](#StrongArray), arrays
 * [`Bool`](#Bool), booleans (strict)
-* [`Double`](#Double), doubles
+* [`Dbl`](#Dbl), doubles
 * [`Int`](#Int), integers
 * [`UInt`](#StrongUint), unsigned integers
-* [`StrongString`](#StrongString) - strings
+* [`Text`](#Text) - strings
 
 # Using `StrongMap`
 
 Creating and using a StrongMap class.
 ```typescript
-import {StrongMap, Int, StrongString, makeInt, makeString} from '@toreda/strong-types';
+import {StrongMap, Int, Text, intMake, makeString} from '@toreda/strong-types';
 
 
 export class SomeConfig extends StrongMap {
 	public readonly counter: Int;
-	public readonly name: StrongString;
+	public readonly name: Text;
 
 	constructor(json: any) {
 		super();
-		this.counter = makeInt(0, 0);
+		this.counter = intMake(0, 0);
 		this.name = makeString(null, 'TreeBeard');
 		this.parse(json);
 	}
@@ -221,15 +222,15 @@ console.log(myConfig.name());
 
 Creating a `StrongMap` and loading values from JSON
 ```typescript
-import {StrongMap, StringInt, StrongString, makeInt, makeString} from '@toreda/strong-types';
+import {StrongMap, StringInt, Text, intMake, makeString} from '@toreda/strong-types';
 
 export class SomeConfig extends StrongMap {
 	public readonly counter: Int;
-	public readonly name: StrongString;
+	public readonly name: Text;
 
 	constructor(json?: any) {
 		super();
-		this.counter = makeInt(0, 0);
+		this.counter = intMake(0, 0);
 		this.name = makeString(null, 'TreeBeard');
 		this.parse(json);
 	}
@@ -252,15 +253,15 @@ console.log(myConfig.name());
 
 Converting a `StrongMap` to a json object
 ```typescript
-import {StrongMap, StringInt, StrongString, makeInt, makeString} from '@toreda/strong-types';
+import {StrongMap, StringInt, Text, intMake, makeString} from '@toreda/strong-types';
 
 export class SomeConfig extends StrongMap {
 	public readonly counter: Int;
-	public readonly name: StrongString;
+	public readonly name: Text;
 
 	constructor(json?: any) {
 		super();
-		this.counter = makeInt(0, 0);
+		this.counter = intMake(0, 0);
 		this.name = makeString(null, 'TreeBeard');
 		this.parse(json);
 	}
@@ -305,11 +306,11 @@ import {Bool, boolMake} from '@toreda/strong-types';
 * Strict booleans: `true` or `false` only.
 * No type coercion (e.g. `1` or `0` will be rejected).
 
-## `Double`
+## `Dbl`
 
 ### Import
 ```typescript
-import {Double, makeDouble} from '@toreda/strong-types';
+import {Dbl, makeDbl} from '@toreda/strong-types';
 ```
 
 ### Accepted Values
@@ -320,18 +321,18 @@ import {Double, makeDouble} from '@toreda/strong-types';
 
 ### Import ###
 ```typescript
-import {Int, makeInt} from '@toreda/strong-types';
+import {Int, intMake} from '@toreda/strong-types';
 ```
 ### Accepted Values ###
 * `number` values between and including Number.MIN_VALUE and Number.MAX_VALUE.
 * `NaN` values are rejected.
 
 
-## `StrongString`
+## `Text`
 
 ### Import
 ```typescript
-import {StrongString, makeString} from '@toreda/strong-types';
+import {Text, makeString} from '@toreda/strong-types';
 ```
 ### Accepted Values ###
 * `string` values of any valid length.
