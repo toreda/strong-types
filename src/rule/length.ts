@@ -1,33 +1,30 @@
-import {
-	HasLengthGreaterThanOrEqual,
-	hasLengthGreaterThanOrEqualMake
-} from '../has/length-greater-than-or-equal';
-import {HasLengthLessThan, hasLengthLessThanMake} from '../has/length-less-than';
+import {HasLengthGTE, hasLengthGTEMake} from '../has/length/gte';
+import {HasLengthLT, hasLengthLTMake} from '../has/length/lt';
 
 import {HasLengthEqual} from '../has/length-equal';
-import {HasLengthGreaterThan} from '../has/length-greater-than';
-import {HasLengthLessThanOrEqual} from '../has/length-less-than-or-equal';
+import {HasLengthGT} from '../has/length/gt';
+import {HasLengthLTE} from '../has/length/lte';
 import {Rule} from '../rule';
 import {RuleMods} from '../rule/mods';
 import {hasLengthEqualMake} from '../has/length-equal';
-import {hasLengthGreaterThanMake} from '../has/length-greater-than';
-import {hasLengthLessThanOrEqualMake} from '../has/length-less-than-or-equal';
+import {hasLengthGTMake} from '../has/length/gt';
+import {hasLengthLTEMake} from '../has/length/lte';
 
 /**
  * @category Rules
  */
 export class RuleLength {
 	public readonly equalTo: HasLengthEqual<RuleLength>;
-	public readonly greaterThan: HasLengthGreaterThan<RuleLength>;
-	public readonly greaterThanOrEqualTo: HasLengthGreaterThanOrEqual<RuleLength>;
-	public readonly lessThan: HasLengthLessThan<RuleLength>;
-	public readonly lessThanOrEqualTo: HasLengthLessThanOrEqual<RuleLength>;
+	public readonly greaterThan: HasLengthGT<RuleLength>;
+	public readonly greaterThanOrEqualTo: HasLengthGTE<RuleLength>;
+	public readonly lessThan: HasLengthLT<RuleLength>;
+	public readonly lessThanOrEqualTo: HasLengthLTE<RuleLength>;
 
 	constructor(rule: Rule, mods: RuleMods) {
 		this.equalTo = hasLengthEqualMake<RuleLength>(this, rule, mods);
-		this.greaterThan = hasLengthGreaterThanMake<RuleLength>(this, rule, mods);
-		this.greaterThanOrEqualTo = hasLengthGreaterThanOrEqualMake<RuleLength>(this, rule, mods);
-		this.lessThan = hasLengthLessThanMake<RuleLength>(this, rule, mods);
-		this.lessThanOrEqualTo = hasLengthLessThanOrEqualMake<RuleLength>(this, rule, mods);
+		this.greaterThan = hasLengthGTMake<RuleLength>(this, rule, mods);
+		this.greaterThanOrEqualTo = hasLengthGTEMake<RuleLength>(this, rule, mods);
+		this.lessThan = hasLengthLTMake<RuleLength>(this, rule, mods);
+		this.lessThanOrEqualTo = hasLengthLTEMake<RuleLength>(this, rule, mods);
 	}
 }

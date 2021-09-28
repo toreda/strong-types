@@ -23,19 +23,19 @@
  *
  */
 
+import {toFloat, toIntBig} from './strong/helpers';
+
+import Big from 'big.js';
 import {Rules} from './rules';
 import {StrongNumber} from './strong/number';
 import {strongMake} from './strong';
-import {toBigInt} from './strong/helpers';
 
-const BIG_ZERO = BigInt(0);
-const BIG_ONE_POS = BigInt(1);
-const BIG_ONE_NEG = BigInt(-1);
+const BIG_ZERO = Big(0);
 
 /**
  * @category Maths
  */
-export type Dbl = StrongNumber<number | string | bigint, bigint>;
+export type Dbl = StrongNumber<number | string | Big, Big>;
 
 /**
  *
@@ -45,81 +45,96 @@ export type Dbl = StrongNumber<number | string | bigint, bigint>;
  *
  * @category Maths
  */
-export function dblMake(fallback: bigint | string, initial?: bigint | string | null): Dbl {
-	const rules = new Rules<BigInt>();
+export function dblMake(fallback: Big | string | number, initial?: Big | number | string | null): Dbl {
+	const rules = new Rules<Big>();
 
-	rules.add().must.match.type.dbl();
+	rules.add().must.match.type.big();
 
-	const bigFallback = toBigInt(fallback);
-	const bigInitial = toBigInt(initial);
+	const bigFallback = toIntBig(fallback);
+	const bigInitial = toIntBig(initial);
 
-	const strong = strongMake<bigint>(bigFallback ?? BigInt(0), bigInitial, rules);
+	const strong = strongMake<Big>(bigFallback ?? BIG_ZERO, bigInitial, rules);
 
 	return Object.assign(strong, {
-		increment: (): bigint | null => {
-			const value = strong._data.get(BIG_ZERO) + BIG_ONE_POS;
+		increment: (): Big | null => {
+			const value = strong._data.getNull();
 
-			return strong._data.set(value) ? value : null;
-		},
-		decrement: (): bigint | null => {
-			const value = strong._data.get(BIG_ZERO) + BIG_ONE_NEG;
-
-			return strong._data.set(value) ? value : null;
-		},
-		mul: (input: number | string | bigint): bigint | null => {
-			const curr: bigint = strong.get(BigInt(0));
-
-			const value = toBigInt(input);
 			if (value === null) {
 				return null;
 			}
 
-			const result = BigInt(curr * value);
+			value.add(Big(1));
 
-			return strong._data.set(result) ? result : null;
+			return strong._data.set(value) ? value : null;
 		},
-		pow: (exponent: number | string | bigint): bigint | null => {
-			//return strong._data.pow(exponent);
-			const value = toBigInt(exponent);
-			const curr = strong._data.getNull();
-
-			if (value === null || curr === null) {
+		decrement: (): Big | null => {
+			const value = strong._data.getNull();
+			if (value === null) {
 				return null;
 			}
 
-			return null;
+			value.sub(Big(1));
+			return strong._data.set(value) ? value : null;
 		},
-		div: (input: number | string | bigint): bigint | null => {
-			const curr = strong.getNull();
-			const value = toBigInt(input);
+		mul: (input: number | string | Big): Big | null => {
+			const curr: Big = strong.get(BIG_ZERO);
+
+			const value = toIntBig(input);
+			if (value === null) {
+				return null;
+			}
+
+			const result = curr.mul(value);
+
+			return strong._data.set(result) ? result : null;
+		},
+		pow: (exponent: number | string | Big): Big | null => {
+			const curr = strong._data.getNull();
+			const value = toFloat(exponent);
+
+			if (curr === null || value === null) {
+				return null;
+			}
+
+			return curr.pow(value);
+		},
+		div: (input: number | string | Big): Big | null => {
+			const curr = strong.get(BIG_ZERO);
+			const value = toIntBig(input);
 
 			if (curr === null || value === null || value === BIG_ZERO || curr === BIG_ZERO) {
 				return null;
 			}
 
-			const result = curr - value;
+			const result = curr.div(value);
 
 			return strong._data.set(result) ? result : null;
 		},
-		add: (input: number | string | bigint): bigint | null => {
-			const value = toBigInt(input);
+		add: (input: number | string | Big): Big | null => {
+			const value = toIntBig(input);
+			const curr = strong.getNull();
+
+			if (value === null) {
+				return null;
+			}
+
+			if (curr === null) {
+				return null;
+			}
+
+			const result = curr.add(value);
+
+			return strong._data.set(result) ? result : null;
+		},
+		sub: (input: number | string | Big): Big | null => {
+			const value = toIntBig(input);
+
 			if (value === null) {
 				return null;
 			}
 
 			const curr = strong.get(BIG_ZERO);
-			const result = curr + value;
-
-			return strong._data.set(result) ? result : null;
-		},
-		sub: (input: number | string | bigint): bigint | null => {
-			const value = toBigInt(input);
-			if (value === null) {
-				return null;
-			}
-
-			const curr = strong.get(BIG_ZERO);
-			const result = curr - value;
+			const result = curr.minus(value);
 
 			return strong._data.set(result) ? result : null;
 		}

@@ -1,4 +1,29 @@
-import {IsGreaterThan, isGreaterThanMake} from '../../src/is/greater-than';
+/**
+ *	MIT License
+ *
+ *	Copyright (c) 2019 - 2021 Toreda, Inc.
+ *
+ *	Permission is hereby granted, free of charge, to any person obtaining a copy
+ *	of this software and associated documentation files (the "Software"), to deal
+ *	in the Software without restriction, including without limitation the rights
+ *	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *	copies of the Software, and to permit persons to whom the Software is
+ *	furnished to do so, subject to the following conditions:
+
+ * 	The above copyright notice and this permission notice shall be included in all
+ * 	copies or substantial portions of the Software.
+ *
+ * 	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * 	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * 	SOFTWARE.
+ *
+ */
+
+import {IsGT, isGTMake} from '../../src/is/gt';
 
 import {Rule} from '../../src/rule';
 import {RuleMods} from '../../src/rule/mods';
@@ -6,10 +31,10 @@ import {RuleMods} from '../../src/rule/mods';
 const MOCK_TARGET = 44410;
 const MOCK_CURR = 1111;
 
-describe('IsGreaterThan', () => {
+describe('IsGT', () => {
 	let mods: RuleMods;
 	let rule: Rule;
-	let fn: IsGreaterThan<Rule>;
+	let fn: IsGT<Rule>;
 
 	beforeAll(() => {
 		rule = new Rule();
@@ -19,7 +44,7 @@ describe('IsGreaterThan', () => {
 			target: 'value'
 		};
 
-		fn = isGreaterThanMake<Rule>(rule, rule, mods);
+		fn = isGTMake<Rule>(rule, rule, mods);
 	});
 
 	beforeEach(() => {
@@ -43,7 +68,7 @@ describe('IsGreaterThan', () => {
 		it('should return false when target value is not a number', () => {
 			const stringTarget = 'ffffffff';
 
-			const fn = isGreaterThanMake<Rule>(rule, rule, mods);
+			const fn = isGTMake<Rule>(rule, rule, mods);
 			fn(stringTarget as any);
 			expect(rule.nodes[0].execute(MOCK_CURR)).toBe(false);
 		});
@@ -52,7 +77,7 @@ describe('IsGreaterThan', () => {
 			const curr = 0;
 			const target = 0;
 
-			const fn = isGreaterThanMake<Rule>(rule, rule, mods);
+			const fn = isGTMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
@@ -62,7 +87,7 @@ describe('IsGreaterThan', () => {
 			const target = 0;
 			mods.invert = true;
 
-			const fn = isGreaterThanMake<Rule>(rule, rule, mods);
+			const fn = isGTMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -71,7 +96,7 @@ describe('IsGreaterThan', () => {
 			const curr = 13;
 			const target = 55;
 
-			const fn = isGreaterThanMake<Rule>(rule, rule, mods);
+			const fn = isGTMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(false);
 		});
@@ -81,7 +106,7 @@ describe('IsGreaterThan', () => {
 			const target = 55;
 			mods.invert = true;
 
-			const fn = isGreaterThanMake<Rule>(rule, rule, mods);
+			const fn = isGTMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -90,7 +115,7 @@ describe('IsGreaterThan', () => {
 			const curr = 25;
 			const target = 10;
 
-			const fn = isGreaterThanMake<Rule>(rule, rule, mods);
+			const fn = isGTMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -99,7 +124,7 @@ describe('IsGreaterThan', () => {
 			const curr = 25;
 			const target = -10;
 
-			const fn = isGreaterThanMake<Rule>(rule, rule, mods);
+			const fn = isGTMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -108,7 +133,7 @@ describe('IsGreaterThan', () => {
 			const curr = -2;
 			const target = -10;
 
-			const fn = isGreaterThanMake<Rule>(rule, rule, mods);
+			const fn = isGTMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -117,7 +142,7 @@ describe('IsGreaterThan', () => {
 			const curr = 2.223;
 			const target = -10;
 
-			const fn = isGreaterThanMake<Rule>(rule, rule, mods);
+			const fn = isGTMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -126,7 +151,7 @@ describe('IsGreaterThan', () => {
 			const curr = -3.3;
 			const target = -10;
 
-			const fn = isGreaterThanMake<Rule>(rule, rule, mods);
+			const fn = isGTMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -135,7 +160,7 @@ describe('IsGreaterThan', () => {
 			const curr = 25;
 			const target = -10;
 
-			const fn = isGreaterThanMake<Rule>(rule, rule, mods);
+			const fn = isGTMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -144,7 +169,7 @@ describe('IsGreaterThan', () => {
 			const curr = 4.4422;
 			const target = -5.2111;
 
-			const fn = isGreaterThanMake<Rule>(rule, rule, mods);
+			const fn = isGTMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});
@@ -153,7 +178,7 @@ describe('IsGreaterThan', () => {
 			const curr = -7.11;
 			const target = -11.5557;
 
-			const fn = isGreaterThanMake<Rule>(rule, rule, mods);
+			const fn = isGTMake<Rule>(rule, rule, mods);
 			fn(target);
 			expect(rule.nodes[0].execute(curr)).toBe(true);
 		});

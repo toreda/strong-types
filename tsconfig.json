@@ -28,10 +28,11 @@
 	},
 	"ts-jest": {
 		"module": "commonjs",
+		"target": "esnext",
 		"compilerOptions": {
-		"declaration": false,
-		"isolatedModules": true,
-		"sourceMap": false
+			"declaration": false,
+			"isolatedModules": true,
+			"sourceMap": false
 		}
 	},
 	"ts-node": {

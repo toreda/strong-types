@@ -23,9 +23,9 @@
  *
  */
 
+import {Data} from '@toreda/types';
 import {MapJsonifier} from './map/jsonifier';
 import {MapParser} from './map/parser';
-import {jsonType} from '@toreda/types';
 
 /**
  * Map data structure for Strong Types. Supports recursive parsing of
@@ -37,12 +37,16 @@ import {jsonType} from '@toreda/types';
 export class StrongMap {
 	[index: string]: unknown;
 
-	public parse(json: jsonType): void {
+	public parse(data?: Data): void {
+		if (!data) {
+			return;
+		}
+
 		const parser = new MapParser();
-		parser.parse(this, json);
+		parser.parse(this, data);
 	}
 
-	public jsonify(): Record<string, unknown> {
+	public jsonify(): Data {
 		const jsonifier = new MapJsonifier();
 		return jsonifier.jsonify(this);
 	}

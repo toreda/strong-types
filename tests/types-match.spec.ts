@@ -24,7 +24,7 @@
  */
 
 import {Rule} from '../src/rule';
-import {typeMatch} from '../src/is/type';
+import {typeMatch} from '../src/type/match';
 
 describe('types-match', () => {
 	it('should be a function', () => {

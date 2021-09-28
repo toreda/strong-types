@@ -28,13 +28,13 @@ import {IsDateTime, isDateTimeMake} from '../is/date-time';
 import {IsEmail, isEmailMake} from '../is/email';
 import {IsEmpty, isEmptyMake} from '../is/empty';
 import {IsEqual, isEqualMake} from '../is/equal';
-import {IsGreaterThan, isGreaterThanMake} from '../is/greater-than';
-import {IsGreaterThanOrEqual, isGreaterThanOrEqualMake} from '../is/greater-than-or-equal';
+import {IsGT, isGTMake} from '../is/gt';
+import {IsGTE, isGTEMake} from '../is/gte';
 import {IsHexColorCode, isHexColorCodeMake} from '../is/hex-color-code';
 import {IsIpv4Addr, isIpv4AddrMake} from '../is/ipv4-addr';
 import {IsIpv6Addr, isIpv6AddrMake} from '../is/ipv6-addr';
-import {IsLessThan, isLessThanMake} from '../is/less-than';
-import {IsLessThanOrEqual, isLessThanOrEqualMake} from '../is/less-than-or-equal';
+import {IsLT, isLTMake} from '../is/lt';
+import {IsLTE, isLTEMake} from '../is/lte';
 import {IsNull, isNullMake} from '../is/null';
 import {IsPort, isPortMake} from '../is/port';
 import {IsSystemPort, isSystemPortMake} from '../is/system/port';
@@ -58,11 +58,11 @@ export class RuleBe {
 	public readonly email: IsEmail<RuleBe>;
 	public readonly empty: IsEmpty<RuleBe>;
 	public readonly equalTo: IsEqual<RuleBe>;
-	public readonly greaterThan: IsGreaterThan<RuleBe>;
-	public readonly greaterThanOrEqual: IsGreaterThanOrEqual<RuleBe>;
+	public readonly greaterThan: IsGT<RuleBe>;
+	public readonly greaterThanOrEqual: IsGTE<RuleBe>;
 	public readonly hexColorCode: IsHexColorCode<RuleBe>;
-	public readonly lessThan: IsLessThan<RuleBe>;
-	public readonly lessThanOrEqual: IsLessThanOrEqual<RuleBe>;
+	public readonly lessThan: IsLT<RuleBe>;
+	public readonly lessThanOrEqual: IsLTE<RuleBe>;
 	public readonly time: IsTime<RuleBe>;
 	public readonly url: IsUrl<RuleBe>;
 	public readonly portNumber: IsPort<RuleBe>;
@@ -71,10 +71,10 @@ export class RuleBe {
 	public readonly ipv6Addr: IsIpv6Addr<RuleBe>;
 
 	constructor(rule: Rule, mods: RuleMods) {
-		this.greaterThan = isGreaterThanMake<RuleBe>(this, rule, mods);
-		this.greaterThanOrEqual = isGreaterThanOrEqualMake<RuleBe>(this, rule, mods);
-		this.lessThan = isLessThanMake<RuleBe>(this, rule, mods);
-		this.lessThanOrEqual = isLessThanOrEqualMake<RuleBe>(this, rule, mods);
+		this.greaterThan = isGTMake<RuleBe>(this, rule, mods);
+		this.greaterThanOrEqual = isGTEMake<RuleBe>(this, rule, mods);
+		this.lessThan = isLTMake<RuleBe>(this, rule, mods);
+		this.lessThanOrEqual = isLTEMake<RuleBe>(this, rule, mods);
 		this.equalTo = isEqualMake<RuleBe>(this, rule, mods);
 		this.undefined = isUndefinedMake<RuleBe>(this, rule, mods);
 		this.null = isNullMake<RuleBe>(this, rule, mods);

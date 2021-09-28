@@ -1,3 +1,4 @@
+import {Data} from '@toreda/types';
 /**
  *	MIT License
  *
@@ -22,12 +23,10 @@
  * 	SOFTWARE.
  *
  */
-
 import {MapParserOptions as Options} from './parser/options';
 import {MapParserState as State} from './parser/state';
 import {Strong} from '../strong';
 import {StrongMap} from '../map';
-import {jsonType} from '@toreda/types';
 
 /**
  * Recursively parse provided object properties.
@@ -35,18 +34,18 @@ import {jsonType} from '@toreda/types';
  * @category Strong Map
  */
 export class MapParser {
-	public parse(map: StrongMap, json: jsonType, options?: Options): boolean {
+	public parse(map: StrongMap, data: Data, options?: Options): boolean {
 		if (!map) {
 			return false;
 		}
 
-		if (!json) {
+		if (!data) {
 			return false;
 		}
 
 		const parseState = new State(options);
 
-		return this.parseMap(map, json, parseState);
+		return this.parseMap(map, data, parseState);
 	}
 
 	public parseStrongKey(key: Strong<unknown>, value: unknown, _parseState: State): void {
@@ -111,12 +110,12 @@ export class MapParser {
 	 *						true	- 	Map parse successful.
 	 *						false	-	Map parse not successful.
 	 */
-	public parseMap(map: StrongMap, json: jsonType, parseState: State): boolean {
+	public parseMap(map: StrongMap, data: Data, parseState: State): boolean {
 		if (!map) {
 			return false;
 		}
 
-		if (typeof json === 'undefined' || json === {}) {
+		if (typeof data === 'undefined' || data === {}) {
 			return false;
 		}
 
@@ -124,7 +123,7 @@ export class MapParser {
 
 		for (const keyName of keys) {
 			const child = map[keyName];
-			const jsonObj = json[keyName];
+			const keyValue = data[keyName];
 
 			// Skip built-in properties.
 			if (!map.hasOwnProperty(keyName)) {
@@ -133,13 +132,13 @@ export class MapParser {
 
 			// Child is also a StrongMap. Parse it recursively.
 			if (child instanceof StrongMap) {
-				this.parseMap(child, jsonObj, parseState);
+				this.parseMap(child, data, parseState);
 			} else if ((child as Strong<unknown>).typeId === 'StrongType') {
 				// Child is a StrongType.
-				this.parseStrongKey(child as Strong<unknown>, jsonObj, parseState);
+				this.parseStrongKey(child as Strong<unknown>, keyValue, parseState);
 			} else if (typeof child !== 'object') {
 				// Child is not a StrongType and not an object.
-				this.parseKey(map, keyName, jsonObj, parseState);
+				this.parseKey(map, keyName, keyValue, parseState);
 			}
 		}
 

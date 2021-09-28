@@ -26,6 +26,7 @@
 import {Bool, boolMake} from '../../src/bool';
 import {Text, textMake} from '../../src/text';
 
+import {Data} from '@toreda/types';
 import {Int} from '../../src/int';
 import {MapParser} from '../../src/map/parser';
 import {MapParserState} from '../../src/map/parser/state';
@@ -78,7 +79,7 @@ class SampleMap extends StrongMap {
 	public groupTwo: SampleGroupTwo;
 	public groupThree: SampleGroupThree;
 
-	constructor(data?: unknown) {
+	constructor(data?: Data) {
 		super();
 		this.groupOne = new SampleGroupOne();
 		this.groupTwo = new SampleGroupTwo();

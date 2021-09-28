@@ -71,7 +71,7 @@ export class StrongData<ValueT> {
 	}
 
 	public set(value?: ValueT | null): boolean {
-		if (typeof value === 'undefined') {
+		if (value === undefined) {
 			return false;
 		}
 

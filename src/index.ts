@@ -9,7 +9,7 @@ export {osValid} from './os/valid';
 
 // Time
 export {Date, dateMake} from './date';
-export {DateTime, dateTimeMake} from './date-time';
+export {DateTime, dateTimeMake} from './date/time';
 
 // Generic strong type
 export {Strong, StrongType, strongMake} from './strong';
@@ -18,7 +18,7 @@ export {BaseObject} from './base/object';
 export {Collection} from './collection';
 
 export {StrongData} from './strong/data';
-export {typeMatch, isType, TypeMap, PrimitiveOrConstructor} from './is/type';
+export {typeMatch} from './type/match';
 
 // General Types
 export {Bool, boolMake} from './bool';
@@ -97,24 +97,12 @@ export {Vec4} from './vec4';
 
 // Validator functions for is & has
 export {HasLengthEqual, hasLengthEqual, hasLengthEqualMake} from './has/length-equal';
-export {
-	HasLengthGreaterThanOrEqual,
-	hasLengthGreaterThanOrEqual,
-	hasLengthGreaterThanOrEqualMake
-} from './has/length-greater-than-or-equal';
+export {HasLengthGTE, hasLengthGTE, hasLengthGTEMake} from './has/length/gte';
 export {HasChar, hasChar, hasCharMake} from './has/char';
 export {HasCharTimes, hasCharTimes, hasCharTimesMake} from './has/char-times';
-export {
-	HasLengthGreaterThan,
-	hasLengthGreaterThan,
-	hasLengthGreaterThanMake
-} from './has/length-greater-than';
-export {HasLengthLessThan, hasLengthLessThan, hasLengthLessThanMake} from './has/length-less-than';
-export {
-	HasLengthLessThanOrEqual,
-	hasLengthLessThanOrEqual,
-	hasLengthLessThanOrEqualMake
-} from './has/length-less-than-or-equal';
+export {HasLengthGT, hasLengthGreaterThan, hasLengthGTMake} from './has/length/gt';
+export {HasLengthLT, hasLengthLT, hasLengthLTMake} from './has/length/lt';
+export {HasLengthLTE, hasLengthLTE, hasLengthLTEMake} from './has/length/lte';
 export {HasProperty, hasProperty, hasPropertyMake} from './has/property';
 export {HasPropertyWithType, hasPropertyWithType, hasPropertyWithTypeMake} from './has/property-with-type';
 export {HasText, hasText, hasTextMake} from './has/text';
@@ -128,28 +116,26 @@ export {IsFloat, isFloat, isFloatMake} from './is/float';
 export {IsEmail, isEmail, isEmailMake} from './is/email';
 export {IsEmpty, isEmpty, isEmptyMake} from './is/empty';
 export {IsEqual, isEqual, isEqualMake} from './is/equal';
-export {IsGreaterThan, isGreaterThanMake, isGreaterThan} from './is/greater-than';
-export {
-	IsGreaterThanOrEqual,
-	isGreaterThanOrEqual,
-	isGreaterThanOrEqualMake
-} from './is/greater-than-or-equal';
+export {IsGT, isGTMake, isGT} from './is/gt';
+export {IsGTE, isGTEMake} from './is/gte';
+export {IsBig, isBig, isBigMake} from './is/big';
+export {IsBigInt, isBigInt, isBigIntMake} from './is/big-int';
 export {IsHexColorCode, isHexColorCode, isHexColorCodeMake} from './is/hex-color-code';
 export {IsInt, isInt, isIntMake} from './is/int';
 export {IsIpv4Addr, isIpv4Addr, isIpv4AddrMake} from './is/ipv4-addr';
 export {IsIpv6Addr, isIpv6Addr, isIpv6AddrMake} from './is/ipv6-addr';
 export {IsLength, isLength, isLengthMake} from './is/length';
-export {IsLessThan, isLessThan, isLessThanMake} from './is/less-than';
-export {IsLessThanOrEqual, isLessThanOrEqual, isLessThanOrEqualMake} from './is/less-than-or-equal';
+export {IsLT, isLT, isLTMake} from './is/lt';
+export {IsLTE, isLTE, isLTEMake} from './is/lte';
 export {IsNull, isNull, isNullMake} from './is/null';
 export {IsPort, isPort, isPortMake} from './is/port';
+export {IsSystemPort, isSystemPortMake, isSystemPort} from './is/system/port';
 export {IsText, isTextMake} from './is/text';
 export {IsTime, isTime, isTimeMake} from './is/time';
 export {IsUndefined, isUndefined, isUndefinedMake} from './is/undefined';
 export {IsUrl, isUrl, isUrlMake} from './is/url';
-export {IsSystemPort, isSystemPortMake, isSystemPort} from './is/system/port';
 
-export {toBigInt} from './strong/helpers';
+export {toIntBig, toFloat} from './strong/helpers';
 
 // Patterns
 export {Pattern} from './pattern';

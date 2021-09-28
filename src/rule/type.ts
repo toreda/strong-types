@@ -1,4 +1,6 @@
 import {IsArray, isArrayMake} from '../is/array';
+import {IsBig, isBigMake} from '../is/big';
+import {IsBigInt, isBigIntMake} from '../is/big-int';
 import {IsBoolean, isBooleanMake} from '../is/boolean';
 import {IsDbl, isDblMake} from '../is/dbl';
 import {IsFloat, isFloatMake} from '../is/float';
@@ -15,9 +17,11 @@ import {RuleMods} from './mods';
  */
 export class RuleType {
 	public readonly array: IsArray<RuleType>;
-	public readonly float: IsFloat<RuleType>;
+	public readonly big: IsBig<RuleType>;
+	public readonly bigInt: IsBigInt<RuleType>;
 	public readonly boolean: IsBoolean<RuleType>;
 	public readonly dbl: IsDbl<RuleType>;
+	public readonly float: IsFloat<RuleType>;
 	public readonly int: IsInt<RuleType>;
 	public readonly null: IsNull<RuleType>;
 	public readonly string: IsText<RuleType>;
@@ -26,6 +30,8 @@ export class RuleType {
 
 	constructor(rule: Rule, mods: RuleMods) {
 		this.array = isArrayMake<RuleType>(this, rule, mods);
+		this.big = isBigMake<RuleType>(this, rule, mods);
+		this.bigInt = isBigIntMake<RuleType>(this, rule, mods);
 		this.boolean = isBooleanMake<RuleType>(this, rule, mods);
 		this.dbl = isDblMake<RuleType>(this, rule, mods);
 		this.float = isFloatMake<RuleType>(this, rule, mods);
