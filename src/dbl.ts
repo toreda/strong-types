@@ -63,9 +63,9 @@ export function dblMake(fallback: Big | string | number, initial?: Big | number 
 				return null;
 			}
 
-			value.add(Big(1));
+			const result = value.add(Big(1));
 
-			return strong._data.set(value) ? value : null;
+			return strong._data.set(result) ? result : null;
 		},
 		decrement: (): Big | null => {
 			const value = strong._data.getNull();
@@ -73,8 +73,8 @@ export function dblMake(fallback: Big | string | number, initial?: Big | number 
 				return null;
 			}
 
-			value.sub(Big(1));
-			return strong._data.set(value) ? value : null;
+			const result = value.minus(Big(1));
+			return strong._data.set(result) ? result : null;
 		},
 		mul: (input: number | string | Big): Big | null => {
 			const curr: Big = strong.get(BIG_ZERO);
@@ -96,13 +96,19 @@ export function dblMake(fallback: Big | string | number, initial?: Big | number 
 				return null;
 			}
 
-			return curr.pow(value);
+			const result = curr.pow(value);
+
+			return strong._data.set(result) ? result : null;
 		},
 		div: (input: number | string | Big): Big | null => {
 			const curr = strong.get(BIG_ZERO);
 			const value = toIntBig(input);
 
-			if (curr === null || value === null || value === BIG_ZERO || curr === BIG_ZERO) {
+			if (curr === null || value === null) {
+				return null;
+			}
+
+			if (value === BIG_ZERO || curr === BIG_ZERO) {
 				return null;
 			}
 
@@ -128,12 +134,12 @@ export function dblMake(fallback: Big | string | number, initial?: Big | number 
 		},
 		sub: (input: number | string | Big): Big | null => {
 			const value = toIntBig(input);
+			const curr = strong.getNull();
 
-			if (value === null) {
+			if (value === null || curr === null) {
 				return null;
 			}
 
-			const curr = strong.get(BIG_ZERO);
 			const result = curr.minus(value);
 
 			return strong._data.set(result) ? result : null;

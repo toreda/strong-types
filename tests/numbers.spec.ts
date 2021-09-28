@@ -132,7 +132,7 @@ describe('numberMethods', () => {
 						result(value);
 						expect(result()).toBe(value);
 						result.increment();
-						expect(result()).toBe(testType.inc.result);
+						expect(result()).toEqual(testType.inc.result);
 					});
 
 					it(`should return fallback when the value is null`, () => {
@@ -140,7 +140,7 @@ describe('numberMethods', () => {
 						const result = testType.instance;
 						result(value);
 						result.increment();
-						expect(result()).toBe(testType.zero);
+						expect(result()).toEqual(testType.zero);
 					});
 				});
 
@@ -150,7 +150,7 @@ describe('numberMethods', () => {
 						result(testType.dec.base);
 						expect(result()).toBe(testType.dec.base);
 						result.decrement();
-						expect(result()).toBe(testType.dec.result);
+						expect(result()).toEqual(testType.dec.result);
 					});
 
 					it(`should return fallback when the value is null`, () => {
@@ -158,7 +158,7 @@ describe('numberMethods', () => {
 						const result = testType.instance;
 						result(value);
 						result.decrement();
-						expect(result()).toBe(testType.zero);
+						expect(result()).toEqual(testType.zero);
 					});
 				});
 			});
