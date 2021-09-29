@@ -24,8 +24,9 @@
  */
 
 import Big from 'big.js';
+import {BigArg} from '.';
 import {Rules} from './rules';
-import {StrongNumber} from './strong/number';
+import {StrongDouble} from './strong/double';
 import {strongMake} from './strong';
 import {toFloat} from './to/float';
 import {toIntBig} from './to/int/big';
@@ -35,7 +36,7 @@ const BIG_ZERO = Big(0);
 /**
  * @category Maths
  */
-export type Dbl = StrongNumber<number | string | Big, Big>;
+export type Dbl = StrongDouble<number | string | Big, Big>;
 
 /**
  *
@@ -45,7 +46,7 @@ export type Dbl = StrongNumber<number | string | Big, Big>;
  *
  * @category Maths
  */
-export function dblMake(fallback: Big | string | number, initial?: Big | number | string | null): Dbl {
+export function dblMake(fallback: BigArg | null, initial?: BigArg | null): Dbl {
 	const rules = new Rules<Big>();
 
 	rules.add().must.match.type.big();

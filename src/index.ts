@@ -8,6 +8,8 @@ export {osSet} from './os/set';
 export {osValid} from './os/valid';
 
 export {canConvertFromBig} from './can/convert/from/big';
+export {BigArg} from './big/arg';
+export {bigMake} from './big/make';
 
 // Time
 export {Date, dateMake} from './date';
@@ -142,6 +144,7 @@ export {IsUrl, isUrl, isUrlMake} from './is/url';
 export {IsUInt, isUInt, isUIntMake} from './is/uint';
 
 export {toFloat} from './to/float';
+export {toDblBig} from './to/dbl/big';
 export {toIntBig} from './to/int/big';
 export {toIntNumber} from './to/int/number';
 

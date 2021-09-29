@@ -34,47 +34,33 @@ import {typeMatch} from '../../type/match';
  *
  * @category Strong Helpers
  */
-export function toIntBig(value?: BigArg | null): Big | null {
-	try {
-		if (value === undefined || value === null) {
-			return null;
-		}
+export function toDblBig(value?: BigArg | null): Big | null {
+	if (value === undefined || value === null) {
+		return null;
+	}
 
-		if (typeMatch(value, Big)) {
-			return value;
-		}
+	// No conversion needed if type is already a Big.
+	if (typeMatch(value, Big)) {
+		return value;
+	}
 
-		if (typeof value === 'string') {
-			const result = bigMake(value);
-			if (result === null) {
-				return null;
-			}
+	if (typeof value === 'string') {
+		return bigMake(value);
+	}
 
-			// String values converted to Big can be larger than JavaScript `number`,
-			// meaning common JavaScript math functions cannot be used to check result.
-			// Values with decimal values are rejected.
-			const rounded = result.round(4);
-			return !isNaN(rounded.cmp(result)) ? rounded : null;
-		}
+	// All other accepted types have been processed. If type is not number,
+	// value type cannot be handled.
+	if (typeof value !== 'number') {
+		return null;
+	}
 
-		// All other supported types have been processed. If value is not
-		// a number, we don't support it. Bail out.
-		if (typeof value !== 'number') {
-			return null;
-		}
+	if (isNaN(value) || value >= Number.POSITIVE_INFINITY || value <= Number.NEGATIVE_INFINITY) {
+		return null;
+	}
 
-		if (isNaN(value) || value >= Number.POSITIVE_INFINITY || value <= Number.NEGATIVE_INFINITY) {
-			return null;
-		}
-
-		if (value > Number.MAX_SAFE_INTEGER || value < Number.MIN_SAFE_INTEGER) {
-			return null;
-		}
-
-		if (Math.floor(value) !== value) {
-			return null;
-		}
-	} catch (e) {}
+	if (value > Number.MAX_SAFE_INTEGER || value < Number.MIN_SAFE_INTEGER) {
+		return null;
+	}
 
 	return bigMake(value);
 }
