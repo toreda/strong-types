@@ -37,23 +37,42 @@ export function toIntNumber(value?: number | string | Big | null): number | null
 		return null;
 	}
 
-	// Possible precision loss, not an idea conversion.
+	let result: number | null;
+
+	// Converting Big -> number is generally as precision may be lost.
+	// Support for Big values is provided for ease of use in cases where
+	// the caller would have to convert input before calling.
 	if (typeMatch(value, Big)) {
-		if (value.gt(Number.MAX_SAFE_INTEGER) || value.lt(Number.MAX_SAFE_INTEGER)) {
-			return null;
-		} else {
-			return value.toNumber();
+		// Throws when Big value will not fit in number.
+		try {
+			result = value.toNumber();
+		} catch (e) {
+			result = null;
 		}
+	} else if (typeof value === 'string') {
+		result = parseFloat(value);
+	} else if (typeof value === 'number') {
+		result = value;
+	} else {
+		result = null;
 	}
 
-	if (typeof value === 'string') {
-		const result = parseInt(value);
-		return !isNaN(result) ? result : null;
-	}
-
-	if (value >= Number.POSITIVE_INFINITY || value <= Number.NEGATIVE_INFINITY) {
+	if (result === null || isNaN(result)) {
 		return null;
 	}
 
-	return value;
+	if (result >= Number.POSITIVE_INFINITY || result <= Number.NEGATIVE_INFINITY) {
+		return null;
+	}
+
+	if (result < Number.MIN_SAFE_INTEGER || result > Number.MAX_SAFE_INTEGER) {
+		return null;
+	}
+
+	// Reject values with decimals.
+	if (Math.floor(result) !== result) {
+		return null;
+	}
+
+	return result;
 }
