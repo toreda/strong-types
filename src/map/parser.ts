@@ -34,7 +34,7 @@ import {StrongMap} from '../map';
  * @category Strong Map
  */
 export class MapParser {
-	public parse(map: StrongMap, data: Data, options?: Options): boolean {
+	public parse(map: StrongMap, data?: Data | unknown | null, options?: Options): boolean {
 		if (!map) {
 			return false;
 		}
@@ -110,7 +110,7 @@ export class MapParser {
 	 *						true	- 	Map parse successful.
 	 *						false	-	Map parse not successful.
 	 */
-	public parseMap(map: StrongMap, data: Data, parseState: State): boolean {
+	public parseMap(map: StrongMap, data: unknown | null, parseState: State): boolean {
 		if (!map) {
 			return false;
 		}
@@ -123,7 +123,7 @@ export class MapParser {
 
 		for (const keyName of keys) {
 			const child = map[keyName];
-			const keyValue = data[keyName];
+			const keyValue = (data as Data)[keyName];
 
 			// Skip built-in properties.
 			if (!map.hasOwnProperty(keyName)) {

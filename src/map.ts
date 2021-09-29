@@ -37,7 +37,7 @@ import {MapParser} from './map/parser';
 export class StrongMap {
 	[index: string]: unknown;
 
-	public parse(data?: Data): void {
+	public parse(data?: null | unknown): void {
 		if (!data) {
 			return;
 		}
