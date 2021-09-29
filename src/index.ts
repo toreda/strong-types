@@ -163,6 +163,7 @@ export {RuleMods} from './rule/mods';
 export {RuleMust} from './rule/must';
 export {RuleNode} from './rule/node';
 export {RuleNodeType} from './rule/node/type';
+export {RuleTarget} from './rule/target';
 export {RuleNot} from './rule/not';
 export {RuleOr} from './rule/or';
 export {RuleRoot} from './rule/root';
