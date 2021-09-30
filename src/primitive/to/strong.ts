@@ -23,7 +23,8 @@
  *
  */
 
-import {LiteralToPrimitive} from '@toreda/types';
+import type {LiteralToPrimitive} from '@toreda/types';
+
 import {Strong} from '../../strong';
 
 /**
