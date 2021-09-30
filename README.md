@@ -108,6 +108,8 @@ Check whether `value` is passes validation as type `ValueT`. Called by `set(...)
 ### `reset(): void`
 Reset current value to `null`. Useful for testing, Lamba environments, and object pools.
 
+&nbsp;
+
 ## Numeric Types
 
 ### **Add `add(input: ValueT): ValueT | null`**
@@ -184,29 +186,136 @@ Decrease value by 1 if `StrongType` has a value.  Returns `null` when decrement 
 
 # Data Types
 
-## `StrongArray<T>`
+# `StrongArray<T>`
 Strict `Array` type.
 
-&nbsp;
-
-## `Bool`
-Strict **`boolean`** values.
-* Accepts only **`true`** or **`false`**.
-* Rejects all non-boolean values.
-* No type coercion.
-
-&nbsp;
-
-## `Int`
-Positive & negative Integers stored as a JavaScript **`number`** with no type coercion.
-
 ### **Accepts**
-- **`Number.MIN_SAFE_INT`** to **`Number.MAX_SAFE_INT`** (inclusive).
+* Arrays matching type `T` provided to `StrongArray<T>` during init.
+### **Rejects**
+* Non-array values.
+
+
+## Make a `StrongArray<T>`
+```typescript
+import type {StrongArray} from '@toreda/strong-types';
+import {arrayMake} from '@toreda/strong-types';
+
+// Create a new StrongArray of type string[].
+// Fallback value is an empty array.
+const arr = arrayMake<string>([]);
+```
+&nbsp;
+
+# `Bool`
+Strict **`boolean`** values.
+
+&nbsp;
+### **Accepts**
+* `true`
+* `false`
 
 ### **Rejects**
-- Non-integer values.
+* Everything else (no type coercion).
 
-## Create an `Int`
+&nbsp;
+## Making `Bool`
+
+```typescript
+import type {Bool} from '@toreda/strong-types';
+import {boolMake} from '@toreda/strong-types';
+
+// Create bool with fallback `false`.
+// No initial value set.
+const bool = boolMake(false);
+```
+
+&nbsp;
+## Get `Bool`
+
+Get the current value invoking the `Bool` object directly, calling `bool.get(fallback)`, or `bool.getNull()`.
+
+&nbsp;
+## Invoke `Bool`
+All `StrongType` objects are also functions. Call the function without args to return the current value.
+
+
+&nbsp;
+
+**Create bool with fallback `false` & no initial value:**
+```typescript
+// Create bool with:
+//	fallbackDefault		-	false
+//	value				-	null (not provided)
+const bool = boolMake(false);
+
+// Prints 'false'
+console.log(bool());
+```
+
+&nbsp;
+
+**Create bool with value `true` & fallback `false`:**
+```typescript
+// Create bool with:
+// 	fallbackDefault 	-	false
+//	value				-	true
+const bool = boolMake(false, true);
+
+// Prints 'true'
+// Second arg of boolMake is value.
+console.log(bool());
+```
+
+&nbsp;
+
+**Create bool with value `false` & fallback `true`:**
+```typescript
+// Create bool with:
+//	fallbackDefault		-	true
+//	value				-	false
+const bool = boolMake(true, false);
+
+// Prints 'false'.
+console.log(bool());
+```
+
+&nbsp;
+
+## Reset `Bool`
+Reset any `Bool` object back to it's `fallbackDefault` value provided in `boolMake(...)`.
+
+```typescript
+const bool = boolMake(true);
+
+// Set value to false
+bool(false);
+
+// Prints 'false'
+console.log(bool());
+
+// Reset object and remove current value.
+// Object returns fallbackDefault 'true' until value is set.
+bool.reset();
+
+// Prints 'true', but bool has no current value.
+console.log(bool());
+```
+&nbsp;
+
+# `Int`
+Positive & negative Integers stored as a JavaScript **`number`**. No type coercion used.
+
+&nbsp;
+## Values
+### **Accepts**
+- Integers in range: **`Number.MIN_SAFE_INT`** to **`Number.MAX_SAFE_INT`** (inclusive).
+
+### **Rejects**
+- Non-integers values.
+- Values with decimal places (`4.44`, `0.11`, etc).
+
+&nbsp;
+## Make `Int`
 
 ### With **`number`**
 ```typescript
@@ -218,6 +327,41 @@ const value = intMake(0, 444111);
 
 &nbsp;
 
+## Reset `Int`
+
+```typescript
+const int = intMake(0);
+
+// Set value to 101.
+int(101);
+
+// Prints 101
+console.log(int());
+
+// Reset object and remove current value.
+// Returns fallbackDefault (0) until value is set.
+int.reset();
+
+// Prints 0. Int has no value.
+console.log(int());
+```
+
+```typescript
+const int = intMake(10);
+// Set value to 100.
+int(100);
+
+// Prints 100.
+console.log(log());
+int.reset();
+
+// Prints 10. Value null & fallback returned instead.
+console.log(int());
+
+// Prints null - value is null. getNull() does not use fallback.
+console.log(int.getNull());
+```
+
 # `UInt`
 Unsigned Integers stored as a JavaScript **`number`**.
 
@@ -225,17 +369,21 @@ Unsigned Integers stored as a JavaScript **`number`**.
 &nbsp;
 ## Values
 ### Accepts
+* Rejects `NaN`
+* Rejects negative integers (e.g. `-22`).
+
 - Positive Integers from `0` to `Number.MAX_SAFE_INT` (inclusive).
 
-
 ### Rejects
+* `NaN`
+* Non-finite values `Number.POSITIVE_INFINITY` and `Number.NEGATIVE_INFINITY`.
 - Negative Integers.
   - ex: `-10`, `-1`
 - Positive & negative decimals.
     	- ex: `5.1`, `100.9`, `-1.1`, `-99.99`, `0.11`, `-0.099`
 
 &nbsp;
-## Create a `UInt`
+## Make `UInt`
 
 ### From **`number`**:
 ```typescript
@@ -262,7 +410,7 @@ Decimal values supporting arbitrary precision.
 
 &nbsp;
 
-## Create a `Dbl`
+## Make `Dbl`
 
 ### From **`number`**:
 ```typescript
@@ -412,6 +560,8 @@ console.log(int());
 
 ```
 
+&nbsp;
+
 ### Validation
 `StrongType` containers validate value inputs before setting. Bad values are ignored and will not cause a throw. Each built-in container type provides specific guarantees for which values are allowed.
 
@@ -425,20 +575,13 @@ const int = intMake(50, 100);
 const success = int(1.5);
 ```
 
+&nbsp;
 
-# Supported Types
-* [`StrongArray`](#StrongArray), arrays
-* [`Bool`](#Bool), booleans (strict)
-* [`Dbl`](#Dbl), doubles
-* [`Int`](#Int), integers
-* [`UInt`](#StrongUint), unsigned integers
-* [`Text`](#Text) - strings
-
-# Using `StrongMap`
+# `StrongMap`
 
 Creating and using a StrongMap class.
 ```typescript
-import {StrongMap, Int, Text, intMake, makeString} from '@toreda/strong-types';
+import {StrongMap, Int, Text, intMake, textMake} from '@toreda/strong-types';
 
 
 export class SomeConfig extends StrongMap {
@@ -448,7 +591,7 @@ export class SomeConfig extends StrongMap {
 	constructor(json: any) {
 		super();
 		this.counter = intMake(0, 0);
-		this.name = makeString(null, 'TreeBeard');
+		this.name = textMake('', 'TreeBeard');
 		this.parse(json);
 	}
 }
@@ -466,7 +609,7 @@ console.log(myConfig.name());
 
 Creating a `StrongMap` and loading values from JSON
 ```typescript
-import {StrongMap, StringInt, Text, intMake, makeString} from '@toreda/strong-types';
+import {StrongMap, StringInt, Text, intMake, textMake} from '@toreda/strong-types';
 
 export class SomeConfig extends StrongMap {
 	public readonly counter: Int;
@@ -475,7 +618,7 @@ export class SomeConfig extends StrongMap {
 	constructor(json?: any) {
 		super();
 		this.counter = intMake(0, 0);
-		this.name = makeString(null, 'TreeBeard');
+		this.name = textMake(null, 'TreeBeard');
 		this.parse(json);
 	}
 }
@@ -497,7 +640,7 @@ console.log(myConfig.name());
 
 Converting a `StrongMap` to a json object
 ```typescript
-import {StrongMap, StringInt, Text, intMake, makeString} from '@toreda/strong-types';
+import {StrongMap, StringInt, Text, intMake, textMake} from '@toreda/strong-types';
 
 export class SomeConfig extends StrongMap {
 	public readonly counter: Int;
@@ -506,7 +649,7 @@ export class SomeConfig extends StrongMap {
 	constructor(json?: any) {
 		super();
 		this.counter = intMake(0, 0);
-		this.name = makeString(null, 'TreeBeard');
+		this.name = textMake(null, 'TreeBeard');
 		this.parse(json);
 	}
 }
@@ -526,74 +669,13 @@ myConfig.name('Gandalf');
 const configAsJSON = myConfig.jsonify();
 ```
 
-## `StrongArray`
+&nbsp;
 
-### Import
+&nbsp;
 
-```typescript
-import {StrongArray, makeArray} from '@toreda/strong-types';
-```
+# Validators
 
-### Accepted Values
-* Arrays holding any type (e.g. `T[]`)
-* Accepts empty arrays (e.g. `[]`)
-
-
-## `Bool`
-
-### Import
-```typescript
-import {Bool, boolMake} from '@toreda/strong-types';
-```
-
-### Accepted Values
-* Strict booleans: `true` or `false` only.
-* No type coercion (e.g. `1` or `0` will be rejected).
-
-## `Dbl`
-
-### Import
-```typescript
-import {Dbl, makeDbl} from '@toreda/strong-types';
-```
-
-### Accepted Values
-* `number` values between and including Number.MIN_VALUE and Number.MAX_VALUE.
-* Rejects `NaN` values.
-
-## `Int`
-
-### Import ###
-```typescript
-import {Int, intMake} from '@toreda/strong-types';
-```
-### Accepted Values ###
-* `number` values between and including Number.MIN_VALUE and Number.MAX_VALUE.
-* `NaN` values are rejected.
-
-
-## `Text`
-
-### Import
-```typescript
-import {Text, makeString} from '@toreda/strong-types';
-```
-### Accepted Values ###
-* `string` values of any valid length.
-
-
-## `UInt`
-
-### Import
-```typescript
-import {UInt, makeUInt} from '@toreda/strong-types';
-```
-
-### Accepted Values ###
-* Integers between and including 0 and `Number.MAX_SAFE_INTEGER`.
-* Rejects numbers which are non-integers (e.g. `1.5`)
-* Rejects `NaN`
-* Rejected negative integers (e.g. `-22`).
+&nbsp;
 
 # Custom Types
 Each built-in type like `Int` and `UInt` are helper functions wrapping `Strong<T>`. They also apply validators which guarantee the `Strong<T>` value behaves as expected. While built-ins are provided for convenience, you can create custom types with your own validators.
@@ -622,8 +704,8 @@ const myObj = strongMake<MyOwnType>(initial, fallback);
 
 ```
 
-## Validators
 
+&nbsp;
 
 # Install
 Install `@toreda/strong-types` directly from NPM or [clone the Github repo](https://github.com/toreda/strong-types).
@@ -671,6 +753,17 @@ yarn build
 npm run-script build
 ```
 
-# License
+&nbsp;
+
+# Legal
+
+## License
 
 [MIT](LICENSE) &copy; Toreda, Inc.
+
+&nbsp;
+
+## Copyright
+Copyright &copy; 2019 - 2021 Toreda, Inc. All Rights Reserved.
+
+https://www.toreda.com
