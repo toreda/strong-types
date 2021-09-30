@@ -7,7 +7,8 @@ Guaranteed types with validation in 1 line of code. Improve code quality & relia
 
 What does it do?
 ```typescript
-import {Int, intMake} from '@toreda/strong-types';
+import type {Int} from '@toreda/strong-types';
+import {intMake} from '@toreda/strong-types';
 //  int with initial value 10.
 const int = intMake(10);
 // Prints 10. It always return an int.
@@ -29,16 +30,55 @@ console.log(int());
 ```
 # Contents
 
-* [**Basic Usage**](#basic-usage)
-*	[**Built-in Types**](#built-in-types)
-	  - [`StrongMap`](#StrongMap)
-	  -	[`StrongArray`](#StrongArray)
-	  - [`Bool`](#Bool)
-	  - [`Dbl`](#Dbl)
-	  - [`Float`](#Float)
-	  - [`Int`](#Int)
-	  - [`Text`](#Text)
-	  - [`UInt`](#UInt)
+* [**Code Documentation**](/docs/index.html)
+* [**StrongType API**](#strongtype-api)
+* [**Data Types**](#data-types)
+	- **Primary Types**
+    	- [**`StrongMap`**](#StrongMap)
+    	- [**`StrongArray`**](#StrongArray)
+    	- [**`Bool`**](#Bool)
+        	- Strict `true` or `false` values.
+    	- [**`Dbl`**](#Dbl)
+        	- Decimal values with arbitrary precision.
+    	- [**`Float`**](#Float)
+        	- Standard JavaScript `number` values with a `StrongType` wrapper.
+    	- [**`Int`**](#Int)
+        	- Positive & negative integers.
+    	- [**`Text`**](#Text)
+        	- String values
+        - [**`UInt`**](#UInt)
+          -  Unsigned integers.
+    * [**Expressive Types**](#expressive-types)
+      * `Email` - `string`
+        * Email address with format `mailbox@domain`.
+      * **`Date`** - `string`
+        *  ISO standard date strings.
+	  * `Id` - `string`
+    	  * `string` with configurable value restrictions.
+	  * `HexColorCode` - `string`
+    	  * Any full or partial hex value representing a color code in `RGB` range (`#000000` to `#FFFFFF`).
+  	  * `Port` - `unsigned integer`
+    	  * Port number in the range `1` to `65535`.
+      * `OS` - `OS Value`
+        * Common OS platform names `android`, `darwin`, `linux`, and `windows`.
+      * `Size` - `{width: float; height: float}`
+        * Object with properties `float x` and `float y`.
+      * `SystemPort` - `unsigned integer`
+        * Port number in the eserved system port range `1` to `1024`.
+      * `Time` - `string`
+        * ISO standard `12h` or `24h` time value.
+      * `Url` - `string`
+        * Any valid absolute `Url` according to [`RFC-3986`](https://tools.ietf.org/html/rfc3986).
+      * `Vec1` - `{x: float}`
+        * Vector object with `float` validated property `float x`.
+      * `Vec2` - `{x: float; y: float}`
+        * Vector object with `float` validated properties `float x` and `float y`.
+      * `Vec3` - `{x: float; y: float; z: float}`
+        * Vector object with `float` validated properties `float x`, `float y`, and `float z`.
+      * `Vec4` - `{x: float; y: float; z: float; w: float}`
+        * Vector object with `float` validated properties `float x`, `float y`,  `float z`, and `float w`.
+  * [**Examples**](#examples)
+*	[**Conversion Functions**](#conversion-functions)
 *	[**Custom Types**](#custom-types)
 	  - [Validators](#validators)
 * 	[**Package**](#package)
@@ -46,8 +86,211 @@ console.log(int());
 	-	[Testing](#testing)
 	-   [License](#license)
 
+&nbsp;
 
-# Using `StrongType`
+# `StrongType` API
+
+All types in this package implement the `StrongType` interface which provide
+
+## General API
+
+## All Types
+
+### `get(fallback: ValueT): ValueT`
+Get current value. The provided `fallback` is returned when `StrongType` has no current value. Always returns a type `ValueT` value.
+
+### `getNull(): ValueT | null`
+Get and return current value if set, otherwise returns `null`. Useful when you need to know if there is a current value.
+
+### `check(value?: ValueT): boolean`
+Check whether `value` is passes validation as type `ValueT`. Called by `set(...)` internally, but allows value validation before setting.
+
+### `reset(): void`
+Reset current value to `null`. Useful for testing, Lamba environments, and object pools.
+
+## Numeric Types
+
+### **Add `add(input: ValueT): ValueT | null`**
+Add `input` to `value` (`value + input`).
+
+
+#### **Returns**
+* `null` when `result` value is not a valid `ValueT`.
+  * ex: `uint.add(-1)` returns `null` when `value` is `0`.  `0 + -1` is `-1` and not a valid `UInt`.
+  * ex: `int.add(1)` returns `null
+
+&nbsp;
+
+### **Subtract `sub(input: ValueT): ValueT | null`***
+Subtract `input` from `value` (`value - input`).
+
+#### **Returns**
+* `null` when `result` is not a valid `ValueT`.
+  * ex: `uint.sub(1)` returns `null` when `value` is `0`, because `-1` is not a valid `UInt`.
+* `result` of subtraction when operation succeeds and result is a valid `ValueT`.
+
+&nbsp;
+### **Multiply `mul(input: ValueT): ValueT | null`**
+Multiply `value` by `input`.
+
+#### **Returns**
+* `null` if result of multiplication is not a valid `ValueT`.
+* `0` when either number is `0`.
+
+&nbsp;
+
+### **Divide `div(input: ValueT): ValueT | null`**
+Divide `value` by `input`.
+
+#### **Returns**
+* `null` when `result` is not a valid `ValueT`
+  * ex: `uint.mul(-1)` will always return `null` because `UInt` cannot be < `0`.
+* `result` of divsion when operation succeeds.
+* `0` when either `value` or `input` is `0`.
+* `null` when `StrongType` has no current value.
+
+&nbsp;
+
+### `pow(n: ValueT): ValueT | null`
+Raise `value` to the `n`th power.
+
+#### **Returns**
+* `null` when current value is `null`.
+* `null` when `result` value is too big, or too small for `ValueT`.
+* `result` of `valueⁿ` if `result` is a valid `ValueT`.
+
+
+&nbsp;
+
+### `increment(): ValueT | null`
+Increment value by 1 if `StrongType` has a value. Returns `null` when increment is not successful.
+
+### **Returns**
+* `null` when `result` of `value + 1` is not a valid `ValueT`.
+* `null` when `StrongType` has no value.
+* `result` when `increment` succeeds.
+
+&nbsp;
+
+### `decrement(): ValueT | null`
+Decrease value by 1 if `StrongType` has a value.  Returns `null` when decrement is not successful.
+
+#### **Returns**
+* `null` when result of `value - 1` is not a valid `ValueT`.
+* `null` when `StrongType` has no value.
+* `result` when `decrement` succeeds.
+
+&nbsp;
+
+# Data Types
+
+## `StrongArray<T>`
+Strict `Array` type.
+
+&nbsp;
+
+## `Bool`
+Strict **`boolean`** values.
+* Accepts only **`true`** or **`false`**.
+* Rejects all non-boolean values.
+* No type coercion.
+
+&nbsp;
+
+## `Int`
+Positive & negative Integers stored as a JavaScript **`number`** with no type coercion.
+
+### **Accepts**
+- **`Number.MIN_SAFE_INT`** to **`Number.MAX_SAFE_INT`** (inclusive).
+
+### **Rejects**
+- Non-integer values.
+
+## Create an `Int`
+
+### With **`number`**
+```typescript
+import type {Int} from '@toreda/strong-types';
+import intMake from '@toreda/strong-types';
+
+const value = intMake(0, 444111);
+```
+
+&nbsp;
+
+# `UInt`
+Unsigned Integers stored as a JavaScript **`number`**.
+
+
+&nbsp;
+## Values
+### Accepts
+- Positive Integers from `0` to `Number.MAX_SAFE_INT` (inclusive).
+
+
+### Rejects
+- Negative Integers.
+  - ex: `-10`, `-1`
+- Positive & negative decimals.
+    	- ex: `5.1`, `100.9`, `-1.1`, `-99.99`, `0.11`, `-0.099`
+
+&nbsp;
+## Create a `UInt`
+
+### From **`number`**:
+```typescript
+import type {UInt} from '@toreda/strong-types';
+import uIntMake from '@toreda/strong-types';
+
+const value = uIntMake(0, 444111);
+```
+&nbsp;
+
+# `Dbl`
+Decimal values supporting arbitrary precision.
+
+&nbsp;
+
+## Values
+### Accepts
+- `strings` containing arbitrarily large positive or negative decimal & integer values. Numeric values for **`Dbl`** in `string` form may exceed `Number.MAX_VALUE` and `Number.MAX_SAFE_INT`.
+  - ex: `'1'`, `'-100'`, `'1.1111111'`, `'0.00009'`, `'1.000009'`, `'-99.0009'`
+- `numbers` from `Number.MIN_VALUE` to `Number.MAX_VALUE` (inclusive).
+  - Note: Represent numbers exceeding `Number.MAX_VALUE` or below `Number.MIN_VALUE` as `string` or `Big`.
+### Rejects
+- Non-finite values `Number.POSITIVE_INFINITY`, `Number.NEGATIVE_INFINITY`.
+
+&nbsp;
+
+## Create a `Dbl`
+
+### From **`number`**:
+```typescript
+import type {Dbl} from '@toreda/strong-types';
+import dblMake from '@toreda/strong-types';
+
+const value = dblMake(0, 1111187);
+```
+
+### From **`string`**:
+```typescript
+import type {Dbl} from '@toreda/strong-types';
+import dblMake from '@toreda/strong-types';
+
+const value = dblMake(0, '1081987419714971411.441');
+```
+
+### From `Big`:
+```typescript
+import Big from 'big.js';
+import type {Dbl} from '@toreda/strong-types';
+import dblMake from '@toreda/strong-types';
+
+const value = dblMake(0, Big(8714817418741));
+```
+
+&nbsp;
+# Examples
 
 Each built-in type exports a type and make function. The below examples use Int but work the same using: `StrongArray`, `Bool`, `Dbl`, `Float`, `Int`, `Text`, and `UInt`.
 
@@ -107,8 +350,9 @@ console.log(int.getNull());
 ```
 
 ## Set Value
-```
-import {Int, intMake} from '@toreda/strong-types';
+```typescript
+import type {Int} from '@toreda/strong-types';
+import {intMake} from '@toreda/strong-types';
 
 const initial = 331;
 const fallback = 400;

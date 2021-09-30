@@ -48,22 +48,27 @@ export function floatMake(fallback: number, initial?: number | null): Float {
 	const strong = strongMake<number>(fallback, initial, rules);
 
 	return Object.assign(strong, {
-		increment: () => {
+		increment: (): number | null => {
 			return strong._data.add(1);
 		},
-		decrement: () => {
+		decrement: (): number | null => {
+			const value = strong._data.getNull();
+			if (value === null || value === 0) {
+				return null;
+			}
+
 			return strong._data.add(-1);
 		},
-		mul: (amt: number) => {
+		mul: (amt: number): number | null => {
 			return strong._data.mul(amt);
 		},
 		pow: (exponent: number) => {
 			return strong._data.pow(exponent);
 		},
-		div: (amt: number) => {
+		div: (amt: number): number | null => {
 			return strong._data.div(amt);
 		},
-		add: (amt: number) => {
+		add: (amt: number): number | null => {
 			return strong._data.add(amt);
 		},
 		sub: (amt: number) => {
