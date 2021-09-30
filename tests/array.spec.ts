@@ -23,7 +23,7 @@
  *
  */
 
-import {arrayMake} from '../src/array';
+import {arrayMake} from '../src/array/make';
 
 const MOCK_FALLBACK_DEFAULT = ['dog'];
 const MOCK_FALLBACK = [2, -2, 8];

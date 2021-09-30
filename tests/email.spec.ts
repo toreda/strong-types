@@ -23,7 +23,7 @@
  *
  */
 
-import {emailMake} from '../src/email';
+import {emailMake} from '../src/email/make';
 
 const MOCK_FALLBACK_DEFAULT = 'dog@cat.com';
 const MOCK_FALLBACK = 'toy@undertree,com';

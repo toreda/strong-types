@@ -23,7 +23,7 @@
  *
  */
 
-import {intMake} from '../src/int';
+import {intMake} from '../src/int/make';
 
 const MOCK_INITIAL = 524;
 const MOCK_FALLBACK_DEFAULT = 65;

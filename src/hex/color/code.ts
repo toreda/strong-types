@@ -23,24 +23,11 @@
  *
  */
 
-import {Strong, strongMake} from '../../strong';
-
-import {Rules} from '../../rules';
+import type {Strong} from '../../strong';
 
 /**
+ * Hex color code string representing RGB value.
+ *
  * @category HexColorCode
  */
 export type HexColorCode = Strong<string>;
-
-/**
- * Create new strong hex color code object.
- * @param fallback
- * @param initial
- * @returns
- */
-export function hexColorCodeMake(fallback: string, initial?: string | null): HexColorCode {
-	const rules = new Rules();
-	rules.add().must.match.type.string();
-	rules.add().must.be.hexColorCode();
-	return strongMake<string>(fallback, initial, rules);
-}

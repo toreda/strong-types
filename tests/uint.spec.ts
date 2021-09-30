@@ -23,7 +23,7 @@
  *
  */
 
-import {uIntMake} from '../src/uint';
+import {uIntMake} from '../src/uint/make';
 
 const MOCK_INITIAL = 4410;
 const MOCK_FALLBACK_DEFAULT = 99121;

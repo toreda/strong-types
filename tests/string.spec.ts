@@ -23,7 +23,7 @@
  *
  */
 
-import {textMake} from '../src/text';
+import {textMake} from '../src/text/make';
 
 const MOCK_INITIAL = 'hello';
 const MOCK_FALLBACK_DEFAULT = 'hello world';

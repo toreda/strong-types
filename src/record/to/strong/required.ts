@@ -1,6 +1,3 @@
-import {ANY, AnyObj, Expand, Primitive} from '@toreda/types';
-
-import {PrimitiveToStrong} from '../../../primitive/to/strong';
 /**
  *	MIT License
  *
@@ -25,6 +22,10 @@ import {PrimitiveToStrong} from '../../../primitive/to/strong';
  * 	SOFTWARE.
  *
  */
+
+import {ANY, AnyObj, Expand, Primitive} from '@toreda/types';
+
+import {PrimitiveToStrong} from '../../../primitive/to/strong';
 import {RecordToStrong} from '../strong';
 
 // Do not export, this is a helper type and has unexpected results if not used correctly

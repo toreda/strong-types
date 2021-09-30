@@ -23,22 +23,9 @@
  *
  */
 
-import {Strong, strongMake} from '../strong';
-
-import {Rules} from '../rules';
-
-export type SemVer = Strong<string>;
+import type {Strong} from '../strong';
 
 /**
- * Create new strong hex color code object.
- * @param fallback
- * @param initial
- * @returns
+ * Semantic version number in format x.x.x
  */
-export function semVerMake(fallback: string, initial?: string | null): SemVer {
-	const rules = new Rules();
-	rules.add().must.match.type.string();
-	rules.add().must.contain.charTimes('.', 3);
-
-	return strongMake<string>(fallback, initial, rules);
-}
+export type SemVer = Strong<string>;

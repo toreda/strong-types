@@ -23,7 +23,7 @@
  *
  */
 
-import {dateMake} from '../src/date';
+import {dateMake} from '../src/date/make';
 
 const MOCK_FALLBACK_DEFAULT = '1886-08';
 const MOCK_FALLBACK = '1999-10-31';

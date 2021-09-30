@@ -23,6 +23,8 @@
  *
  */
 
+import {StrongTypeId} from '../strong/type/id';
+
 /**
  * Configuration options used when creating a Strong Id.
  *
@@ -45,4 +47,6 @@ export interface IdOptions {
 	 * are rejected.
 	 */
 	contains?: string | string[];
+
+	typeId?: StrongTypeId;
 }

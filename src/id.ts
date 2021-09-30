@@ -23,10 +23,7 @@
  *
  */
 
-import {Strong, strongMake} from './strong';
-
-import {IdOptions} from './id/options';
-import {Rules} from './rules';
+import type {Strong} from './strong';
 
 /**
  * Unique string identifier.
@@ -34,32 +31,3 @@ import {Rules} from './rules';
  * @category Strings
  */
 export type Id = Strong<string>;
-
-/**
- * Create a Strong Id type.
- * @param fallback
- * @param initial
- * @returns
- *
- * @category Strings
- */
-export function idMake(fallback: string, initial?: string | null, options?: IdOptions): Id {
-	const rules = new Rules();
-
-	if (options) {
-		if (typeof options.maxLength === 'number') {
-			rules.add().must.have.length.lessThanOrEqualTo(options.maxLength);
-		}
-
-		if (typeof options.minLength === 'number') {
-			rules.add().must.have.length.greaterThanOrEqualTo(options.minLength);
-		}
-
-		if (typeof options.contains === 'string' || Array.isArray(options.contains)) {
-			rules.add().must.contain.text(options.contains);
-		}
-	}
-
-	rules.add().must.match.type.string();
-	return strongMake<string>(fallback, initial, rules);
-}

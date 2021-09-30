@@ -23,9 +23,7 @@
  *
  */
 
-import {Strong, strongMake} from './strong';
-
-import {Rules} from './rules';
+import type {Strong} from './strong';
 
 /**
  * StrongType Bool.
@@ -33,18 +31,3 @@ import {Rules} from './rules';
  * @category Bool
  */
 export type Bool = Strong<boolean>;
-
-/**
- * Factory function to create a StrongType Bool object.
- * @param fallback
- * @param initial
- * @returns
- *
- * @category Bool
- */
-export function boolMake(fallback: boolean, initial?: boolean | null): Bool {
-	const rules = new Rules();
-	rules.add().must.match.type.boolean();
-
-	return strongMake<boolean>(fallback, initial, rules);
-}

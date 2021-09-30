@@ -23,9 +23,9 @@
  *
  */
 
-import {Url, urlMake} from '../src/url';
-
 import URL_SCHEMES from './_data/schemes';
+import {Url} from '../src/url';
+import {urlMake} from '../src/url/make';
 
 const MOCK_FALLBACK_DEFAULT = 'Http://somedomain.com';
 const MOCK_FALLBACK = 'Wss://somedomain.com:8080';

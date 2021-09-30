@@ -23,25 +23,9 @@
  *
  */
 
-import {Strong, strongMake} from './strong';
-
-import {Rules} from './rules';
+import type {Strong} from './strong';
 
 /**
  * @category Collections
  */
 export type StrongArray<T> = Strong<T[]>;
-
-/**
- *
- * @param fallback
- * @param initial
- * @returns
- *
- * @category Collections
- */
-export function arrayMake<T>(fallback: T[], initial?: T[] | null): StrongArray<T> {
-	const rules = new Rules();
-	rules.add().must.match.type.array();
-	return strongMake<T[]>(fallback, initial, rules);
-}

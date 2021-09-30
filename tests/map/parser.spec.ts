@@ -23,15 +23,16 @@
  *
  */
 
-import {Bool, boolMake} from '../../src/bool';
-import {Text, textMake} from '../../src/text';
-
+import type {Bool} from '../../src/bool';
 import {Data} from '@toreda/types';
-import {Int} from '../../src/int';
+import type {Int} from '../../src/int';
 import {MapParser} from '../../src/map/parser';
 import {MapParserState} from '../../src/map/parser/state';
 import {StrongMap} from '../../src/map';
-import {intMake} from '../../src/int';
+import type {Text} from '../../src/text';
+import {boolMake} from '../../src/bool/make';
+import {intMake} from '../../src/int/make';
+import {textMake} from '../../src/text/make';
 
 const MOCK_VALUE = 11091;
 

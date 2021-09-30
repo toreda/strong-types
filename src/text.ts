@@ -23,25 +23,9 @@
  *
  */
 
-import {Strong, strongMake} from './strong';
-
-import {Rules} from './rules';
+import type {Strong} from './strong';
 
 /**
  * @category Strings
  */
 export type Text = Strong<string>;
-
-/**
- *
- * @param fallback
- * @param initial
- * @returns
- *
- * @category Strings
- */
-export function textMake(fallback: string, initial?: string | null): Text {
-	const rules = new Rules();
-	rules.add().must.match.type.string();
-	return strongMake<string>(fallback, initial, rules);
-}

@@ -23,9 +23,9 @@
  *
  */
 
-import {Float, floatMake} from './float';
-
 import {Defaults} from './defaults';
+import type {Float} from './float';
+import {floatMake} from './float/make';
 
 /**
  * Map for passing coodinates in 2-dimensional
@@ -50,10 +50,3 @@ export class Vec2 {
 		this.y.reset();
 	}
 }
-
-/**
- * Vec2 alias for backwards compat.
- *
- * @category Maths
- */
-export type StrongVec2 = Vec2;

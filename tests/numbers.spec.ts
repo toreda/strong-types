@@ -23,10 +23,14 @@
  *
  */
 
-import {Dbl, dblMake} from '../src/dbl';
-import {Float, floatMake} from '../src/float';
-import {Int, intMake} from '../src/int';
-import {UInt, uIntMake} from '../src/uint';
+import {Dbl} from '../src/dbl';
+import {dblMake} from '../src/dbl/make';
+import {Float} from '../src/float';
+import {floatMake} from '../src/float/make';
+import {Int} from '../src/int';
+import {intMake} from '../src/int/make';
+import {UInt} from '../src/uint';
+import {uIntMake} from '../src/uint/make';
 
 import Big from 'big.js';
 

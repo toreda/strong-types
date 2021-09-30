@@ -23,7 +23,7 @@
  *
  */
 
-import {Strong} from '../strong';
+import type {Strong} from '../strong';
 import {StrongMap} from '../map';
 
 /**
@@ -54,7 +54,7 @@ export class MapJsonifier {
 				result[keyName] = null;
 			} else if (child instanceof StrongMap) {
 				result[keyName] = this.jsonifyMap(child);
-			} else if ((child as Strong).typeId === 'StrongType') {
+			} else if ((child as Strong).baseType === 'StrongType') {
 				result[keyName] = this.jsonifyKey(child);
 			} else if (typeof child !== 'object') {
 				result[keyName] = this.jsonifyKey(child);
@@ -79,7 +79,7 @@ export class MapJsonifier {
 
 		const assumeKeyIsStrongType = key as Strong;
 
-		if (assumeKeyIsStrongType?.typeId === 'StrongType') {
+		if (assumeKeyIsStrongType?.baseType === 'StrongType') {
 			return assumeKeyIsStrongType();
 		}
 

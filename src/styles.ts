@@ -23,11 +23,6 @@
  *
  */
 
-import {Float, floatMake} from './float';
-import {Int, intMake} from './int';
-import {Strong, strongMake} from './strong';
-import {Text, textMake} from './text';
-
 import {CSSBoxShadow} from './css/box/shadow';
 import {CSSClip} from './css/clip';
 import {CSSDisplay} from './css/display';
@@ -35,7 +30,16 @@ import {CSSFont} from './css/font';
 import {CSSText} from './css/text';
 import {CSSUnits} from './css/units';
 import {CSSUserSelect} from './css/user/select';
+import type {Float} from './float';
+import type {Int} from './int';
+import type {Strong} from './strong';
 import {StrongMap} from './map';
+import {StrongTypeId} from '.';
+import type {Text} from './text';
+import {floatMake} from './float/make';
+import {intMake} from './int/make';
+import {strongMake} from './strong/make';
+import {textMake} from './text/make';
 
 /**
  * @category Styles
@@ -59,6 +63,7 @@ export class Styles extends StrongMap {
 	public readonly boxShadow: Strong<CSSBoxShadow>;
 	public readonly clip: Strong<CSSClip>;
 	public readonly userSelect: Strong<CSSUserSelect>;
+	public readonly typeId: StrongTypeId;
 
 	constructor() {
 		super();
@@ -79,6 +84,7 @@ export class Styles extends StrongMap {
 		this.userSelect = strongMake<CSSUserSelect>('');
 		this.width = floatMake(1);
 		this.zIndex = intMake(0);
+		this.typeId = 'Styles';
 	}
 
 	public reset(): void {

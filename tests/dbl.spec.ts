@@ -24,7 +24,7 @@
  */
 
 import Big from 'big.js';
-import {dblMake} from '../src/dbl';
+import {dblMake} from '../src/dbl/make';
 
 const MOCK_INITIAL = Big(5246576);
 const MOCK_FALLBACK_DEFAULT = Big(6060606060);

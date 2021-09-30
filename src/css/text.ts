@@ -23,9 +23,9 @@
  *
  */
 
-import {Text, textMake} from '../text';
-
 import {StrongMap} from '../map';
+import type {Text} from '../text';
+import {textMake} from '../text/make';
 
 /**
  * @category CSS

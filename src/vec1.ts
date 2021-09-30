@@ -23,9 +23,9 @@
  *
  */
 
-import {Float, floatMake} from './float';
-
 import {Defaults} from './defaults';
+import type {Float} from './float';
+import {floatMake} from './float/make';
 
 /**
  * Map for passing coodinates in 1-dimensional

@@ -52,7 +52,6 @@ export class RuleMust {
 			rules.push(rule);
 		}
 
-
 		// Each must begins a new rule and resets all preceding mods.
 		const mods: RuleMods = {
 			invert: false,

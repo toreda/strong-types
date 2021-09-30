@@ -23,9 +23,10 @@
  *
  */
 
-import {Float, floatMake} from './float';
-
+import type {Float} from './float';
 import {StrongMap} from './map';
+import type {StrongTypeId} from './strong/type/id';
+import {floatMake} from './float/make';
 
 /**
  * Size object containing width & height properties as strong doubles.
@@ -35,11 +36,15 @@ import {StrongMap} from './map';
 export class Size extends StrongMap {
 	public readonly width: Float;
 	public readonly height: Float;
+	public readonly typeId: StrongTypeId;
+	public readonly baseType: StrongTypeId;
 
 	constructor(defaultWidth: number | null, defaultHeight: number | null) {
 		super();
 
 		this.width = floatMake(typeof defaultWidth === 'number' ? defaultWidth : 0);
 		this.height = floatMake(typeof defaultHeight === 'number' ? defaultHeight : 0);
+		this.typeId = 'Size';
+		this.baseType = 'StrongMap';
 	}
 }

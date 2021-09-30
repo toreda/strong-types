@@ -23,31 +23,11 @@
  *
  */
 
-import {Strong, strongMake} from './strong';
-
-import {Rules} from './rules';
+import type {Strong} from './strong';
 
 /**
- * TCP/IP and UDP
+ * TCP/IP and UDP port number in valid range.
  *
  * @category System Info
  */
 export type Port = Strong<number>;
-
-/**
- *
- * @param fallback
- * @param initial
- * @returns
- *
- * @category System Info
- */
-export function portMake(fallback: number, initial?: number | null): Port {
-	const rules = new Rules<number>();
-
-	rules.add().must.match.type.int();
-	rules.add().must.be.lessThanOrEqual(65535);
-	rules.add().must.be.greaterThanOrEqual(1);
-
-	return strongMake<number>(fallback, initial, rules);
-}

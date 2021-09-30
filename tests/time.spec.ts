@@ -23,7 +23,7 @@
  *
  */
 
-import {timeMake} from '../src/time';
+import {timeMake} from '../src/time/make';
 
 const MOCK_FALLBACK_DEFAULT = '05:24:41';
 const MOCK_FALLBACK = '23:05:12';

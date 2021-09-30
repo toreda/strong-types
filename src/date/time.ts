@@ -23,9 +23,7 @@
  *
  */
 
-import {Strong, strongMake} from '../strong';
-
-import {Rules} from '../rules';
+import type {Strong} from '../strong';
 
 /**
  * Strong Type which can only store DateTime strings. Rejects all other value types,
@@ -34,18 +32,3 @@ import {Rules} from '../rules';
  * @category Date & Time
  */
 export type DateTime = Strong<string>;
-
-/**
- *
- * @param fallback
- * @param initial
- * @returns
- *
- * @category Date & Time
- */
-export function dateTimeMake(fallback: string, initial?: string | null): DateTime {
-	const rules = new Rules();
-	rules.add().must.match.type.string();
-	rules.add().must.be.dateTime();
-	return strongMake<string>(fallback, initial, rules);
-}

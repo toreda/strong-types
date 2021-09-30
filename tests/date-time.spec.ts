@@ -23,7 +23,7 @@
  *
  */
 
-import {dateTimeMake} from '../src/date/time';
+import {dateTimeMake} from '../src/date/time/make';
 
 const MOCK_FALLBACK_DEFAULT = '2020-12-25T09:05:20';
 const MOCK_FALLBACK = '2015-02-24T03:21:52';

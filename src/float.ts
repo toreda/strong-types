@@ -23,56 +23,9 @@
  *
  */
 
-import {Strong, strongMake} from './strong';
-
-import {Rules} from './rules';
+import type {Strong} from './strong';
 
 /**
  * @category Maths
  */
 export type Float = Strong<number>;
-
-/**
- *
- * @param fallback
- * @param initial
- * @returns
- *
- * @category Maths
- */
-export function floatMake(fallback: number, initial?: number | null): Float {
-	const rules = new Rules<number>();
-
-	rules.add().must.match.type.float();
-
-	const strong = strongMake<number>(fallback, initial, rules);
-
-	return Object.assign(strong, {
-		increment: (): number | null => {
-			return strong._data.add(1);
-		},
-		decrement: (): number | null => {
-			const value = strong._data.getNull();
-			if (value === null || value === 0) {
-				return null;
-			}
-
-			return strong._data.add(-1);
-		},
-		mul: (amt: number): number | null => {
-			return strong._data.mul(amt);
-		},
-		pow: (exponent: number) => {
-			return strong._data.pow(exponent);
-		},
-		div: (amt: number): number | null => {
-			return strong._data.div(amt);
-		},
-		add: (amt: number): number | null => {
-			return strong._data.add(amt);
-		},
-		sub: (amt: number) => {
-			return strong._data.add(amt * -1);
-		}
-	});
-}

@@ -22,7 +22,7 @@
  * 	SOFTWARE.
  *
  */
-import {boolMake} from '../src/bool';
+import {boolMake} from '../src/bool/make';
 
 const MOCK_INITIAL = true;
 const MOCK_FALLBACK_DEFAULT = false;

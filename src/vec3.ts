@@ -23,9 +23,9 @@
  *
  */
 
-import {Float, floatMake} from './float';
-
 import {Defaults} from './defaults';
+import type {Float} from './float';
+import {floatMake} from './float/make';
 
 /**
  * Map for passing coodinates in 3-dimensional
@@ -53,10 +53,3 @@ export class Vec3 {
 		this.z.reset();
 	}
 }
-
-/**
- * Vec3 alias for backwards compat.
- *
- * @category Maths
- */
-export type StrongVec3 = Vec3;

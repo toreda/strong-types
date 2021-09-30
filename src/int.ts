@@ -23,50 +23,9 @@
  *
  */
 
-import {Rules} from './rules';
-import {StrongNumber} from './strong/number';
-import {strongMake} from './strong';
+import type {StrongNumber} from './strong/number';
 
 /**
  * @category Maths
  */
 export type Int = StrongNumber<number, number>;
-
-/**
- *
- * @param fallback
- * @param initial
- * @returns
- *
- * @category Maths
- */
-export function intMake(fallback: number, initial?: number | null): Int {
-	const rules = new Rules();
-	rules.add().must.match.type.int();
-
-	const strong = strongMake<number>(fallback, initial, rules);
-
-	return Object.assign(strong, {
-		increment: () => {
-			return strong._data.add(1);
-		},
-		decrement: () => {
-			return strong._data.add(-1);
-		},
-		mul: (amt: number) => {
-			return strong._data.mul(amt);
-		},
-		pow: (exponent: number) => {
-			return strong._data.pow(exponent);
-		},
-		div: (amt: number) => {
-			return strong._data.div(amt);
-		},
-		add: (amt: number) => {
-			return strong._data.add(amt);
-		},
-		sub: (amt: number) => {
-			return strong._data.add(amt * -1);
-		}
-	});
-}

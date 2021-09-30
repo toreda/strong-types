@@ -1,7 +1,8 @@
-import {Int, intMake} from '../../src/int';
-import {Text, textMake} from '../../src/text';
-
+import type {Int} from '../../src/int';
 import {StrongMap} from '../../src/map';
+import type {Text} from '../../src/text';
+import {intMake} from '../../src/int/make';
+import {textMake} from '../../src/text/make';
 
 export interface TestMapType {
 	intProp: number;

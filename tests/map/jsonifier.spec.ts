@@ -25,7 +25,7 @@
 
 import {MapJsonifier as Jsonifier} from '../../src/map/jsonifier';
 import {TestMap} from './test-map';
-import {textMake} from '../../src/text';
+import {textMake} from '../../src/text/make';
 
 describe('Jsonifier', () => {
 	const instance = new Jsonifier();
@@ -79,7 +79,9 @@ describe('Jsonifier', () => {
 					objectProp: {
 						one: 2,
 						three: 'four'
-					}
+					},
+					baseType: 'StrongMap',
+					typeId: 'StrongMap'
 				};
 				const map = new TestMap(expectedValue);
 
@@ -91,9 +93,15 @@ describe('Jsonifier', () => {
 			it('should return record of key-values pairs when map is > 1-depth', () => {
 				const expectedValue = {
 					stringProp: 'first layer',
+					baseType: 'StrongMap',
+					typeId: 'StrongMap',
 					strongMapProp: {
 						stringProp: 'second layer',
+						baseType: 'StrongMap',
+						typeId: 'StrongMap',
 						strongMapProp: {
+							baseType: 'StrongMap',
+							typeId: 'StrongMap',
 							stringProp: 'third layer'
 						}
 					}

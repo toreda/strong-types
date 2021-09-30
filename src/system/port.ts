@@ -23,9 +23,7 @@
  *
  */
 
-import {Strong, strongMake} from '../strong';
-
-import {Rules} from '../rules';
+import type {Strong} from '../strong';
 
 /**
  * TCP/IP and UDP
@@ -33,20 +31,3 @@ import {Rules} from '../rules';
  * @category System Info
  */
 export type SystemPort = Strong<number>;
-
-/**
- *
- * @param fallback
- * @param initial
- * @returns
- *
- * @category System Info
- */
-export function systemPortMake(fallback: number, initial?: number | null): SystemPort {
-	const rules = new Rules<number>();
-
-	rules.add().must.match.type.int();
-	rules.add().must.be.systemPortNumber();
-
-	return strongMake<number>(fallback, initial, rules);
-}

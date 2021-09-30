@@ -25,6 +25,7 @@
 
 import type {ANY} from '@toreda/types';
 import {Rules} from '../rules';
+import {StrongTypeId} from './type/id';
 import {Transforms} from '../transforms';
 
 /**
@@ -35,14 +36,18 @@ export class StrongData<ValueT> {
 	public readonly fallbackDefault: ValueT;
 	public readonly transforms: Transforms<ValueT>;
 	public readonly rules: Rules<ValueT>;
+	public readonly typeId: StrongTypeId;
+	public readonly baseType: StrongTypeId;
 
-	constructor(fallbackDefault: ValueT, initial?: ValueT | null, rules?: Rules<ValueT>) {
+	constructor(fallbackDefault: ValueT, value: ValueT | null, rules: Rules<ValueT>, typeId: StrongTypeId) {
 		this.value = null;
 		this.fallbackDefault = fallbackDefault;
 		this.transforms = new Transforms<ValueT>(fallbackDefault);
-		this.rules = rules ? rules : new Rules();
+		this.rules = rules;
+		this.typeId = typeId;
+		this.baseType = 'StrongData';
 
-		this.set(initial);
+		this.set(value);
 	}
 
 	/**

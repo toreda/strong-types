@@ -12,12 +12,17 @@ export {BigArg} from './big/arg';
 export {bigMake} from './big/make';
 
 // Time
-export {Date, dateMake} from './date';
-export {DateTime, dateTimeMake} from './date/time';
+export {Date} from './date';
+export {dateMake} from './date/make';
+export {DateTime} from './date/time';
+export {dateTimeMake} from './date/time/make';
 
 // Generic strong type
-export {Strong, StrongType, strongMake} from './strong';
+export {Strong} from './strong';
+export {strongMake} from './strong/make';
 export {StrongNumber} from './strong/number';
+export {StrongTypeId} from './strong/type/id';
+export {createType} from './create/type';
 
 export {BaseObject} from './base/object';
 export {Collection} from './collection';
@@ -26,19 +31,33 @@ export {StrongData} from './strong/data';
 export {typeMatch} from './type/match';
 
 // General Types
-export {Bool, boolMake} from './bool';
-export {Dbl, dblMake} from './dbl';
-export {Float, floatMake} from './float';
-export {Id, idMake} from './id';
-export {Int, intMake} from './int';
-export {StrongArray, arrayMake} from './array';
-export {Text, textMake} from './text';
-export {UInt, uIntMake} from './uint';
+export {arrayMake} from './array/make';
+export {Bool} from './bool';
+export {boolMake} from './bool/make';
+export {Dbl} from './dbl';
+export {dblMake} from './dbl/make';
+export {Email} from './email';
+export {emailMake} from './email/make';
+export {Float} from './float';
+export {floatMake} from './float/make';
+export {Id} from './id';
+export {idMake} from './id/make';
+export {Int} from './int';
+export {intMake} from './int/make';
+export {SafeMoney} from './safe/money';
+export {safeMoneyMake} from './safe/money/make';
+export {StrongArray} from './array';
+export {Text} from './text';
+export {textMake} from './text/make';
+export {UInt} from './uint';
+export {uIntMake} from './uint/make';
 
 // Versioning
-export {semVerMake, SemVer} from './sem/ver';
+export {SemVer} from './sem/ver';
+export {semVerMake} from './sem/ver/make';
 // Types for 3rd party services
-export {AwsArn, awsArnMake} from './aws/arn';
+export {AwsArn} from './aws/arn';
+export {awsArnMake} from './aws/arn/make';
 
 // CSS Types & Objects
 export {CSSBoxShadow} from './css/box/shadow';
@@ -150,8 +169,10 @@ export {toIntNumber} from './to/int/number';
 
 // Patterns
 export {Pattern} from './pattern';
-export {Port, portMake} from './port';
-export {SystemPort, systemPortMake} from './system/port';
+export {Port} from './port';
+export {portMake} from './port/make';
+export {SystemPort} from './system/port';
+export {systemPortMake} from './system/port/make';
 
 // Rules
 export {Rule} from './rule';
@@ -186,6 +207,9 @@ export {Transforms} from './transforms';
 export {TransformOptions} from './transform/options';
 
 // Strong Time
-export {Time, timeMake} from './time';
+export {Time} from './time';
+export {timeMake} from './time/make';
+
 // Strong URLs
-export {Url, urlMake} from './url';
+export {Url} from './url';
+export {urlMake} from './url/make';

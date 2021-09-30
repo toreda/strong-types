@@ -23,9 +23,9 @@
  *
  */
 
-import {Float, floatMake} from './float';
-
 import {Defaults} from './defaults';
+import type {Float} from './float';
+import {floatMake} from './float/make';
 
 /**
  * Map for passing coodinates in 4-dimensional
@@ -56,10 +56,3 @@ export class Vec4 {
 		this.w.reset();
 	}
 }
-
-/**
- * Vec4 alias for backwards compat.
- *
- * @category Maths
- */
-export type StrongVec4 = Vec4;

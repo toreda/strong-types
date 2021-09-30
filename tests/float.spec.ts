@@ -23,7 +23,7 @@
  *
  */
 
-import {Float, floatMake} from '../src/float';
+import {floatMake} from '../src/float/make';
 
 const MOCK_INITIAL = 5246576;
 const MOCK_FALLBACK_DEFAULT = 6.5;

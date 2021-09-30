@@ -23,7 +23,7 @@
  *
  */
 
-import {hexColorCodeMake} from '../src/hex/color/code';
+import {hexColorCodeMake} from '../src/hex/color/code/make';
 
 const MOCK_FALLBACK_DEFAULT = 'FF5733';
 const MOCK_FALLBACK = '33B5FF';

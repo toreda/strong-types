@@ -23,7 +23,8 @@
  *
  */
 
-import {Id, idMake} from '../src/id';
+import {Id} from '../src/id';
+import {idMake} from '../src/id/make';
 const EMPTY_STRING = '';
 
 describe('Id', () => {

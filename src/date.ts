@@ -23,22 +23,9 @@
  *
  */
 
-import {Strong, strongMake} from './strong';
-
-import {Rules} from './rules';
+import type {Strong} from './strong';
 
 /**
  * @category Date & Time
  */
 export type Date = Strong<string>;
-
-/**
- * @category Date & Time
- */
-export function dateMake(fallback: string, initial?: string | null): Date {
-	const rules = new Rules();
-	rules.add().must.match.type.string();
-	rules.add().must.be.date();
-
-	return strongMake<string>(fallback, initial, rules);
-}

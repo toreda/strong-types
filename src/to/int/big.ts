@@ -1,5 +1,3 @@
-import {BigArg, bigMake} from '../..';
-
 /**
  *	MIT License
  *
@@ -24,7 +22,10 @@ import {BigArg, bigMake} from '../..';
  * 	SOFTWARE.
  *
  */
+
 import Big from 'big.js';
+import {BigArg} from '../../big/arg';
+import {bigMake} from '../../big/make';
 import {typeMatch} from '../../type/match';
 
 /**

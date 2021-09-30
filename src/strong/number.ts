@@ -23,7 +23,7 @@
  *
  */
 
-import {Strong} from '../strong';
+import type {Strong} from '../strong';
 
 /**
  * Adds increment and decrement method requirements for numeric

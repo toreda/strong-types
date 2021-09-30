@@ -23,28 +23,10 @@
  *
  */
 
-import {Strong, strongMake} from './strong';
-
-import {Rules} from './rules';
+import type {Strong} from './strong';
 
 /** Strong Url object type*
  *
  *	@category Strings
  */
 export type Url = Strong<string>;
-
-/**
- * Create new strong Url object. Only valid Urls can be set.
- * @param fallback
- * @param initial
- * @returns
- *
- * @category Strings
- */
-export function urlMake(fallback: string, initial?: string | null): Url {
-	const rules = new Rules();
-	rules.add().must.match.type.string();
-	rules.add().must.be.url();
-
-	return strongMake<string>(fallback, initial, rules);
-}

@@ -23,7 +23,8 @@
  *
  */
 
-import {Strong, strongMake} from '../src/strong';
+import type {Strong} from '../src/strong';
+import {strongMake} from '../src/strong/make';
 
 const MOCK_STRING = '113333';
 const MOCK_FALLBACK = 'roman bree';

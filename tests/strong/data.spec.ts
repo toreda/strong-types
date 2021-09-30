@@ -23,26 +23,22 @@
  *
  */
 
+import {Rules} from '../../src/rules';
 import {StrongData} from '../../src/strong/data';
 
 const MOCK_INITIAL = 1;
 const MOCK_FALLBACK_DEFAULT = 2;
-const MOCK_FALLBACK = 33;
 
 const ZERO = 0;
-const MATH_EX = {};
-
-const MATH_CASES = [];
-
-const MATH_OPS = {
-	mul: []
-};
 
 describe('StrongData', () => {
 	let instance: StrongData<number>;
+	let rules: Rules<number>;
 
 	beforeAll(() => {
-		instance = new StrongData<number>(MOCK_FALLBACK_DEFAULT, MOCK_INITIAL);
+		rules = new Rules<number>();
+
+		instance = new StrongData<number>(MOCK_FALLBACK_DEFAULT, MOCK_INITIAL, rules, 'StrongType');
 	});
 
 	beforeEach(() => {
@@ -53,14 +49,14 @@ describe('StrongData', () => {
 		it('should initialize value property to "initial" argument', () => {
 			const sampleVal = 43141;
 
-			const custom = new StrongData<number>(MOCK_FALLBACK_DEFAULT, sampleVal);
+			const custom = new StrongData<number>(MOCK_FALLBACK_DEFAULT, sampleVal, rules, 'StrongType');
 			expect(custom.value).toBe(sampleVal);
 		});
 
 		it('should initialize fallbackDefault property to "fallbackDefault" argument', () => {
 			const sampleVal = 45101;
 
-			const custom = new StrongData<number>(sampleVal, MOCK_INITIAL);
+			const custom = new StrongData<number>(sampleVal, MOCK_INITIAL, rules, 'StrongType');
 			expect(custom.fallbackDefault).toBe(sampleVal);
 		});
 	});

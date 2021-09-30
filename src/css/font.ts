@@ -22,10 +22,11 @@
  * 	SOFTWARE.
  *
  */
-import {Strong, strongMake} from '../strong';
 
 import {Rules} from '../rules';
+import type {Strong} from '../strong';
 import {StrongMap} from '../map';
+import {strongMake} from '../strong/make';
 
 /**
  * @category CSS

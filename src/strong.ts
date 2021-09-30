@@ -23,8 +23,8 @@
  *
  */
 
-import {Rules} from './rules';
 import {StrongData} from './strong/data';
+import type {StrongTypeId} from './strong/type/id';
 
 /**
  * @category Core
@@ -35,76 +35,7 @@ export interface Strong<ValueT = unknown> {
 	getNull: () => ValueT | null;
 	reset: () => void;
 	check: (value?: ValueT) => boolean;
-	typeId: 'StrongType' | string;
+	typeId: StrongTypeId;
+	baseType: StrongTypeId;
 	_data: StrongData<ValueT>;
-}
-
-/**
- * Strong<ValueT> alias for backwards compat.
- *
- * @category Core
- */
-export type StrongType<ValueT> = Strong<ValueT>;
-
-/**
- *
- * @param fallbackArg
- * @param initial
- * @param rules
- * @returns
- *
- * @category Core
- */
-export function strongMake<ValueT>(
-	fallbackArg: ValueT,
-	initial?: ValueT | null,
-	rules?: Rules<ValueT>
-): Strong<ValueT> {
-	const instance = new StrongData<ValueT>(fallbackArg, initial, rules);
-
-	const localFallback = fallbackArg !== undefined ? fallbackArg : instance.fallbackDefault;
-
-	return Object.assign(
-		(val?: ValueT | null): ValueT => {
-			if (typeof val !== 'undefined') {
-				instance.set(val);
-			}
-
-			return instance.get(localFallback);
-		},
-		{
-			/**
-			 * Get current value and return provided fallback if
-			 * @param fallback
-			 * @returns
-			 */
-			get: (fallback: ValueT): ValueT => {
-				return instance.get(fallback);
-			},
-			/**
-			 * Get current value, or null if there isn't one.
-			 * @returns		Current value when set, otherwise null.
-			 */
-			getNull: (): ValueT | null => {
-				return instance.getNull();
-			},
-			/**
-			 * Reset instance properties to their starting values.
-			 */
-			reset: (): void => {
-				instance.reset();
-			},
-			/**
-			 * Read-only check to determine if provided value passes
-			 * rule validation for this instance.
-			 * @param value
-			 * @returns
-			 */
-			check: (value?: ValueT | null): boolean => {
-				return instance.check(value);
-			},
-			typeId: 'StrongType',
-			_data: instance
-		}
-	);
 }

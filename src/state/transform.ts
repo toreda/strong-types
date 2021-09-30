@@ -23,6 +23,9 @@
  *
  */
 
+/**
+ * @category Transforms
+ */
 export interface StateTransform<T> {
 	number: {
 		operation?: 'trunc' | 'ceil' | 'floor' | 'none';

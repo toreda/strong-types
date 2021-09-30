@@ -23,9 +23,10 @@
  *
  */
 
-import {Float, floatMake} from './float';
-
+import type {Float} from './float';
 import {StrongMap} from './map';
+import {StrongTypeId} from './strong/type/id';
+import {floatMake} from './float/make';
 
 /**
  * General numeric range with min and max value.
@@ -35,12 +36,14 @@ import {StrongMap} from './map';
 export class Range extends StrongMap {
 	public readonly min: Float;
 	public readonly max: Float;
+	public readonly typeId: StrongTypeId;
 
 	constructor(defaultMin: number | null, defaultMax: number | null) {
 		super();
 
 		this.min = floatMake(typeof defaultMin === 'number' ? defaultMin : 0);
 		this.max = floatMake(typeof defaultMax === 'number' ? defaultMax : 0);
+		this.typeId = 'Range';
 	}
 
 	/**
