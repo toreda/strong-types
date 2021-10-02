@@ -24,6 +24,7 @@
  */
 
 import type {ANY} from '@toreda/types';
+
 import {Rules} from '../rules';
 import {StrongTypeId} from './type/id';
 import {Transforms} from '../transforms';

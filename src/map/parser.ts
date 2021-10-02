@@ -1,4 +1,3 @@
-import {Data} from '@toreda/types';
 /**
  *	MIT License
  *
@@ -23,10 +22,12 @@ import {Data} from '@toreda/types';
  * 	SOFTWARE.
  *
  */
+import type {Data} from '@toreda/types';
+
+import {StrongMap} from '../map';
+import {Strong} from '../strong';
 import {MapParserOptions as Options} from './parser/options';
 import {MapParserState as State} from './parser/state';
-import {Strong} from '../strong';
-import {StrongMap} from '../map';
 
 /**
  * Recursively parse provided object properties.

@@ -23,7 +23,8 @@
  *
  */
 
-import {Data} from '@toreda/types';
+import type {Data} from '@toreda/types';
+
 import {MapJsonifier} from './map/jsonifier';
 import {MapParser} from './map/parser';
 import {StrongTypeId} from './strong/type/id';

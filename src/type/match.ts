@@ -1,4 +1,4 @@
-import {ANY, Guarded, PrimitiveOrConstructor} from '@toreda/types';
+import type {ANY, Guarded, PrimitiveOrConstructor} from '@toreda/types';
 
 /**
  * Determine whether object is an instance of provided type or className.

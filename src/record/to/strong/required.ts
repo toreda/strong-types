@@ -23,7 +23,7 @@
  *
  */
 
-import {ANY, AnyObj, Expand, Primitive} from '@toreda/types';
+import type {ANY, AnyObj, Expand, Primitive} from '@toreda/types';
 
 import {PrimitiveToStrong} from '../../../primitive/to/strong';
 import {RecordToStrong} from '../strong';
