@@ -118,6 +118,7 @@ export {Vec1} from './vec1';
 export {Vec2} from './vec2';
 export {Vec3} from './vec3';
 export {Vec4} from './vec4';
+export {swapPop} from './swap/pop';
 
 // Validator functions for is & has
 export {HasLengthEqual, hasLengthEqual, hasLengthEqualMake} from './has/length-equal';
