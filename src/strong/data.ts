@@ -24,7 +24,6 @@
  */
 
 import type {ANY} from '@toreda/types';
-
 import {Rules} from '../rules';
 import {StrongTypeId} from './type/id';
 import {Transforms} from '../transforms';
@@ -106,7 +105,7 @@ export class StrongData<ValueT> {
 	}
 
 	public reset(): void {
-		this.value = null;
+		this.value = 
 	}
 
 	public mathVal(amt: number): ValueT | null {

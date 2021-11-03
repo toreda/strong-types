@@ -38,13 +38,13 @@ import {StrongTypeId} from '../strong/type/id';
  * @category Core
  */
 export function createType<ValueT>(
-	fallback: ValueT,
+	fallbackValue: ValueT,
 	value: ValueT | null,
 	rules: Rules<ValueT>,
 	typeId: StrongTypeId
 ): Strong<ValueT> {
-	const instance = new StrongData<ValueT>(fallback, value, rules, typeId);
-	const localFallback = fallback !== undefined ? fallback : instance.fallbackDefault;
+	const instance = new StrongData<ValueT>(fallbackValue, value, rules, typeId);
+	const localFallback = fallbackValue !== undefined ? fallbackValue : instance.fallbackDefault;
 
 	const baseType: StrongTypeId = 'StrongType';
 

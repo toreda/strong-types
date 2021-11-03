@@ -94,5 +94,16 @@ describe('StrongArray', () => {
 				expect(result.get(MOCK_FALLBACK)).toBe(sampleInitial);
 			});
 		});
+
+		describe('reset', () => {
+			it(`should reset data to an empty array`, () => {
+				const result = arrayMake<string>([], ['aa', 'bb', 'cc']);
+				expect(result().length).toBe(3);
+				result.reset();
+				expect(result().length).toBe(0);
+			});
+		});
 	});
+
+
 });

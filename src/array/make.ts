@@ -38,6 +38,7 @@ import {createType} from '../create/type';
 export function arrayMake<T>(fallback: T[], initial?: T[] | null): StrongArray<T> {
 	const rules = new Rules<unknown>();
 	rules.add().must.match.type.array();
-	const value = initial !== undefined ? initial : null;
+	const value = initial !== undefined ? initial : [];
+
 	return createType<T[]>(fallback, value, rules, 'Array');
 }

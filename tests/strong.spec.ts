@@ -28,12 +28,13 @@ import {strongMake} from '../src/strong/make';
 
 const MOCK_STRING = '113333';
 const MOCK_FALLBACK = 'roman bree';
+const FALLBACK = 'highmountain cheddar';
 
 describe('Strong', () => {
 	let strong: Strong<string>;
 
 	beforeAll(() => {
-		strong = strongMake<string>(MOCK_FALLBACK);
+		strong = strongMake<string>(FALLBACK);
 	});
 
 	beforeEach(() => {
@@ -72,7 +73,7 @@ describe('Strong', () => {
 		});
 
 		it('should return default fallback value is not provided and value is undefined', () => {
-			expect(strong()).toBe(MOCK_FALLBACK);
+			expect(strong()).toBe(FALLBACK);
 		});
 
 		it('should return fallback default when invoked with no arguments and value has been set to null', () => {
@@ -80,18 +81,18 @@ describe('Strong', () => {
 			strong(value);
 			expect(strong()).toBe(value);
 			strong(null);
-			expect(strong()).toBe(MOCK_FALLBACK);
+			expect(strong()).toBe(FALLBACK);
 		});
 
 		it('should return default fallback value argument is not provided and value is null', () => {
-			const custom = strongMake<string>(MOCK_FALLBACK, null);
-			expect(custom()).toBe(MOCK_FALLBACK);
+			const custom = strongMake<string>(FALLBACK, null);
+			expect(custom()).toBe(FALLBACK);
 		});
 
 		it('should return default value when called with no initial value', () => {
 			const initialStr = undefined;
-			const custom = strongMake<string>(MOCK_FALLBACK, initialStr);
-			expect(custom()).toBe(MOCK_FALLBACK);
+			const custom = strongMake<string>(FALLBACK, initialStr);
+			expect(custom()).toBe(FALLBACK);
 		});
 	});
 
@@ -128,7 +129,7 @@ describe('Strong', () => {
 
 			describe('reset', () => {
 				it('should set value to null when value is set by initial value', () => {
-					const custom = strongMake<string>(MOCK_FALLBACK, null);
+					const custom = strongMake<string>(FALLBACK, null);
 					expect(custom.getNull()).toBeNull();
 				});
 
@@ -138,7 +139,7 @@ describe('Strong', () => {
 					expect(strong()).toBe(sampleStr);
 					strong.reset();
 					expect(strong.getNull()).toBeNull();
-					expect(strong()).toBe(MOCK_FALLBACK);
+					expect(strong()).toBe(FALLBACK);
 				});
 
 				it('should not throw when value is already null', () => {
