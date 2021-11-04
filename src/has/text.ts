@@ -83,7 +83,7 @@ export function hasText(value: string, target: string | string[]): boolean {
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Validator Factory Functions
  */
 export function hasTextMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): HasText<CallerT> {
 	return (target: string | string[]): CallerT => {

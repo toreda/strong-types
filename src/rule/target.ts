@@ -23,4 +23,9 @@
  *
  */
 
+/**
+ * Object target for rule.
+ *
+ * @category Rules
+ */
 export type RuleTarget = 'value' | 'length' | 'childCount';

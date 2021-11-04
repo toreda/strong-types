@@ -63,7 +63,7 @@ export function isLT(value: number, target: number): boolean {
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Validator Factory Functions
  */
 export function isLTMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsLT<CallerT> {
 	return (target: number): CallerT => {

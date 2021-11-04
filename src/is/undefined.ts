@@ -54,7 +54,7 @@ export function isUndefined(value: unknown): boolean {
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Validator Factory Functions
  */
 export function isUndefinedMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsUndefined<CallerT> {
 	return (): CallerT => {

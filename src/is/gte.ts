@@ -59,7 +59,7 @@ export function isGTE(value: number, target: number): boolean {
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Validator Factory Functions
  */
 export function isGTEMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsGTE<CallerT> {
 	return (target: number): CallerT => {

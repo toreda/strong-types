@@ -65,7 +65,7 @@ export function isEmpty(value: unknown[] | string): boolean {
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Validator Factory Functions
  */
 export function isEmptyMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsEmpty<CallerT> {
 	return (): CallerT => {

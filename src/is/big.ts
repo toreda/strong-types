@@ -57,7 +57,7 @@ export function isBig(target?: Big): boolean {
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Validator Factory Functions
  */
 export function isBigMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsBig<CallerT> {
 	return (): CallerT => {

@@ -64,7 +64,7 @@ export function hasLengthGTE(value: unknown[] | string, target: number): boolean
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Validator Factory Functions
  */
 export function hasLengthGTEMake<CallerT>(
 	caller: CallerT,

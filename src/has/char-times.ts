@@ -73,7 +73,7 @@ export function hasCharTimes(text: string, char: string, count: number): boolean
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Validator Factory Functions
  */
 export function hasCharTimesMake<CallerT>(
 	caller: CallerT,

@@ -65,7 +65,7 @@ export function hasLengthLTE(value: unknown[] | string, target: number): boolean
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Validator Factory Functions
  */
 export function hasLengthLTEMake<CallerT>(
 	caller: CallerT,

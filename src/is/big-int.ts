@@ -56,7 +56,7 @@ export function isBigInt(target?: bigint): boolean {
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Validator Factory Functions
  */
 export function isBigIntMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsBigInt<CallerT> {
 	return (): CallerT => {

@@ -3,6 +3,8 @@
  * Works only with unordered arrays.
  * @param array
  * @param ndx
+ *
+ * @category Collections
  */
 export function swapPop<T>(array: T[], ndx: number): T | null {
 	if (!array.length) {

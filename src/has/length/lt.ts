@@ -67,7 +67,7 @@ export function hasLengthLT(curr: unknown[] | string, target: number): boolean {
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Validator Factory Functions
  */
 export function hasLengthLTMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): HasLengthLT<CallerT> {
 	return (target: number): CallerT => {

@@ -32,7 +32,7 @@ import {RuleNodeType} from '../rule/node/type';
 /**
  * Type signature for isArray validator functions used within rule chains.
  *
- * @category Validators
+ * @category Collection Validators
  */
 export type IsArray<CallerT> = () => CallerT;
 
@@ -43,7 +43,7 @@ export type IsArray<CallerT> = () => CallerT;
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Validator Factory Functions
  */
 export function isArrayMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsArray<CallerT> {
 	return (): CallerT => {

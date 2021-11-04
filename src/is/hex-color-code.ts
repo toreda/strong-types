@@ -39,6 +39,14 @@ export type IsHexColorCode<CallerT> = () => CallerT;
 const MIN_HEX_VALUE = 0x0;
 const MAX_HEX_VALUE = 0xffffff;
 
+/**
+ * Accepts a number value and returns whether value is
+ * a valid hex color code value.
+ * @param value
+ * @returns
+ *
+ * @category Validators
+ */
 export function isHexColorCode(value: number): boolean {
 	if (isNaN(value)) {
 		return false;
@@ -47,6 +55,14 @@ export function isHexColorCode(value: number): boolean {
 	return value >= MIN_HEX_VALUE && value <= MAX_HEX_VALUE;
 }
 
+/**
+ * Accepts a string value and returns whether value is
+ * a valid hex color code string.
+ * @param value
+ * @returns
+ *
+ * @category Validators
+ */
 export function isHexColorCodeStr(value: string): boolean {
 	if (typeof value !== 'string') {
 		return false;
@@ -77,6 +93,14 @@ export function isHexColorCodeStr(value: string): boolean {
 	return isHexColorCode(Number(hexStr));
 }
 
+/**
+ * Accepts a string or number value and returns whether provided
+ * value is a valid hex color code.
+ * @param curr
+ * @returns
+ *
+ * @category Validators
+ */
 export function isHexColorFn(curr: string | number): boolean {
 	if (typeof curr === 'string') {
 		return isHexColorCodeStr(curr);
@@ -96,7 +120,7 @@ export function isHexColorFn(curr: string | number): boolean {
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Validator Factory Functions
  */
 export function isHexColorCodeMake<CallerT>(
 	caller: CallerT,

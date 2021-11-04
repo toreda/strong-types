@@ -33,6 +33,8 @@ import {initialValue} from '../../initial/value';
  * @param fallback
  * @param initial
  * @returns
+ *
+ * @category Strings
  */
 export function semVerMake(fallback: string, value?: string | null): SemVer {
 	const rules = new Rules();

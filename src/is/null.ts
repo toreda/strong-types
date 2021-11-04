@@ -54,7 +54,7 @@ export function isNull(value?: unknown | null): boolean {
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Validator Factory Functions
  */
 export function isNullMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsNull<CallerT> {
 	return (): CallerT => {

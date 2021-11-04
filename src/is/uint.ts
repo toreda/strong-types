@@ -66,7 +66,7 @@ export function isUInt(value?: number): boolean {
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Validator Factory Functions
  */
 export function isUIntMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsUInt<CallerT> {
 	return (): CallerT => {

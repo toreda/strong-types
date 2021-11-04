@@ -60,7 +60,7 @@ export function isFloat(value: number): boolean {
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Validator Factory Functions
  */
 export function isFloatMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsFloat<CallerT> {
 	return (): CallerT => {

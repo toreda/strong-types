@@ -75,7 +75,7 @@ export function isEqual(value: unknown, target: unknown): boolean {
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Validator Factory Functions
  */
 export function isEqualMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsEqual<CallerT> {
 	return (target: unknown): CallerT => {

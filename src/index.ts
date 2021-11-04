@@ -11,12 +11,6 @@ export {canConvertFromBig} from './can/convert/from/big';
 export {BigArg} from './big/arg';
 export {bigMake} from './big/make';
 
-// Time
-export {Date} from './date';
-export {dateMake} from './date/make';
-export {DateTime} from './date/time';
-export {dateTimeMake} from './date/time/make';
-
 // Generic strong type
 export {Strong} from './strong';
 export {strongMake} from './strong/make';
@@ -41,12 +35,14 @@ export {emailMake} from './email/make';
 export {Float} from './float';
 export {floatMake} from './float/make';
 export {Id} from './id';
+export {IdOptions} from './id/options';
 export {idMake} from './id/make';
 export {Int} from './int';
 export {intMake} from './int/make';
 export {SafeMoney} from './safe/money';
 export {safeMoneyMake} from './safe/money/make';
 export {StrongArray} from './array';
+export {StrongDouble} from './strong/double';
 export {Text} from './text';
 export {textMake} from './text/make';
 export {UInt} from './uint';
@@ -188,6 +184,7 @@ export {RuleMods} from './rule/mods';
 export {RuleMust} from './rule/must';
 export {RuleNode} from './rule/node';
 export {RuleNodeType} from './rule/node/type';
+export {RuleNodeTarget} from './rule/node/target';
 export {RuleTarget} from './rule/target';
 export {RuleNot} from './rule/not';
 export {RuleOr} from './rule/or';
@@ -198,6 +195,7 @@ export {RuleType} from './rule/type';
 // Mapped Types
 export {PrimitiveToStrong} from './primitive/to/strong';
 export {RecordToStrong} from './record/to/strong';
+export {RecordToStrongRequired} from './record/to/strong/required';
 
 export {arrayValue} from './array/value';
 export {booleanValue} from './boolean/value';

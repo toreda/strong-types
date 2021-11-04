@@ -32,7 +32,7 @@ import {RuleNodeType} from '../rule/node/type';
 /**
  * Type signature for isTime validators used in rule chains.
  *
- * @category Validators
+ * @category Date & Time Validators
  */
 export type IsTime<CallerT> = () => CallerT;
 
@@ -44,6 +44,13 @@ const dateTimeStr = '^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))T([01]?[0
 // prettier-ignore
 const dateStr = '^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$';
 
+/**
+ * Check whether `value` is a valid time string.
+ * @param value
+ * @returns
+ *
+ * @category Date & Time Validators
+ */
 export function isTime(value: string): boolean {
 	if (typeof value !== 'string' || value.match(dateTimeStr) || value.match(dateStr)) {
 		return false;
@@ -66,7 +73,7 @@ export function isTime(value: string): boolean {
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Date & Time Validators
  */
 export function isTimeMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsTime<CallerT> {
 	return (): CallerT => {

@@ -68,7 +68,7 @@ export function hasChar(text: string, char: string): boolean {
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Validator Factory Functions
  */
 export function hasCharMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): HasChar<CallerT> {
 	return (target: string): CallerT => {

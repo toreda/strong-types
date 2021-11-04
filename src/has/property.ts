@@ -61,7 +61,7 @@ export function hasProperty(o: unknown, propName: string): boolean {
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Validator Factory Functions
  */
 export function hasPropertyMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): HasProperty<CallerT> {
 	return (propName: string): CallerT => {

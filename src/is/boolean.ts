@@ -55,7 +55,7 @@ export function isBoolean(value: boolean | null): boolean {
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Validator Factory Functions
  */
 export function isBooleanMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsBoolean<CallerT> {
 	return (): CallerT => {

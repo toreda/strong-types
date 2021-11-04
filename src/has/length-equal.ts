@@ -78,7 +78,7 @@ export function hasLengthEqual(value: unknown[] | string, target: number): boole
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Validator Factory Functions
  */
 export function hasLengthEqualMake<CallerT>(
 	caller: CallerT,

@@ -58,13 +58,13 @@ export function hasLengthGreaterThan(curr: string | unknown[], target: number): 
 }
 
 /**
- *
+ * Create hasLengthGT validator function.
  * @param caller
  * @param rule
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Validator Factory Functions
  */
 export function hasLengthGTMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): HasLengthGT<CallerT> {
 	return (target: number): CallerT => {

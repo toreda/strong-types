@@ -63,7 +63,7 @@ export function isInt(target?: number): boolean {
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Validator Factory Functions
  */
 export function isIntMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsInt<CallerT> {
 	return (): CallerT => {

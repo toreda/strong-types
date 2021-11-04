@@ -38,7 +38,7 @@ import {RuleNodeType} from '../../../rule/node/type';
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Validator Factory Functions
  */
 export function isIpv4AddrMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsIpv4Addr<CallerT> {
 	return (): CallerT => {

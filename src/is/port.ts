@@ -33,7 +33,7 @@ import {isInt} from './int';
 /**
  * Type signature for isPort validators used in rule chains.
  *
- * @category Validators
+ * @category System Info Validators
  */
 export type IsPort<CallerT> = (value?: number) => CallerT;
 
@@ -44,7 +44,7 @@ export type IsPort<CallerT> = (value?: number) => CallerT;
  * @param value
  * @returns
  *
- * @category Validators
+ * @category System Info Validators
  */
 export function isPort(value?: number): value is number {
 	if (typeof value !== 'number') {
@@ -74,7 +74,7 @@ export function isPort(value?: number): value is number {
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Validator Factory Functions
  */
 export function isPortMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsPort<CallerT> {
 	return (): CallerT => {

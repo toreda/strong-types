@@ -33,7 +33,7 @@ import {isPort} from '../port';
 /**
  * Type signature for isSystemPort validators used in rule chains.
  *
- * @category Validators
+ * @category System Info Validators
  */
 export type IsSystemPort<CallerT> = (value?: number) => CallerT;
 
@@ -43,7 +43,7 @@ export type IsSystemPort<CallerT> = (value?: number) => CallerT;
  * @param value
  * @returns
  *
- * @category Validators
+ * @category System Info Validators
  */
 export function isSystemPort(value?: number): value is number {
 	if (!isPort(value)) {
@@ -60,7 +60,7 @@ export function isSystemPort(value?: number): value is number {
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Validator Factory Functions
  */
 export function isSystemPortMake<CallerT>(
 	caller: CallerT,

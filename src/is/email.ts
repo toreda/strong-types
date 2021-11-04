@@ -32,7 +32,7 @@ import {RuleNodeType} from '../rule/node/type';
 /**
  * Type signature for isEmail validators used in rule chains.
  *
- * @category Validators
+ * @category Email Validators
  */
 export type IsEmail<CallerT> = (value?: string) => CallerT;
 
@@ -41,7 +41,7 @@ export type IsEmail<CallerT> = (value?: string) => CallerT;
  * @param value
  * @returns
  *
- * @category Validators
+ * @category Email Validators
  */
 export function isEmail(value: string): boolean {
 	if (typeof value !== 'string') {
@@ -90,7 +90,7 @@ export function isEmail(value: string): boolean {
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Validator Factory Functions
  */
 export function isEmailMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsEmail<CallerT> {
 	return (): CallerT => {

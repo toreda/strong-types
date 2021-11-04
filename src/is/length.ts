@@ -67,7 +67,7 @@ export function isLength(value: unknown[] | string, expectedLength: number): boo
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Validator Factory Functions
  */
 export function isLengthMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsLength<CallerT> {
 	return (expectedLength: number): CallerT => {

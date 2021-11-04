@@ -27,5 +27,7 @@ import type {Strong} from '../strong';
 
 /**
  * Semantic version number in format x.x.x
+ *
+ * @category Strings
  */
 export type SemVer = Strong<string>;

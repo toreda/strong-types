@@ -13,7 +13,7 @@ import {RuleNodeType} from '../../../rule/node/type';
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Validator Factory Functions
  */
 export function isIpv6AddrMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsIpv6Addr<CallerT> {
 	return (): CallerT => {

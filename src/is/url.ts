@@ -72,7 +72,7 @@ export function isUrl(value: string): boolean {
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Validator Factory Functions
  */
 export function isUrlMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsUrl<CallerT> {
 	return (): CallerT => {

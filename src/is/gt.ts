@@ -59,7 +59,7 @@ export function isGT(value: number, target: number): boolean {
  * @param mods
  * @returns
  *
- * @category Validator Factory
+ * @category Validator Factory Functions
  */
 export function isGTMake<CallerT>(caller: CallerT, rule: Rule, mods: RuleMods): IsGT<CallerT> {
 	return (target: number): CallerT => {
