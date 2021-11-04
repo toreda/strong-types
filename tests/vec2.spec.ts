@@ -33,7 +33,7 @@ describe('Vec2', () => {
 	let instance: Vec2;
 
 	beforeAll(() => {
-		instance = new Vec2(MOCK_X, MOCK_Y);
+		instance = new Vec2(Defaults.Vec.X, Defaults.Vec.Y);
 	});
 
 	describe('Constructor', () => {
@@ -53,10 +53,20 @@ describe('Vec2', () => {
 		});
 
 		it(`should init x to provided x arg`, () => {
-			expect(instance.x()).toBe(MOCK_X);
+			expect(instance.x()).toBe(Defaults.Vec.X);
 		});
 
 		it(`should init y to provided y arg`, () => {
+			expect(instance.y()).toBe(Defaults.Vec.Y);
+		});
+
+		it(`should set x component to provided value when calling instance.x(value)`, () => {
+			instance.x(MOCK_X);
+			expect(instance.x()).toBe(MOCK_X);
+		});
+
+		it(`should set y component to provided value when calling instance.y(value)`, () => {
+			instance.y(MOCK_Y);
 			expect(instance.y()).toBe(MOCK_Y);
 		});
 	});

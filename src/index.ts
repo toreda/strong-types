@@ -199,6 +199,12 @@ export {RuleType} from './rule/type';
 export {PrimitiveToStrong} from './primitive/to/strong';
 export {RecordToStrong} from './record/to/strong';
 
+export {arrayValue} from './array/value';
+export {booleanValue} from './boolean/value';
+export {numberValue} from './number/value';
+export {stringValue} from './string/value';
+export {typeValue} from './type/value';
+
 // Transforms
 export {Transform} from './transform';
 export {TransformNB} from './transform/nb';

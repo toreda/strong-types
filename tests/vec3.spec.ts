@@ -34,7 +34,7 @@ describe('Vec3', () => {
 	let instance: Vec3;
 
 	beforeAll(() => {
-		instance = new Vec3(MOCK_X, MOCK_Y, MOCK_Z);
+		instance = new Vec3(Defaults.Vec.X, Defaults.Vec.Y, Defaults.Vec.Z);
 	});
 
 	describe('Constructor', () => {
@@ -55,8 +55,23 @@ describe('Vec3', () => {
 		});
 
 		it('x, y, z should return initial values', () => {
+			expect(instance.x()).toBe(Defaults.Vec.X);
+			expect(instance.y()).toBe(Defaults.Vec.Y);
+			expect(instance.z()).toBe(Defaults.Vec.Z);
+		});
+
+		it(`should set x component to provided value when calling instance.x(value)`, () => {
+			instance.x(MOCK_X);
 			expect(instance.x()).toBe(MOCK_X);
+		});
+
+		it(`should set y component to provided value when calling instance.y(value)`, () => {
+			instance.y(MOCK_Y);
 			expect(instance.y()).toBe(MOCK_Y);
+		});
+
+		it(`should set z component to provided value when calling instance.z(value)`, () => {
+			instance.z(MOCK_Z);
 			expect(instance.z()).toBe(MOCK_Z);
 		});
 	});

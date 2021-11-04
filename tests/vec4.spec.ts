@@ -35,7 +35,7 @@ describe('Vec4', () => {
 	let instance: Vec4;
 
 	beforeAll(() => {
-		instance = new Vec4(MOCK_X, MOCK_Y, MOCK_Z, MOCK_W);
+		instance = new Vec4(Defaults.Vec.X, Defaults.Vec.Y, Defaults.Vec.Z, Defaults.Vec.Z);
 	});
 
 	describe('Constructor', () => {
@@ -57,18 +57,38 @@ describe('Vec4', () => {
 		});
 
 		it(`should init x to provided x arg`, () => {
-			expect(instance.x()).toBe(MOCK_X);
+			expect(instance.x()).toBe(Defaults.Vec.X);
 		});
 
 		it(`should init y to provided y arg`, () => {
-			expect(instance.y()).toBe(MOCK_Y);
+			expect(instance.y()).toBe(Defaults.Vec.Y);
 		});
 
 		it(`should init z to provided z arg`, () => {
-			expect(instance.z()).toBe(MOCK_Z);
+			expect(instance.z()).toBe(Defaults.Vec.Z);
 		});
 
 		it(`should init w to provided w arg`, () => {
+			expect(instance.w()).toBe(Defaults.Vec.W);
+		});
+
+		it(`should set x component to provided value when calling instance.x(value)`, () => {
+			instance.x(MOCK_X);
+			expect(instance.x()).toBe(MOCK_X);
+		});
+
+		it(`should set y component to provided value when calling instance.y(value)`, () => {
+			instance.y(MOCK_Y);
+			expect(instance.y()).toBe(MOCK_Y);
+		});
+
+		it(`should set z component to provided value when calling instance.z(value)`, () => {
+			instance.z(MOCK_Z);
+			expect(instance.z()).toBe(MOCK_Z);
+		});
+
+		it(`should set w component to provided value when calling instance.w(value)`, () => {
+			instance.w(MOCK_W);
 			expect(instance.w()).toBe(MOCK_W);
 		});
 	});

@@ -17,11 +17,6 @@ module.exports = {
 		'@babel/preset-typescript'
 	],
 	sourceType: 'unambiguous',
-	plugins: [
-		'const-enum',
-		'@babel/transform-runtime',
-		'@babel/transform-typescript',
-		'@babel/plugin-syntax-bigint'
-	],
+	plugins: ['const-enum', '@babel/transform-typescript', '@babel/plugin-syntax-bigint'],
 	ignore: ['core-js/']
 };

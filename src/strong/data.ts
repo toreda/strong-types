@@ -65,7 +65,7 @@ export class StrongData<ValueT> {
 
 	public get(fallback: ValueT): ValueT {
 		if (this.value === null) {
-			if (typeof fallback === 'undefined' || fallback === null) {
+			if (fallback === undefined || fallback === null) {
 				return this.fallbackDefault;
 			}
 
@@ -97,7 +97,7 @@ export class StrongData<ValueT> {
 	}
 
 	public getNull(): ValueT | null {
-		if (typeof this.value === 'undefined') {
+		if (this.value === undefined || this.value === null) {
 			return null;
 		}
 
@@ -105,7 +105,7 @@ export class StrongData<ValueT> {
 	}
 
 	public reset(): void {
-		this.value = 
+		this.value = null;
 	}
 
 	public mathVal(amt: number): ValueT | null {
@@ -170,6 +170,12 @@ export class StrongData<ValueT> {
 		return this.set(result as ANY) ? result : null;
 	}
 
+	/**
+	 * Add value to Strong Type's current value, if it is a numeric type. Operation
+	 * ignored for non-numeric types.
+	 * @param value
+	 * @returns
+	 */
 	public add(value: number): number | null {
 		const curr = this.getNull();
 

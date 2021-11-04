@@ -9,3 +9,9 @@ yarn-error.log
 test-report.xml
 .github
 examples
+dep-graph.png
+dep-graph.jpg
+docs
+jest.config.js
+.eslintrc.js
+gulpfile.ts

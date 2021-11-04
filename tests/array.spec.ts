@@ -27,6 +27,7 @@ import {arrayMake} from '../src/array/make';
 
 const MOCK_FALLBACK_DEFAULT = ['dog'];
 const MOCK_FALLBACK = [2, -2, 8];
+const EMPTY_ARRAY: unknown[] = [];
 
 describe('StrongArray', () => {
 	describe('Implementation', () => {
@@ -57,10 +58,19 @@ describe('StrongArray', () => {
 			expect(result()).toBe(sampleFallback);
 		});
 
-		it('should return fallback default when value is undefined', () => {
-			const sampleFallback = [7, 'koala'];
-			const result = arrayMake(sampleFallback);
-			expect(result()).toBe(sampleFallback);
+		it('should return an empty array when init value is not specified', () => {
+			const fallbackDefault = [7, 'koala'];
+
+			const result = arrayMake(fallbackDefault);
+			expect(result()).toStrictEqual(EMPTY_ARRAY);
+		});
+
+		it('should return an empty array after reset ', () => {
+			const fallbackDefault = [7, 'koala'];
+
+			const result = arrayMake(fallbackDefault);
+			result.reset();
+			expect(result()).toStrictEqual(EMPTY_ARRAY);
 		});
 
 		it('should not set value when called with a number', () => {
@@ -96,14 +106,13 @@ describe('StrongArray', () => {
 		});
 
 		describe('reset', () => {
-			it(`should reset data to an empty array`, () => {
-				const result = arrayMake<string>([], ['aa', 'bb', 'cc']);
+			it(`should reset data to initial value (empty array)`, () => {
+				const result = arrayMake<string>([], []);
+				result(['aa', 'bb', 'cc']);
 				expect(result().length).toBe(3);
 				result.reset();
 				expect(result().length).toBe(0);
 			});
 		});
 	});
-
-
 });

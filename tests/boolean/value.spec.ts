@@ -23,49 +23,36 @@
  *
  */
 
-import {Defaults} from '../src/defaults';
-import {Vec1} from '../src/vec1';
+import {booleanValue} from '../../src/boolean/value';
 
-const MOCK_X = 77190;
+describe('booleanValue', () => {
+	it(`should return fallback when value is undefined`, () => {
+		const fallback = true;
 
-describe('Vec1', () => {
-	let instance: Vec1;
-
-	beforeAll(() => {
-		instance = new Vec1(Defaults.Vec.X);
+		expect(booleanValue(undefined, fallback)).toBe(fallback);
 	});
 
-	beforeEach(() => {
-		instance.reset();
+	it(`should return fallback when value is null`, () => {
+		const fallback = true;
+
+		expect(booleanValue(null, fallback)).toBe(fallback);
 	});
 
-	describe('Constructor', () => {
-		it('should not throw when args are null', () => {
-			expect(() => {
-				const custom = new Vec1(null);
-			}).not.toThrow();
-		});
+	it(`should return fallback when value is a non-boolean`, () => {
+		const fallback = true;
 
-		it('should create an instance of Vec1', () => {
-			expect(instance).toBeInstanceOf(Vec1);
-		});
-
-		it('should have properties: x', () => {
-			expect(instance.x).not.toBeUndefined();
-		});
-
-		it('x should return value', () => {
-			instance.x(MOCK_X);
-			expect(instance.x()).toBe(MOCK_X);
-		});
+		expect(booleanValue('one-14901741', fallback)).toBe(fallback);
 	});
 
-	describe('reset', () => {
-		it(`should reset x property to initial value`, () => {
-			instance.x(881340);
-			expect(instance.x()).toBe(881340);
-			instance.reset();
-			expect(instance.x()).toBe(Defaults.Vec.X);
-		});
+	it(`should return value when value arg true`, () => {
+		const fallback = false;
+		const value = true;
+		expect(booleanValue(value, fallback)).toBe(value);
+	});
+
+	it(`should return value when value arg is false`, () => {
+		const fallback = true;
+		const value = false;
+		expect(booleanValue(value, fallback)).toBe(value);
 	});
 });

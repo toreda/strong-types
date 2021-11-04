@@ -38,23 +38,22 @@ import {StrongTypeId} from '../strong/type/id';
  * @category Core
  */
 export function createType<ValueT>(
-	fallbackValue: ValueT,
-	value: ValueT | null,
+	fallbackDefault: ValueT,
+	initial: ValueT | null,
 	rules: Rules<ValueT>,
 	typeId: StrongTypeId
 ): Strong<ValueT> {
-	const instance = new StrongData<ValueT>(fallbackValue, value, rules, typeId);
-	const localFallback = fallbackValue !== undefined ? fallbackValue : instance.fallbackDefault;
+	const instance = new StrongData<ValueT>(fallbackDefault, initial, rules, typeId);
 
 	const baseType: StrongTypeId = 'StrongType';
 
 	return Object.assign(
-		(val?: ValueT | null): ValueT => {
-			if (typeof val !== 'undefined') {
-				instance.set(val);
+		(value?: ValueT | null): ValueT => {
+			if (typeof value !== 'undefined') {
+				instance.set(value);
 			}
 
-			return instance.get(localFallback);
+			return instance.get(instance.fallbackDefault);
 		},
 		{
 			/**
@@ -77,6 +76,10 @@ export function createType<ValueT>(
 			 */
 			reset: (): void => {
 				instance.reset();
+
+				if (initial !== undefined) {
+					instance.set(initial);
+				}
 			},
 			/**
 			 * Read-only check to determine if provided value passes
