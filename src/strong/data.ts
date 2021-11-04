@@ -33,6 +33,7 @@ import {Transforms} from '../transforms';
  */
 export class StrongData<ValueT> {
 	public value: ValueT | null;
+	public readonly initial: ValueT | null;
 	public readonly fallbackDefault: ValueT;
 	public readonly transforms: Transforms<ValueT>;
 	public readonly rules: Rules<ValueT>;
@@ -46,7 +47,7 @@ export class StrongData<ValueT> {
 		this.rules = rules;
 		this.typeId = typeId;
 		this.baseType = 'StrongData';
-
+		this.initial = value;
 		this.set(value);
 	}
 
@@ -105,20 +106,7 @@ export class StrongData<ValueT> {
 	}
 
 	public reset(): void {
-		this.value = null;
-	}
-
-	public mathVal(amt: number): ValueT | null {
-		if (typeof amt !== 'number') {
-			return null;
-		}
-
-		const val = this.getNull();
-		if (typeof val !== 'number') {
-			return null;
-		}
-
-		return val;
+		this.value = this.initial;
 	}
 
 	/**
@@ -135,18 +123,29 @@ export class StrongData<ValueT> {
 		}
 
 		if (divisor === 0 || curr === 0) {
+			this.set(0 as ANY);
 			return 0;
 		}
 
 		const result = curr / divisor;
 
-		return this.set(result as ANY) ? result : null;
+		if (isNaN(result)) {
+			return null;
+		}
+
+		this.set(result as ANY);
+		return result;
 	}
 
 	public mul(value: number): number | null {
 		const curr = this.getNull();
 		if (typeof value !== 'number' || typeof curr !== 'number') {
 			return null;
+		}
+
+		if (value === 0 || curr === 0) {
+			this.set(0 as ANY);
+			return 0;
 		}
 
 		const result = value * curr;
@@ -166,8 +165,16 @@ export class StrongData<ValueT> {
 		}
 
 		const result = Math.pow(curr, exponent);
+		if (isNaN(result)) {
+			return null;
+		}
 
-		return this.set(result as ANY) ? result : null;
+		if (result >= Number.MAX_SAFE_INTEGER) {
+			return null;
+		}
+
+		this.set(result as ANY);
+		return result;
 	}
 
 	/**
@@ -184,6 +191,13 @@ export class StrongData<ValueT> {
 		}
 
 		const result = value + curr;
+		if (isNaN(result)) {
+			return null;
+		}
+
+		if (result < Number.MIN_SAFE_INTEGER || result > Number.MAX_SAFE_INTEGER) {
+			return null;
+		}
 
 		return this.set(result as ANY) ? result : null;
 	}
