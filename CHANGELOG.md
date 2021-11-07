@@ -8,7 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 
-
+## [v0.28.0]
+### Added
+* `null` variants for `typeValue<T>` help functions: `booleanNullValue`, `arrayNullValue`, `stringNullValue`, `stringNullValue`. Each accepts a fallback of type `T | null` to allow `null` returns as necessary. These functions work identically to the non-null versions and only return `null` when the `fallback` arg is `null`, but include a return type `T | null`.
 
 ## [v0.27.0]
 
@@ -26,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 * `gulp-eslint` is no longer during the build process. Linting has moved into `@toreda/build-tools` by invoking `ESLint` directly.
 
+[v0.28.0] https://github.com/toreda/strong-types/compare/v0.28.0...v0.27.0
 [v0.27.0]: https://github.com/toreda/strong-types/compare/v0.27.0...v0.1.0
 [0.0.0]: https://github.com/toreda/strong-types/compare/v0.27.0...v0.1.0
 [unreleased]: https://github.com/toreda/strong-types/compare/v0.0.0...HEAD

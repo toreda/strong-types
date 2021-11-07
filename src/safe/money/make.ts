@@ -41,13 +41,13 @@ const BIG_ONE = Big(1);
  *
  * @category Maths
  */
-export function safeMoneyMake(fallback: BigArg | null, value?: BigArg | null): SafeMoney {
+export function safeMoneyMake(fallback: BigArg | null, initial?: BigArg | null): SafeMoney {
 	const rules = new Rules<Big>();
 
 	rules.add().must.match.type.big();
 
 	const bigFallback = toSafeMoneyBig(fallback);
-	const bigInitial = toSafeMoneyBig(value);
+	const bigInitial = toSafeMoneyBig(initial);
 
 	const strong = createType<Big>(bigFallback ?? BIG_ZERO, bigInitial, rules, 'SafeMoney');
 
@@ -136,7 +136,7 @@ export function safeMoneyMake(fallback: BigArg | null, value?: BigArg | null): S
 
 			return strong._data.set(result) ? result : null;
 		},
-		round: (input: number | string | Big): Big | null => {
+		round: (_input: number | string | Big): Big | null => {
 			return null;
 		},
 		typeId: 'SafeMoney',

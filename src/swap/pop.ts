@@ -19,8 +19,12 @@ export function swapPop<T>(array: T[], ndx: number): T | null {
 	}
 
 	if (array.length === 1 || ndx === array.length - 1) {
-		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-		return array.pop()!;
+		const result = array.pop();
+		if (result === undefined) {
+			return null;
+		}
+
+		return result;
 	}
 
 	// Save the element at ndx in the array to

@@ -117,17 +117,17 @@ export {Vec4} from './vec4';
 export {swapPop} from './swap/pop';
 
 // Validator functions for is & has
-export {HasLengthEqual, hasLengthEqual, hasLengthEqualMake} from './has/length-equal';
+export {HasLengthEqual, hasLengthEqual, hasLengthEqualMake} from './has/length/equal';
 export {HasLengthGTE, hasLengthGTE, hasLengthGTEMake} from './has/length/gte';
 export {HasChar, hasChar, hasCharMake} from './has/char';
-export {HasCharTimes, hasCharTimes, hasCharTimesMake} from './has/char-times';
+export {HasCharTimes, hasCharTimes, hasCharTimesMake} from './has/char/times';
 export {HasLengthGT, hasLengthGreaterThan, hasLengthGTMake} from './has/length/gt';
 export {HasLengthLT, hasLengthLT, hasLengthLTMake} from './has/length/lt';
 export {HasLengthLTE, hasLengthLTE, hasLengthLTEMake} from './has/length/lte';
 export {HasProperty, hasProperty, hasPropertyMake} from './has/property';
 export {HasPropertyWithType, hasPropertyWithType, hasPropertyWithTypeMake} from './has/property-with-type';
 export {HasText, hasText, hasTextMake} from './has/text';
-export {HasTextTimes, hasTextTimes, hasTextTimesMake} from './has/text-times';
+export {HasTextTimes, hasTextTimes, hasTextTimesMake} from './has/text/times';
 export {IsArray, isArrayMake} from './is/array';
 export {IsBoolean, isBoolean, isBooleanMake} from './is/boolean';
 export {IsDate, isDate, isDateMake} from './is/date';
@@ -198,9 +198,13 @@ export {RecordToStrong} from './record/to/strong';
 export {RecordToStrongRequired} from './record/to/strong/required';
 
 export {arrayValue} from './array/value';
+export {arrayNullValue} from './array/null/value';
 export {booleanValue} from './boolean/value';
+export {booleanNullValue} from './boolean/null/value';
 export {numberValue} from './number/value';
+export {numberNullValue} from './number/null/value';
 export {stringValue} from './string/value';
+export {stringNullValue} from './string/null/value';
 export {typeValue} from './type/value';
 
 // Transforms
