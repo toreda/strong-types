@@ -24,9 +24,9 @@
  */
 
 import {HasChar, hasCharMake} from '../has/char';
-import {HasCharTimes, hasCharTimesMake} from '../has/char-times';
+import {HasCharTimes, hasCharTimesMake} from '../has/char/times';
 import {HasText, hasTextMake} from '../has/text';
-import {HasTextTimes, hasTextTimesMake} from '../has/text-times';
+import {HasTextTimes, hasTextTimesMake} from '../has/text/times';
 
 import {Rule} from '../rule';
 import {RuleMods} from './mods';

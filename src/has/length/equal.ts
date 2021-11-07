@@ -23,12 +23,12 @@
  *
  */
 
-import {Collection} from '../collection';
-import {Rule} from '../rule';
-import {RuleFn} from '../rule/fn';
-import {RuleMods} from '../rule/mods';
-import {RuleNode} from '../rule/node';
-import {RuleNodeType} from '../rule/node/type';
+import {Collection} from '../../collection';
+import {Rule} from '../../rule';
+import {RuleFn} from '../../rule/fn';
+import {RuleMods} from '../../rule/mods';
+import {RuleNode} from '../../rule/node';
+import {RuleNodeType} from '../../rule/node/type';
 
 /**
  * Type signature for hasLengthEqual validator functions used within rule chains.

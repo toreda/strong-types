@@ -24,7 +24,7 @@
  */
 
 import {Rule} from '../../../src/rule';
-import {hasLengthEqualMake} from '../../../src/has/length-equal';
+import {hasLengthEqualMake} from '../../../src/has/length/equal';
 
 describe('HasLengthEqualTo', () => {
 	let rule: Rule;

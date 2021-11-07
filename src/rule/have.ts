@@ -25,7 +25,7 @@
 
 import {HasProperty, hasPropertyMake} from '../has/property';
 import {HasText, hasTextMake} from '../has/text';
-import {HasTextTimes, hasTextTimesMake} from '../has/text-times';
+import {HasTextTimes, hasTextTimesMake} from '../has/text/times';
 
 import {Rule} from '../rule';
 import {RuleLength} from './length';

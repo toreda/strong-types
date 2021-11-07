@@ -23,48 +23,35 @@
  *
  */
 
-import {Rule} from '../rule';
-import {RuleFn} from '../rule/fn';
-import {RuleMods} from '../rule/mods';
-import {RuleNode} from '../rule/node';
-import {RuleNodeType} from '../rule/node/type';
-import {hasTextTimes} from './text-times';
+import {Rule} from '../../rule';
+import {RuleFn} from '../../rule/fn';
+import {RuleMods} from '../../rule/mods';
+import {RuleNode} from '../../rule/node';
+import {RuleNodeType} from '../../rule/node/type';
 
 /**
- * Type signature for hasCharTimes validators used in rule chains.
+ * Type signature for hasTextTimes validators used in rule chains.
  *
  * @category Validators
  */
-export type HasCharTimes<CallerT> = (curr: string, count: number) => CallerT;
+export type HasTextTimes<CallerT> = (curr: string, count: number) => CallerT;
 
 /**
  *
- * @param text
- * @param char
+ * @param curr
+ * @param target
  * @param count
  * @returns
  *
  * @category Validators
  */
-export function hasCharTimes(text: string, char: string, count: number): boolean {
-	if (typeof text !== 'string' || typeof char !== 'string') {
+export const hasTextTimes = (curr: string, target: string, count: number): boolean => {
+	if (typeof curr !== 'string' || typeof target !== 'string') {
 		return false;
 	}
 
-	if (!text.length || !char.length) {
-		return false;
-	}
-
-	if (char.length !== 1) {
-		return false;
-	}
-
-	if (count < 0) {
-		return false;
-	}
-
-	return hasTextTimes(text, char, count);
-}
+	return curr.includes(target);
+};
 
 /**
  *
@@ -75,17 +62,17 @@ export function hasCharTimes(text: string, char: string, count: number): boolean
  *
  * @category Validator Factory Functions
  */
-export function hasCharTimesMake<CallerT>(
+export function hasTextTimesMake<CallerT>(
 	caller: CallerT,
 	rule: Rule,
 	mods: RuleMods
-): HasCharTimes<CallerT> {
-	return (char: string, count: number): CallerT => {
+): HasTextTimes<CallerT> {
+	return (target: string, count: number): CallerT => {
 		const fn: RuleFn<string> = (curr: string) => {
-			return hasCharTimes(curr, char, count);
+			return hasTextTimes(curr, target, count);
 		};
 
-		const node = new RuleNode<string>('HAS_CHAR_TIMES', RuleNodeType.CMP, fn, mods);
+		const node = new RuleNode<string>('HAS_TEXT_TIMES', RuleNodeType.CMP, fn, mods);
 		rule.add(node);
 
 		return caller;

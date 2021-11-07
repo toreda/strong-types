@@ -23,44 +23,47 @@
  *
  */
 
+import {Defaults} from '../defaults';
+import type {HexColorCode} from '../hex/color/code';
 import {Rules} from '../rules';
 import type {Strong} from '../strong';
 import {StrongMap} from '../map';
+import {hexColorCodeMake} from '../hex/color/code/make';
 import {strongMake} from '../strong/make';
 
 /**
  * @category CSS
  */
 export class CSSFont extends StrongMap {
-	public readonly color: Strong<string>;
-	public readonly size: Strong<string>;
+	public readonly color: HexColorCode;
 	public readonly family: Strong<string>;
-	public readonly weight: Strong<string>;
 	public readonly lineHeight: Strong<string>;
+	public readonly size: Strong<string>;
 	public readonly stretch: Strong<string>;
 	public readonly variant: Strong<string>;
+	public readonly weight: Strong<string>;
 
 	constructor() {
 		super();
 
 		const colorRules: Rules<string> = new Rules();
 		colorRules.add().must.match.pattern.hexColor();
-		this.color = strongMake<string>('#FFFFFF', null, colorRules);
-		this.size = strongMake<string>('12px');
-		this.family = strongMake<string>('sans-serif');
-		this.weight = strongMake<string>('normal');
-		this.lineHeight = strongMake<string>('normal');
-		this.stretch = strongMake<string>('normal');
-		this.variant = strongMake<string>('normal');
+		this.color = hexColorCodeMake(Defaults.CSS.Font.Color);
+		this.family = strongMake<string>(Defaults.CSS.Font.Family);
+		this.lineHeight = strongMake<string>(Defaults.CSS.Font.LineHeight);
+		this.size = strongMake<string>(Defaults.CSS.Font.Size);
+		this.stretch = strongMake<string>(Defaults.CSS.Font.Stretch);
+		this.variant = strongMake<string>(Defaults.CSS.Font.Variant);
+		this.weight = strongMake<string>(Defaults.CSS.Font.Weight);
 	}
 
 	public reset(): void {
 		this.color.reset();
-		this.size.reset();
 		this.family.reset();
-		this.weight.reset();
 		this.lineHeight.reset();
+		this.size.reset();
 		this.stretch.reset();
 		this.variant.reset();
+		this.weight.reset();
 	}
 }

@@ -23,7 +23,7 @@
  *
  */
 
-import {HasLengthEqual, hasLengthEqualMake} from '../has/length-equal';
+import {HasLengthEqual, hasLengthEqualMake} from '../has/length/equal';
 import {HasLengthGT, hasLengthGTMake} from '../has/length/gt';
 import {HasLengthGTE, hasLengthGTEMake} from '../has/length/gte';
 import {HasLengthLT, hasLengthLTMake} from '../has/length/lt';

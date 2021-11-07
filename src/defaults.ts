@@ -35,4 +35,15 @@ export class Defaults {
 		Z: 0,
 		W: 0
 	} as const;
+	public static CSS = {
+		Font: {
+			Color: '#FFFFFF',
+			Size: '12px',
+			Family: 'sans-serif',
+			Weight: 'normal',
+			Stretch: 'normal',
+			Variant: 'normal',
+			LineHeight: 'normal'
+		}
+	} as const;
 }
