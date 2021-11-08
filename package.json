@@ -48,7 +48,7 @@
 		"@toreda/build-tools": "^0.5.7",
 		"@toreda/eslint-config": "^2.2.0",
 		"@toreda/prettier-config": "^1.0.1",
-		"@toreda/types": "^2.3.0",
+		"@toreda/types": "^2.4.0",
 		"@types/big.js": "^6.1.2",
 		"@types/eslint": "^7.28.0",
 		"@types/gulp": "^4.0.9",

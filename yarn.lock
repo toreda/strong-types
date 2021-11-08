@@ -1138,9 +1138,9 @@
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@toreda/prettier-config/-/prettier-config-1.0.1.tgz#bd6c47352aa99560617f0f4a29f16ab7c3070b86"
 
-"@toreda/types@^2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@toreda/types/-/types-2.3.0.tgz#dfa44694b00f4a6a6dbf75719dcd36ee9b1696ef"
+"@toreda/types@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@toreda/types/-/types-2.4.0.tgz#881b1f6767adf1c0f4a0745c031460c4b0e62113"
 
 "@tsconfig/node10@^1.0.7":
   version "1.0.8"
