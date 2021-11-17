@@ -50,7 +50,7 @@ export class MapParser {
 	}
 
 	public parseStrongKey(key: Strong, value: unknown, _parseState: State): void {
-		if (!key || value == null) {
+		if (!key || value === undefined) {
 			return;
 		}
 
