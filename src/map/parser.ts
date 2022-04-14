@@ -61,7 +61,7 @@ export class MapParser {
 		const strongValue = value as Strong;
 		// When value is also a StrongType invoke it to get its value. Otherwise set
 		// the strong key with value.
-		if (strongValue.baseType === 'StrongType') {
+		if (strongValue != null && strongValue.baseType === 'StrongType') {
 			key(strongValue());
 		} else {
 			key(value);

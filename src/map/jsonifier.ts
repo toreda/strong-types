@@ -60,6 +60,8 @@ export class MapJsonifier {
 				result[keyName] = this.jsonifyKey(child);
 			} else if (Array.isArray(child)) {
 				result[keyName] = this.jsonifyKey(child);
+			} else if ((child as HTMLElement)?.nodeType != null) {
+				result[keyName] = this.jsonifyKey(child);
 			} else {
 				result[keyName] = this.jsonifyMap(child);
 			}
@@ -86,3 +88,7 @@ export class MapJsonifier {
 		return key;
 	}
 }
+
+type HTMLElement = {
+	nodeType: number;
+};

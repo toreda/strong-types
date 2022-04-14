@@ -1,6 +1,6 @@
 {
 	"name": "@toreda/strong-types",
-	"version": "0.28.2",
+	"version": "0.28.5",
 	"description": "Better TypeScript code in fewer lines.",
 	"main": "./dist/index",
 	"typings": "./dist/index.d.ts",
@@ -45,7 +45,7 @@
 		"@babel/preset-env": "^7.16.0",
 		"@babel/preset-typescript": "^7.16.0",
 		"@babel/types": "^7.16.0",
-		"@toreda/build-tools": "^0.5.7",
+		"@toreda/build-tools": "^0.6.4",
 		"@toreda/eslint-config": "^2.2.0",
 		"@toreda/prettier-config": "^1.0.1",
 		"@toreda/types": "^2.4.0",
@@ -82,7 +82,7 @@
 	},
 	"prettier": "@toreda/prettier-config",
 	"dependencies": {
-		"@toreda/log": "^0.6.5",
+		"@toreda/log": "^0.6.12",
 		"big.js": "^6.1.1"
 	},
 	"browser": {
