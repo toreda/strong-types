@@ -1,7 +1,7 @@
 /**
  *	MIT License
  *
- *	Copyright (c) 2019 - 2021 Toreda, Inc.
+ *	Copyright (c) 2019 - 2022 Toreda, Inc.
  *
  *	Permission is hereby granted, free of charge, to any person obtaining a copy
  *	of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ import {IsIpv4Addr, isIpv4Addr} from '../addr';
 
 import {Rule} from '../../../rule';
 import {RuleFn} from '../../../rule/fn';
-import {RuleMods} from '../../../rule/mods';
+import type {RuleMods} from '../../../rule/mods';
 import {RuleNode} from '../../../rule/node';
 import {RuleNodeType} from '../../../rule/node/type';
 

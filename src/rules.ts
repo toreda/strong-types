@@ -1,7 +1,7 @@
 /**
  *	MIT License
  *
- *	Copyright (c) 2019 - 2021 Toreda, Inc.
+ *	Copyright (c) 2019 - 2022 Toreda, Inc.
  *
  *	Permission is hereby granted, free of charge, to any person obtaining a copy
  *	of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,7 @@
 
 import {Rule} from './rule';
 import {RuleMust} from './rule/must';
-import {RuleRoot} from './rule/root';
+import type {RuleRoot} from './rule/root';
 
 /**
  * Container for rules applied to a node.

@@ -1,7 +1,7 @@
 /**
  *	MIT License
  *
- *	Copyright (c) 2019 - 2021 Toreda, Inc.
+ *	Copyright (c) 2019 - 2022 Toreda, Inc.
  *
  *	Permission is hereby granted, free of charge, to any person obtaining a copy
  *	of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ import {Defaults} from '../defaults';
 import type {HexColorCode} from '../hex/color/code';
 import {Rules} from '../rules';
 import type {Strong} from '../strong';
-import {StrongMap} from '../map';
+import {StrongMap} from '../strong/map';
 import {hexColorCodeMake} from '../hex/color/code/make';
 import {strongMake} from '../strong/make';
 

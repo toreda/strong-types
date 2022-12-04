@@ -24,7 +24,7 @@
  */
 
 import {Size} from '../src/size';
-import {StrongMap} from '../src/map';
+import {StrongMap} from '../src/strong/map';
 
 describe('Size', () => {
 	describe('Constructor', () => {

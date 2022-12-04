@@ -1,4 +1,4 @@
-import {HttpWebsocketHeader} from '../header';
+import type {HttpWebsocketHeader} from '../header';
 import {httpWebsocketHeaders} from '../headers';
 
 /**

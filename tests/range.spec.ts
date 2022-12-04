@@ -24,7 +24,7 @@
  */
 
 import {Range} from '../src/range';
-import {StrongMap} from '../src/map';
+import {StrongMap} from '../src/strong/map';
 
 const expectedMin = 19384;
 const expectedMax = 91278;

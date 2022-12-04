@@ -1,5 +1,5 @@
 import type {Int} from '../../src/int';
-import {StrongMap} from '../../src/map';
+import {StrongMap} from '../../src/strong/map';
 import type {Text} from '../../src/text';
 import {intMake} from '../../src/int/make';
 import {textMake} from '../../src/text/make';

@@ -1,6 +1,15 @@
-# `@toreda/strong-types`
 
-![CI](https://github.com/toreda/strong-types/workflows/CI/badge.svg?branch=master) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=toreda_strong-types&metric=coverage)](https://sonarcloud.io/dashboard?id=toreda_strong-types) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=toreda_strong-types&metric=alert_status)](https://sonarcloud.io/dashboard?id=toreda_strong-types)
+[![Toreda](https://content.toreda.com/logo/toreda-logo.png)](https://www.toreda.com)
+
+
+[![CI](https://img.shields.io/github/workflow/status/toreda/strong-types/CI?style=for-the-badge)](https://github.com/toreda/strong-types/actions) [![Coverage](https://img.shields.io/sonar/coverage/toreda_strong-types?server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge)](https://sonarcloud.io/project/activity?graph=coverage&id=toreda_strong-types) [![Sonar Quality Gate](https://img.shields.io/sonar/quality_gate/toreda_strong-types?server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge)](https://sonarcloud.io/dashboard?id=toreda_strong-types)
+
+[![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/toreda/strong-types/master?style=for-the-badge)](https://github.com/toreda/strong-types/releases/latest) [![GitHub Release Date](https://img.shields.io/github/release-date/toreda/strong-types?style=for-the-badge)](https://github.com/toreda/strong-types/releases/latest) [![GitHub issues](https://img.shields.io/github/issues/toreda/strong-types?style=for-the-badge)](https://github.com/toreda/strong-types/issues)
+
+ [![license](https://img.shields.io/github/license/toreda/strong-types?style=for-the-badge)](https://github.com/toreda/time/blob/master/LICENSE)
+
+&nbsp;
+# `@toreda/strong-types`
 
 Guaranteed types with validation in 1 line of code. Improve code quality & reliability while writing fewer lines of code.
 
@@ -758,12 +767,12 @@ npm run-script build
 # Legal
 
 ## License
-
 [MIT](LICENSE) &copy; Toreda, Inc.
 
-&nbsp;
 
 ## Copyright
-Copyright &copy; 2019 - 2021 Toreda, Inc. All Rights Reserved.
+Copyright &copy; 2019 - 2022 Toreda, Inc. All Rights Reserved.
 
-https://www.toreda.com
+
+## Website
+Toreda's company website can be found at [toreda.com](https://www.toreda.com)

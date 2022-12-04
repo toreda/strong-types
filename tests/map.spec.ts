@@ -25,7 +25,7 @@
 
 import {MapJsonifier} from '../src/map/jsonifier';
 import {MapParser} from '../src/map/parser';
-import {StrongMap} from '../src/map';
+import {StrongMap} from '../src/strong/map';
 import {TestMap} from './map/test-map';
 
 describe('StrongMap', () => {

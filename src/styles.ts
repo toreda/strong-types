@@ -1,7 +1,7 @@
 /**
  *	MIT License
  *
- *	Copyright (c) 2019 - 2021 Toreda, Inc.
+ *	Copyright (c) 2019 - 2022 Toreda, Inc.
  *
  *	Permission is hereby granted, free of charge, to any person obtaining a copy
  *	of this software and associated documentation files (the "Software"), to deal
@@ -23,18 +23,18 @@
  *
  */
 
-import {CSSBoxShadow} from './css/box/shadow';
-import {CSSClip} from './css/clip';
-import {CSSDisplay} from './css/display';
+import type {CSSBoxShadow} from './css/box/shadow';
+import type {CSSClip} from './css/clip';
+import type {CSSDisplay} from './css/display';
 import {CSSFont} from './css/font';
 import {CSSText} from './css/text';
-import {CSSUnits} from './css/units';
-import {CSSUserSelect} from './css/user/select';
+import type {CSSUnits} from './css/units';
+import type {CSSUserSelect} from './css/user/select';
 import type {Float} from './float';
 import type {Int} from './int';
 import type {Strong} from './strong';
-import {StrongMap} from './map';
-import {StrongTypeId} from '.';
+import {StrongMap} from './strong/map';
+import type {StrongTypeId} from './strong/type/id';
 import type {Text} from './text';
 import {floatMake} from './float/make';
 import {intMake} from './int/make';

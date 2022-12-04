@@ -1,6 +1,6 @@
 {
 	"name": "@toreda/strong-types",
-	"version": "0.28.2",
+	"version": "0.29.0",
 	"description": "Better TypeScript code in fewer lines.",
 	"main": "./dist/index",
 	"typings": "./dist/index.d.ts",
@@ -48,7 +48,7 @@
 		"@toreda/build-tools": "^0.5.7",
 		"@toreda/eslint-config": "^2.2.0",
 		"@toreda/prettier-config": "^1.0.1",
-		"@toreda/types": "^2.4.0",
+		"@toreda/types": "^2.7.0",
 		"@types/big.js": "^6.1.2",
 		"@types/eslint": "^7.28.0",
 		"@types/gulp": "^4.0.9",

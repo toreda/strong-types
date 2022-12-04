@@ -28,7 +28,7 @@ import {Data} from '@toreda/types';
 import type {Int} from '../../src/int';
 import {MapParser} from '../../src/map/parser';
 import {MapParserState} from '../../src/map/parser/state';
-import {StrongMap} from '../../src/map';
+import {StrongMap} from '../../src/strong/map';
 import type {Text} from '../../src/text';
 import {boolMake} from '../../src/bool/make';
 import {intMake} from '../../src/int/make';

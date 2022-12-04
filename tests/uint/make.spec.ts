@@ -1,7 +1,7 @@
 /**
  *	MIT License
  *
- *	Copyright (c) 2019 - 2021 Toreda, Inc.
+ *	Copyright (c) 2019 - 2022 Toreda, Inc.
  *
  *	Permission is hereby granted, free of charge, to any person obtaining a copy
  *	of this software and associated documentation files (the "Software"), to deal
@@ -23,9 +23,25 @@
  *
  */
 
-import type {Strong} from './strong';
+import type {UInt} from '../../src/uint';
+import {uIntMake} from '../../src/uint/make';
 
-/**
- * @category Date & Time
- */
-export type Date = Strong<string>;
+const METHODS: string[] = ['increment', 'decrement', 'mul', 'pow', 'div', 'add', 'sub'];
+describe('uIntMake', () => {
+	describe(`Factory Result`, () => {
+		let result: UInt;
+		beforeAll(() => {
+			result = uIntMake(0, 1);
+		});
+
+		for (const method of METHODS) {
+			it(`should implement '${method}' function`, () => {
+				expect(typeof result[method]).toBe('function');
+			});
+		}
+	});
+
+	describe('Implementation', () => {
+		it(`should`, () => {});
+	});
+});

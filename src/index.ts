@@ -103,7 +103,7 @@ export {HttpWebsocketHeaders, httpWebsocketHeaders} from './http/websocket/heade
 export {httpWebsocketHeaderValid} from './http/websocket/header/valid';
 
 // Map
-export {StrongMap} from './map';
+export {StrongMap} from './strong/map';
 export {MapJsonifier} from './map/jsonifier';
 export {MapParser} from './map/parser';
 export {MapParserState} from './map/parser/state';
@@ -214,10 +214,6 @@ export {TransformFN} from './transform/fn';
 export {TransformFNNB} from './transform/fn/nb';
 export {Transforms} from './transforms';
 export {TransformOptions} from './transform/options';
-
-// Strong Time
-export {Time} from './time';
-export {timeMake} from './time/make';
 
 // Strong URLs
 export {Url} from './url';

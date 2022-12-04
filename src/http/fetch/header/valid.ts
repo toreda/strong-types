@@ -1,4 +1,4 @@
-import {HttpFetchHeader} from '../header';
+import type {HttpFetchHeader} from '../header';
 import {httpFetchHeaders} from '../headers';
 
 /**

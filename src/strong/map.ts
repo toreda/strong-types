@@ -1,7 +1,7 @@
 /**
  *	MIT License
  *
- *	Copyright (c) 2019 - 2021 Toreda, Inc.
+ *	Copyright (c) 2022 Toreda, Inc.
  *
  *	Permission is hereby granted, free of charge, to any person obtaining a copy
  *	of this software and associated documentation files (the "Software"), to deal
@@ -23,8 +23,41 @@
  *
  */
 
-import type {Strong} from './strong';
+import type {Data} from '@toreda/types';
+import {MapJsonifier} from '../map/jsonifier';
+import {MapParser} from '../map/parser';
+import {StrongTypeId} from './type/id';
+
 /**
- * @category Date & Time
+ * Map data structure for Strong Types. Supports recursive parsing of
+ * JSON objects into the map, with property type matching and conversion
+ * from Strong Map to json object.
+ *
+ * @category Strong Map
  */
-export type Time = Strong<string>;
+export class StrongMap {
+	public typeId: StrongTypeId;
+	public readonly baseType: StrongTypeId;
+
+	[index: string]: unknown;
+
+	constructor() {
+		this.typeId = 'StrongMap';
+		this.baseType = 'StrongMap';
+	}
+
+	public parse(data?: null | unknown): void {
+		if (!data) {
+			return;
+		}
+
+		const parser = new MapParser();
+		parser.parse(this, data);
+	}
+
+	public jsonify(): Data {
+		const jsonifier = new MapJsonifier();
+
+		return jsonifier.jsonify(this);
+	}
+}
